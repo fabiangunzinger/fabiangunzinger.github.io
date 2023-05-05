@@ -24,5 +24,33 @@ Math $$ \alpha = \beta $$]]></description>
 Polar Axis For a demonstration of a line plot on a polar axis, see Figure 1.
 1 2 3 4 5 6 7 8 9 10 import numpy as np import matplotlib.pyplot as plt r = np.arange(0, 2, 0.01) theta = 2 * np.pi * r fig, ax = plt.subplots(subplot_kw={&#39;projection&#39;: &#39;polar&#39;}) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show() 1 2 3 4 import pandas as pd df = pd.]]></description>
 </item>
+<item>
+    <title>Python string formatting</title>
+    <link>http://example.org/python-string-formatting/</link>
+    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-string-formatting/</guid>
+    <description><![CDATA[Formatted string literals (f-strings) A basic f-string consists of a combination of literal characters and replacement characters, the latter of which are placed inside braces (full grammar here, useful explanation of how they are parsed here).
+The general form for the replacement field is &quot;{&quot; expression [&quot;=&quot;] [&quot;!&quot; conversion] [&quot;:&quot; format_spec] &quot;}&quot;.
+1 2 name = &#34;world&#34; f&#34;Hello {name}&#34; 'Hello world' Add = to also print the name of the replacement expression (useful for debugging).]]></description>
+</item>
+<item>
+    <title>Vim</title>
+    <link>http://example.org/vim/</link>
+    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/vim/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Regex in Python</title>
+    <link>http://example.org/python-regex/</link>
+    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-regex/</guid>
+    <description><![CDATA[Raw strings Raw string notation keeps regular expressions sane. re tutorial
+Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. ' and \ itself) and to create tokens with special meaning (e.g. \n).
+1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string.]]></description>
+</item>
 </channel>
 </rss>

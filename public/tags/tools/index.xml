@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tools - Tag - My online notebook</title>
+        <link>http://example.org/tags/tools/</link>
+        <description>tools - Tag - My online notebook</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>Vim</title>
+    <link>http://example.org/vim/</link>
+    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/vim/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
