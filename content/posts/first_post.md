@@ -4,4 +4,12 @@ date: 2023-05-05T17:56:55+01:00
 draft: false
 ---
 
+## Introduction
+
 Hello world. This is the first post on my new blog.
+
+## Math
+
+$$
+\alpha = \beta
+$$

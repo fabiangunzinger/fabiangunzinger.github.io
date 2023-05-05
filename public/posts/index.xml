@@ -1,23 +1,25 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Posts - My New Hugo Site</title>
+        <title>All Posts - My online notebook</title>
         <link>http://example.org/posts/</link>
-        <description>All Posts | My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 05 May 2023 17:56:55 &#43;0100</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+        <description>All Posts | My online notebook</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Fri, 05 May 2023 17:56:55 &#43;0100</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
     <title>First_post</title>
     <link>http://example.org/first_post/</link>
     <pubDate>Fri, 05 May 2023 17:56:55 &#43;0100</pubDate>
-    <author>xxxx</author>
+    <author>Author</author>
     <guid>http://example.org/first_post/</guid>
-    <description><![CDATA[Hello world. This is the first post on my new blog.]]></description>
+    <description><![CDATA[Introduction Hello world. This is the first post on my new blog.
+Math $$ \alpha = \beta $$]]></description>
 </item>
 <item>
     <title>Hello, Quarto</title>
     <link>http://example.org/hello-quarto/</link>
-    <pubDate>Fri, 06 Apr 2012 00:00:00 &#43;0000</pubDate>
-    <author>xxxx</author>
+    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
     <guid>http://example.org/hello-quarto/</guid>
-    <description><![CDATA[Polar Axis For a demonstration of a line plot on a polar axis, see Figure 1.
+    <description><![CDATA[Math Not yet working.
+Polar Axis For a demonstration of a line plot on a polar axis, see Figure 1.
 1 2 3 4 5 6 7 8 9 10 import numpy as np import matplotlib.pyplot as plt r = np.arange(0, 2, 0.01) theta = 2 * np.pi * r fig, ax = plt.subplots(subplot_kw={&#39;projection&#39;: &#39;polar&#39;}) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show() 1 2 3 4 import pandas as pd df = pd.]]></description>
 </item>
 </channel>

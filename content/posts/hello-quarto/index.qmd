@@ -1,13 +1,19 @@
 ---
 title: Hello, Quarto
-date: "2012-04-06"
-categories: 
-  - Matplotlib
-  - Coordinates
+date: "2023-04-06"
+tags: 
+  - datascience
+  - python
 format: hugo-md
 jupyter: python3
 draft: false
+math:
+  enable: true
 ---
+
+## Math
+
+Not yet working.
 
 ## Polar Axis
 
