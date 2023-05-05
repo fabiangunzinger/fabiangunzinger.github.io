@@ -188,7 +188,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = "/img/fg.jpeg"
+      avatarURL = "/img/fg.png"
       #  title shown in home page (HTML format is supported)
       title = "Hello"
       # subtitle shown in home page (HTML format is supported)
@@ -233,7 +233,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     #  whether to enable the fontawesome extended syntax
     fontawesome = true
     # whether to show link to Raw Markdown content of the content
-    linkToMarkdown = true
+    linkToMarkdown = false
     #  whether to show the full text content in RSS
     rssFullText = false
     #  Table of the contents config

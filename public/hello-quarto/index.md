@@ -1,5 +1,15 @@
-# Hello, Quarto
-
+---
+title: Hello, Quarto
+date: "2023-04-06"
+tags: 
+  - datascience
+  - python
+format: hugo-md
+jupyter: python3
+draft: false
+math:
+  enable: true
+---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -65,4 +75,3 @@ df
 | 9   | 9   |
 
 </div>
-
