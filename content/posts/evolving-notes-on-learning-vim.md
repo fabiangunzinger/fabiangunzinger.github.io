@@ -1,7 +1,7 @@
 ---
 title: "Evolving notes on learning vim"
 date: 2023-05-13T23:50:36+01:00
-draft: false
+draft: true
 ---
 
 A back-of-the-envelope calculation suggests that I've spend about 120 hours configuring nvim over the past two months. That's right, 120 hours! And I'm still not done, and there are still some things about the configuration I don't fully understand (why, for instance, does the `config` argument of the lazy.nvim plugin manager take a function rather than a table?).

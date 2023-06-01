@@ -13,7 +13,9 @@ math:
 
 ## Math
 
-Not yet working.
+Not yet working. Let's see what happens.
+
+Hello.
 
 ## Polar Axis
 
@@ -25,6 +27,8 @@ For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 import numpy as np
 import matplotlib.pyplot as plt
+
+import pandas as pd
 
 r = np.arange(0, 2, 0.01)
 theta = 2 * np.pi * r

@@ -1,11 +1,13 @@
 ---
 title: "Command-line utilities"
 date: "2023-05-21"
-tags: 
-  - tools
+category:
+  - craft
+tags:
+   - tools
 format: hugo-md
 jupyter: python3
-draft: true
+draft: false
 math:
   enable: true
 ---
@@ -27,6 +29,19 @@ Getting help
 Searching
 =========
 
+## `fzf`
+
+- A command-line fuzzy finder that filters the results from a given input based on additional user input.
+
+- For example, `ls | fzf` will display all files in the current directory and subdirectories, and then filter the results based on the user input.
+
+- By default, it searches for files from the current directories. 
+
+- Advanced example uses [here](https://github.com/junegunn/fzf/wiki/examples).
+
+- I have created shortcuts that allow me to search and preview (with `bat`) all files in the current directory and subdirectories with `fp` ("file preview"), and do the same but then open the selected file with nvim with `fv` ("file vim").
+
+
 ## `grep`
 
 - Searches for a pattern in a file or files.
@@ -37,7 +52,9 @@ Searching
 grep -r --inlcude="*.md" "python" .
 ```
 
-## `find`
+## `fd`
+
+
 
 ## `rg`
 
@@ -70,3 +87,31 @@ File manipulation
 ## `wc`
 
 ## `diff`
+
+
+## `sed`
+
+- A stream editor for filtering and transforming text.
+
+- It reads text, line by line, from standard input and modifies it according to an expression, before outputting it again.
+
+- For example, to replace all occurrences of "foo" with "bar" in a file:
+
+```bash
+sed -i 's/foo/bar/g' file.txt
+```
+
+Process management
+==================
+
+## `ps`
+
+- `ps` stands for "process status" and, by default, shows all processes with controlling terminals.
+
+- 
+
+
+## Resources
+
+- I learned a lot from Sidney Liebrand's [post](https://sidneyliebrand.io/blog/how-fzf-and-ripgrep-improved-my-workflow) on his fzf and ripgrep workflow.
+

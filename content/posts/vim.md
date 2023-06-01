@@ -1,17 +1,12 @@
 ---
-title: "Vim"
-subtitle: "Cheatsheet"
-tags: [tools, cheatsheet]
-
+title: "Vim cheatsheet"
+category:
+    - craft
+tag:
+    - tools 
+    - cheatsheet
 date: 2021-09-11
-featured: false
 draft: false
-
-reading_time: true
-profile: false
-commentable: true
-summary: " "
-
 ---
 
 ## Preliminaries
@@ -68,8 +63,10 @@ Useful stuff I tend to forget:
 | `set: {option}&`    | Set option back to default value |
 | `\|`                | Command separator (equivalent to `;` in shell) |
 | `<c-k>-N`           | Enter en dash in insert mode using digraphs |
-| `<c-o-o>`           | After opening vim, opens last file with cursor at last
-edit|
+| `<c-o-o>`           | After opening vim, opens last file with cursor at last edit |
+| `:scriptnames`      | List of scripts loaded on startup |
+| `:map`, `:nmap`, ...| Show existing mappings |
+| `<c-o>` / `<c-i>`   | To move back and forth in the jumplist |
 
 
 ## Help
@@ -96,6 +93,7 @@ Common operators:
 | Trigger    | Effect |
 | ---------- | ------ |
 | `c`        | Change |
+| `d`        | Delete into register |
 | `d`        | Delete into register |
 | `y`        | Yank into register |
 | `p`        | Paste after cursor |
@@ -1255,7 +1253,6 @@ Vimtex text objects:
 | `$`                 | Inline math environment |
 | `P`                 | Sections |
 | `m`                 | Items |
-
 
 ## Obscurities
 

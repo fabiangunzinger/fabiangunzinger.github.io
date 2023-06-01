@@ -1,12 +1,13 @@
 ---
-title: Hello, Quarto
-date: "2023-04-06"
+title: Setting up Neovim
+date: 2023-05-26
+categories: 
+  - craft
 tags: 
-  - datascience
-  - python
+  - tools
 format: hugo-md
 jupyter: python3
-draft: false
+draft: true
 math:
   enable: true
 ---
@@ -16,18 +17,16 @@ math:
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-## Math
+## Quarto setup
 
-Not yet working.
-
-## Polar Axis
-
-For a demonstration of a line plot on a polar axis, see [Figure 1](#fig-polar).
+-   Press `K` to open the quick reference, and `KK` to jump into it and move around. Press `q` to close the reference window.
 
 ``` python
 import numpy as np
 import matplotlib.pyplot as plt
 
+import pandas as pd
+np.amax
 r = np.arange(0, 2, 0.01)
 theta = 2 * np.pi * r
 fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
