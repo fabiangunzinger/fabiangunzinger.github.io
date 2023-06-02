@@ -1,5 +1,5 @@
 ---
-title: "Unix command line basics"
+title: "Unix basics"
 date: "2020-11-12"
 category: "craft"
 tag: ["tools"]
