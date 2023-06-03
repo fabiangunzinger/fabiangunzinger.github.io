@@ -41,7 +41,7 @@ summary: " "
 
 - Renaming multiple files: `rename 's/<pattern to replace>/<new pattern>' [files]`. For example, to replace `foo` with `bar` in all Python files, use `rename 's/foo/bar/' *.py`. Notice that the string command passed is a vim substitution pattern.
 
-- Use `[[ condition ]]` instead of `[ condition ]`. The former is an extension of the latter that's supported in all shells I'd ever use (see [here](https://unix.stackexchange.com/a/306115)).
+- Use `[[ condition ]]` instead of `[ condition ]`. They are both test utilities, but the former is an extension of the latter that's supported in all shells I'd ever use (see [here](https://unix.stackexchange.com/a/306115)).
 
 
 ## File handling
