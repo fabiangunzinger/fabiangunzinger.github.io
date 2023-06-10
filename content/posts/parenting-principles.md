@@ -10,7 +10,7 @@ tag:
 
 My wife and I are about to become parents for the first time. In this space, I want to collect a limited number of core pieces of advice I want to remember. They are all from Philippa Perry's wonderful book [The book you wish your parents had read](https://www.penguin.co.uk/authors/126019/philippa-perry), which I can't recommend highly enough to any parent.
 
-Stuff to remember:
+Stuff I want to remember:
 
 - A child is not a thing I need to manage and train to behave well, but an individual I'm building a relationship with. 
 
