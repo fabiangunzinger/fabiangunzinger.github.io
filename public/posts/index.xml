@@ -1,26 +1,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>All Posts - My online notebook</title>
+        <title>All Posts - Evolving notes on crafting a good life</title>
         <link>http://example.org/posts/</link>
-        <description>All Posts | My online notebook</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Fri, 05 May 2023 17:56:55 &#43;0100</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>First_post</title>
-    <link>http://example.org/first_post/</link>
-    <pubDate>Fri, 05 May 2023 17:56:55 &#43;0100</pubDate>
+        <description>All Posts | Evolving notes on crafting a good life</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sun, 14 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Parenting advice I want to remember</title>
+    <link>http://example.org/parenting-principles/</link>
+    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/first_post/</guid>
-    <description><![CDATA[Introduction Hello world. This is the first post on my new blog.
-Math $$ \alpha = \beta $$]]></description>
-</item>
-<item>
-    <title>Hello, Quarto</title>
-    <link>http://example.org/hello-quarto/</link>
-    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/hello-quarto/</guid>
-    <description><![CDATA[Math Not yet working.
-Polar Axis For a demonstration of a line plot on a polar axis, see Figure 1.
-1 2 3 4 5 6 7 8 9 10 import numpy as np import matplotlib.pyplot as plt r = np.arange(0, 2, 0.01) theta = 2 * np.pi * r fig, ax = plt.subplots(subplot_kw={&#39;projection&#39;: &#39;polar&#39;}) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show() 1 2 3 4 import pandas as pd df = pd.]]></description>
+    <guid>http://example.org/parenting-principles/</guid>
+    <description><![CDATA[My wife and I are about to become parents for the first time. In this space, I want to collect a limited number of core pieces of advice I want to remember. They are all from Philippa Perry&rsquo;s wonderful book The book you wish your parents had read, which I can&rsquo;t recommend highly enough to any parent.
+Stuff I want to remember:
+A child is not a thing I need to manage and train to behave well, but an individual I&rsquo;m building a relationship with.]]></description>
 </item>
 <item>
     <title>Python string formatting</title>
@@ -33,12 +24,15 @@ The general form for the replacement field is &quot;{&quot; expression [&quot;=&
 1 2 name = &#34;world&#34; f&#34;Hello {name}&#34; 'Hello world' Add = to also print the name of the replacement expression (useful for debugging).]]></description>
 </item>
 <item>
-    <title>Vim</title>
+    <title>Vim cheatsheet</title>
     <link>http://example.org/vim/</link>
     <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://example.org/vim/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
+I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
+Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
+Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
 </item>
 <item>
     <title>Regex in Python</title>
@@ -49,6 +43,19 @@ The general form for the replacement field is &quot;{&quot; expression [&quot;=&
     <description><![CDATA[Raw strings Raw string notation keeps regular expressions sane. re tutorial
 Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. ' and \ itself) and to create tokens with special meaning (e.g. \n).
 1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string.]]></description>
+</item>
+<item>
+    <title>Unix basics</title>
+    <link>http://example.org/unix-basics/</link>
+    <pubDate>Thu, 12 Nov 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/unix-basics/</guid>
+    <description><![CDATA[This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.
+Basics A process is a running instance of a program.
+Everything is a fiele (the keyboard is read-only, the screen write only)
+man &lt;command&gt; opens the manual for &lt;command&gt;.
+man -k &lt;search term&gt; lists all commands with &lt;search term&gt; in the manual pages.
+Stuff I use often and tend to forget Creating a soft link: ln -s &lt;file&gt; &lt;link&gt;.]]></description>
 </item>
 </channel>
 </rss>

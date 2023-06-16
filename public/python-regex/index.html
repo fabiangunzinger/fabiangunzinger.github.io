@@ -4,23 +4,23 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Regex in Python - My online notebook</title><meta name="Description" content="This is my online notebook"><meta property="og:title" content="Regex in Python" />
+        <title>Regex in Python - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Regex in Python" />
 <meta property="og:description" content="Raw strings Raw string notation keeps regular expressions sane. re tutorial
 Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. &#39; and \ itself) and to create tokens with special meaning (e.g. \n).
 1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/python-regex/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-23T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-03-23T00:00:00+00:00" /><meta property="og:site_name" content="My online notebook" />
+<meta property="article:modified_time" content="2023-05-05T23:03:43+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Regex in Python"/>
 <meta name="twitter:description" content="Raw strings Raw string notation keeps regular expressions sane. re tutorial
 Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. &#39; and \ itself) and to create tokens with special meaning (e.g. \n).
 1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string."/>
-<meta name="application-name" content="My online notebook">
-<meta name="apple-mobile-web-app-title" content="My online notebook"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-regex/" /><link rel="next" href="http://example.org/vim/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-regex/" /><link rel="prev" href="http://example.org/unix-basics/" /><link rel="next" href="http://example.org/vim/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -32,7 +32,7 @@ Raw strings in Python Just like the regex engine, Python uses \ to escape charac
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/python-regex\/"
         },"genre": "posts","keywords": "python","wordcount":  2855 ,
-        "url": "http:\/\/example.org\/python-regex\/","datePublished": "2021-03-23T00:00:00+00:00","dateModified": "2021-03-23T00:00:00+00:00","publisher": {
+        "url": "http:\/\/example.org\/python-regex\/","datePublished": "2021-03-23T00:00:00+00:00","dateModified": "2023-05-05T23:03:43+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -45,10 +45,10 @@ Raw strings in Python Just like the regex engine, Python uses \ to escape charac
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="My online notebook"></a>
+            <a href="/" title="Evolving notes on crafting a good life"></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -68,7 +68,7 @@ Raw strings in Python Just like the regex engine, Python uses \ to escape charac
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="My online notebook"></a>
+                <a href="/" title="Evolving notes on crafting a good life"></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -90,7 +90,7 @@ Raw strings in Python Just like the regex engine, Python uses \ to escape charac
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -1691,7 +1691,7 @@ Name: title, Length: 3201, dtype: object
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2021-03-23</span>
+                <span>Updated on 2023-05-05</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -1708,8 +1708,8 @@ Name: title, Length: 3201, dtype: object
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/vim/" class="next" rel="next" title="Vim">Vim<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/unix-basics/" class="prev" rel="prev" title="Unix basics"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Unix basics</a>
+            <a href="/vim/" class="next" rel="next" title="Vim cheatsheet">Vim cheatsheet<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

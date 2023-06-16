@@ -1,4 +1,4 @@
-# Vim
+# Vim cheatsheet
 
 
 ## Preliminaries
@@ -55,8 +55,10 @@ Useful stuff I tend to forget:
 | `set: {option}&`    | Set option back to default value |
 | `\|`                | Command separator (equivalent to `;` in shell) |
 | `<c-k>-N`           | Enter en dash in insert mode using digraphs |
-| `<c-o-o>`           | After opening vim, opens last file with cursor at last
-edit|
+| `<c-o-o>`           | After opening vim, opens last file with cursor at last edit |
+| `:scriptnames`      | List of scripts loaded on startup |
+| `:map`, `:nmap`, ...| Show existing mappings |
+| `<c-o>` / `<c-i>`   | To move back and forth in the jumplist |
 
 
 ## Help
@@ -83,6 +85,7 @@ Common operators:
 | Trigger    | Effect |
 | ---------- | ------ |
 | `c`        | Change |
+| `d`        | Delete into register |
 | `d`        | Delete into register |
 | `y`        | Yank into register |
 | `p`        | Paste after cursor |
@@ -113,8 +116,6 @@ Moving back and forth:
 | `gg`          |             | Jump to the first line of the document |
 | `G`           |             | Jump to the last line of the document |
 
-
-<!-- tohere -->
 
 Act, repeat, reverse:
 
@@ -198,6 +199,25 @@ Useful commands:
 | `<C-v>`    | Enter block-wise visual mode / back to normal mode |
 | `gv`       | Reselect last visual selection |
 | `o`        | Toggle the free end of a selection |
+
+Exercises:
+
+1. Turn the list of objects into dictionary elements as shown.
+
+foo
+bar
+baz
+buzz
+
+d[0] = "foo"
+d[1] = "bar"
+d[2] = "baz"
+d[3] = "buzz"
+
+
+Solutions:
+
+1. `yip` to select paragraph, `:s/\(.*\)/d[0] = "\1"` to replace each line with dict entry, then move to 0 in last paragraph, then `<c-v>g<c-a>` to activate block visual mode, and increment the lines.
 
 
 ### Command-line mode
@@ -483,8 +503,8 @@ Left-right and up-down:
 
 | Command             | Effect |
 | - | - |
-| `h`/`l`             | Move left/right  |
-| `j`/`k`             | Down/up one line (think of `j` as a down arrow) |
+| `h`/`l`             | Move left/right (use `[count]` as needed) |
+| `j`/`k`             | Down/up one line (think of `j` as a down arrow, use `[count]` as needed) |
 | `gj`/`gk`           | Down/up by display rather than real lines |
 | `0`/`^`/`$`         | To first non-blank/first/last character of line |
 | `G`                 | Goto line `[count]`, default is last line |
@@ -515,6 +535,8 @@ Text objects:
 - Text object selection start with `i` ("inner sentence") or `a` ("a
   sentence").  For example: `vi)` highlights text inside parentheses but not
   the parentheses themselves, while `va)` highlights the parentheses as well.
+
+- Useful tip: when I'm not inside a block object, nvim selects applies the command to the next one.
 
 | Command             | Effect |
 | - | - |
@@ -1223,7 +1245,6 @@ Vimtex text objects:
 | `$`                 | Inline math environment |
 | `P`                 | Sections |
 | `m`                 | Items |
-
 
 ## Obscurities
 
