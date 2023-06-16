@@ -7,13 +7,13 @@
 - [x] Nice and clean homepage
 - [x] Home button
 - [x] Change url to homepage
-- [ ] Set up categories and tags
+- [x] Set up categories and tags
 - [ ] Allow comments
+- [ ] Remove author field from posts
 - [ ] Move content from old blog
 - [ ] Set up command to create new blog post with data in name and header
 - [ ] Add book reviews in the form of Gerhard Pfister (short summaries)
 - [ ] Add photos
-- [ ] Move best posts over from old blog
 
 ## Useful resources
 - [Hugo](https://gohugo.io/getting-started/quick-start/)
