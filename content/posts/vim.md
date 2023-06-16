@@ -1,10 +1,7 @@
 ---
 title: "Vim cheatsheet"
-category:
-    - craft
-tag:
-    - tools 
-    - cheatsheet
+categories: [craft]
+tags: [tools, cheatsheet]
 date: 2021-09-11
 draft: false
 ---

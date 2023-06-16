@@ -1,4 +1,8 @@
-# First post
+---
+title: "First post"
+date: 2023-05-13T23:50:36+01:00
+draft: true
+---
 
 Well, this is my first post. It's another attempt to regularly write things for publication. I completely buy into the idea that doing so will help me think clearer thoughts and write more elegant lines. I have been believing this for a long time now. And yet, I never actually managed to start doing it. Not really, anyway. Or if, then not for very long. And on a site the layout of which I didn't like. And then what would happen is that I'd spend time improving the layout until I'd get so exhausted that I needed to stop, and would abandon the project altogether.
 

@@ -1,8 +1,8 @@
 ---
 title: "Unix basics"
 date: "2020-11-12"
-category: "craft"
-tag: ["tools"]
+categories: [craft]
+tag: [tools]
 format: hugo-md
 jupyter: python3
 draft: false

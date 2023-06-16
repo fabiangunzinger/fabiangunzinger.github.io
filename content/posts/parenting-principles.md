@@ -1,11 +1,9 @@
 ---
 title: "Parenting advice I want to remember"
 date: 2023-05-14
+categories: [growth]
+tags: [parenting]
 draft: false
-category:
-    - growth
-tag:
-    - parenting
 ---
 
 My wife and I are about to become parents for the first time. In this space, I want to collect a limited number of core pieces of advice I want to remember. They are all from Philippa Perry's wonderful book [The book you wish your parents had read](https://www.penguin.co.uk/authors/126019/philippa-perry), which I can't recommend highly enough to any parent.
