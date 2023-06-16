@@ -10,6 +10,7 @@
 - [x] Set up categories and tags
 - [ ] Allow comments (useful resource [here](https://cloudcannon.com/jamstack-ecosystem/commenting/))
 - [ ] Remove author field from posts
+- [ ] Turn photo into digital portrait
 - [ ] Move content from old blog
 - [ ] Set up command to create new blog post with data in name and header
 - [ ] Add book reviews in the form of Gerhard Pfister (short summaries)

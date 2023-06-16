@@ -89,7 +89,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   description = "Evolving notes on crafting a good life"
   # website images for Open Graph and Twitter Cards
   # images = ["/img/fg.jpeg"]
-  hideAuthor = true
 
   # Header config
   [params.header]
@@ -312,7 +311,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       Mix = false
     #  Comment config
     [params.page.comment]
-      enable = true
+      enable = false
       # Disqus comment config
       [params.page.comment.disqus]
         enable = false
@@ -371,7 +370,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         enable = false
       #  utterances comment config
       [params.page.comment.utterances]
-        enable = true
+        enable = false
         # owner/repo
         repo = ""
         issueTerm = "pathname"
