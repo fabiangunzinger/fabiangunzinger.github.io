@@ -9,7 +9,7 @@
 - [x] Change url to homepage
 - [x] Set up categories and tags
 - [ ] Allow comments (useful resource [here](https://cloudcannon.com/jamstack-ecosystem/commenting/))
-- [ ] Remove author field from posts
+- [ ] Remove author field from posts (see [here](https://github.com/halogenica/beautifulhugo/issues/340))
 - [ ] Turn photo into digital portrait
 - [ ] Move content from old blog
 - [ ] Set up command to create new blog post with data in name and header
