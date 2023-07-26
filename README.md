@@ -16,6 +16,9 @@
 - [ ] Add book reviews in the form of Gerhard Pfister (short summaries)
 - [ ] Add photos
 
+## Ideas for posts
+- [ ] Revenue per employee for Basecamp and other companies (is basecamp really that efficient? What other companies are, too? Look into Twitter pre and post layoffs, look at Meta.)
+
 ## Useful resources
 - [Hugo](https://gohugo.io/getting-started/quick-start/)
 - [Quarto](https://quarto.org/docs/output-formats/hugo.html)
