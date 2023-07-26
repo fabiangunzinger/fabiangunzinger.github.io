@@ -16,4 +16,5 @@
             <loc>http://example.org/tags/tools/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/vim/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/python-regex/</loc><lastmod>2023-05-05T23:03:43&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/unix-basics/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>http://example.org/unix-basics/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://example.org/python-decorators/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
