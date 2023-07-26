@@ -4,33 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Intro - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Intro" />
-<meta property="og:description" content="1 2 3 4 5 6 7 8 --- title: &#34;Python Decorators&#34; date: &#34;2021-03-23&#34; tags: - python execute: enabled: false --- My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated)." />
+        <title>Python Decorators - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Python Decorators" />
+<meta property="og:description" content="My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/python-decorators/" /><meta property="article:section" content="posts" />
-
-<meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta property="article:published_time" content="2021-03-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-26T15:31:51+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Intro"/>
-<meta name="twitter:description" content="1 2 3 4 5 6 7 8 --- title: &#34;Python Decorators&#34; date: &#34;2021-03-23&#34; tags: - python execute: enabled: false --- My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated)."/>
+<meta name="twitter:title" content="Python Decorators"/>
+<meta name="twitter:description" content="My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime)."/>
 <meta name="application-name" content="Evolving notes on crafting a good life">
 <meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-decorators/" /><link rel="next" href="http://example.org/unix-basics/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-decorators/" /><link rel="prev" href="http://example.org/python-regex/" /><link rel="next" href="http://example.org/vim/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Intro",
+        "headline": "Python Decorators",
         "inLanguage": "en_gb",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/python-decorators\/"
-        },"genre": "posts","wordcount":  1776 ,
-        "url": "http:\/\/example.org\/python-decorators\/","publisher": {
+        },"genre": "posts","keywords": "python","wordcount":  1756 ,
+        "url": "http:\/\/example.org\/python-decorators\/","datePublished": "2021-03-23T00:00:00+00:00","dateModified": "2023-07-26T15:31:51+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -101,9 +101,9 @@ Decorators are functions designed to wrap other functions to enhance their capab
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Intro</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python Decorators</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1776 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-23">2021-03-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1756 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -112,6 +112,7 @@ Decorators are functions designed to wrap other functions to enhance their capab
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#intro">Intro</a></li>
     <li><a href="#basic-mechanics">Basic mechanics</a></li>
     <li><a href="#registration-decorators">Registration decorators</a></li>
     <li><a href="#decorators-that-return-a-different-function">Decorators that return a different function</a>
@@ -127,29 +128,8 @@ Decorators are functions designed to wrap other functions to enhance their capab
     <li><a href="#main-sources">Main sources</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">---</span>
-</span></span><span class="line"><span class="cl"><span class="n">title</span><span class="p">:</span> <span class="s2">&#34;Python Decorators&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">date</span><span class="p">:</span> <span class="s2">&#34;2021-03-23&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">tags</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">python</span>
-</span></span><span class="line"><span class="cl"><span class="n">execute</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">enabled</span><span class="p">:</span> <span class="n">false</span>
-</span></span><span class="line"><span class="cl"><span class="o">---</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).</p>
+            </div><div class="content" id="content"><p>My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).</p>
+<h2 id="intro">Intro</h2>
 <ul>
 <li>Decorators are functions designed to wrap other functions to enhance their capability at runtime.</li>
 <li>They do this by replacing the wrapped function with the return value of the decorator.</li>
@@ -990,7 +970,7 @@ Congratulations!
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 0001-01-01</span>
+                <span>Updated on 2023-07-26</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -1001,14 +981,14 @@ Congratulations!
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/unix-basics/" class="next" rel="next" title="Unix basics">Unix basics<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/python-regex/" class="prev" rel="prev" title="Regex in Python"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Regex in Python</a>
+            <a href="/vim/" class="next" rel="next" title="Vim cheatsheet">Vim cheatsheet<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

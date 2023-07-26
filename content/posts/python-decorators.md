@@ -1,9 +1,4 @@
 ---
-title: Intro
----
-
-``` python
----
 title: "Python Decorators"
 date: "2021-03-23"
 tags:
@@ -11,9 +6,10 @@ tags:
 execute:
     enabled: false
 ---
-```
 
 My notes on decorator functions (I don't use classes enough to worry about class decorators).
+
+## Intro
 
 -   Decorators are functions designed to wrap other functions to enhance their capability at runtime.
 -   They do this by replacing the wrapped function with the return value of the decorator.

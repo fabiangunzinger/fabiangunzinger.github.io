@@ -14,6 +14,15 @@ The general form for the replacement field is &quot;{&quot; expression [&quot;=&
 1 2 name = &#34;world&#34; f&#34;Hello {name}&#34; 'Hello world' Add = to also print the name of the replacement expression (useful for debugging).]]></description>
 </item>
 <item>
+    <title>Python Decorators</title>
+    <link>http://example.org/python-decorators/</link>
+    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-decorators/</guid>
+    <description><![CDATA[My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime).]]></description>
+</item>
+<item>
     <title>Regex in Python</title>
     <link>http://example.org/python-regex/</link>
     <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
