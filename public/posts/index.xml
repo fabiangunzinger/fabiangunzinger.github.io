@@ -35,15 +35,6 @@ Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&g
 Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
 </item>
 <item>
-    <title>Python Decorators</title>
-    <link>http://example.org/python-decorators/</link>
-    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/python-decorators/</guid>
-    <description><![CDATA[My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime).]]></description>
-</item>
-<item>
     <title>Regex in Python</title>
     <link>http://example.org/python-regex/</link>
     <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
