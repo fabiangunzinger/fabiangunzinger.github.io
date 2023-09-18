@@ -35,6 +35,15 @@ Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&g
 Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
 </item>
 <item>
+    <title>Python Decorators</title>
+    <link>http://example.org/python-decorators/</link>
+    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-decorators/</guid>
+    <description><![CDATA[My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime).]]></description>
+</item>
+<item>
     <title>Regex in Python</title>
     <link>http://example.org/python-regex/</link>
     <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
@@ -56,6 +65,16 @@ Everything is a fiele (the keyboard is read-only, the screen write only)
 man &lt;command&gt; opens the manual for &lt;command&gt;.
 man -k &lt;search term&gt; lists all commands with &lt;search term&gt; in the manual pages.
 Stuff I use often and tend to forget Creating a soft link: ln -s &lt;file&gt; &lt;link&gt;.]]></description>
+</item>
+<item>
+    <title>Documenting Sample Selection</title>
+    <link>http://example.org/documenting-sample-selection/</link>
+    <pubDate>Wed, 12 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/documenting-sample-selection/</guid>
+    <description><![CDATA[1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
+Here&rsquo;s a mock dataset:
+1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np.]]></description>
 </item>
 </channel>
 </rss>
