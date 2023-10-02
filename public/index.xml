@@ -16,6 +16,18 @@ Stuff I want to remember:
 A child is not a thing I need to manage and train to behave well, but an individual I&rsquo;m building a relationship with.]]></description>
 </item>
 <item>
+    <title>Heaps</title>
+    <link>http://example.org/heaps/</link>
+    <pubDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/heaps/</guid>
+    <description><![CDATA[Basics Define a heap.
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+Load the standard library module that implements heaps. What kind of heaps are supported?
+1 2 # heapq implements min heaps. Push *-item* to implement max heap. import heapq Turn the below list into a min-heap.
+1 heap = [1, -4, 7, 50] 1 heapq.heapify(heap) Add -1 to the heap.]]></description>
+</item>
+<item>
     <title>Python string formatting</title>
     <link>http://example.org/python-string-formatting/</link>
     <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
@@ -77,6 +89,14 @@ Stuff I use often and tend to forget Creating a soft link: ln -s &lt;file&gt; &l
     <description><![CDATA[1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
 Here&rsquo;s a mock dataset:
 1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np.]]></description>
+</item>
+<item>
+    <title>Intro</title>
+    <link>http://example.org/entropy/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/entropy/</guid>
+    <description><![CDATA[1 2 3 4 5 6 7 8 --- title: &#34;Entropy&#34; date: &#34;2022-01-09&#34; tags: - cs, stats execute: enabled: false --- 1 2 3 4 import math import matplotlib.pyplot as plt import numpy as np Entropy is a measure of the amount of information contained in an event or a random variable. It is a cornerstone of information theory, a subfield of mathematics concerned with the transmission of data across a noisy channel.]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,13 @@
+---
+output: html_document
+---
+
+## Simulating data and calculating correlation between entropy and sd
+
+```{r}
+library(data.table)
+library(entropy)
+counts <- replicate(1000, rpois(48, lambda = 10), simplify = F)
+data <- data.table(e = sapply(counts, entropy), std = sapply(counts, sd))
+cor(data)
+```

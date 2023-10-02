@@ -3,7 +3,19 @@
         <title>python - Tag - Evolving notes on crafting a good life</title>
         <link>http://example.org/tags/python/</link>
         <description>python - Tag - Evolving notes on crafting a good life</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/python/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/python/" rel="self" type="application/rss+xml" /><item>
+    <title>Heaps</title>
+    <link>http://example.org/heaps/</link>
+    <pubDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/heaps/</guid>
+    <description><![CDATA[Basics Define a heap.
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+Load the standard library module that implements heaps. What kind of heaps are supported?
+1 2 # heapq implements min heaps. Push *-item* to implement max heap. import heapq Turn the below list into a min-heap.
+1 heap = [1, -4, 7, 50] 1 heapq.heapify(heap) Add -1 to the heap.]]></description>
+</item>
+<item>
     <title>Python string formatting</title>
     <link>http://example.org/python-string-formatting/</link>
     <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
