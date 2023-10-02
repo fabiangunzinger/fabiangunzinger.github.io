@@ -1,9 +1,4 @@
 ---
-title: Intro
----
-
-``` python
----
 title: "Entropy"
 date: "2022-01-09"
 tags:
@@ -11,7 +6,6 @@ tags:
 execute:
     enabled: false
 ---
-```
 
 ``` python
 import math
@@ -19,6 +13,8 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+
+## Intro
 
 -   Entropy is a measure of the amount of information contained in an event or a random variable. It is a cornerstone of information theory, a subfield of mathematics concerned with the transmission of data across a noisy channel.
 
@@ -85,7 +81,7 @@ ax.plot(probs, info, marker=".")
 ax.set(xlabel="p(E)", ylabel="I(E)");
 ```
 
-![](entropy_files/figure-markdown_strict/cell-7-output-1.png)
+![](entropy_files/figure-markdown_strict/cell-6-output-1.png)
 
 ## Information of a random variable
 
@@ -133,7 +129,7 @@ ax.plot(probs, H, marker=".")
 ax.set(xlabel="p", ylabel="Entropy");
 ```
 
-![](entropy_files/figure-markdown_strict/cell-10-output-1.png)
+![](entropy_files/figure-markdown_strict/cell-9-output-1.png)
 
 ## References
 
