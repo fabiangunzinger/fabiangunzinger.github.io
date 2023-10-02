@@ -1,14 +1,5 @@
----
-title: "Unix basics"
-date: "2020-11-12"
-categories: [craft]
-tag: [tools]
-format: hugo-md
-jupyter: python3
-draft: false
-math:
-  enable: true
----
+# Unix basics
+
 
 This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.
 
@@ -318,3 +309,4 @@ fi
 -   [Ryan's bash-scripting tutorial](https://ryanstutorials.net/bash-scripting-tutorial/)
 
 -   [Ryan's linux tutorial](https://ryanstutorials.net/bash-scripting-tutorial/)
+

@@ -1,17 +1,52 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>datascience - Tag - My online notebook</title>
+        <title>datascience - Tag - Evolving notes on crafting a good life</title>
         <link>http://example.org/tags/datascience/</link>
-        <description>datascience - Tag - My online notebook</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/datascience/" rel="self" type="application/rss+xml" /><item>
-    <title>Hello, Quarto</title>
-    <link>http://example.org/hello-quarto/</link>
-    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate>
+        <description>datascience - Tag - Evolving notes on crafting a good life</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/datascience/" rel="self" type="application/rss+xml" /><item>
+    <title>Machine learning basics</title>
+    <link>http://example.org/machine-learning-basics/</link>
+    <pubDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/hello-quarto/</guid>
-    <description><![CDATA[Math Not yet working.
-Polar Axis For a demonstration of a line plot on a polar axis, see Figure 1.
-1 2 3 4 5 6 7 8 9 10 import numpy as np import matplotlib.pyplot as plt r = np.arange(0, 2, 0.01) theta = 2 * np.pi * r fig, ax = plt.subplots(subplot_kw={&#39;projection&#39;: &#39;polar&#39;}) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show() 1 2 3 4 import pandas as pd df = pd.]]></description>
+    <guid>http://example.org/machine-learning-basics/</guid>
+    <description><![CDATA[Introduction and definitions Why do we estimate f?
+Purpose of ml is often to infer a function f that describes the relationship between target and features.
+Can estimate f for (1) prediction or (2) inference or both.
+How do we estimate f?
+3 basic approaches: parametric (assume shape of f and estimate coefficients), non-parametric (also estimate shape of f), semi-parametric.
+Accuracy depends on (1) irreducible error (variance of error term) and (2) reducible error (appropriateness of our model and its assumptions)]]></description>
+</item>
+<item>
+    <title>Seattle bicycle traffic</title>
+    <link>http://example.org/seattle-bicycle-traffic/</link>
+    <pubDate>Fri, 07 Feb 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/seattle-bicycle-traffic/</guid>
+    <description><![CDATA[This notebook contains my replication of this blog post by Jake VanderPlas on using data from bicycle traffic across Seattle&rsquo;s Fremont Bridge to learn about commuting patterns.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import os import ssl from urllib.request import urlretrieve import altair as alt import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn from pandas.]]></description>
+</item>
+<item>
+    <title>Waiting time paradox</title>
+    <link>http://example.org/waiting-time-paradox/</link>
+    <pubDate>Tue, 14 Jan 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/waiting-time-paradox/</guid>
+    <description><![CDATA[This notebook replicates Jake VanderPlas&rsquo; awesome post on the topic.
+Background The waiting-time paradox is a special case of the inspection paradox, which &ndash; as VanderPlas succinctly summarises &ndash; occurs whenever the probability of observing a quantity is related to the quantity being observed. For example: if you sample random students on campus and ask them about the size of their classes you&rsquo;ll probably get a larger number than if you asked the collge administrator, because you&rsquo;re likely to oversample students from large classes.]]></description>
+</item>
+<item>
+    <title>Naive Bayes</title>
+    <link>http://example.org/naive-bayes/</link>
+    <pubDate>Sat, 23 Nov 2019 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/naive-bayes/</guid>
+    <description><![CDATA[## Setup
+We&rsquo;re interested in estimating $P(L|features)$, the probability of a label given a collection of features.
+Bayes&rsquo;s formula helps us express this in terms of things we can measure in the data as:
+$$P(L|features) = \frac{P(features|L) * P(L)}{P(features)}$$
+To decide which label is more probable given a set of features, we can compute the posterior ratio of likelihoods:
+$$\frac{P(L_1|features)}{P(L_2|features)} = \frac{P(features|L_1) * P(L_1)}{P(features|L_2) * P(L_2)}$$.
+To be able to do this, we need to specify a generative model (a hypothetical random process that generates the data) for each label in the data.]]></description>
 </item>
 </channel>
 </rss>

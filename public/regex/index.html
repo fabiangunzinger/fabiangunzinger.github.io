@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Regex - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Regex" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/regex/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Regex"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/regex/" /><link rel="prev" href="http://example.org/advanced-data-structures/" /><link rel="next" href="http://example.org/algorithm-complexity-analysis/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Regex",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/regex\/"
+        },"genre": "posts","keywords": "tools, cheatsheet","wordcount":  7132 ,
+        "url": "http:\/\/example.org\/regex\/","datePublished": "2021-11-13T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Regex</h1><h2 class="single-subtitle">Cheatsheet</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-11-13">2021-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7132 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;34 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#basics">Basics</a></li>
+    <li><a href="#characters">Characters</a></li>
+    <li><a href="#character-classes">Character classes</a></li>
+    <li><a href="#quantifiers">Quantifiers</a></li>
+    <li><a href="#anchors-and-word-boundaries">Anchors and word boundaries</a></li>
+    <li><a href="#alternation">Alternation</a></li>
+    <li><a href="#groups">Groups</a></li>
+    <li><a href="#lookarounds">Lookarounds</a></li>
+    <li><a href="#flags-and-inline-modifiers">Flags and inline modifiers</a></li>
+    <li><a href="#subroutines-and-recursive-expressions">Subroutines and recursive expressions</a></li>
+    <li><a href="#character-class-set-opetations">Character class set opetations</a></li>
+    <li><a href="#gotchas">Gotchas</a></li>
+    <li><a href="#the-elements-of-regex-style">The elements of regex style</a></li>
+    <li><a href="#miscellaneous">Miscellaneous</a></li>
+    <li><a href="#frequently-used-patterns">Frequently used patterns</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>My regular expression cheatsheet, focused on the Python engine. A lot of
+content is heavily based on (and often shamelessly copied from) the amazing
+<a href="https://www.rexegg.com" target="_blank" rel="noopener noreffer ">RexEgg</a> and
+<a href="https://www.regular-expressions.info" target="_blank" rel="noopener noreffer ">Regular-Expressions.info</a> sites.</p>
+<h2 id="basics">Basics</h2>
+<ul>
+<li>
+<p>A regex is a text string that a regex engine uses to find text or positions
+in a body of text, typically for the purposes of validating, finding,
+replacing, and splitting.</p>
+</li>
+<li>
+<p>To differentiate between the string that makes up the regex and the string
+that is being searched, the former is often called <em>regex</em> or <em>pattern</em> and
+the latter <em>string</em> or <em>subject</em>.</p>
+</li>
+<li>
+<p>A (lexical) token is a string with an assigned and thus identified meaning
+(more <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Token" target="_blank" rel="noopener noreffer ">here</a>). For
+instance, the token <code>\w</code> in a pattern stands for a word-character, and will
+be replaced by that when the engine parses the string.</p>
+</li>
+<li>
+<p>The Python regex engine (and all other modern engines) is regex-directed: it
+attempts all possible permutations of the regex at a character position of
+the subject before moving on to the next character (which can involve lots of
+backtracking). In contrast, text-directed engines visit each character in the
+subject text only once. This makes them faster but also less powerful.</p>
+</li>
+<li>
+<p>A regex engine is <em>eager</em>: it scans alternatives in the regex from left to
+right and returns the first possible match – <code>Jane|Janet</code> would return
+<em>Jane</em> as a match in <em>Janet is tall</em>.</p>
+</li>
+</ul>
+<h2 id="characters">Characters</h2>
+<ul>
+<li>
+<p>There are four types of characters: literal characters (e.g. <code>a</code>),
+metacharacters (<code>^</code>), non-printable characters (<code>\n</code>), and shorthand
+character classes (<code>\w</code>).</p>
+</li>
+<li>
+<p>Literal characters simply match themselves: the single literal character <code>a</code>
+matches the first <em>a</em> in the string, the sequence of literal characters <code>cat</code>
+the first occurrence of <em>cat</em>.</p>
+</li>
+<li>
+<p>Metacharacters are the twelve punctuation characters from the ACSII
+<a href="https://www.asciitable.com" target="_blank" rel="noopener noreffer ">table</a> that make regex work its magic: <code>$</code>, <code>(</code>,
+<code>)</code>, <code>*</code>, <code>+</code>, <code>.</code>, <code>?</code>, <code>[</code>, <code>\</code>, <code>^</code>, <code>{</code>, <code>|</code>. To match metacharacters as
+literals, escape them with a backslash, as in <code>1\+2=3</code>. Exceptions are <code>{</code>
+and <code>}</code>, which are only treated as metacharacters when part of a quantifier,
+and <code>]</code>, which only takes on special meaning when part of a character class).</p>
+</li>
+<li>
+<p>Non-printable characters or formation marks are characters used to tell word
+processors how text needs to look and do not appear in printed text.</p>
+</li>
+<li>
+<p>Shorthand character classes are tokens for certain common character classes.</p>
+</li>
+</ul>
+<p>Non-printable characters</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\r</code></td>
+<td>Carriage return</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>Newline</td>
+</tr>
+<tr>
+<td><code>\r\n</code></td>
+<td>Line-break on Windows</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>Tab</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>Form-feed</td>
+</tr>
+</tbody>
+</table>
+<p>Shorthand character classes</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\d</code></td>
+<td>Single digit, short for <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Complement of <code>\d</code>, short for <code>[^\d]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Word character, short for <code>[a-zA-Z\_]</code></td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Complement of <code>\w</code>, short for <code>[^\w]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Whitespace character, short for <code>[\r\n\t\f\v ]</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Complement of <code>\s</code>, short for <code>[^\s]</code></td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>Vertical whitespace, short for <code>[\n\f\r]</code></td>
+</tr>
+<tr>
+<td><code>\V</code></td>
+<td>Complement of <code>\v</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="character-classes">Character classes</h2>
+<ul>
+<li>
+<p>Character classes tell the engine to match one of several characters.</p>
+</li>
+<li>
+<p>Importantly: <code>[^a-z]u</code> does <em>not</em> mean &ldquo;u not preceded by a lowercase
+letter&rdquo;, but &ldquo;u preceded by <em>something</em> that isn&rsquo;t a lowercase letter&rdquo;.
+Hence, the pattern doesn&rsquo;t match a <em>u</em> at the beginning of a string. (In
+contrast to the <code>.</code>, the negated character class does match invisible line
+breaks, though, so the above pattern would match the string <em>\nu</em>.)</p>
+</li>
+<li>
+<p>Within a character class, metacharacters are literals with the exception of
+<em>^</em>, <em>-</em>, <em>\</em> and <em>]</em> if they are used in places where they have special
+meaning: ^ at the beginning, <em>-</em> as part of a range, <em>]</em> at the end, and <em>\</em>
+to escape another special character or to form a token (i.e. always), and <em>]</em>
+at the end. Hence, this regex matches them all as literals: <code>[]\\-^]</code> (for
+details on how to includ metacharacters indide character classes without
+escaping them, see relevant section here
+<a href="https://www.regular-expressions.info/charclass.html" target="_blank" rel="noopener noreffer ">here</a>].</p>
+</li>
+</ul>
+<p>Character classes examples</p>
+<table>
+<thead>
+<tr>
+<th>Regex</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[ab]</code></td>
+<td>One of <em>a</em> or <em>b</em></td>
+</tr>
+<tr>
+<td><code>[^ab]</code></td>
+<td>Any character that isn&rsquo;t <em>a</em> or <em>b</em> (incl. newline)</td>
+</tr>
+<tr>
+<td><code>[\w\s]</code></td>
+<td>One word or whitespace character</td>
+</tr>
+<tr>
+<td><code>[A-By-z1-2]</code></td>
+<td>One of <em>A</em>, <em>B</em>, <em>y</em>, <em>z</em>, <em>1</em>, <em>2</em></td>
+</tr>
+<tr>
+<td><code>[ -~]</code></td>
+<td>Any character in the printable section of the ASCII</td>
+</tr>
+<tr>
+<td><a href="https://www.asciitable.com" target="_blank" rel="noopener noreffer ">table</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>Match <em>gray</em> and <em>grey</em> in <em>London is grey; New York, gray.</em>.</p>
+</li>
+<li>
+<p>Match any character that is neither a digit nor a (hidden) line break
+character.</p>
+</li>
+<li>
+<p>What does <code>q[^u]</code> match in <em>Iraq</em> and <em>Iraq is a country</em>?</p>
+</li>
+<li>
+<p>How could we match any <em>q</em> not followed by a <em>u</em>?</p>
+</li>
+<li>
+<p>Search for a literal * or +.</p>
+</li>
+<li>
+<p>Match any number greater than 10 made up of all the same digit (e.g. 222,
+33, 5555).</p>
+</li>
+<li>
+<p>In <em>b ab cb</em>, match <em>b</em> either at the beginning of the string or when
+preceded by an <em>a</em>.</p>
+</li>
+<li>
+<p>What&rsquo;s the difference between <code>[\D\S]</code> and <code>[^\d\s]</code>?</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p><code>\bgr[ae]y\b</code>. Discussion: need global flag on or use <code>findall()</code> in Python
+to match both words, otherwise I&rsquo;ll just get the first one.</p>
+</li>
+<li>
+<p><code>[\D\V]</code>. Discussion: the negated character classs matches hidden line break
+character by default (unlike the .), so need to explicitly exclude them.</p>
+</li>
+<li>
+<p>Nothing and <code>q </code>. Discussion: the regex means &ldquo;q followed by something that
+is not a u&rdquo;, not &ldquo;q not followed by a u&rdquo;, so it requires something to follow
+the q, and that something to not be a u. That something, which happens to be
+a whitespace in the second string, is part of the match.</p>
+</li>
+<li>
+<p><code>q(?!u)</code>.</p>
+</li>
+<li>
+<p><code>[*+]</code>. Discussion: these two characters have no special meaning within a
+character class, so no need to escape them.</p>
+</li>
+<li>
+<p><code>(\d)\1+</code>. Discussion: need a capturing group for this (<code>[\d]{2,}</code>, for
+instance, would match any two digit number).</p>
+</li>
+<li>
+<p><code>(?:^|a)b</code>. Discussion: <code>[a^]b</code> would not work here, since <code>^</code> is matched
+literally inside a character class, so need a non-group with an alternation.</p>
+</li>
+<li>
+<p><code>[\D\S]</code> matches a single character present inside the character class, so a
+character that is either not a digit or not a space, which is every
+character. <code>[^\d\s]</code> matches a single character that is not present inside
+the character class, so that is neither a digit nor a space, which is all
+letters.</p>
+</li>
+</ol>
+<h2 id="quantifiers">Quantifiers</h2>
+<ul>
+<li>A quantifier tells the engine to match the immediately preceding character,
+token, or subexpression (e.g. <code>(a|b)</code>) a certain number of times.</li>
+</ul>
+<p>Nomenclature:</p>
+<ul>
+<li>
+<p><em>Greedy</em> quantifiers: the default property of quantifiers to match as many
+characters as possible and thus return the longest possible match. E.g. <code>\d+</code>
+matches <em>123</em> (not <em>1</em> or <em>12</em>) against <em>123</em>.</p>
+</li>
+<li>
+<p><em>Docile</em> quantifiers: the property of a greedy quantifier to backtrack and
+give up characters to try the rest of the pattern to match. This is the
+property behind the &ldquo;possible&rdquo; in the above definition: a greedy quantifier
+matches as many characters of the quantified token as it can for the overall
+pattern to match. E.g. <code>.*c</code> will run all the way to the end of the string <em>abc</em>,
+fail to match the <em>c</em> in the pattern, backtrack and give up the <em>c</em> character
+matched by dot-star, try again to match <em>c</em>, succeed, and return.</p>
+</li>
+<li>
+<p><em>Lazy</em> quantifiers: the property of a quantifier to match as few characters
+as necessary and thus return the shortest possible match. Quantifiers are
+made lazy by appending <code>?</code>. Example: <code>\d+?</code> matches <em>1</em> against <em>123</em>.  Lazy
+quantifiers are expensive: laziness and helpfulness make the engine advance
+from the beginning to the end of a string character by character, at each
+step expanding the match by including the next character, advancing and
+attempting to match the rest of the pattern, fail, backtrack, and repeat
+until it finds a match or reaches the end of the string.</p>
+</li>
+<li>
+<p><em>Helpful</em> quantifiers: the property of a lazy quantifier to backtrack and
+match additional characters of the quantified token in the attempt to match
+the rest of the pattern. This is the property behind the &ldquo;necessary&rdquo; in the
+above definition: a lazy quantifier matches as few characters as it can for
+the overall pattern to match. E.g. <code>a*?b</code> will first match zero <em>a</em>s against
+<code>aab</code>, advance and try to match the <em>b</em>, fail, backtrack and match the first
+<em>a</em>, advance and try to match the <em>b</em>, fail again, backtrack and match the
+second <em>a</em>, advance and try to match the <em>b</em>, succeed and return.</p>
+</li>
+<li>
+<p><em>Possessive</em> quantifiers: an optional property of a quantifier that prevents
+it from giving up previously matched characters if the rest of the pattern
+doesn&rsquo;t match (i.e. it makes the quantifier non-docile). We can make a
+quantifier possessive by appending a <code>+</code>. Example: <code>a++</code> greedily matches as
+many <em>a</em>s as it can and never gives any of them back.</p>
+</li>
+</ul>
+<p>Quantifiers and modifiers:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>?</code></td>
+<td>Match zero or once</td>
+</tr>
+<tr>
+<td><code>\*</code></td>
+<td>Match zero or more</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Match once or more</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Match n times</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Match between n and m times, n defaults to 0, m to infinity</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Make quantifier lazy</td>
+</tr>
+<tr>
+<td><code>{quantifier}+</code></td>
+<td>Make quantifier possessive</td>
+</tr>
+</tbody>
+</table>
+<p>Matches in string <em>a5aa5</em>:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Matches in GLOBAL mode (total: list)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code></td>
+<td>3: a, a, a</td>
+</tr>
+<tr>
+<td><code>a+</code></td>
+<td>2: a, aa</td>
+</tr>
+<tr>
+<td><code>a+?</code></td>
+<td>3: a, a, a</td>
+</tr>
+<tr>
+<td><code>a*</code></td>
+<td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a*?</code></td>
+<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a?</code></td>
+<td>6: a, &lsquo;&rsquo;, a, a, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a??</code></td>
+<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a{2}</code></td>
+<td>1: aa</td>
+</tr>
+<tr>
+<td><code>a{,2}</code></td>
+<td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a{,2}?</code></td>
+<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+</tr>
+<tr>
+<td><code>a{1,}</code></td>
+<td>2: a, aa</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="https://www.rexegg.com/regex-quantifiers.html#greedytrap" target="_blank" rel="noopener noreffer ">greedy trap</a></p>
+<p>In the string <em>{start} Mary {end} had a {start} little lamb {end}</em>, match all
+tokens that start with <em>{start}</em> and end with <em>{end}</em>. The naive solution is,
+<code>{start}.*{end}</code>, which will run over the first <em>{end}</em> to match entire string
+since <code>.*</code> is greedy &ndash; this is the greedy trap.</p>
+<p>Solutions:</p>
+<ul>
+<li>
+<p><em>Lazy quantifier</em>: <code>{start}.*?{end}</code>. Computationally inefficient as it
+proceeds character-by-character left to right with successive backtracking.</p>
+</li>
+<li>
+<p><em>Negated character class</em>: <code>{start}[^{]*{end}</code>. An example of the contrast
+principle, but works only if <em>{</em> never appears inside the delimiters.</p>
+</li>
+<li>
+<p><em>Tempered greedy token</em>: <code>{start}(?:(?!{end}).)*{end}</code>. Ensures that the <code>.</code>
+never matches the opening bracket of <em>{end}</em>, thus making sure we don&rsquo;t run
+over an end token. This allows the <em>{</em> to occur inside the string. Because it
+requires a lookahead at east step, it is no more efficient than the lazy
+quantifier solution in this case, though.</p>
+</li>
+<li>
+<p><em>Explicit greedy alternation</em>: <code>{start}(?:[^{]|{(?!end}))*{end}</code>. This is an
+example of the <em>say what you want</em> principle: we either want to match
+characters that aren&rsquo;t an opening brace or an opening brace not followed by
+<em>end}</em>. This requires a lookahead only in the rare case where we find an
+opening brace rather than at each step and is thus more efficient than the
+tempered greedy token or lazy quantifier solutions. We can optimise the
+pattern in two ways: avoiding exiting the alternation at each step and
+instead matching entire sequences of non-brace characters, and avoiding
+backtracking if the <em>{end}</em> token at the end of the pattern fails to match,
+which will never be useful. We can achieve these optimisations by either
+using possessive quantifiers <code>{start}(?:[^{]++|{(?!end}))*+{end}</code> (<code>++</code> is
+required to avoid an explosive quantifier) or atomic groups
+<code>{start}(?&gt;(?:(?&gt;[^{]+)|{(?!end}))*){end}</code>.</p>
+</li>
+</ul>
+<p>The <a href="https://www.rexegg.com/regex-quantifiers.html#lazytrap" target="_blank" rel="noopener noreffer ">lazy trap</a></p>
+<p>In <em>{start} Mary {end}00A {start} little {lamb {end}01B</em>, match all
+tokens that start with <em>{start}</em> and end with <em>{end}</em>, followed by a sequence
+of digits and a <em>b</em>, which are to be included in the match. The naive solution,
+<code>{start}.*?{end}\d+B</code> doesn&rsquo;t work, as it runs over the first <em>{end}</em> to match
+the entire string (why?) &ndash; this is the lazy trap.</p>
+<p>Solutions:</p>
+<ul>
+<li>
+<p><em>Atomic groups</em>: <code>{start}(?&gt;.*{end}\d+B)</code> prevents the engine from
+backtracking once <em>B</em> can&rsquo;t be matched after the first <em>{end}00</em> and thus
+prevents the <code>.*</code> to expand further.</p>
+</li>
+<li>
+<p><em>Negated character class</em>: <code>{start}[^{]*{end}\d+B</code> works, but with the usual
+limitation that it requires the assumption that there are no <em>{</em> between the
+start and end tokens.</p>
+</li>
+<li>
+<p><em>Tempered greedy token</em>: <code>{start}(?:(?!{end}).)*{end}\d+B</code> works just as in
+the greedy trap solution above.</p>
+</li>
+<li>
+<p><em>Explicit greedy alternation</em>: <code>{start}(?:[^{]++|{(?!end}))*+{end}\d+B</code> also
+works just as in the greedy trap solution above.</p>
+</li>
+</ul>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>What does the quantifier apply to in the following patterns: <code>\w+</code>,
+<code>carrots?</code>, <code>(a|b)*</code>, <code>\Qab\E+</code>, <code>(?:(?!{end}).)*</code>.</p>
+</li>
+<li>
+<p>What&rsquo;s the simplest way to match <em>color</em> or <em>colour</em>?</p>
+</li>
+<li>
+<p>Why is <code>&lt;.+?&gt;</code> not an ideal solution?</p>
+</li>
+<li>
+<p>Match digits of length 2, 4, or 6.</p>
+</li>
+<li>
+<p>If the above solution matches <em>123456</em>, what does <code>\1</code> contain?</p>
+</li>
+<li>
+<p>Adapt the regex from above so it always captures the full match.</p>
+</li>
+<li>
+<p>Does <code>A+.</code> match <em>AAA</em>? What about <code>A++.</code>? Explain.</p>
+</li>
+<li>
+<p>Write a regex that matches strings of digits that end with an <em>a</em>, such as
+<em>123a</em>, with maximal efficiency.</p>
+</li>
+<li>
+<p>Explain, step-by-step, what happens if we try to match <em>aaac</em> with the
+pattern <code>^(a+)*b</code>.</p>
+</li>
+<li>
+<p>In <em>{start} Mary {end} had a {start} little lamb {end}</em>, match all tokens
+that start with <em>{start}</em> and end with <em>{end}</em>, but only if the string
+doesn&rsquo;t contain <em>{mid}</em> or <em>{restart}</em>.</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p><code>\w</code>, <code>s</code>, <code>(a|b)</code>, <code>b</code>, <code>.</code>.</p>
+</li>
+<li>
+<p><code>colou?r</code>.</p>
+</li>
+<li>
+<p>Because by default, quantifiers are greedy and so <code>.+</code> matches as many
+characters as it can, initially racing all the way to the end of the string,
+then failing to match <code>&gt;</code>, then backtracking once, trying again, succeeding
+and (eagerly) returning. To only match the opening token, use <code>&lt;[^&gt;]+&gt;</code>.</p>
+</li>
+<li>
+<p>Because it&rsquo;s computationally expensive.</p>
+</li>
+<li>
+<p><code>(\d\d){1,3}</code>.</p>
+</li>
+<li>
+<p><em>56.</em> Explanation: the backreference always contains the content of the last
+iteration of the group, so <code>(\d\d){3}</code> captures the same text as
+<code>\d\d\d\d(\d\d).</code></p>
+</li>
+<li>
+<p><code>((?:\d\d){1,3})</code>. Explanation: wraps the full match in a capturing
+group and turns the subexpression we don&rsquo;t want to capture in a
+non-capturing group.</p>
+</li>
+<li>
+<p>Solution: yes and no. Explanation: the first pattern first greedily matches
+all three <em>A</em>s in the string, then advances in the pattern and fails to
+match the dot, backtracks and gives up the last matched <em>A</em>, advances again,
+succeeds in matching the dot with the last <em>A</em> in the string, and returns.
+The second pattern also fails to match the dot at first, but because it is
+possesive it doesn&rsquo;t backtrack and give up the last-matched <em>A</em> and so
+simply fails.</p>
+</li>
+<li>
+<p>Solution: <code>\d++a</code>. A possessive quantifier improves efficiency because <code>\d</code>
+and <em>a</em> are mutually exclusive, so there is never a good reason for the
+engine to give up characters and backtrack as there cannot be an <em>a</em> inside
+the (greedily) matched sequence of digits.  Hence, if the last matched digit
+isn&rsquo;t followed by an <em>a</em> we want the engine to fail immediately. This is
+what the possessive quantifier does. If we know that the regex can only
+match at the beginning of the string, then prepending the <code>\A</code> anchor
+improves efficiency by failing when we can&rsquo;t match the pattern starting from
+the first digit in the string instead of stepping through all remaining
+digits, which can&rsquo;t possibly match.</p>
+</li>
+<li>
+<p>This is an example of an <a href="https://www.rexegg.com/regex-explosive-quantifiers.html#example" target="_blank" rel="noopener noreffer ">explosive
+quantifier</a>:
+a case where the number of combinations the engine attempts to match by
+successive backtracking increases exponentially in the length of the
+string. What happens? <code>a+</code> matches <em>aaa</em>, <code>*</code>, nothing, and the <code>b</code> fails
+to match against <em>c</em>. The engine backtracks and makes <code>a+</code> give up the last
+matched character, so this now matches <em>aa</em>, <code>*</code> can now repeat the
+previous pattern &ndash; remember, it matches the pattern <code>a+</code>, not the match
+<em>aa</em> &ndash; and matches <em>a</em>, but <code>b</code> again fails to match against <em>c</em>. In the
+next backtrack, the <code>a+</code> matched by <code>*</code> gives up the last matched
+character, the third <em>a</em>, so the first <code>a+</code> still matches <em>aa</em>, the second
+<code>a+</code>, nothing, and <code>b</code> fails to match. This keeps going. RexEgg has a
+useful
+<a href="https://www.rexegg.com/regex-explosive-quantifiers.html#combinations" target="_blank" rel="noopener noreffer ">table</a>
+to show the match of different repetitions of the <code>a+</code> component:</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><code>a+</code></th>
+<th><code>a+</code></th>
+<th><code>a+</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aaa</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>aa</td>
+<td>a</td>
+<td>-</td>
+</tr>
+<tr>
+<td>aa</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>a</td>
+<td>aa</td>
+<td>-</td>
+</tr>
+<tr>
+<td>a</td>
+<td>a</td>
+<td>a</td>
+</tr>
+<tr>
+<td>a</td>
+<td>a</td>
+<td>-</td>
+</tr>
+<tr>
+<td>a</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ol start="11">
+<li><code>{start}(?:(?!{mid})(?!{restart}).)*?{end}</code>.</li>
+</ol>
+<h2 id="anchors-and-word-boundaries">Anchors and word boundaries</h2>
+<ul>
+<li>
+<p>Anchors assert that the engine&rsquo;s current position in a string matches a
+certain position like the beginning or the end, while boundaries make
+assertions about what can and cannot be matched to the left and the right of
+the current position.</p>
+</li>
+<li>
+<p><code>^</code> matches the position just before the first character of the string, so
+<code>^a</code> means &ldquo;position just before start of string followed by a&rdquo;. Similarly,
+<code>$</code> matches position just after the last character in the string, and <code>c$</code>
+means &ldquo;c followed by the position just after the end of the string&rdquo;.</p>
+</li>
+<li>
+<p>Multiline mode makes <code>^</code> and <code>$</code> match positions just before first and just
+after last character of the line rather than the entire string.</p>
+</li>
+<li>
+<p><code>$</code> subtlety: if the very last character in a line is a line break, <code>$</code>
+matches both just before it and at the very end just after it (i.e. <code>\d+$</code>
+matches <em>123</em> in both <em>123</em> and <em>123\n</em>. This is true regardless of whether
+multiline mode is turned on. (If there are multiple line breaks at the end,
+the above behaviour only applies to the final one, so <code>\d+$</code> would not match
+<em>123</em> in <em>123\n\n</em>.)</p>
+</li>
+<li>
+<p><code>\z</code> vs <code>\Z:</code> similar to the above point, in most engines <code>\z</code> matches only
+at the very end of a string (i.e. after the linebreak if there is one), while
+<code>\Z</code> is the flexible end-of-string anchor that can match before and after the
+linebreak at the end of a string. In Python, <code>\Z</code> behaves like <code>\z,</code> and <code>\z</code>
+doesn&rsquo;t exist.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>^</code></td>
+<td>Matches beginning of string or line (in multiline mode)</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Matches end of string or line (in multiline mode)</td>
+</tr>
+<tr>
+<td><code>\A</code></td>
+<td>Matches only beginning of string</td>
+</tr>
+<tr>
+<td><code>\Z</code></td>
+<td>Matches only very end of string (same as <code>\z</code> in most other engines)</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Matches if one side is a word character and the other isn&rsquo;t</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>Matches wherever <code>\b</code> doesn&rsquo;t</td>
+</tr>
+</tbody>
+</table>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>Match <em>cat</em> a) on its own or at the end of a word (e.g. <em>tombcat</em>), b) on
+its own or at the beginning of a word (e.g. <em>catwalk</em>), c) only on its own, d)
+fully surrounded by word characters, e) fully surrounded or at the beginning or
+the end but not on its own.</p>
+</li>
+<li>
+<p>Match <em>Jane</em> or <em>Janet</em>.</p>
+</li>
+<li>
+<p>Create a boundary that detects the edge between a letter and a non-letter.</p>
+</li>
+<li>
+<p>In the string <em>0# 1 #2 #3# 4# #5</em>, match digits where each side is either a
+hash or the edge of the string (i.e. 0, 3, 5).</p>
+</li>
+<li>
+<p>Within the vernacular of RexEgg, explain the difference between an anchor, a
+boundary, and a delimiter.</p>
+</li>
+<li>
+<p>Implementing <code>^</code> manually: write patterns that match <em>a</em> at the beginning of
+a) the string, b) each line, c) line three and beyond.</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p>a) <code>cat\b</code> b) <code>\bcat</code>, c) <code>\bcat\b</code>, d) <code>\Bcat\B</code>, e) <code>\Bcat|cat\B</code>.</p>
+</li>
+<li>
+<p><code>\bJanet?\b</code> or <code>\b(Jane|Janet)\b</code>.</p>
+</li>
+<li>
+<p><code>(?i)(?&lt;![a-z])(?=[a-z])|(?&lt;=[a-z])(?![a-z])</code>. Discussion: RexEgg uses the
+following
+<a href="https://www.rexegg.com/regex-boundaries.html#real-word-boundary" target="_blank" rel="noopener noreffer ">alternative</a>:
+<code>(?i)(?&lt;=^|[^a-z])(?=[a-z])|(?&lt;=[a-z])(?=$|[^a-z])</code>.  The two versions are
+the same, but I find the first version easier to read.  Using negated
+character classes requires that we explicitly allow for <code>^</code> and <code>$</code>, since
+otherwise the regex engine tries to match a character that isn&rsquo;t a letter
+and <a href="https://www.regular-expressions.info/charclass.html" target="_blank" rel="noopener noreffer ">fails</a>. Using
+negative lookarounds solves this, since these succeed whenever the engine
+cannot match a lowercase letter in the specified position in the string,
+which is also true if there is a beginning or end of line character in that
+<a href="https://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener noreffer ">position</a>.</p>
+</li>
+<li>
+<p>Using capturing group: <code>(?:^|#)(\d)(?:$|#)</code>. Using lookarounds:
+<code>(?&lt;=[#^])\d(?=[#$])</code>. Using <a href="https://www.rexegg.com/regex-boundaries.html#double-negative-delimiter" target="_blank" rel="noopener noreffer ">double negative
+delimiter</a>:
+<code>(?&lt;![^#])\d(?![^#])</code>. The lookbehind asserts: &ldquo;what immediately precedes
+the current position is not a character that is not a hash&rdquo;, which, turning
+the logic around, is equivalent to &ldquo;either not a character or a hash&rdquo;. The
+logic of the lookahead is similar. This is thus a clever way to match either
+a particular (set of) characters or the edge of a string. (This works for
+single-line strings only, as in multiline strings, <code>\n</code> characters at the
+beginning and end are characters that aren&rsquo;t a hash.)</p>
+</li>
+<li>
+<p>They all make assertions about the current position in the string: <em>anchors</em>
+assert that what immediately precedes or follows the furrent position is a
+particular position in the string such as the beginning of the string or the
+end of the line; <em>boundaries</em> make assertions about that is immediately to
+the left and the right of the current position such as a non-word character
+on the left and a word character to the right; and <em>delimiters</em> are similar
+to bouldaries but only look on one side, asserting, for instance, that what
+immediately precedes the current position is not a character. These lines
+are <a href="https://www.rexegg.com/regex-anchors.html#semantics" target="_blank" rel="noopener noreffer ">blurry</a>, however.</p>
+</li>
+<li>
+<p>a) <code>(?s)(?&lt;!.)a</code>, b) <code>(?&lt;!.)a</code>, c) <code>(?&lt;\n.*\n)a</code>. Discussion: in a) we need
+DOTALL mode so that <code>.</code> matches linebreaks to prevent the engine from
+matching at the beginning of new lines, in b) we want the engine to match at
+the beginning of new lines and thus omit DOTALL mode, for c) we need the
+flexible-width lookbehinds from the <code>regex</code> module.</p>
+</li>
+</ol>
+<h2 id="alternation">Alternation</h2>
+<ul>
+<li>Character classes like <code>[ab]</code> tell the regex engine to match a single
+character out of several possible characters; alternations like <code>(Jane|Bob)</code>,
+to match a single regex out of several possible regexes.</li>
+</ul>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>What do <code>cat|dog</code>, <code>\bcat|dog\b</code>, and <code>\b(cat|dog)\b</code> match?</p>
+</li>
+<li>
+<p>Find all occurrences of <em>Get</em>, <em>GetValue</em>, <em>Set</em>, <em>SetValue</em>.</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p>The first matches any occurrences of the strings (e.g. <em>cat</em> in
+<em>uncategorised</em> or <em>dog</em> in <em>dogmatic</em>), the second matches words that begin
+with <em>cat</em> and words that end with <em>dog</em>, the third <em>cat</em> and <em>dog</em> on their
+own.</p>
+</li>
+<li>
+<p><code>(Get|Set)(Value)?</code> is reasonably concise and easy to read. It works because
+<code>?</code> is greedy, which means it attempts to match <em>GetValue</em> before <em>Get</em>,
+assuring that it never matches <em>Get</em> in <em>GetValue</em>.</p>
+</li>
+</ol>
+<h2 id="groups">Groups</h2>
+<ul>
+<li>
+<p>Grouping part of a regex together can be useful to apply a quantifier to a
+group of tokens, to restrict alternation to a part of the pattern, and to use
+backreference.</p>
+</li>
+<li>
+<p>There are three types of groups: capturing, non-capturing, and atomic.</p>
+</li>
+<li>
+<p>Capturing groups have three main uses: 1) reuse matches using backreferences,
+2) use captured text as replacement text in search and replace, 3) use
+captured parts in applications. Capturing groups get numbered from left to
+right, and, if they have a quantifier, return the value of the last captured
+iteration.</p>
+</li>
+<li>
+<p>Non-capturing groups allow for avoiding the capturing overhead when grouping
+is needed but capturing isn&rsquo;t.</p>
+</li>
+<li>
+<p>Atomic groups become solid as a block once the engine leaves the group and
+thus prevent the engine from backtracking into the group even if the rest of
+the expression fails to match. This can be useful to avoid unwanted
+backtracking when groups contain quantifiers or alternation. In the former
+case, we could also use possessive quantifiers.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(regex)</code></td>
+<td>Capturing group</td>
+</tr>
+<tr>
+<td><code>\1, ..., \99</code></td>
+<td>Backreferences to capturing groups</td>
+</tr>
+<tr>
+<td><code>(?:regex)</code></td>
+<td>Non-capturing group</td>
+</tr>
+<tr>
+<td><code>(?P&lt;name&gt;regex)</code></td>
+<td>Named capturing group in <code>re</code> module</td>
+</tr>
+<tr>
+<td><code>(?P=name)</code></td>
+<td>Backreference to named capturing group in <code>re</code></td>
+</tr>
+<tr>
+<td><code>(?&lt;name&gt;regex)</code></td>
+<td>Named capturing group in <code>regex</code> module</td>
+</tr>
+<tr>
+<td><code>\g&lt;name&gt;</code></td>
+<td>Backreference to named capturing group in <code>regex</code></td>
+</tr>
+<tr>
+<td><code>(?&gt;regex)</code></td>
+<td>Atomic group</td>
+</tr>
+</tbody>
+</table>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>Find magical dates, dates where the two final year digits are identical to
+the day and month digits (e.g. <em>2008-08-08</em>).</p>
+</li>
+<li>
+<p>Capture day, month, year in <em>dd-mm-yyyy</em> dates.</p>
+</li>
+<li>
+<p>Name the groups in the above example (use the <code>regex</code> module).</p>
+</li>
+<li>
+<p>Search for magic dates using a named group.</p>
+</li>
+<li>
+<p>What&rsquo;s the difference between the result returned from <code>(\w+)</code> and <code>(\w)+</code>
+when matching the string <em>Hello</em>?</p>
+</li>
+<li>
+<p>Find all patterns of the form <em>sum of digits = reversed sum of digits</em> (e.g.
+<em>22 + 333 = 333 + 22</em>).</p>
+</li>
+<li>
+<p>Find all cases of repeated words in <em>Hello world world this was some great
+greatness, wasn&rsquo;t wasn&rsquo;t it?</em>.</p>
+</li>
+<li>
+<p>A typical URL has the form <code>&lt;protocol&gt;://&lt;host&gt;/&lt;path&gt;</code> (e.g.
+<code>https://www.abc.com/index.html</code>). Write a regex that captures the host and,
+if available, the path but not the protocol, yet validates that the protocol
+is either <em>http</em> or <em>https</em> (inspired by
+<a href="https://stackoverflow.com/a/3513858" target="_blank" rel="noopener noreffer ">this</a> SO post).</p>
+</li>
+<li>
+<p>Write a regex similar to the previous one, but now validate that the host is
+one of <em>http</em>, <em>https</em>, or <em>s3</em>.</p>
+</li>
+<li>
+<p>In strings containing <em>Bob says: word</em>, group the entire regex but only
+capture the word Bob says (e.g. in <em>Bob says: hello</em> capture <em>hello</em>.</p>
+</li>
+<li>
+<p>In strings containing tokens of the form <em>upNUMBER</em> or <em>downNUMBER</em>,
+capture the tokens.</p>
+</li>
+<li>
+<p>Does <code>(?&gt;A|.B)C</code> match against <em>ABC</em>?</p>
+</li>
+<li>
+<p>Does <code>(?&gt;a+)[a-z]c</code> match against <em>aac</em>?</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p><code>\d\d(\d\d)-\1-\1</code>.</p>
+</li>
+<li>
+<p><code>(\d{2})-(\d{2})-(\d{4})</code>.</p>
+</li>
+<li>
+<p><code>(?&lt;day&gt;\d{2})-(?&lt;month&gt;\d{2})-(?&lt;year&gt;\d{4})</code>.</p>
+</li>
+<li>
+<p><code>\d\d(?&lt;yy&gt;\d\d)-\g&lt;yy&gt;-\g&lt;yy&gt;</code></p>
+</li>
+<li>
+<p><code>(\w+)</code> returns <em>Hello</em>; <code>(\w)+</code>, <em>o</em>. Discussion: a capturing group with a
+quantifier contains the last matched iteration.</p>
+</li>
+<li>
+<p><code>(\d+) \+ (\d+) = \2 \+ \1</code>.</p>
+</li>
+<li>
+<p><code>(\b[\w']++\b) \b\1\b</code>. Discussion: If we don&rsquo;t use word boundaries we&rsquo;d
+also match the <em>s</em>s in <em>was some</em> and <em>great</em> in <em>great greatness</em>, and
+without allowing for <em>&rsquo;</em> we&rsquo;d miss the repetition of <em>wasn&rsquo;t</em>. Adding a
+possessive quantifier avoids unnecessary backtracking, which we never want
+here, as we always want to capture full words only.</p>
+</li>
+<li>
+<p><code>https?://([^/\s]+)(\S+)?</code>. Discussion: The <code>\s</code> inside the character class
+ensures the match doesn&rsquo;t include characters that follow the url. We could
+include <code>/</code> in the second capturing group to be explicit that what
+immediately follows the host starts with a forward slash, but it&rsquo;s redundant
+because the first group matches up to a space character or a forward slash
+and the second group only matches if what follows directly thereafter is not
+a space, character, which implies that the second group can only return a
+match if its content starts with a forward slash.</p>
+</li>
+<li>
+<p><code>(?:https?|s3)://([^/\s]+)(\S+)?</code>. Discussion: remind yourself why we cannot
+just add an alternation without a non-capturing group.</p>
+</li>
+<li>
+<p><code>(?:Bob says: (\w+))</code>. Discussion: a contrived use of a capturing group
+within a non-capturing group.</p>
+</li>
+<li>
+<p><code>((?:up|down)\d+)</code>. Discussion: an example of capturing the content of a
+non-capturing group by wrapping it in a capturing group.</p>
+</li>
+<li>
+<p>No, the engine will match <em>A</em> at beginning of the string and then fail to
+match <em>C</em>. Because the group is atomic, it won&rsquo;t backtrack into the group
+to match <em>.B</em> and fail.</p>
+</li>
+<li>
+<p>No. Similarly to above, the engine greedily matches both <em>a</em>s, then the
+character class matches <em>c</em>, and the final <em>c</em> in the regex fails to match.
+Because the grouped expression is atomic, the engine doesn&rsquo;t backtrack and
+give up one of the two matched <em>a</em>s.</p>
+</li>
+</ol>
+<h2 id="lookarounds">Lookarounds</h2>
+<ul>
+<li>
+<p>Just like anchors, lookarounds are zero-length assertions that determine
+whether a match is possible in a given location. The difference to anchors is
+that lookarounds match characters rather than positions in the string, but
+then give up the matched strings and simply return whether or not they
+existed. The last step is what makes them zero-length matches, which means
+the regex engine stays at the current position in the subject string rather
+than advancing.</p>
+</li>
+<li>
+<p>Lookaheads can contain any regex, lookbehinds can&rsquo;t: they have to be
+fixed-length expressions (i.e. literalse, character escapes, character
+classes, or alternations where all alternatives are of equal length, but not
+quantifiers or backreferences). This is because the regex engine steps back by
+the length of the lookbehind to evaluate matches, and thus needs to know said
+length. (Actually, the <code>regex</code> module can handle flexible-width lookbehinds.)</p>
+</li>
+<li>
+<p>As a result of the above, capturing groups can only be used in lookaheads.
+To use them, simply wrap the regex in parentheses.</p>
+</li>
+<li>
+<p>Lookarounds don&rsquo;t look way into the distance: <code>(?=A)</code> doesn&rsquo;t mean &ldquo;there is
+an A somewhere to the right&rdquo;, it asserts that what immediately follows is an
+A. To look into the distance, you have to include
+<a href="https://www.rexegg.com/regex-lookarounds.html#stand_their_ground" target="_blank" rel="noopener noreffer ">&ldquo;binoculars&rdquo;</a>
+such as <code>.*</code> or, if possible, more specific tokens.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Lookaround</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(?=foo)</code></td>
+<td>Lookahead</td>
+<td>Asserts that what immediately follows the current position in foo</td>
+</tr>
+<tr>
+<td><code>(?&lt;=foo)</code></td>
+<td>Lookbehind</td>
+<td>Asserts that what immediately precedes the current position is foo</td>
+</tr>
+<tr>
+<td><code>(?!foo)</code></td>
+<td>Negative\nLookahead</td>
+<td>Asserts that what immediately follows the current position is not foo</td>
+</tr>
+<tr>
+<td><code>(?&lt;!foo)</code></td>
+<td>Negative\nLookbehind</td>
+<td>Asserts that what immediately precedes the current position is not foo</td>
+</tr>
+</tbody>
+</table>
+<p>Practice:</p>
+<ul>
+<li>
+<p>Write <code>\A</code> using a lookaround. Solution if DOTALL mode is on: <code>(?&lt;!.)</code>
+Solution if DOTALL mode is off: <code>(?&lt;![\D\d])</code>. Discussion: If DOTALL mode is
+on an <code>.</code> matches every character including linebreaks, the first lookbehind
+asserts that what precedes the current position is not any character, so the
+position must be the beginning of the string. <code>[\D\d]</code> matches any character
+that is a digit or not a digit, which is any character, and thus achieves the
+same thing if DOTALL mode is off.</p>
+</li>
+<li>
+<p>Match e if followed either by aa or bb. Solution: e(?=([ab])\1).</p>
+</li>
+<li>
+<p>What does <code>q(?=u)i</code> match in &ldquo;quit&rdquo;? Solution: nothing. The regex tries to
+match a u and an i at the same position.</p>
+</li>
+<li>
+<p>Match words that don&rsquo;t end in s. Solution: <code>\b\w+(?&lt;!s)\b.</code> Explanation:
+approach matches words and, at the end postition, looks back to check that
+the character that immediately precedes the current position, which is the
+last character, is not an &ldquo;s&rdquo;. Needs word boundaries to prevent engine from
+backtracking and match word without final s.</p>
+</li>
+<li>
+<p>Explain why <code>A(?=5)(?=[a-z])</code> doesn&rsquo;t match <code>A5k</code> and write a regex that does.
+Solution: Because lookarounds <a href="https://www.rexegg.com/regex-lookarounds.html#stand_their_ground" target="_blank" rel="noopener noreffer ">stand their
+ground</a>:
+they don&rsquo;t alter the position in the string, so the second lookahead also
+starts at A and finds a 5 rather than a letter. <code>A(?=5[a-z])</code> does the job.</p>
+</li>
+<li>
+<p>Validate that a password meets the following
+<a href="https://www.rexegg.com/regex-lookarounds.html#password" target="_blank" rel="noopener noreffer ">conditions</a>: 1) must
+have between 6 and 10 word characters, 2) must include at least one lowercase
+character, 3) must include at least three uppercase characters, 4) must
+include a digit. Match valid passwords. Solution: 1) <code>\A(?=\w{6,10}\Z)</code>, 2)
+<code>(?=[^a-z]*[a-z])</code>, 3) <code>(?=(?:[^A-Z]*[A-Z]){3})</code>, 4) <code>(?=[\D]*\d)</code>, to
+match: <code>.*</code>. Complete solution:
+<code>\A(?=\w{6,10}\Z)(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]){3})(?=\D*\d).*</code>
+Discussion: Why can&rsquo;t we just use <code>[a-z]</code> to check for condition 2? This will
+find a match if the string contains a lowercase letter, but, naturally, the
+engine will also move to the position of that matching character, whereas we
+want to stay at the first character to perform subsequent lookaheads, so we
+need a match that starts at the first character.</p>
+</li>
+<li>
+<p>Show two ways how to remove the redundant lookahead in the above solution.
+Solution 1: <code>\A(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]){3})(?=\D*\d)\w{6,10}\Z</code>
+Solution 2: <code>\A(?=\w{6,10}\Z)(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]){3})\D*\d.*\Z</code>
+Discussion: When using n lookaheads to validate n conditions we can always put
+the regex from any of the lookaheads at the end and use it to validate a
+particular pattern <em>and</em> to match the entire string. If the condition doesn&rsquo;t
+already match the entire string as in solution 1, we can always add <code>.*\Z</code>.
+Why do we need the \Z? Because unless we are in dotall mode, <code>.</code> doesn&rsquo;t match
+linebreaks and thus gets us to the end of the line rather than the end of the
+string. To ensure that the pattern works for the entire string, we thus need
+\Z.</p>
+</li>
+<li>
+<p>Explain why, to validate the password above, we need the contrast pattern for
+parts 2-4 of the solution (i.e. why do we need <code>[^a-z]*[a-z]</code> instead of
+<code>[a-z]</code>? Solution: because the lookahead doesn&rsquo;t look into the distance but at
+the character that immediately follows the current position. <code>[a-z]</code> checks
+whether what immediately follows the current position is a lowercase
+character. What we want is to check whether, immediately following the current
+position.</p>
+</li>
+<li>
+<p>Validation: Match a single word character that is not an A. Do so using 1)
+character class set operations, 2) a lookahead, 3) a lookbehind. Solutions:</p>
+<ol>
+<li><code>[\w--Q]</code>, 2) <code>(?!Q)\w</code>, 3) <code>\w(?&lt;!Q)</code>. The latter two are the password
+validation approach from above.</li>
+</ol>
+</li>
+<li>
+<p>Tempering the scope of a token: Match any character as long as it&rsquo;s not
+followed by <em>{end}</em>. Solution: <code>(:(?!{end}).)*</code>. Discussion: each <code>.</code> is
+tempered by the negative lookahead, which specifies that the dot cannot be
+the beginning of the string <em>{end}</em>. We have thus a tempered version of <code>.*</code>
+&ndash; making sure it matches anything except a particular pattern, which can be
+useful if, for instance, we want to match anything up to a certain pattern
+(see tempered greedy token
+<a href="https://www.rexegg.com/regex-quantifiers.html#tempered_greed" target="_blank" rel="noopener noreffer ">solution</a>).</p>
+</li>
+<li>
+<p>Delimiters: Match everything between <em>#start#</em> and <em>#end#</em>. Solution:
+<code>(?&lt;=#end#).*?(?=#end#)</code>. Discussion: we make the dot-start lazy by adding
+<code>?</code> to ensure that the engine matched the first end tag that accurs after the
+start string rather than the last one.</p>
+</li>
+<li>
+<p>Inserting text at a
+<a href="https://www.rexegg.com/regex-lookarounds.html#camelinsert" target="_blank" rel="noopener noreffer ">position</a>: Insert
+an underscore between words in strings that are in CamelCase. Solution:
+<code>(?&lt;=[a-z])(?=[A-Z])</code> finds the positions, string replacement tool does the
+rest (see
+<a href="https://fabiangunzinger.github.io/blog/python/2021/09/11/regex-in-python.html#Insert-text-in-position" target="_blank" rel="noopener noreffer ">here</a>
+for an example).</p>
+</li>
+<li>
+<p>Finding overlapping
+<a href="https://www.rexegg.com/regex-lookarounds.html#overlapping" target="_blank" rel="noopener noreffer ">matches</a>: Write a
+pattern that extracts <em>abc</em>, <em>bc</em>, <em>c</em> from <em>abc</em>. Solution: <code>(?=(\w))</code> with
+GLOBAL flag (<code>re.findall()</code> in Python). Discussion: an unanchored lookaround
+with a capturing group is just what we need here: at each position, the
+engine looks ahead until <code>\w+</code> stops matching and captures the string in
+between, then moves one position forward in the string and repeats.</p>
+</li>
+<li>
+<p>Compound
+<a href="https://www.rexegg.com/regex-lookarounds.html#back_to_the_future" target="_blank" rel="noopener noreffer ">lookarounds</a>:</p>
+<ol>
+<li>match a number that is preceded and followed by exactly one underscore.
+Solution: <code>(?&lt;=(?&lt;!_)_)\d+(?=_(?!_))</code>. Discussion: the compound lookbehind
+asserts that what precedes the position at the beginning of the number is a
+position that is not preceded by an underscore but itself contains an
+underscore. The compound lookahead asserts that what immediately follows the
+position at the end of the number is a position with an underscore that is
+not followed by another underscore.</li>
+</ol>
+</li>
+<li>
+<p>In the string <code>_rabbit _dog _mouse DIC🐱dog:mouse</code>, where the DIC list
+at the end contains the list of allowed animals, match each <em>_token</em>
+named after animals in the allowed list. Solution: <code>_(\w+)\b(?=.*:\1\b)</code>.
+Discussion: don&rsquo;t forget the second word boundary, as without it, we&rsquo;d also
+match <em>_dog</em> if only <em>doggie</em> were in the allowed list. It&rsquo;s not clear to me,
+though, why I need the first boundary.</p>
+</li>
+<li>
+<p>In the above string, why does <code>_(?=.*:(\w+)\b)\1\b)</code> only match <em>_mouse</em>?
+Solution: Two reasons: 1) because <code>*</code> is greedy and, upon finding an
+underscore in the string, shoots all the way to the end of the string and
+backtracks only far enough to match the first colon, which is the one before
+<em>mouse</em>. Second: because the engine doesn&rsquo;t backtrack into lookarounds. Once
+the lookaround has evaluated as true of false, a failure to match further
+down in the regex doesn&rsquo;t cause the engine to go back into the lookaround and
+backtrack further. Hence, lookarounds are
+<a href="https://www.rexegg.com/regex-lookarounds.html#atomic" target="_blank" rel="noopener noreffer ">atomic</a>.</p>
+</li>
+</ul>
+<h2 id="flags-and-inline-modifiers">Flags and inline modifiers</h2>
+<ul>
+<li>To use flags in Python&rsquo;s <code>re</code> module, pass the keyword <code>flags=re.FLAGNAME</code> to
+the method (e.g. <code>re.findall(pattern, string, flags=re.MULTILINE)</code>).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Flag (inline modifier)</th>
+<th>Legend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[A]SCII (?a)</td>
+<td>Make tokens match ASCII rather than Unicode</td>
+</tr>
+<tr>
+<td>GLOBAL</td>
+<td>Don&rsquo;t return after first match (use <code>re.findall()</code>)</td>
+</tr>
+<tr>
+<td>[I]GNORECASE (?i)</td>
+<td>Case insensitive matching</td>
+</tr>
+<tr>
+<td>[M]ULTILINE (?m)</td>
+<td>Make ^ and $ match end of line (not end of string)</td>
+</tr>
+<tr>
+<td>S, DOTALL (?s)</td>
+<td>Make . match newline (also called single-line)</td>
+</tr>
+<tr>
+<td>X, VERBOSE (?x)</td>
+<td>Allow linebreaks for easier-to-read regexes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subroutines-and-recursive-expressions">Subroutines and recursive expressions</h2>
+<ul>
+<li>
+<p>The backreference <code>\1</code> repeats the <em>characters captured</em> by the first capturing group;
+subroutine <code>(?1)</code>, the <em>pattern defined</em> by the first capturing group. This can be very
+useful to make long expressions shorter.</p>
+</li>
+<li>
+<p>There is lots
+<a href="https://www.rexegg.com/regex-disambiguation.html#subroutines" target="_blank" rel="noopener noreffer ">more</a> to
+subroutines, but for my current use cases, the basics are enough.</p>
+</li>
+<li>
+<p>Recursive patterns are related to subroutines in that a soubroutine can call
+itself recursively. In addition, <code>(?R)</code> tries to match the entire pattern
+recursively (<a href="https://www.regular-expressions.info/recurse.html" target="_blank" rel="noopener noreffer ">This</a>
+description of the steps the engine takes is very useful).</p>
+</li>
+</ul>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>Match instances of <em>Harry meets Sally</em> and <em>Sally meets Harry</em>.</p>
+</li>
+<li>
+<p>Match strings of the form <em>ab</em>, <em>aabb</em>*, <em>aaabbb</em>**.</p>
+</li>
+<li>
+<p>Match the same strings as above, but now as part of a larger string that
+might contain other characters, including <em>aab</em>, which we&rsquo;d not want to
+match.</p>
+</li>
+<li>
+<p>Match stand-alone strings of the form <em>bbmmee</em>, <em>bme</em>, <em>bbbmmmeee</em> that
+might possibly occur as part of a larger string.
+<code>\b(b(?&gt;(?1)|m)*e)\b</code></p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p><code>(Harry|Sally) meets (?1)</code>.</p>
+</li>
+<li>
+<p><code>a(?R)?b</code>.</p>
+</li>
+<li>
+<p><code>\b(a(?1)b)\b</code>. Discussion: this requires wrapping a recursively called
+subroutine in word boundaries. Using <code>(?R)</code> instead of <code>(?1)</code> would only
+match <em>ab</em>, since the recursion would also try to match repeated word
+boundaries.</p>
+</li>
+<li>
+<p><code>\b(b(?&gt;(?1)|m)+e)\b</code>. Discussion: We need to use a subroutine rather than a
+recursion of the entire pattern for the same reason as in the previous
+exercise. The real action happens inside the capturing group:
+<code>(b(?&gt;(?1)|m)+e)</code> represents the <a href="https://www.regular-expressions.info/recurse.html" target="_blank" rel="noopener noreffer ">generic
+pattern</a> pattern to match
+balanced constructs (I use a <code>+</code> instead of a <code>*</code> quantifier on the atomic
+group, which ensures there is at least one middle element). How does it
+work? For the string <em>bbmmee</em>, the first <em>b</em> in the pattern matches, so the
+engine advances and reaches the alternation inside the atomic group, from
+which the subroutine matches the second <em>b</em>. The engine again moves on to
+the alternation, which now matches <em>m</em> greedily one or more times, meaning
+it eats up all the <em>m</em>s in the centre of the pattern.  Finally, the engine
+tries to match the first <em>e</em> and succeeds, which means it has successfully
+matched the entire recursive call.  The engine now goes back to the initial
+pattern and tries to match the final <em>e</em>, which also succeeds and results in
+a successful overall match. We use an atomic group to avoid the engine from
+unnecessary backtracking (e.g.  after matching multiple <em>m</em>s but failing to
+match an <em>e</em>, the engine would release each <em>m</em> and attempt to match <em>e</em>
+again, which will never succeed).</p>
+</li>
+</ol>
+<h2 id="character-class-set-opetations">Character class set opetations</h2>
+<ul>
+<li>The <code>regex</code> module has supports the set operations intersection, union, and
+subtraction on character classes. (Inner brackets are optional but can help
+with readability.)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Pattern</th>
+<th>String</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intersection</td>
+<td><code>r'[\W]&amp;&amp;[\S]]'</code></td>
+<td><em>a.k$_8</em></td>
+<td><em>[&rsquo;.&rsquo;, &lsquo;$&rsquo;]</em></td>
+</tr>
+<tr>
+<td>Union</td>
+<td><code>r'[ab||\d]'</code></td>
+<td><em>a.k$_8</em></td>
+<td><em>[&lsquo;a&rsquo;, 8]</em></td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td><code>r'[\w--k]'</code></td>
+<td><em>a.k$_8</em></td>
+<td><em>[&lsquo;a&rsquo;, &lsquo;_&rsquo;, 8]</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="gotchas">Gotchas</h2>
+<ul>
+<li>Based on <a href="https://www.rexegg.com/regex-gotchas.html" target="_blank" rel="noopener noreffer ">this</a> page.</li>
+</ul>
+<p>Exercises:</p>
+<ol>
+<li>
+<p>Why doesn&rsquo;t <code>[a-z]+</code> match <em>Cat</em>? How can you fix it?</p>
+</li>
+<li>
+<p>Why doesn&rsquo;t <code>My .* cat</code> match the below string? How can you fix it?</p>
+<p><em>My dog
+and my cat</em></p>
+</li>
+<li>
+<p>How can we avoid the regex <code>cat</code> from matching in the string <em>certificate</em>
+but find it in patterns like <em>_cat12</em>?</p>
+</li>
+<li>
+<p>The regex <code>[128]|18</code> is supposed to match <em>1</em>, <em>2</em>, <em>8</em>, and <em>18</em>. In the
+string <em>18 18</em>, (a) what does it match without any flags? (b) what does it
+match with the <em>global</em> flag on? (c) when would it match <em>18</em> and why? (d)
+how could it be improved to achieve its aim?</p>
+</li>
+<li>
+<p>We use the pattern <code>x*</code> with replacement string <em>y</em>. Running it on <em>x</em>, we get
+<em>yy</em>, running it on <em>a</em> we get <em>yay</em>. What&rsquo;s going on?</p>
+</li>
+</ol>
+<p>Solutions:</p>
+<ol>
+<li>
+<p>Because regex is case-sensitive by default and thus, as writte, only matches
+lowercase characters. Could either us an inline modifier <code>(?i)[a-z]+</code> or
+explicitly search for uppercase and lowercase characters <code>[A-Za-z]+</code>.</p>
+</li>
+<li>
+<p>Because <code>.</code> does not match line breaks by default. The easiest way to fix
+this is to use <em>DOTALL mode</em> (also called <em>single-line mode</em>) <code>(?s) My .* cat</code>.</p>
+</li>
+<li>
+<p>If we only ever wanted <em>cat</em> on its own, simple word boundaries <code>\bcat\b</code>
+would do. To match it when surrounded by non-letter word characters, we need
+<a href="https://www.rexegg.com/regex-boundaries.html#real-word-boundary" target="_blank" rel="noopener noreffer ">real-word
+boundaries</a>.</p>
+</li>
+<li>
+<p>(a) <em>1</em>, (b) <em>[1, 8, 1, 8]</em>. This surprised me for a moment: remember that
+the engine scans alternatives in the regex left to right, eagerly returns
+the first match, and then moves on to the next character in the string. (c)
+Never, since it will always match the <em>1</em> and move on without attempting to
+match the right-hand side of the alternation in the pattern. (d) Depending
+on the context, we could just reverse the alternation to <code>18|[128]</code>, or,
+more securely, use anchors or boundaries <code>\b(?:[128]|18)\b</code>.</p>
+</li>
+<li>
+<p>Zero matches! In the first case, <code>x*</code> first matches <em>x</em> at position 0 of the
+string and replaces it with <em>y</em>, and then matches the empty space at
+position 1 after the <em>x</em> and replaces it as well. In the second case, the
+regex matches the empty string at position zero and replaces it, moves past
+the <em>a</em> to position 1, and again matches and replaces the empty string,
+giving us <em>yay</em>.</p>
+</li>
+</ol>
+<h2 id="the-elements-of-regex-style">The elements of regex style</h2>
+<p>Inspired and heavily based on
+<a href="https://www.rexegg.com/regex-style.html#contrast" target="_blank" rel="noopener noreffer ">this</a> fantastic section from
+the RexEgg page.</p>
+<blockquote>
+<p>To write good regex, say shat you mean. Say it clearly.</p>
+</blockquote>
+<blockquote>
+<p>A string goes from \A to \Z (in <code>re</code>; to \z, in <code>regex</code>).</p>
+</blockquote>
+<ul>
+<li>
+<p>Summary mnemonic: <strong>Greedy atoms anchor again.</strong>: greedy vs lazy, the cost of
+greedy and workarounds (say what you want, contrast); should parts be made
+atomic?; should I use anchors or boundaries?; should I use repeating
+subpattern syntax?</p>
+</li>
+<li>
+<p>To match or to capture? The full match is just another capture, in Python and
+many other engines referred to as group 0 and, by convention called &ldquo;the
+match&rdquo;. So there is no difference between the two approaches. Best practice
+advise: use whatever gets the job done, while aiming to reduce overhead by
+reducing the number of capturing groups (use non-capturing groups if useful).</p>
+</li>
+<li>
+<p>To split or to match all? They are a different way of looking at the same
+approach, so use whichever is easier to get the job done.</p>
+</li>
+<li>
+<p>Whenever possible, anchor. It ensures that the engine finds the match in the
+right place, and often saves unnecessary backtracking.</p>
+</li>
+<li>
+<p>Say what you want and don&rsquo;t want, and avoid &ldquo;dot-star soup&rdquo;. It saves
+unnecessary backgtracking and is clearer to read.</p>
+</li>
+<li>
+<p>Create contrast with consequtive tokens that are mutually exclusive (<code>\D</code> and
+<code>\d</code>, or <code>[^a-z]</code> and <code>[a-z]</code>). It can simplify patterns and save unnecessary
+backtracking. Example: to find strings with exactly three digits that are
+located at the end, I might start with ^.+\d{3}$. This doesn&rsquo;t work because .
+also matches digits, so I&rsquo;d match abc12345. I could use negative lookbehind
+like so: <code>^.+(?\&lt;!\d)</code>, but this would still match ab3c123. The real solution
+is to use mutually exclusive tokens to start with: ^\D+\d{3}$.</p>
+</li>
+<li>
+<p>Beware of lazyness. Avoid lazy quantifiers in favour and use contrast to say
+what you want to save unnecessary backtracking. Example: <code>{.*?}</code> matches
+everything inside curly brackets, but backtracking is
+<a href="https://www.rexegg.com/regex-quantifiers.html#lazy_expensive" target="_blank" rel="noopener noreffer ">costly</a> as
+they backtrack at every step. <code>{[^}]*}</code> is more direct and faster.</p>
+</li>
+<li>
+<p>Use greediness and laziness deliberately. A greedy quantifier may shoot all
+the way to the end of the string, a lazy one tuck along backtracking at every
+step. Either can be useful when employed for a suitable purpose.</p>
+</li>
+<li>
+<p>Use atomic quantifiers. They can save a lot of backtracking.</p>
+</li>
+<li>
+<p>Design to fail: Compose regexes to minimise the number of unnecessary
+unsuccessful attempts. Example: with GLOBAL and MULTILINE modes on,
+<code>(?=.*flea).*</code> matches lines that contain &ldquo;flea&rdquo;. But for lines that don&rsquo;t
+contain flea, it unnecessarily tries the lookahead at every single character.
+Anchoring the lookahead at the start of the line, <code>^(?=.*flea).*</code>, remedies
+that by only looking ahead from the first position of each line.</p>
+</li>
+<li>
+<p>Trust the dot-star to get you to the end of the line. It allows you to
+simplify patterns. Example: in a string such as <em>@abc @bcd</em> you want to match
+the last token if and only if the string contains more than one token.
+<code>@[a-z]+$</code> won&rsquo;t do because it also matches the last token if there is only
+one. <code>@[a-z].*\K@[a-z]+</code> does the trick, as the dot-start will shoot all the
+way to the end and then backtrack as as needed to match the rest of the
+pattern.</p>
+</li>
+<li>
+<p>To validate n conditions and capture strings that meet them, use n-1
+<a href="https://www.rexegg.com/regex-lookarounds.html#n-1conds" target="_blank" rel="noopener noreffer ">lookaheads</a>.</p>
+</li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li>
+<p>From tokens of the form <em>abc_12</em>, return only the digits. Solution: a simple
+way is to use the keep out token, which discards anything matched before it:
+<code>\w+_\K\d+</code>.</p>
+</li>
+<li>
+<p>Check whether string length is a multiple of 2, then a multiple of n.
+Solution: <code>^(?:..)+$</code> checks for multiples of two, <code>^(?:.{n})+$</code> for
+multiples of <em>n</em>.</p>
+</li>
+</ul>
+<h2 id="frequently-used-patterns">Frequently used patterns</h2>
+<p>Work in progress:</p>
+<ul>
+<li>Match all strings inside quotation marks in the below block.</li>
+</ul>
+<p>These are &lsquo;string one&rsquo; and &lsquo;string
+two&rsquo; and &rsquo;that&rsquo;s string three&rsquo;.</p>
+<p>Thus far (with global flag/<code>findall()</code>):</p>
+<ul>
+<li>&lsquo;.*&rsquo; Doesn&rsquo;t work because * is greedy and matches &lsquo;string one&rsquo; and &rsquo; and
+similar match on second line.</li>
+<li>&lsquo;.*?&rsquo; Doesn&rsquo;t match string two since . doesn&rsquo;t match line-breaks and get&rsquo;s
+mixed up on second line.</li>
+<li>[^&rsquo;\v]+ Behaves as the above</li>
+<li>[^&rsquo;]+ Now matches second string but including the linebreak, which we don&rsquo;t
+want as part of the match, and still gets tripped up by that&rsquo;s.</li>
+<li>Wanted: match string two but then exclude \v from match, ignore &rsquo; that are
+part of a word.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>
+<p><a href="https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/" target="_blank" rel="noopener noreffer ">Regular expressions
+cookbook</a></p>
+</li>
+<li>
+<p><a href="https://www.rexegg.com" target="_blank" rel="noopener noreffer ">RexEgg, awesome online regex resource</a></p>
+</li>
+<li>
+<p><a href="https://www.regular-expressions.info" target="_blank" rel="noopener noreffer ">Regular-Expressions.info, another excellent online
+resource</a></p>
+</li>
+<li>
+<p><a href="https://regex101.com" target="_blank" rel="noopener noreffer ">Regular Expressions 101, very good regex tester</a></p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/cheatsheet/">cheatsheet</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/advanced-data-structures/" class="prev" rel="prev" title="Advanced data structures"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Advanced data structures</a>
+            <a href="/algorithm-complexity-analysis/" class="next" rel="next" title="Algorithm complexity analysis">Algorithm complexity analysis<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

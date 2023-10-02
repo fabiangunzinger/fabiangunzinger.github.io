@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Makefiles - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Makefiles" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/makefiles/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Makefiles"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/makefiles/" /><link rel="prev" href="http://example.org/clean-code/" /><link rel="next" href="http://example.org/vim/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Makefiles",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/makefiles\/"
+        },"genre": "posts","keywords": "tools, cheatsheet","wordcount":  782 ,
+        "url": "http:\/\/example.org\/makefiles\/","datePublished": "2021-08-23T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Makefiles</h1><h2 class="single-subtitle">Cheatsheet</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-08-23">2021-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;782 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#best-practices">Best practices</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li>
+<p>A makefile is a data base that tells the <code>make</code> utilit how to recompile a
+system. In the default use case, <code>$: make &lt;filename&gt;</code> checks whether <code>filename</code> is out of date and, if so, recompiles it. In the way I use makefiles, <code>$: make &lt;rule&gt;</code>
+executes a predefined rule to accomplish a certain task like cleaning a
+particular dataset.</p>
+</li>
+<li>
+<p>Rules consist of a target (the name of a file to be modified), prerequisites
+(other files on which the target depends on), and commands to be run in order
+to update the traget based on changes in the prerequisites.</p>
+</li>
+<li>
+<p>A rule tells <code>make</code> when a target is out of date and how to update it. A
+target is out of date if it doesn&rsquo;t exist or is older then one of its
+prerequisite files.</p>
+</li>
+<li>
+<p><code>$: make</code> executes the first specified rule, <code>$: make &lt;rule&gt;</code> executes a
+particular rule.</p>
+</li>
+<li>
+<p>A normal prerequisite makes both an <em>order statement</em> and a <em>dependency statement</em>:
+the order statement ensures that all commands needed to produce the
+prerequisete are fully executed before any commands to produce the target,
+while the dependency statement ensures that the target is updated every time a
+prerequisite changes. Occasionally, we want a prerequisite to invoke the order without the
+dependency statement (i.e. target is not udpated when the prerequisite
+changes, but when target is being updated, then the prerequisite commandas are
+run first). We can do this by writing the rule as <code>target: normal-prerequisites | order-only-prerequisites</code>.</p>
+</li>
+<li>
+<p><code>make</code> does its work in two phases: during the <em>read-in</em> phase, it reads the
+makefile and internalises variables and rules to construct a dependency graph
+of all targets and their prerequisies; during the <em>target-update</em> phase, it
+determines what rules to update in what order and executes the commandas to do
+so.</p>
+</li>
+<li>
+<p>As a result, variable and function expansion can happen either <em>immediately</em>
+(during the read-in phase) or <em>deferred</em> (after the read-in phase), and gives
+rise to two flavours of variables: <em>recursively expanded variables</em>, defined by
+<code>varname = value</code> are expanded at the time the variable is substituted during
+the target-update phase. Before that point, <code>varname</code> contains the content of
+<code>value</code> verbatim (e.g. if <code>value</code> is <code>$(othervar)</code>, then that last string is
+the value of <code>varname</code>). In contrast, <em>simply expanded variables</em>, defined by
+<code>varname := value</code> is expanded immediately when the variable is defined during
+the read-in phase (and <code>varname</code> would be bound to the value of <code>othervar</code> in
+the above example).</p>
+</li>
+<li>
+<p>To define a variable containing all csv files in a directory, do <code>csvs := $(wildcard *.csv)</code>. The <code>wildcard</code> function is needed here so that the
+wildcard gets expanded during function creation (as opposed to creating the
+variable with value <code>*.csv</code>). I could also create a list
+containing the same files but with a parquet extensions like so: `parqs :=
+$(patsubst %.csv,%.parquet,$(wildcard *.csv)).</p>
+</li>
+<li>
+<p>Automatic variables: <code>$^</code> is a list of all prerequisites, <code>$@</code> is the target,
+<code>$&lt;</code> the first prerequisite.</p>
+</li>
+<li>
+<p>If a target is an action to be performed rather than a file to be updated,
+then it&rsquo;s called a <code>phony target</code>. In this case, telling <code>make</code> that we&rsquo;re
+using a phone target explicitly by prepending the rule with a line like
+<code>.PHONY : nameofrule</code> is useful for two reasons: <code>make</code> doesn&rsquo;t think of a
+file called <code>nameofrule</code> as the target (which, if it did, would mean that our
+rule never gets run because it has no prerequisites so that <code>make</code> would think
+of <code>nameofrule</code> as always up to date) and it doesn&rsquo;t check for implicit
+commands to update the target, which improves performance.</p>
+</li>
+<li>
+<p>Commands begin with a tab and, unless specified otherwise, are executed by
+<code>bin/sh</code>. You can set a different shell by changing the value of the <code>SHELL</code>
+variable (I usually use <code>SHELL := /bin/bash</code>. Each line that begines with a tab and appears within a rule context
+(anything between the start of one rule and another) is interpreted as a
+command and sent to the shell.</p>
+</li>
+<li>
+<p>The only thing <code>make</code> does with commands is to check for <code>\</code> before newline,
+and for variables to expand (if you want <code>$</code> to appear in the command, use
+<code>$$</code>). To prevent <code>make</code> from echoing a command, prepend it with <code>@</code>.</p>
+</li>
+<li>
+<p>Prepend a command with <code>-</code> if you want <code>make</code> to continue regardless of
+errors. This can be useful for commands like <code>-rm tempfile.csv</code>, where you
+probaby want to continue even if the file didn&rsquo;t exist and could thus not be
+removed.</p>
+</li>
+</ul>
+<h2 id="best-practices">Best practices</h2>
+<p>Define a phony target:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.PHONY: clean
+</span></span><span class="line"><span class="cl">clean:
+</span></span><span class="line"><span class="cl">    rm *.csv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Make <code>$: make</code> run all rules:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.PHONY: all
+</span></span><span class="line"><span class="cl">all : rule1 rule2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.PHONY: rule1
+</span></span><span class="line"><span class="cl">rule1:
+</span></span><span class="line"><span class="cl">    mkdir hello
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.PHONY: rule2
+</span></span><span class="line"><span class="cl">rule2:
+</span></span><span class="line"><span class="cl">    rm -rf hello
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/cheatsheet/">cheatsheet</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/clean-code/" class="prev" rel="prev" title="Clean code"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Clean code</a>
+            <a href="/vim/" class="next" rel="next" title="Vim cheatsheet">Vim cheatsheet<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

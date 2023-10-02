@@ -3,7 +3,23 @@
         <title>tools - Tag - Evolving notes on crafting a good life</title>
         <link>http://example.org/tags/tools/</link>
         <description>tools - Tag - Evolving notes on crafting a good life</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/tools/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Wed, 02 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/tools/" rel="self" type="application/rss+xml" /><item>
+    <title>Git</title>
+    <link>http://example.org/git/</link>
+    <pubDate>Wed, 02 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/git/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Regex</title>
+    <link>http://example.org/regex/</link>
+    <pubDate>Sat, 13 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/regex/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Vim cheatsheet</title>
     <link>http://example.org/vim/</link>
     <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
@@ -13,6 +29,44 @@
 I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
 Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
 Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
+</item>
+<item>
+    <title>Makefiles</title>
+    <link>http://example.org/makefiles/</link>
+    <pubDate>Mon, 23 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/makefiles/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>HDF5</title>
+    <link>http://example.org/hdf5/</link>
+    <pubDate>Wed, 13 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/hdf5/</guid>
+    <description><![CDATA[My hdf5 cheatsheet.
+1 2 import h5py import numpy as np Create a file 1 f = h5py.File(&#39;demo.hdf5&#39;, &#39;w&#39;) 1 2 data = np.arange(10) data array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) 1 f[&#39;array&#39;] = data 1 dset = f[&#39;array&#39;] 1 dset &lt;HDF5 dataset &quot;array&quot;: shape (10,), type &quot;&lt;i8&quot;&gt; 1 dset[:] array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) 1 dset[[1, 2, 5]] array([1, 2, 5]) Add additional data]]></description>
+</item>
+<item>
+    <title>SQL in Python</title>
+    <link>http://example.org/sql-in-python/</link>
+    <pubDate>Sat, 12 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/sql-in-python/</guid>
+    <description><![CDATA[SQLite Based on docs.
+1 2 3 4 5 6 7 8 9 import os import sys src_path = os.path.abspath(os.path.join(&#34;..&#34;)) sys.path.append(src_path) import sqlite3 import pandas as pd from src import config 1 2 3 # parameters SAMPLE = &#34;777&#34; 1 2 3 df = pd.read_parquet(os.path.join(config.TEMPDIR, f&#34;data_{SAMPLE}.parquet&#34;)) print(df.shape) df.head(2) (562996, 22) user_id transaction_date amount transaction_description merchant_name auto_tag tag manual_tag postcode credit_debit ... account_created user_registration_date year_of_birth account_id merchant_business_line latest_balance transaction_id account_last_refreshed account_type gender 0 60777 2014-11-27 100.]]></description>
+</item>
+<item>
+    <title>AWS</title>
+    <link>http://example.org/aws/</link>
+    <pubDate>Sat, 14 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/aws/</guid>
+    <description><![CDATA[Frequently used interaction patterns with AWS.
+CLI To create a new bucket, use aws s3 mb bucketname.
+To add a subfolder to a bucket, use aws s3api put-object --bucket bucketname --key foldername
+Setup There are multiple ways to access your AWS account. I store config and credential files in ~/.aws as discussed here. AWS access methods find these files automatically so I don&rsquo;t have to worry about that.
+What I do have to worry about is choosing the appropriate profile depending on what AWS account I want to interact with (e.]]></description>
 </item>
 </channel>
 </rss>

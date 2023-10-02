@@ -16,6 +16,17 @@ Stuff I want to remember:
 A child is not a thing I need to manage and train to behave well, but an individual I&rsquo;m building a relationship with.]]></description>
 </item>
 <item>
+    <title>Python dicts</title>
+    <link>http://example.org/python-dictionaries/</link>
+    <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-dictionaries/</guid>
+    <description><![CDATA[Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
+1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
+1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?
+1 {key: value for key in keys for value in values} It returns 2 as the value for every key because for each key it iterates through all the values and returns the last one.]]></description>
+</item>
+<item>
     <title>Heaps</title>
     <link>http://example.org/heaps/</link>
     <pubDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</pubDate>
@@ -28,75 +39,73 @@ Load the standard library module that implements heaps. What kind of heaps are s
 1 heap = [1, -4, 7, 50] 1 heapq.heapify(heap) Add -1 to the heap.]]></description>
 </item>
 <item>
-    <title>Python string formatting</title>
-    <link>http://example.org/python-string-formatting/</link>
-    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <title>Git</title>
+    <link>http://example.org/git/</link>
+    <pubDate>Wed, 02 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/python-string-formatting/</guid>
-    <description><![CDATA[Formatted string literals (f-strings) A basic f-string consists of a combination of literal characters and replacement characters, the latter of which are placed inside braces (full grammar here, useful explanation of how they are parsed here).
-The general form for the replacement field is &quot;{&quot; expression [&quot;=&quot;] [&quot;!&quot; conversion] [&quot;:&quot; format_spec] &quot;}&quot;.
-1 2 name = &#34;world&#34; f&#34;Hello {name}&#34; 'Hello world' Add = to also print the name of the replacement expression (useful for debugging).]]></description>
+    <guid>http://example.org/git/</guid>
+    <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Vim cheatsheet</title>
-    <link>http://example.org/vim/</link>
-    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <title>Iterators and generators</title>
+    <link>http://example.org/iterators-and-generators/</link>
+    <pubDate>Sat, 22 Jan 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/vim/</guid>
-    <description><![CDATA[Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
-I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
-Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
-Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
+    <guid>http://example.org/iterators-and-generators/</guid>
+    <description><![CDATA[Iterators A Python object is described as iterable (adjective) or as an iterable (noun) when it can be iterated over &ndash; when we can process the elements it contains in turn.
+An iterator is a value-producing object that returns the content of an iterable on demand one by one as we call next().
+We can create an iterator from an iterable using the built-in iter() function.
+One (the?) main feature of iterators is that they are lazy: they produce the next item in the sequence only once it is required, which, for large sequences, can save a lot of memory and allow us to process data that doesn&rsquo;t fit into memory all at once.]]></description>
 </item>
 <item>
-    <title>Python Decorators</title>
-    <link>http://example.org/python-decorators/</link>
-    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/python-decorators/</guid>
-    <description><![CDATA[My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime).]]></description>
-</item>
-<item>
-    <title>Regex in Python</title>
-    <link>http://example.org/python-regex/</link>
-    <pubDate>Tue, 23 Mar 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/python-regex/</guid>
-    <description><![CDATA[Raw strings Raw string notation keeps regular expressions sane. re tutorial
-Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. ' and \ itself) and to create tokens with special meaning (e.g. \n).
-1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string.]]></description>
-</item>
-<item>
-    <title>Unix basics</title>
-    <link>http://example.org/unix-basics/</link>
-    <pubDate>Thu, 12 Nov 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/unix-basics/</guid>
-    <description><![CDATA[This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.
-Basics A process is a running instance of a program.
-Everything is a fiele (the keyboard is read-only, the screen write only)
-man &lt;command&gt; opens the manual for &lt;command&gt;.
-man -k &lt;search term&gt; lists all commands with &lt;search term&gt; in the manual pages.
-Stuff I use often and tend to forget Creating a soft link: ln -s &lt;file&gt; &lt;link&gt;.]]></description>
-</item>
-<item>
-    <title>Documenting Sample Selection</title>
-    <link>http://example.org/documenting-sample-selection/</link>
-    <pubDate>Wed, 12 Aug 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/documenting-sample-selection/</guid>
-    <description><![CDATA[1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
-Here&rsquo;s a mock dataset:
-1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np.]]></description>
-</item>
-<item>
-    <title>Intro</title>
+    <title>Entropy</title>
     <link>http://example.org/entropy/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://example.org/entropy/</guid>
-    <description><![CDATA[1 2 3 4 5 6 7 8 --- title: &#34;Entropy&#34; date: &#34;2022-01-09&#34; tags: - cs, stats execute: enabled: false --- 1 2 3 4 import math import matplotlib.pyplot as plt import numpy as np Entropy is a measure of the amount of information contained in an event or a random variable. It is a cornerstone of information theory, a subfield of mathematics concerned with the transmission of data across a noisy channel.]]></description>
+    <description><![CDATA[1 2 3 4 import math import matplotlib.pyplot as plt import numpy as np Intro Entropy is a measure of the amount of information contained in an event or a random variable. It is a cornerstone of information theory, a subfield of mathematics concerned with the transmission of data across a noisy channel. Information of an event Key intuition: learning that a low probability event has occurred is more informative than learning that a high probability event has occurred.]]></description>
+</item>
+<item>
+    <title>Python built-in heroes</title>
+    <link>http://example.org/python-built-in-heroes/</link>
+    <pubDate>Mon, 13 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-built-in-heroes/</guid>
+    <description><![CDATA[Operator (docs)
+itemgetter() Basic use:
+1 2 3 4 5 from operator import itemgetter print(itemgetter(1, 3, 5)(&#34;Watermelon&#34;)) print(itemgetter(slice(5, None))(&#34;Watermelon&#34;)) print(itemgetter(&#34;name&#34;)(dict(name=&#34;Paul&#34;, age=44))) ('a', 'e', 'm') melon Paul Application (from docs):
+1 2 3 4 5 6 7 8 9 inventory = [(&#34;apple&#34;, 3), (&#34;banana&#34;, 2), (&#34;pear&#34;, 5), (&#34;orange&#34;, 1)] getcount = itemgetter(1) # get second item from list print(getcount(inventory)) # get second item from each element in list list(map(getcount, inventory)) ('banana', 2) [3, 2, 5, 1] Application: sorting list of dictionaries (from Python Cookbook recipe 1.]]></description>
+</item>
+<item>
+    <title>Python lists</title>
+    <link>http://example.org/python-lists/</link>
+    <pubDate>Tue, 23 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-lists/</guid>
+    <description><![CDATA[Solve the below tasks and state their time and space complexities.
+Basics Define a list.
+A list is a finite, ordered, and mutable sequence of elements.
+Create a list a containing the letters a, b, and c.
+1 a = list(&#34;abc&#34;) Append z.
+1 a.append(&#34;z&#34;) Insert x at the second position.
+1 a.insert(1, &#34;x&#34;) Append the characters m, n.
+1 a.extend(&#34;mn&#34;) Remove the first occurrence of x from the list.]]></description>
+</item>
+<item>
+    <title>Algorithm complexity analysis</title>
+    <link>http://example.org/algorithm-complexity-analysis/</link>
+    <pubDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/algorithm-complexity-analysis/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Regex</title>
+    <link>http://example.org/regex/</link>
+    <pubDate>Sat, 13 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/regex/</guid>
+    <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>
