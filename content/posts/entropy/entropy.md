@@ -3,8 +3,6 @@ title: "Entropy"
 date: "2022-01-09"
 tags:
     - cs, stats
-execute:
-    enabled: false
 ---
 
 ``` python
