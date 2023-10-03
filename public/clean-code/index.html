@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Clean code - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Clean code" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/clean-code/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Clean code"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/clean-code/" /><link rel="prev" href="http://example.org/python-tricks/" /><link rel="next" href="http://example.org/02021-11-27-testing-and-validating/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Clean code",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/clean-code\/"
+        },"genre": "posts","keywords": "cs","wordcount":  646 ,
+        "url": "http:\/\/example.org\/clean-code\/","datePublished": "2021-07-22T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Clean code</h1><h2 class="single-subtitle">An evolving set of principles I try to adhere to</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-07-22">2021-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;646 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#definitions">Definitions</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#names">Names</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#comments-and-docstrings">Comments and docstrings</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#systems">Systems</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>When people look under the hood, we want them to be impressed by the neatness,
+consistency, and attention to detail [&hellip;] If instead they see a scrambled
+mass of code that looks like it was written by a bevy of drunken sailors, then
+they are likely to conclude that the same inattention to detail pervades every
+other aspect of the project. Robert Martin, <em>Clean Code</em></p>
+</blockquote>
+<h2 id="definitions">Definitions</h2>
+<ul>
+<li>
+<p>A design pattern is a general repeatable solution to a frequently occuring
+problem.</p>
+</li>
+<li>
+<p>An idiom is the translation of a design pattern into code using the language
+clearly and correctly.</p>
+</li>
+</ul>
+<h2 id="principles">Principles</h2>
+<ul>
+<li>
+<p>Don&rsquo;t repeat yourself. Collect often used pieces of code in a function of
+class for reuse. Don&rsquo;t copy and paste more than once.</p>
+</li>
+<li>
+<p>Single Responsibility Principle (SRP): a class or module should only have a
+single reason to change &ndash; it should be responsible to a single actor that can
+demand change. Example: an employee class that produces outputs for the
+finance and HR departments violates the principle, as both the CFO and the CHO
+might demand changes that then unintenionally affects the output seen by the
+other. Solution: Separate code that different actors depend on. Corollary:
+don&rsquo;t reuse a function for two different outputs just because it does they
+require the same task, only reuse the function for two outputs that require
+the same task <em>and</em> have a common owner. Example, don&rsquo;t if both HR and finance
+need to calculate regular hours, don&rsquo;t use the same function, as the CFO might
+want to change the definition of regular hours but HR doesn&rsquo;t.</p>
+</li>
+<li>
+<p>Open-Closed Principle (OCP): classes should be open for extension and closed
+for modification. (We should easily be able to add new functionality without
+having to change existing functionality.)</p>
+</li>
+<li>
+<p>Use names to make the context explicit (e.g. &ldquo;for user in users&rdquo; is explicit,
+&ldquo;for i in list&rdquo; isn&rsquo;t).</p>
+</li>
+<li>
+<p>Get to proof of concept asap.</p>
+</li>
+<li>
+<p>&ldquo;You ain&rsquo;t gonna need it&rdquo; (YAGNI). Don&rsquo;t add functionality before it&rsquo;s really
+necessary.</p>
+</li>
+</ul>
+<h2 id="names">Names</h2>
+<ul>
+<li>
+<p>Choose names that make clear what a thing is, what it does, and how it is used.</p>
+</li>
+<li>
+<p>Use plain and unabbreviated words.</p>
+</li>
+<li>
+<p>Omit needless words like &ldquo;get&rdquo; or &ldquo;calculate&rdquo;, but remember that &ldquo;terseness
+and obscurity are the limits where brevity should
+<a href="https://docs.python-guide.org/writing/structure/" target="_blank" rel="noopener noreffer ">stop</a>&rdquo;.</p>
+</li>
+<li>
+<p>Use verbs or verb phrases for functions, nouns for classes.</p>
+</li>
+<li>
+<p>Choose names of variables in proportion to their scope.</p>
+</li>
+<li>
+<p>Whenever appropriate, use names from the solution domain (e.g. computer or
+data science) or the problem domain (e.g. personal finance) otherwise.</p>
+</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<ul>
+<li>
+<p>Functions should do one thing and one thing only and should do it well. (It&rsquo;s
+not always obvious what &ldquo;one thing&rdquo; is, use your judgement.)</p>
+</li>
+<li>
+<p>Make functions as short as possible to make it obvious how they work and what
+they are for.</p>
+</li>
+<li>
+<p>Most often, blocks inside flow control statements should be one line long -
+calls to transparently named functions.</p>
+</li>
+<li>
+<p>A good function interface allows the user to do what they need without having
+to worry about unnecessary details. Hence: ask for the minimally required
+number of intuitive arguments and return the expected output.</p>
+</li>
+<li>
+<p>Write pure functions. A function is pure when it is idempotent (returns the
+same output for a given input) and has no side-effects.</p>
+</li>
+</ul>
+<h2 id="comments-and-docstrings">Comments and docstrings</h2>
+<ul>
+<li>
+<p>Don&rsquo;t comment bad code &ndash; rewrite it.</p>
+</li>
+<li>
+<p>Add docstrings to functions unless &ndash; following
+<a href="https://google.github.io/styleguide/pyguide.html#383-functions-and-methods" target="_blank" rel="noopener noreffer ">Google</a>
+&ndash; they are helpers, short and obvious.</p>
+</li>
+</ul>
+<h2 id="modules">Modules</h2>
+<ul>
+<li>Use the <code>module.function</code> idiom (i.e. use <code>import module</code> rather than <code>from module import function</code>) in all but the simplest projects.</li>
+</ul>
+<h2 id="systems">Systems</h2>
+<ul>
+<li>
+<p>Kent Beck&rsquo;s four rules for a simply designed system (in order or importance):</p>
+<ul>
+<li>
+<p>It runs all tests</p>
+</li>
+<li>
+<p>Contains no duplication</p>
+</li>
+<li>
+<p>Expresses the intent of the programmer (choose expressive names, keep
+functions and classes small, use standard nomenclature, good unit tests)</p>
+</li>
+<li>
+<p>Minimises the number of classes and methods</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li>
+<p><a href="https://www.oreilly.com/library/view/clean-code-a/9780136083238/" target="_blank" rel="noopener noreffer ">Clean Code</a></p>
+</li>
+<li>
+<p><a href="https://docs.python-guide.org/writing/style/#code-style" target="_blank" rel="noopener noreffer ">The Hitchhiker&rsquo;s Guide to Python, code
+style</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ipython-books/cookbook-2nd/blob/master/chapter02_best_practices/07_high_quality.md" target="_blank" rel="noopener noreffer ">IPython cookbook, writing high-quality Python
+code</a></p>
+</li>
+<li>
+<p><a href="https://google.github.io/styleguide/pyguide.html" target="_blank" rel="noopener noreffer ">Google style guide</a></p>
+</li>
+<li>
+<p><a href="https://jeffknupp.com/blog/2018/10/11/write-better-python-functions/" target="_blank" rel="noopener noreffer ">Jeff Knupp
+post</a></p>
+</li>
+<li>
+<p><a href="https://greenteapress.com/wp/think-python-2e/" target="_blank" rel="noopener noreffer ">Think Python</a></p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cs/">cs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/python-tricks/" class="prev" rel="prev" title="Python tricks"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python tricks</a>
+            <a href="/02021-11-27-testing-and-validating/" class="next" rel="next" title="Testing and validating">Testing and validating<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

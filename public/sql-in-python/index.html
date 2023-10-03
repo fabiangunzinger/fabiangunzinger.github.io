@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SQL in Python - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="SQL in Python" />
+<meta property="og:description" content="SQLite Based on docs.
+1 2 3 4 5 6 7 8 9 import os import sys src_path = os.path.abspath(os.path.join(&#34;..&#34;)) sys.path.append(src_path) import sqlite3 import pandas as pd from src import config 1 2 3 # parameters SAMPLE = &#34;777&#34; 1 2 3 df = pd.read_parquet(os.path.join(config.TEMPDIR, f&#34;data_{SAMPLE}.parquet&#34;)) print(df.shape) df.head(2) (562996, 22) user_id transaction_date amount transaction_description merchant_name auto_tag tag manual_tag postcode credit_debit ... account_created user_registration_date year_of_birth account_id merchant_business_line latest_balance transaction_id account_last_refreshed account_type gender 0 60777 2014-11-27 100." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/sql-in-python/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-09-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SQL in Python"/>
+<meta name="twitter:description" content="SQLite Based on docs.
+1 2 3 4 5 6 7 8 9 import os import sys src_path = os.path.abspath(os.path.join(&#34;..&#34;)) sys.path.append(src_path) import sqlite3 import pandas as pd from src import config 1 2 3 # parameters SAMPLE = &#34;777&#34; 1 2 3 df = pd.read_parquet(os.path.join(config.TEMPDIR, f&#34;data_{SAMPLE}.parquet&#34;)) print(df.shape) df.head(2) (562996, 22) user_id transaction_date amount transaction_description merchant_name auto_tag tag manual_tag postcode credit_debit ... account_created user_registration_date year_of_birth account_id merchant_business_line latest_balance transaction_id account_last_refreshed account_type gender 0 60777 2014-11-27 100."/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/sql-in-python/" /><link rel="prev" href="http://example.org/documenting-sample-selection/" /><link rel="next" href="http://example.org/tidy-data/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SQL in Python",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/sql-in-python\/"
+        },"genre": "posts","keywords": "tools","wordcount":  2590 ,
+        "url": "http:\/\/example.org\/sql-in-python\/","datePublished": "2020-09-12T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SQL in Python</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-09-12">2020-09-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2590 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#sqlite">SQLite</a>
+      <ul>
+        <li><a href="#connect-to-database">Connect to database</a></li>
+        <li><a href="#create-tables">Create tables</a></li>
+        <li><a href="#add-tables">Add tables</a></li>
+        <li><a href="#add-columns">Add columns</a></li>
+        <li><a href="#connection-info">Connection info</a></li>
+        <li><a href="#database-info">Database info</a></li>
+        <li><a href="#table-info">Table info</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-usefuls-stuff">Misc usefuls stuff</a>
+      <ul>
+        <li><a href="#enable-foreign-key-constraints">Enable foreign key constraints</a></li>
+        <li><a href="#use-namedtuple">Use <code>namedtuple()</code></a></li>
+        <li><a href="#use-namedtuple-1">Use namedtuple</a></li>
+        <li><a href="#adding-a-table-with-a-row-of-data">Adding a table with a row of data</a></li>
+        <li><a href="#retrieving-data">Retrieving data</a></li>
+        <li><a href="#why-do-i-need-fetchall-after-cursorexecute">Why do I need <code>fetchall()</code> after <code>cursor.execute()</code>?</a></li>
+        <li><a href="#using-namedtuples">Using namedtuples</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-pandas">Using Pandas</a></li>
+    <li><a href="#sqlalchemy">SQLAlchemy</a></li>
+    <li><a href="#sql-best-practices">SQL best practices</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#-old-notes-to-integrate-">=== Old notes to integrate ===</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<h2 id="sqlite">SQLite</h2>
+<p>Based on <a href="https://docs.python.org/3/library/sqlite3.html" target="_blank" rel="noopener noreffer ">docs</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">src_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;..&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sqlite3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">config</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># parameters</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SAMPLE</span> <span class="o">=</span> <span class="s2">&#34;777&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">TEMPDIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&#34;data_</span><span class="si">{</span><span class="n">SAMPLE</span><span class="si">}</span><span class="s2">.parquet&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(562996, 22)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>user_id</th>
+<th>transaction_date</th>
+<th>amount</th>
+<th>transaction_description</th>
+<th>merchant_name</th>
+<th>auto_tag</th>
+<th>tag</th>
+<th>manual_tag</th>
+<th>postcode</th>
+<th>credit_debit</th>
+<th>...</th>
+<th>account_created</th>
+<th>user_registration_date</th>
+<th>year_of_birth</th>
+<th>account_id</th>
+<th>merchant_business_line</th>
+<th>latest_balance</th>
+<th>transaction_id</th>
+<th>account_last_refreshed</th>
+<th>account_type</th>
+<th>gender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>60777</td>
+<td>2014-11-27</td>
+<td>100.0</td>
+<td>xxxxxx xxxx5014 internet transfer</td>
+<td>no merchant</td>
+<td>transfers</td>
+<td>broadband</td>
+<td>no tag</td>
+<td>n16 0</td>
+<td>debit</td>
+<td>...</td>
+<td>2015-02-12</td>
+<td>2014-05-23</td>
+<td>1988.0</td>
+<td>378967</td>
+<td>personal</td>
+<td>0.0</td>
+<td>58866450</td>
+<td>2017-04-04 07:33:00</td>
+<td>savings</td>
+<td>m</td>
+</tr>
+<tr>
+<td>1</td>
+<td>60777</td>
+<td>2014-11-27</td>
+<td>-250.0</td>
+<td>&lt;mdbremoved&gt;</td>
+<td>no merchant</td>
+<td>savings (general)</td>
+<td>savings (general)</td>
+<td>no tag</td>
+<td>n16 0</td>
+<td>credit</td>
+<td>...</td>
+<td>2015-02-12</td>
+<td>2014-05-23</td>
+<td>1988.0</td>
+<td>378968</td>
+<td>no merchant business line</td>
+<td>3000.0</td>
+<td>58866344</td>
+<td>2017-04-04 07:33:00</td>
+<td>savings</td>
+<td>m</td>
+</tr>
+</tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;select * from pragma_table_info(&#39;outcomes&#39;)&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array(['user_id'], dtype=object)
+</code></pre>
+<h3 id="connect-to-database">Connect to database</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">db_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DATADIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">SAMPLE</span><span class="si">}</span><span class="s2">.db&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_user_list</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Create list of users of sample.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data_</span><span class="si">{</span><span class="n">sample</span><span class="si">}</span><span class="s1">.parquet&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">TEMPDIR</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;XX7&#39;</span><span class="p">,</span> <span class="s1">&#39;X77&#39;</span><span class="p">,</span> <span class="s1">&#39;777&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;777&#39;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">create_user_list</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/Users/fgu/tmp/test.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DATADIR</span><span class="p">,</span> <span class="s2">&#34;users_777.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Unnamed: 0</th>
+<th>user_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>777</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1777</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7116</td>
+<td>7777</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>8777</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1228</td>
+<td>10777</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>179</td>
+<td>129064</td>
+<td>578777</td>
+</tr>
+<tr>
+<td>180</td>
+<td>133470</td>
+<td>579777</td>
+</tr>
+<tr>
+<td>181</td>
+<td>135176</td>
+<td>582777</td>
+</tr>
+<tr>
+<td>182</td>
+<td>136885</td>
+<td>586777</td>
+</tr>
+<tr>
+<td>183</td>
+<td>139404</td>
+<td>587777</td>
+</tr>
+</tbody>
+</table>
+<p>184 rows × 2 columns</p>
+</div>
+<h3 id="create-tables">Create tables</h3>
+<p>Create tables with user_ids</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&#34;user_id&#34;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;targets&#34;</span><span class="p">,</span> <span class="s2">&#34;predictions&#34;</span><span class="p">,</span> <span class="s2">&#34;outcomes&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ids</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;create index idx_</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">_user_id on </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">(user_id)&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&#34;user_id&#34;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>user_id    [60777, 64777, 777, 7777, 71777, 76777, 50777,...
+dtype: object
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;select * from sqlite_master&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>type</th>
+<th>name</th>
+<th>tbl_name</th>
+<th>rootpage</th>
+<th>sql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>table</td>
+<td>targets</td>
+<td>targets</td>
+<td>2</td>
+<td>CREATE TABLE &quot;targets&quot; (\n&quot;user_id&quot; INTEGER\n)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>index</td>
+<td>idx_targets_user_id</td>
+<td>targets</td>
+<td>3</td>
+<td>CREATE INDEX idx_targets_user_id on targets(us...</td>
+</tr>
+<tr>
+<td>2</td>
+<td>table</td>
+<td>predictions</td>
+<td>predictions</td>
+<td>4</td>
+<td>CREATE TABLE &quot;predictions&quot; (\n&quot;user_id&quot; INTEGE...</td>
+</tr>
+<tr>
+<td>3</td>
+<td>index</td>
+<td>idx_predictions_user_id</td>
+<td>predictions</td>
+<td>5</td>
+<td>CREATE INDEX idx_predictions_user_id on predic...</td>
+</tr>
+<tr>
+<td>4</td>
+<td>table</td>
+<td>outcomes</td>
+<td>outcomes</td>
+<td>6</td>
+<td>CREATE TABLE &quot;outcomes&quot; (\n&quot;user_id&quot; INTEGER\n)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>index</td>
+<td>idx_outcomes_user_id</td>
+<td>outcomes</td>
+<td>7</td>
+<td>CREATE INDEX idx_outcomes_user_id on outcomes(...</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;select * from targets&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>user_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>777</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1777</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7777</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8777</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10777</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>179</td>
+<td>578777</td>
+</tr>
+<tr>
+<td>180</td>
+<td>579777</td>
+</tr>
+<tr>
+<td>181</td>
+<td>582777</td>
+</tr>
+<tr>
+<td>182</td>
+<td>586777</td>
+</tr>
+<tr>
+<td>183</td>
+<td>587777</td>
+</tr>
+</tbody>
+</table>
+<p>184 rows × 1 columns</p>
+</div>
+<h3 id="add-tables">Add tables</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">db_tables</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select name from sqlite_master where type = &#39;table&#39;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">db_tables</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['targets', 'predictions', 'outcomes', 'tmp']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">db_tables</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query</span> <span class="o">=</span> <span class="s2">&#34;select name from sqlite_master where type = &#39;table&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">db_tables</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array(['targets', 'predictions', 'outcomes', 'tmp'], dtype=object)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">add_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Add table to database.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">db_tables</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">table</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="add-columns">Add columns</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select name from sqlite_master&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('targets',), ('predictions',), ('outcomes',), ('tmp',)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tab_cols</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">conn</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query</span> <span class="o">=</span> <span class="s2">&#34;select name from pragma_table_info(?)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">table</span><span class="p">,))</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tab_cols</span><span class="p">(</span><span class="s2">&#34;outcomes&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>array(['user_id', 'spendmax', 'spendmin', 'spendmean'], dtype=object)
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tab_cols</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;List table columns.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select name from pragma_table_info(?)&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">table</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tab_cols</span><span class="p">(</span><span class="s2">&#34;outcomes&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['user_id', 'spendmax', 'spendmin', 'spendmean']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">add_column</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Add column to table.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Input:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        pd.DataFrame with columns [&#39;user_id&#39;, &#39;col_name&#39;].
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">col_name</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">col_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tab_cols</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&#34;tmp&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="sa">f</span><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">            alter table </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> add column </span><span class="si">{</span><span class="n">col_name</span><span class="si">}</span><span class="s2">;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">            update </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">            set </span><span class="si">{</span><span class="n">col_name</span><span class="si">}</span><span class="s2"> = (
+</span></span></span><span class="line"><span class="cl"><span class="s2">                select </span><span class="si">{</span><span class="n">col_name</span><span class="si">}</span><span class="s2"> from tmp
+</span></span></span><span class="line"><span class="cl"><span class="s2">                where </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">.user_id = tmp.user_id);
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">            drop table tmp;
+</span></span></span><span class="line"><span class="cl"><span class="s2">            &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">add_table</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Add table to database.&#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">spendmax</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;user_id&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&#34;spendmax&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">spendmin</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;user_id&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&#34;spendmin&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">spendmean</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;user_id&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&#34;spendmean&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">outcomes</span> <span class="o">=</span> <span class="p">[</span><span class="n">spendmax</span><span class="p">,</span> <span class="n">spendmin</span><span class="p">,</span> <span class="n">spendmean</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add_column</span><span class="p">(</span><span class="n">outcome</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="s2">&#34;outcomes&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;select * from outcomes&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>user_id</th>
+<th>spendmax</th>
+<th>spendmin</th>
+<th>spendmean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>60777</td>
+<td>47885.449219</td>
+<td>0.02</td>
+<td>92.656956</td>
+</tr>
+<tr>
+<td>1</td>
+<td>64777</td>
+<td>10000.000000</td>
+<td>0.01</td>
+<td>51.317209</td>
+</tr>
+<tr>
+<td>2</td>
+<td>777</td>
+<td>4898.879883</td>
+<td>0.01</td>
+<td>54.275365</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7777</td>
+<td>22300.000000</td>
+<td>0.07</td>
+<td>111.685793</td>
+</tr>
+<tr>
+<td>4</td>
+<td>71777</td>
+<td>4000.000000</td>
+<td>0.01</td>
+<td>146.197356</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>179</td>
+<td>299777</td>
+<td>20265.000000</td>
+<td>0.10</td>
+<td>79.127393</td>
+</tr>
+<tr>
+<td>180</td>
+<td>8777</td>
+<td>14998.000000</td>
+<td>0.01</td>
+<td>378.858950</td>
+</tr>
+<tr>
+<td>181</td>
+<td>80777</td>
+<td>17633.800781</td>
+<td>0.03</td>
+<td>130.221119</td>
+</tr>
+<tr>
+<td>182</td>
+<td>83777</td>
+<td>35000.000000</td>
+<td>0.01</td>
+<td>86.623218</td>
+</tr>
+<tr>
+<td>183</td>
+<td>86777</td>
+<td>8000.000000</td>
+<td>0.04</td>
+<td>93.136604</td>
+</tr>
+</tbody>
+</table>
+<p>184 rows × 4 columns</p>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>user_id</th>
+<th>spendmax</th>
+<th>spendmin</th>
+<th>spendmean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>60777</td>
+<td>47885.449219</td>
+<td>0.02</td>
+<td>92.656956</td>
+</tr>
+<tr>
+<td>1</td>
+<td>64777</td>
+<td>10000.000000</td>
+<td>0.01</td>
+<td>51.317209</td>
+</tr>
+<tr>
+<td>2</td>
+<td>777</td>
+<td>4898.879883</td>
+<td>0.01</td>
+<td>54.275365</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7777</td>
+<td>22300.000000</td>
+<td>0.07</td>
+<td>111.685793</td>
+</tr>
+<tr>
+<td>4</td>
+<td>71777</td>
+<td>4000.000000</td>
+<td>0.01</td>
+<td>146.197356</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>179</td>
+<td>299777</td>
+<td>20265.000000</td>
+<td>0.10</td>
+<td>79.127393</td>
+</tr>
+<tr>
+<td>180</td>
+<td>8777</td>
+<td>14998.000000</td>
+<td>0.01</td>
+<td>378.858950</td>
+</tr>
+<tr>
+<td>181</td>
+<td>80777</td>
+<td>17633.800781</td>
+<td>0.03</td>
+<td>130.221119</td>
+</tr>
+<tr>
+<td>182</td>
+<td>83777</td>
+<td>35000.000000</td>
+<td>0.01</td>
+<td>86.623218</td>
+</tr>
+<tr>
+<td>183</td>
+<td>86777</td>
+<td>8000.000000</td>
+<td>0.04</td>
+<td>93.136604</td>
+</tr>
+</tbody>
+</table>
+<p>184 rows × 4 columns</p>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>user_id</th>
+<th>spendmax</th>
+<th>spendmin</th>
+<th>spendmean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>60777</td>
+<td>47885.449219</td>
+<td>0.02</td>
+<td>92.656956</td>
+</tr>
+<tr>
+<td>1</td>
+<td>64777</td>
+<td>10000.000000</td>
+<td>0.01</td>
+<td>51.317209</td>
+</tr>
+<tr>
+<td>2</td>
+<td>777</td>
+<td>4898.879883</td>
+<td>0.01</td>
+<td>54.275365</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7777</td>
+<td>22300.000000</td>
+<td>0.07</td>
+<td>111.685793</td>
+</tr>
+<tr>
+<td>4</td>
+<td>71777</td>
+<td>4000.000000</td>
+<td>0.01</td>
+<td>146.197356</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>179</td>
+<td>299777</td>
+<td>20265.000000</td>
+<td>0.10</td>
+<td>79.127393</td>
+</tr>
+<tr>
+<td>180</td>
+<td>8777</td>
+<td>14998.000000</td>
+<td>0.01</td>
+<td>378.858950</td>
+</tr>
+<tr>
+<td>181</td>
+<td>80777</td>
+<td>17633.800781</td>
+<td>0.03</td>
+<td>130.221119</td>
+</tr>
+<tr>
+<td>182</td>
+<td>83777</td>
+<td>35000.000000</td>
+<td>0.01</td>
+<td>86.623218</td>
+</tr>
+<tr>
+<td>183</td>
+<td>86777</td>
+<td>8000.000000</td>
+<td>0.04</td>
+<td>93.136604</td>
+</tr>
+</tbody>
+</table>
+<p>184 rows × 4 columns</p>
+</div>
+<h3 id="connection-info">Connection info</h3>
+<p><a href="https://www.sqlite.org/pragma.html" target="_blank" rel="noopener noreffer ">PRAGMA</a> is your friend for this and many other pieces of metadata.</p>
+<p>List databases attached to the current connection</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&#34;select * from pragma_database_list&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>seq</th>
+<th>name</th>
+<th>file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>main</td>
+<td>/Users/fgu/Library/Mobile Documents/com~apple~...</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="database-info">Database info</h3>
+<p>List tables attached to a database</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    select
+</span></span></span><span class="line"><span class="cl"><span class="s2">        *
+</span></span></span><span class="line"><span class="cl"><span class="s2">    from
+</span></span></span><span class="line"><span class="cl"><span class="s2">        sqlite_master
+</span></span></span><span class="line"><span class="cl"><span class="s2">    where
+</span></span></span><span class="line"><span class="cl"><span class="s2">        type = &#39;table&#39; and
+</span></span></span><span class="line"><span class="cl"><span class="s2">        name not like &#39;sqlite_%&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>type</th>
+<th>name</th>
+<th>tbl_name</th>
+<th>rootpage</th>
+<th>sql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>table</td>
+<td>targets</td>
+<td>targets</td>
+<td>2</td>
+<td>CREATE TABLE targets(\n user_id int...</td>
+</tr>
+<tr>
+<td>1</td>
+<td>table</td>
+<td>predict</td>
+<td>predict</td>
+<td>3</td>
+<td>CREATE TABLE predict(\n user_id int...</td>
+</tr>
+<tr>
+<td>2</td>
+<td>table</td>
+<td>outcomes</td>
+<td>outcomes</td>
+<td>4</td>
+<td>CREATE TABLE outcomes(\n user_id in...</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>List indices attached to database</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">select
+</span></span></span><span class="line"><span class="cl"><span class="s2">    *
+</span></span></span><span class="line"><span class="cl"><span class="s2">from
+</span></span></span><span class="line"><span class="cl"><span class="s2">    sqlite_master
+</span></span></span><span class="line"><span class="cl"><span class="s2">where
+</span></span></span><span class="line"><span class="cl"><span class="s2">    type = &#39;index&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conn</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>type</th>
+<th>name</th>
+<th>tbl_name</th>
+<th>rootpage</th>
+<th>sql</th>
+</tr>
+</thead>
+</table>
+</div>
+<h3 id="table-info">Table info</h3>
+<p>List columns attached to a table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">table</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;targets&#34;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&#34;select * from pragma_table_info(?)&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>cid</th>
+<th>name</th>
+<th>type</th>
+<th>notnull</th>
+<th>dflt_value</th>
+<th>pk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>user_id</td>
+<td>integer</td>
+<td>0</td>
+<td>None</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Get structure of a table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select sql from sqlite_master where name = ?&#34;</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>CREATE TABLE targets(
+            user_id integer primary key
+        )
+</code></pre>
+<p>Indices associated with a table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;pragma index_list(&#39;targets&#39;)&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[]
+</code></pre>
+<h2 id="misc-usefuls-stuff">Misc usefuls stuff</h2>
+<p>Move content of one table to another table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;&#34;&#34;insert into new_table select * from old_table&#34;&#34;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Vacuum database regularly after altering tables or columns to free up overhead and reduce disk space.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;vacuum;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;sqlite3.Cursor at 0x11c74a650&gt;
+</code></pre>
+<h3 id="enable-foreign-key-constraints">Enable foreign key constraints</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from pragma_foreign_keys&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[(0,)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;pragma foreign_keys=on&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from pragma_foreign_keys&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[(1,)]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;pragma foreign_keys=off&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from pragma_foreign_keys&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[(0,)]
+</code></pre>
+<h3 id="use-namedtuple">Use <code>namedtuple()</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TableInfo</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&#34;TableInfo&#34;</span><span class="p">,</span> <span class="s2">&#34;cid, name, type, notnull, dflt_value, pk&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tab_cols</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;List table columns.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_cols</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from pragma_table_info(?)&#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">table</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">named_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">TableInfo</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">raw_cols</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[(</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">named_cols</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tab_cols</span><span class="p">(</span><span class="s2">&#34;outcomes&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('user_id', 'integer', 1)]
+</code></pre>
+<p>The above deliberately overuses <code>namedtuple</code> for practice.</p>
+<h3 id="use-namedtuple-1">Use namedtuple</h3>
+<p>This is useful, and we can guess that the second element in each tuple is the column name. But it would be nice to know what the remaining information is, and then to be able to refer to different pieces of information by their name.</p>
+<p>To find out what each piece of information is, we can either check out the <a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank" rel="noopener noreffer ">PRAGMA docs</a> or, what I find even more useful, can use Pandas like so: (ideally, there would be a way to retrieve column names directly from the query, but I haven&rsquo;t been able to find any way to do so.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tabinf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&#34;select * from pragma_table_info(&#39;stocks&#39;)&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tabinf</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>cid</th>
+<th>name</th>
+<th>type</th>
+<th>notnull</th>
+<th>dflt_value</th>
+<th>pk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>name</td>
+<td>text</td>
+<td>0</td>
+<td>None</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>quantity</td>
+<td>real</td>
+<td>0</td>
+<td>None</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>price</td>
+<td>real</td>
+<td>0</td>
+<td>None</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To label the pieces in the <code>table_cols</code> function, we can store the column names and create a <code>namedtuple()</code> (<a href="https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields" target="_blank" rel="noopener noreffer ">docs</a>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TableInfo</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&#34;TableInfo&#34;</span><span class="p">,</span> <span class="s2">&#34;cid, name, type, notnull, dflt_value, pk&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Mapping each tuple in the list that <code>table_info()</code> returns to our named tuple, we get the following:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">TableInfo</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">table_cols</span><span class="p">(</span><span class="n">table</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>TableInfo(cid=0, name='name', type='text', notnull=0, dflt_value=None, pk=0)
+TableInfo(cid=1, name='quantity', type='real', notnull=0, dflt_value=None, pk=0)
+TableInfo(cid=2, name='price', type='real', notnull=0, dflt_value=None, pk=0)
+</code></pre>
+<p>Or, what we really want:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">TableInfo</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">table_cols</span><span class="p">(</span><span class="n">table</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>name
+quantity
+price
+</code></pre>
+<p>We can now update our <code>table_cols</code> function.</p>
+<h3 id="adding-a-table-with-a-row-of-data">Adding a table with a row of data</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Create cursor</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create table</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;CREATE TABLE stocks
+</span></span></span><span class="line"><span class="cl"><span class="s2">             (date text, trans text, symbol text, qty real, price real)&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Insert a row of data</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;INSERT INTO stocks VALUES (&#39;2006-01-05&#39;,&#39;BUY&#39;,&#39;RHAT&#39;,100,35.14)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Save (commit) changes</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Close connection</span>
+</span></span><span class="line"><span class="cl"><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To check that the database now contains our stocks table, list all its tables.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select name from sqlite_master where type = &#39;table&#39;&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('stocks',)]
+</code></pre>
+<h3 id="retrieving-data">Retrieving data</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM stocks&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('2006-01-05', 'BUY', 'RHAT', 100.0, 35.14)]
+</code></pre>
+<p>When adding Python variables to the query, never use string substitution directly like so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">symbol</span> <span class="o">=</span> <span class="s2">&#34;RHAT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;select * from stocks where symbol = &#39;</span><span class="si">{</span><span class="n">symbol</span><span class="si">}</span><span class="s2">&#39;&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('2006-01-05', 'BUY', 'RHAT', 100.0, 35.14)]
+</code></pre>
+<p>While this works, it&rsquo;s vulnerable to <a href="https://xkcd.com/327/" target="_blank" rel="noopener noreffer ">injection attacks</a>. Use parameter substition instead. Either using question marks like so</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">symbol</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;RHAT&#34;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from stocks where symbol = ?&#34;</span><span class="p">,</span> <span class="n">symbol</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('2006-01-05', 'BUY', 'RHAT', 100.0, 35.14)]
+</code></pre>
+<p>or using named placedholders like so</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;select * from stocks where symbol = :symbol&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;symbol&#34;</span><span class="p">:</span> <span class="s2">&#34;RHAT&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('2006-01-05', 'BUY', 'RHAT', 100.0, 35.14)]
+</code></pre>
+<h3 id="why-do-i-need-fetchall-after-cursorexecute">Why do I need <code>fetchall()</code> after <code>cursor.execute()</code>?</h3>
+<p>Because the <code>curse.execute()</code> returns an iterater object containing all query results.</p>
+<h3 id="using-namedtuples">Using namedtuples</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">EmployeeRecord</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&#34;EmployeeRecord&#34;</span><span class="p">,</span> <span class="s2">&#34;name, age, title, department, paygrade&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">emp</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">EmployeeRecord</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;employees.csv&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">))):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">emp</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">emp</span><span class="o">.</span><span class="n">title</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sqlite3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&#34;/companydata&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&#34;SELECT name, age, title, department, paygrade FROM employees&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">emp</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">EmployeeRecord</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">emp</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">emp</span><span class="o">.</span><span class="n">title</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="using-pandas">Using Pandas</h2>
+<p>Pandas is a very handy way to interact with databased in Python, as it makes dumping and retrieving dataframes very easy.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM stocks&#34;</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>date</th>
+<th>trans</th>
+<th>symbol</th>
+<th>qty</th>
+<th>price</th>
+<th>newcol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>2006-01-05</td>
+<td>BUY</td>
+<td>RHAT</td>
+<td>100.0</td>
+<td>35.14</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="sqlalchemy">SQLAlchemy</h2>
+<p>Summary of <a href="https://www.youtube.com/watch?time_continue=1481&amp;v=woKYyhLCcnU&amp;feature=emb_logo" target="_blank" rel="noopener noreffer ">this</a> video.</p>
+<h2 id="sql-best-practices">SQL best practices</h2>
+<ul>
+<li>Avoid * in queries to have full control of returned columns (e.g. in case where table changes).</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.sqlite.org/docs.html" target="_blank" rel="noopener noreffer ">SQLite docs</a></li>
+<li><a href="https://docs.python.org/3/library/sqlite3.html" target="_blank" rel="noopener noreffer ">sqite3 docs</a></li>
+<li><a href="https://www.sqlitetutorial.net" target="_blank" rel="noopener noreffer ">sqlite tutorial</a></li>
+</ul>
+<h2 id="-old-notes-to-integrate-">=== Old notes to integrate ===</h2>
+<pre><code># Selecting rows from a table
+
+SELECT col FROM table;
+SELECT col1, col2 FROM table;
+SELECT * FROM table LIMIT 10;
+SELECT DISTINCT col_values FROM table;
+
+
+# Counting
+
+SELECT COUNT(*) FROM table;             # Count rows of table
+SELECT COUNT(col) FROM table;           # Count non-missing values in col
+SELECT COUNT(DISTINCT col) FROM table;  # Count distinct values in col
+
+
+# Filtering
+
+SELECT * FROM table WHERE col1 &gt; 2010:  # Get rows for which col1 &gt; 2010
+SELECT COUNT(*) FROM table WHERE x &lt; y  # Count number of rows for which x &lt; y
+SELECT * FROM table WHERE x &gt; Y AND y &lt; z
+SELECT * FROM table WHERE x &gt; Y OR y &lt; z
+SELECT * FROM table WHERE x BETWEEN a AND b     # between a and b inclusive
+SELECT * FROM table WHERE x IN (a, b, c)
+
+SELECT title FROM films
+WHERE (release_year = 1994 OR release_year = 1995)
+AND (certification = 'PG' OR certification = 'R');
+
+
+# Filter based on results from aggregate function
+
+SELECT release_year
+FROM films
+GROUP BY release_year
+HAVING COUNT(title) &gt; 10;
+
+
+# Missing values
+
+SELECT COUNT(*)
+FROM people
+WHERE birthdate IS NULL;
+
+SELECT name
+FROM people
+WHERE birthdate IS NOT NULL;
+
+
+# Wildcards
+
+SELECT name
+FROM companies
+WHERE name LIKE 'Data%';        # % matches zero, one, or many characters
+
+SELECT name
+FROM companies
+WHERE name LIKE 'DataC_mp';     # _ matches exactly one character
+
+SELECT name
+FROM people
+WHERE name NOT LIKE 'A%';
+
+
+# Aggregate functions
+
+SELECT AVG(budget)      # Also MAX, MIN, SUM,
+FROM films;
+
+
+# Aliasing
+
+SELECT MAX(budget) AS max_budget,
+       MAX(duration) AS max_duration
+FROM films;
+
+
+# Arithmetic
+
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people
+
+
+# Order by
+
+SELECT title
+FROM films
+ORDER BY release_year;
+
+SELECT title
+FROM films
+ORDER BY release_year DESC;
+
+
+# Group by
+
+SELECT sex, count(*)
+FROM employees
+GROUP BY sex;
+
+SELECT release_year, MAX(budget)
+FROM films
+GROUP BY release_year;
+
+
+# Building a database
+#######################
+
+
+# Create tables
+
+CREATE TABLE professors (
+ firstname text,
+ lastname text
+);
+
+
+# Alter tables
+
+ALTER TABLE table_name
+ADD COLUMN column_name data_type;
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+ALTER TABLE table_name
+RENAME COLUMN old_name TO new_name;
+
+DROP TABLE table_name
+
+
+# Insert values
+
+INSERT INTO transactions (transaction_date, amount, fee)
+VALUES ('2018-09-24', 5454, '30');
+
+SELECT transaction_date, amount + CAST(fee AS integer) AS net_amount
+FROM transactions;
+
+# Migrating data
+
+INSERT INTO target_table
+SELECT DISTINCT column_names
+FROM source_table;
+
+
+# Integrity constraints
+# 1. Attribute constraints (data types)
+# 2. Key constraints (primary keys)
+# 3. Referential integrity constraints (enforced through foreign keys)
+
+
+# Attribute constraints
+
+ALTER TABLE professors
+ALTER COLUMN firstname
+TYPE varchar(16)
+USING SUBSTRING(firstname FROM 1 FOR 16)
+
+ALTER TABLE professors
+ALTER COLUMN firstname
+SET NOT NULL;
+
+ALTER TABLE universities
+ADD CONSTRAINT university_shortname_unq UNIQUE(university_shortname);
+
+
+# Key constraints
+
+# Superkey: each combination of attributes that identifies rows uniquely
+# Candidate key: a superkey from which no column can be removed
+# Primary key: one candidate key chosen to act as primary key
+# Surrogate key: artificially created key (eg due to unsuitable candidate keys)
+# Foreign keys: points to the primary key of another table
+
+
+ALTER TABLE organizations
+RENAME COLUMN organization TO id;
+ALTER TABLE organizations
+ADD CONSTRAINT organization_pk PRIMARY KEY (id);
+
+ALTER TABLE affiliations
+DROP CONSTRAINT affiliations_organizations_id_fkey;
+
+ALTER TABLE professors
+ADD COLUMN ID serial
+
+UPDATE table_name
+SET new_var = CONCAT(v1, v2);
+
+-- Add a professor_id column that references id in professors table
+ALTER TABLE affiliations
+ADD COLUMN professor_id integer REFERENCES professors (id);
+-- Rename the organization column to organization_id
+ALTER TABLE affiliations
+RENAME organization TO organization_id;
+-- Add a foreign key on organization_id
+ALTER TABLE affiliations
+ADD CONSTRAINT affiliations_organization_fkey FOREIGN KEY (organization_id) REFERENCES organizations (id);
+
+-- Update professor_id to professors.id where firstname, lastname correspond to rows in professors
+UPDATE affiliations
+SET professor_id = professors.id
+FROM professors
+WHERE affiliations.firstname = professors.firstname AND affiliations.lastname = professors.lastname;
+
+
+# Referential integrity
+
+CREATE TABLE a (
+    id integer PRIMARY KEY,
+    col_a, varchar(64),
+    ...,
+    b_id integer REFERENCES b (id) VIOLATION SETTING)
+# Where violation setting is one of the following:
+# ON DELETE NO ACTION:  Deleting id in b that's referenced in a throws error
+# ON DELETE CASCADE:    Deleting id in b deletes references in all tables
+# RESTRICT:             Similar to no action
+# SET NULL              Set referencing column to null
+# SET DEFAULT           Set referencing column to default
+
+
+# Joins
+
+SELECT table_a.column1, table_a.column2, table_b.column1, table_b.column2, ...
+FROM table_a
+JOIN table_b
+ON table_a_foreign_key = table_b_primary_key
+WHERE condition;
+</code></pre>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tools/">tools</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/documenting-sample-selection/" class="prev" rel="prev" title="Documenting Sample Selection"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Documenting Sample Selection</a>
+            <a href="/tidy-data/" class="next" rel="next" title="Tidy data in Pandas">Tidy data in Pandas<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

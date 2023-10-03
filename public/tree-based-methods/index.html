@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Tree-based methods - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Tree-based methods" />
+<meta property="og:description" content="Trees Are an easy and intuitive way to split data within a sample. Problem, they are not good at predicting out-of-sample (with different datasets) Random Forests Random forests remedy this by combining the simplicity of decision trees with flexibility, which leads to a large improvement in predictive accuracy. How to make a random forest: Create bootstrapped sample from data (i.e. sample observations of the original sample with replacement) Create a decision tree using only a subset of randomly selected variables at each step (e." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/tree-based-methods/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tree-based methods"/>
+<meta name="twitter:description" content="Trees Are an easy and intuitive way to split data within a sample. Problem, they are not good at predicting out-of-sample (with different datasets) Random Forests Random forests remedy this by combining the simplicity of decision trees with flexibility, which leads to a large improvement in predictive accuracy. How to make a random forest: Create bootstrapped sample from data (i.e. sample observations of the original sample with replacement) Create a decision tree using only a subset of randomly selected variables at each step (e."/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/tree-based-methods/" /><link rel="next" href="http://example.org/naive-bayes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Tree-based methods",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/tree-based-methods\/"
+        },"genre": "posts","keywords": "stats","wordcount":  788 ,
+        "url": "http:\/\/example.org\/tree-based-methods\/","datePublished": "2019-11-21T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Tree-based methods</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-11-21">2019-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;788 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li>Trees
+<ul>
+<li>Are an easy and intuitive way to split data within a sample. </li>
+<li>Problem, they are not good at predicting out-of-sample (with different datasets)  </li>
+</ul>
+</li>
+<li>Random Forests 
+<ul>
+<li>Random forests remedy this by combining the simplicity of decision trees with flexibility, which leads to a large improvement in predictive accuracy. </li>
+<li>How to make a random forest: 
+<ul>
+<li>Create bootstrapped sample from data (i.e. sample observations of the original sample with replacement) </li>
+<li>Create a decision tree using only a subset of randomly selected variables at each step (e.g. only 2 out of 4 for root, then 2 out of remaining 3 at next node, ect.) </li>
+<li>Repeat above two steps many times (e.g. 1000) to build many trees (and build a random forest) </li>
+</ul>
+</li>
+<li>To predict outcome for new observation, do the following: 
+<ul>
+<li>Feed data into each tree in the forest and keep score of the predictions (either Yes or No for each tree). The outcome with the most scores is the prediction. </li>
+</ul>
+</li>
+<li>The process is called &ldquo;Bagging&rdquo; because we Bootstrap the data and rely on the AGGregate to make a decision. </li>
+<li>How can we test how good a tree is at out-of sample prediction without having another sample? 
+<ul>
+<li>Bootstrapping relies on randomly sampling from data with replacement, hence, not all observations will be used to create a tree. </li>
+<li>The unused observations are called the &ldquo;Out-of-bag Dataset&rdquo;. We can use these test whether our Forest is any good at predicting. </li>
+<li>We simply take the out-of-bag dataset from each tree, run through the entire Forest and check whether the Forest accurately classifies the observation. We then repeat this for each out-of-bag dataset. </li>
+<li>The proportion of incorrectly classified out-of-bag samples is called the &ldquo;out-of-bag error&rdquo;. </li>
+</ul>
+</li>
+<li>The out-of-bag error is what helps us determine how many variables to use when building our random trees above. The algorithm builds different forests with different numbers of variables (typically starting with the square-root of the total number of variables &ndash; e.g. 2 if we have 4 variables &ndash; and then calculating a few above and below that) and then picks the one with the smallest out-of-bag error.  </li>
+</ul>
+</li>
+<li>Ada boosts 
+<ul>
+<li>When building random forests, trees vary in their depth. </li>
+<li>When using Ada boost to create a Random Forest, each tree is usually just one node and two leaves. (A tree with one node and two leaves is a &ldquo;stump&rdquo;). So, Ada boost produces a Forest of Stumps. </li>
+<li>Because a stump only makes use of a single variable, they are generally poor predictors. </li>
+<li>Main ideas of ada boost 
+<ul>
+<li>Take Forest of Stumps </li>
+<li>Stumps have different weights (mounts of say) in the calculation of the out-of-bag error (with the weights being proportional to the gravity of the prediction errors they make. Loosely speaking, for how many observations they get the prediction wrong).  </li>
+<li>Each stump takes the errors of the previous stump into account (it does this by treating as more important those observations that the previous stump misclassified).  </li>
+</ul>
+</li>
+<li>Process 
+<ul>
+<li>Create first Stump using the variable that best classifies outcomes </li>
+<li>Then calculate classification error </li>
+<li>The size of that error determines the weight this stump gets in the overall classification (i.e. in the Forest of Stumps). </li>
+<li>The next stump will be build using the variable that best classifies outcomes in a dataset that over-emphasizes the observations that the previous stump misclassified. </li>
+<li>As in a Random Forst, we run all obseravtions through all Stumps and keep track of the classification. Instead of adding up the Yes and No, we add up the amount of say of the Yes Stumps and No Stumps and classify as Yes if total amount of say of yes Stumps is larger. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Gradient boosting (most used configuration) 
+<ul>
+<li>Comparison to Ada boost 
+<ul>
+<li>Like Ada boost builds fixed size trees, but they can be larger than a Stump (in our specification, we use trees with a depth of 5) </li>
+<li>GB also scales trees, but all by same amount </li>
+<li>Also builds tree based on error of previous tree </li>
+</ul>
+</li>
+<li>Algorithm 
+<ul>
+<li>Predict based on average and calculate (pseudo residuals) </li>
+<li>Then build a tree to predict residuals </li>
+<li>Scale predicted residual by the learning rate (we use 0.1) and add to original prediction. </li>
+<li>Calculate new pseudo residuals and build new tree to predict. </li>
+<li>Add scaled predictions to the previous prediction (i.e. to the original prediction and the previous scaled prediction). </li>
+<li>Keep going like this until additional trees no longer improve prediction or hit number of max trees. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Initial prediction is log of odds: log(number in HE/number not in HE) and convert to a probability using the logistic function (e^logodds / 1 + e^logodds). If probability &gt; 0.5, prediction is &ldquo;Yes&rdquo; for all observations. Else is no </li>
+<li>Calculate pseudo residuals as actual - predicted (e.g. 1 - 0.7) </li>
+<li>Build tree to predict residuals</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.youtube.com/c/joshstarmer" target="_blank" rel="noopener noreffer ">Brilliant series of videos on StatQuest</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/stats/">stats</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/naive-bayes/" class="next" rel="next" title="Naive Bayes">Naive Bayes<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

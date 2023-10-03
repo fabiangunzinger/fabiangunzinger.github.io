@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Regex in Python - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Regex in Python" />
+<meta property="og:description" content="Raw strings Raw string notation keeps regular expressions sane. re tutorial
+Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. &#39; and \ itself) and to create tokens with special meaning (e.g. \n).
+1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/python-regex/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-05T23:03:43+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Regex in Python"/>
+<meta name="twitter:description" content="Raw strings Raw string notation keeps regular expressions sane. re tutorial
+Raw strings in Python Just like the regex engine, Python uses \ to escape characters in strings that otherwise have special meaning (e.g. &#39; and \ itself) and to create tokens with special meaning (e.g. \n).
+1 print(&#34;Hello\nWorld&#34;) Hello World Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string."/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-regex/" /><link rel="prev" href="http://example.org/fluent-pandas/" /><link rel="next" href="http://example.org/python-decorators/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Regex in Python",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/python-regex\/"
+        },"genre": "posts","keywords": "python","wordcount":  2855 ,
+        "url": "http:\/\/example.org\/python-regex\/","datePublished": "2021-03-23T00:00:00+00:00","dateModified": "2023-05-05T23:03:43+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Regex in Python</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-23">2021-03-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2855 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#raw-strings">Raw strings</a>
+      <ul>
+        <li><a href="#raw-strings-in-python">Raw strings in Python</a></li>
+        <li><a href="#python-and-regex-interaction">Python and regex interaction</a></li>
+        <li><a href="#escape-sequences-rabbit-hole">Escape sequences rabbit hole</a></li>
+        <li><a href="#remove-punctuation-rabbit-hole">Remove punctuation rabbit hole</a></li>
+      </ul>
+    </li>
+    <li><a href="#re-module">re module</a>
+      <ul>
+        <li><a href="#refindall">re.findall()</a></li>
+        <li><a href="#rematch">re.match()</a></li>
+        <li><a href="#reescape">re.escape()</a></li>
+        <li><a href="#resplit">re.split()</a></li>
+        <li><a href="#resub">re.sub()</a></li>
+        <li><a href="#matching-end-of-line-and-end-of-string">Matching end of line and end of string</a></li>
+      </ul>
+    </li>
+    <li><a href="#regex-module">regex module</a>
+      <ul>
+        <li><a href="#keep-out-token">Keep out token</a></li>
+        <li><a href="#inline-flags">Inline flags</a></li>
+        <li><a href="#subroutines">Subroutines</a>
+          <ul>
+            <li><a href="#recursive-patterns">Recursive patterns</a></li>
+            <li><a href="#pre-defined-subroutines">Pre-defined subroutines</a></li>
+          </ul>
+        </li>
+        <li><a href="#named-groups">Named groups</a></li>
+        <li><a href="#unicode-categories">Unicode categories</a></li>
+        <li><a href="#variable-width-lookbehinds">Variable-width lookbehinds</a></li>
+        <li><a href="#character-class-set-operations">Character class set operations</a></li>
+      </ul>
+    </li>
+    <li><a href="#pandas">Pandas</a>
+      <ul>
+        <li><a href="#insert-text-in-position">Insert text in position</a></li>
+        <li><a href="#finding-a-single-pattern-in-text">Finding a single pattern in text</a></li>
+      </ul>
+    </li>
+    <li><a href="#sources">Sources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<h2 id="raw-strings">Raw strings</h2>
+<blockquote>
+<p>Raw string notation keeps regular expressions sane. <a href="https://docs.python.org/3/library/re.html#raw-string-notation" target="_blank" rel="noopener noreffer "><code>re</code> tutorial</a></p>
+</blockquote>
+<h3 id="raw-strings-in-python">Raw strings in Python</h3>
+<p>Just like the regex engine, Python uses <code>\</code> to <a href="https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals" target="_blank" rel="noopener noreffer ">escape</a> characters in strings that otherwise have special meaning (e.g. <code>'</code> and <code>\</code> itself) and to create tokens with special meaning (e.g. <code>\n</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello</span><span class="se">\n</span><span class="s2">World&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Hello
+World
+</code></pre>
+<p>Without escaping a single quotation mark, it takes on its special meaning as a delimiter of a string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s1">&#39;It&#39;</span><span class="n">s</span> <span class="n">raining</span><span class="s1">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>SyntaxError: invalid syntax (3769801028.py, line 1)
+</code></pre>
+<p>To give it its literal meaning as an apostrophe, we need to escape it.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;It&#39;s raining&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&quot;It's raining&quot;
+</code></pre>
+<h3 id="python-and-regex-interaction">Python and regex interaction</h3>
+<p>A string is processed by the Python interpreter before being passed on to the regex engine. Once consequence of this is that if in our regex pattern we want to treat as a literal a character that has special meaning in both Python and regex, we have to escape it twice.</p>
+<p>For example: to search for a literal backslash in our regex pattern, we need to write <code>\\\\</code>. The Python interpreter reads this as <code>\\</code> and passes it to the regex engine, which then reads it as <code>\</code> as desired.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;a \ b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&#34;a </span><span class="se">\\\\</span><span class="s2"> b&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a \ b
+
+'a \\ b'
+</code></pre>
+<p>This is obviously cumbersome. A useful alternative is to use raw strings <code>r''</code>, which make the Python interpreter read special characters as literals, obviating the first set of escapes. Hence, it&rsquo;s a good idea to use raw strings in Python regex expressions.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;a </span><span class="se">\\</span><span class="s2"> b&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a \ b
+</code></pre>
+<h3 id="escape-sequences-rabbit-hole">Escape sequences rabbit hole</h3>
+<p>First things first: an escape sequence is a a sequence of characters that does not represent itself when used within a string literal but is translated into another character or sequence of characters that might be difficult or impossible to represent (from <a href="https://en.wikipedia.org/wiki/Escape_sequences_in_C" target="_blank" rel="noopener noreffer ">Wikipedia</a>).</p>
+<p>When I tried a version of this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;foo 1a bar 2baz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\b</span><span class="s2">\d[a-z]</span><span class="se">\b</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[]
+</code></pre>
+<p>it took me 10 minutes to figure out why <code>1a</code> didn&rsquo;t match. The short answer is: <strong>thou shalt use raw strings!</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">raw_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\b\d[a-z]\b&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">raw_pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['1a']
+</code></pre>
+<p>But why? Because Python <a href="https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals" target="_blank" rel="noopener noreffer ">interpretes</a> escape sequences in strings according to the rules of Standard C, where <code>\b</code> happens to stand for the backspace. Hence, the pattern without the <em>r</em> prefix means &ldquo;a backspace immediately followed by a digit immediately followed by a lowercase letter immediately followed by another backspace&rdquo;, which is not present in the string.</p>
+<p>To convince ourselves of this, we can add backspaces to the string and try again &ndash; now the pattern matches.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;foo </span><span class="se">\N{backspace}</span><span class="s2">1a</span><span class="se">\N{backspace}</span><span class="s2"> baz 2bar&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['\x081a\x08']
+</code></pre>
+<p>One point that was not immediately obvious to me was why <code>pattern</code> works without the backspace character &ndash; why do the backspaces in <code>\d</code> and <code>\w</code> not need escaping?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;\d\w&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['1a', '2b']
+</code></pre>
+<p>The explanation is that <code>\</code> is interpreted literally if it is not part of an escape sequence, as in</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;a\k&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>a\k
+</code></pre>
+<p>and <code>\d</code> and <code>\w</code> aren&rsquo;t escape sequences in Python (or C). Hence, these two tokens are passed on unaltered to the regex engine, where they are interpreted according to regex syntax rules.</p>
+<h3 id="remove-punctuation-rabbit-hole">Remove punctuation rabbit hole</h3>
+<p>I wanted to remove punctuation in a string like the below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Some .&#39; test &amp; with * punctuation \ characters.&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thinking I was clever, I thought of the useful <a href="https://docs.python.org/3/library/string.html#string-constants" target="_blank" rel="noopener noreffer ">constants</a> provided by the <code>string</code> module, which provide easy access to character sequences like the set of punctuation characters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'!&quot;#$%&amp;\'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~'
+</code></pre>
+<p>I did the below and was about to celebrate victory.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>multiple repeat at position 10
+</code></pre>
+<p>Oops! It&rsquo;s a clear case where I jupmpted to a conclusion a little bit too soon, and where spending a few more minutes thinking things through before starting to code would probably have helped me see the two flaws in my approach: I need to escape special characters, and, given that I want to search for characters individually, I need to wrap them in a character rather than passing them as a single string🤦‍♂️</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;[</span><span class="si">{</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span><span class="si">}</span><span class="s2">]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'Some  test  with  punctuation  characters'
+</code></pre>
+<p>To remove extra whitespace, I could use:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34; +&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'Some test with punctuation characters'
+</code></pre>
+<p>Alternatively, I could use a regex-native approach.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;[\W_]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'Some    test   with   punctuation   characters '
+</code></pre>
+<h2 id="re-module">re module</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Overview of search methods</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;Jack is a boy&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;re.match (start of string)&#34;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;re.search (anywhere in string)&#34;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;re.findall (all matches)&#34;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="s2">&#34;re.finditer (all matches as iterator)&#34;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">desc</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{:40}</span><span class="s2"> -&gt; </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>re.match (start of string)               -&gt; None
+re.search (anywhere in string)           -&gt; &lt;re.Match object; span=(1, 2), match='a'&gt;
+re.findall (all matches)                 -&gt; ['a', 'a']
+re.finditer (all matches as iterator)    -&gt; &lt;callable_iterator object at 0x11236d2e0&gt;
+</code></pre>
+<h3 id="refindall">re.findall()</h3>
+<p>Returns list of all matches if no capturing groups specified, and a list of capturing groups otherwise.</p>
+<p>Example: find stand-alone numbers</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> 012
+</span></span></span><span class="line"><span class="cl"><span class="s2">foo34 
+</span></span></span><span class="line"><span class="cl"><span class="s2">     56
+</span></span></span><span class="line"><span class="cl"><span class="s2">78bar
+</span></span></span><span class="line"><span class="cl"><span class="s2">9
+</span></span></span><span class="line"><span class="cl"><span class="s2"> a10b
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Without capturing groups entire match is returned</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">proper_digits</span> <span class="o">=</span> <span class="s2">&#34;\s+\d+\s+&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">proper_digits</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['\n 012\n', ' \n     56\n', '\n9\n ']
+</code></pre>
+<p>One capturing groups returns list of capturing groups</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">proper_digits</span> <span class="o">=</span> <span class="s2">&#34;(?m)\s+(\d+)\s+&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">proper_digits</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['012', '56', '9']
+</code></pre>
+<p>Multiple capturing groups return list of multi-tuple capturing groups</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">proper_digits</span> <span class="o">=</span> <span class="s2">&#34;\s+(\d)(\d+)?\s+&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">proper_digits</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[('0', '12'), ('5', '6'), ('9', '')]
+</code></pre>
+<p>To return the full match if the pattern uses capturing groups, simply capture the entire match, too.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Hot is hot. Cold is cold.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;((?i)(\w+) is \2)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">groups</span> <span class="ow">in</span> <span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['Hot is hot', 'Cold is cold']
+</code></pre>
+<p>Finding overlapping matches</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?=(\w+))&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&#34;abc&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['abc', 'bc', 'c']
+</code></pre>
+<h3 id="rematch">re.match()</h3>
+<p>Find pattern at the beginning of a string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;&#34;688293&#34;|&#34;777&#34;|&#34;2011-07-20&#34;|&#34;1969&#34;|&#34;20K to 30K&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#34;\d+&#34;\|&#34;(?P&lt;user_id&gt;\d+)&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&#34;user_id&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s2">&#34;user_id&#34;</span><span class="p">])</span>  <span class="c1"># alternative, simpler, syntax</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;re.Match object; span=(0, 14), match='&quot;688293&quot;|&quot;777&quot;'&gt;
+777
+777
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">compress</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">addresses</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;5412 N CLARK&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;5148 N CLARK&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;5800 E 58TH&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;2122 N CLARK&#34;</span> <span class="s2">&#34;5645 N RAVENSWOOD&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;1060 W ADDISON&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;4801 N BROADWAY&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;1039 W GRANVILLE&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">large_house_number</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">house_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;\d+&#34;</span><span class="p">,</span> <span class="n">address</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">house_number</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">has_large_number</span> <span class="o">=</span> <span class="p">[</span><span class="n">large_house_number</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">addresses</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">compress</span><span class="p">(</span><span class="n">addresses</span><span class="p">,</span> <span class="n">has_large_number</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['5412 N CLARK',
+ '5148 N CLARK',
+ '5800 E 58TH',
+ '2122 N CLARK5645 N RAVENSWOOD',
+ '4801 N BROADWAY']
+</code></pre>
+<h3 id="reescape">re.escape()</h3>
+<p>I want to match &ldquo;(other)&rdquo;. To match the parentheses literally, I&rsquo;d have to escape them. If I don&rsquo;t, the regex engine interpres them as a capturing group.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&#34;(other)&#34;</span><span class="p">,</span> <span class="s2">&#34;some (other) word&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;re.Match object; span=(6, 11), match='other'&gt;
+
+'other'
+</code></pre>
+<p>I can escape manually.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&#34;\(other\)&#34;</span><span class="p">,</span> <span class="s2">&#34;some (other) word&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;re.Match object; span=(5, 12), match='(other)'&gt;
+</code></pre>
+<p>But if I have many fields with metacharacters (e.g. variable values that contain parentheses) this is a massive pain. The solution is to just use <code>re.escape()</code>, which does all the work for me.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">&#34;(other)&#34;</span><span class="p">),</span> <span class="s2">&#34;some (other) word&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;re.Match object; span=(5, 12), match='(other)'&gt;
+</code></pre>
+<h3 id="resplit">re.split()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?&lt;=\w)(?=[A-Z])&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;ItIsAWonderfulWorld&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['It', 'Is', 'A', 'Wonderful', 'World']
+</code></pre>
+<h3 id="resub">re.sub()</h3>
+<p>Stip a string of whitespace and punctuation.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;String. With! Punctu@tion# and _whitespace&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[\W_]&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'StringWithPunctutionandwhitespace'
+</code></pre>
+<p>Using zero-width match to turn CamelCase into snake_case</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;ThisIsABeautifulDay&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?&lt;=[a-zA-Z])(?=[A-Z])&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&#34;_&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'this_is_a_beautiful_day'
+</code></pre>
+<p>Use same approach with MULTILINE mode to comment out all lines.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;first
+</span></span></span><span class="line"><span class="cl"><span class="s2">second
+</span></span></span><span class="line"><span class="cl"><span class="s2">third&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;(?m)^&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&#34;#&#34;</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>#first
+#second
+#third
+</code></pre>
+<h3 id="matching-end-of-line-and-end-of-string">Matching end of line and end of string</h3>
+<p><code>\Z</code> matches strict end of string but not cases where last character is a line-break</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;no newline 
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;newline
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;d\Z&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;d\Z&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;re.Match object; span=(17, 18), match='d'&gt;
+None
+</code></pre>
+<p><code>\$</code> matches end of string flexibly (i.e. before or after final linebreak)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;no newline 
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;newline
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[ed]$&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[ed]$&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['d']
+['d']
+</code></pre>
+<p><code>\$</code> with MULTILINE mode matches end of line</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;no newline
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;newline
+</span></span></span><span class="line"><span class="cl"><span class="s2">at end
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;(?m)[ed]$&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;(?m)[ed]$&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['e', 'd']
+['e', 'd']
+</code></pre>
+<h2 id="regex-module">regex module</h2>
+<ul>
+<li><a href="https://bitbucket.org/mrabarnett/mrab-regex/src/hg/" target="_blank" rel="noopener noreffer ">docs</a></li>
+</ul>
+<p>Todo:</p>
+<ul>
+<li><a href="https://github.com/rexdwyer/Splitsville/blob/master/Splitsville.ipynb" target="_blank" rel="noopener noreffer ">Comparison</a> between <code>re</code> and <code>regex</code>.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># would usually import as `import regex as re`, but because I</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># want to compare to built-in re here, I&#39;ll import as regex.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default version is VERSION0, which emulates re to use additional</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># functionality, use VERSION1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">regex</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">DEFAULT_VERSION</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">VERSION1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="keep-out-token">Keep out token</h3>
+<p>The keep out token <code>\K</code> drops everything matched thus far from the overall match to be returned.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\w+_\K\d+&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;abc_12&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'12'
+</code></pre>
+<h3 id="inline-flags">Inline flags</h3>
+<p>Flags placed inside the regex pattern take effect from that point onwards. As an example, this helps us find uppercase words that later appear in lowercase. To start, let&rsquo;s match all words that reappear later in the string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;HELLO world hello world&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?i)(\b\w+\b)(?=.*\1)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['HELLO', 'world']
+</code></pre>
+<p>To only match uppercase words that later reappear in lowercase, we can do this (<a href="https://www.rexegg.com/regex-tricks.html#upper_lower" target="_blank" rel="noopener noreffer ">explanation</a>):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(\b[A-Z]+\b)(?=.*(?=\b[a-z]+\b)(?i)\1)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['HELLO']
+</code></pre>
+<h3 id="subroutines">Subroutines</h3>
+<p>Subroutines obviate the repetition of long capturing groups</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Tarzan loves Jane&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(Tarzan|Jane) loves (?1)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>('Tarzan loves Jane', 'Tarzan')
+</code></pre>
+<h4 id="recursive-patterns">Recursive patterns</h4>
+<p>Subroutines can call themselves to create a recursive pattern, which can be useful to match tokens where one letter is perfectly balanced by another.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;ab and aabb and aab and aaabbb and abb&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\b(a(?1)?b)\b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['ab', 'aabb', 'aaabbb']
+</code></pre>
+<p>Experimental</p>
+<ul>
+<li>only standalone expressions</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;aaaabbbb aabb aab ab&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;a(?R)?b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['aaaabbbb', 'aabb', 'ab', 'ab']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;a a a a b b b b aabb aab ab&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\b ?a(?R)? b\b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['a a a a b b b b']
+</code></pre>
+<h4 id="pre-defined-subroutines">Pre-defined subroutines</h4>
+<p>We can predefine subroutines to produce nicely modular patterns that can easily be reused through our regex. (The <code>\</code> in the pattern is needed because in free-spacing mode, whitespace that we want to match rather than ignore needs to be escaped.)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">defs</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (?(DEFINE)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (?&lt;quant&gt;\d+)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (?&lt;item&gt;\w+)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    )
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">rf</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">defs</span><span class="si">}</span><span class="s2"> (?&amp;quant)\ (?&amp;item)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;There were 5 elephants walking towards the water hole.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">regex</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;regex.Match object; span=(11, 22), match='5 elephants'&gt;
+</code></pre>
+<p>A useful application of this is to create <a href="https://www.rexegg.com/regex-boundaries.html#real-word-boundary" target="_blank" rel="noopener noreffer ">real-word boundaries</a> (rwb) that match between letters and other characters (rather than between word and non-word characters).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">defs</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (?(DEFINE)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (?&lt;rwb&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">            (?i)                   # case insensitive
+</span></span></span><span class="line"><span class="cl"><span class="s2">            (?&lt;![a-z])(?=[a-z])    # beginning of word
+</span></span></span><span class="line"><span class="cl"><span class="s2">            |(?&lt;=[a-z])(?![a-z])   # end of word
+</span></span></span><span class="line"><span class="cl"><span class="s2">        )
+</span></span></span><span class="line"><span class="cl"><span class="s2">    )
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">rf</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">defs</span><span class="si">}</span><span class="s2"> (?&amp;rwb)\w+(?&amp;rwb)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">cats23,
+</span></span></span><span class="line"><span class="cl"><span class="s2"> +dogs55,
+</span></span></span><span class="line"><span class="cl"><span class="s2">%bat*&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">regex</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['cats', 'dogs', 'bat']
+</code></pre>
+<p>Using default word boundaries in the above string would also return digits and underscores, since they are word characters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\b\w+\b&#34;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['cats23', 'dogs55', 'bat']
+</code></pre>
+<h3 id="named-groups">Named groups</h3>
+<p>Supports named groups with a cleaner syntax: <code>(?&lt;name&gt;...)</code> instead of the somewhat verbose <code>(?P&lt;name&gt;...)</code> to define named groups</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;Zwätschgi was born on 23 Dec 1986&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\b(?&lt;day&gt;\d</span><span class="si">{2}</span><span class="s2">) (?&lt;month&gt;\w</span><span class="si">{3}</span><span class="s2">) (?&lt;year&gt;\d</span><span class="si">{4}</span><span class="s2">)\b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>{'day': '23', 'month': 'Dec', 'year': '1986'}
+</code></pre>
+<p>and <code>\g&lt;name&gt;</code> instead of <code>(?P=name)</code> for backreference.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;2012-12-12&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="s2">&#34;\d\d(?&lt;yy&gt;\d\d)-\g&lt;yy&gt;-\g&lt;yy&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>&lt;regex.Match object; span=(0, 10), match='2012-12-12'&gt;
+</code></pre>
+<h3 id="unicode-categories">Unicode categories</h3>
+<p><code>regex</code> provides support for unicode <a href="https://www.regular-expressions.info/unicode.html" target="_blank" rel="noopener noreffer ">categories</a>, which can be super handy.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">## search for any punctuation character</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s2">&#34;. and _&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;\p</span><span class="si">{P}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['.', '_']
+</code></pre>
+<h3 id="variable-width-lookbehinds">Variable-width lookbehinds</h3>
+<p>One useful feature of <code>regex</code> is that it allows for variable-width lookbehinds. Like most regex engines, the <code>re</code> doesn&rsquo;t and tells you so if you try.</p>
+<p>For example, if we want to match uppercase words preceeded by a prefix compused of digits and an underscore, such as <em>BANANA</em> in <em>123_BANANA</em>, the below doesn&rsquo;t work:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;123456_ORANGE abc12_APPLE&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?&lt;=\b\d+_)[A-Z]+\b&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>look-behind requires fixed-width pattern
+</code></pre>
+<p>In contrast, <code>regex</code> succeeds.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['ORANGE']
+</code></pre>
+<p>Another application is if we wanted (for whatever reason) to match all words beginning with <em>a</em> at the beginning of a line from lines three onwards.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">string</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;abba
+</span></span></span><span class="line"><span class="cl"><span class="s2">abacus
+</span></span></span><span class="line"><span class="cl"><span class="s2">alibaba ada
+</span></span></span><span class="line"><span class="cl"><span class="s2">beta adagio
+</span></span></span><span class="line"><span class="cl"><span class="s2">aladin abracadabra
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;(?&lt;=</span><span class="se">\n</span><span class="s2">.*</span><span class="se">\n</span><span class="s2">)a\w+&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['alibaba', 'aladin']
+</code></pre>
+<h3 id="character-class-set-operations">Character class set operations</h3>
+<p>Intersection</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># inside [] are optional but can make pattern easier to read</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;[[\W]&amp;&amp;[\S]]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">subject</span> <span class="o">=</span> <span class="s2">&#34;a.b*5_c 8!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['.', '*', '!']
+</code></pre>
+<p>Union</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;[ab||\d]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">subject</span> <span class="o">=</span> <span class="s2">&#34;a.b*5_c 8!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['a', 'b', '5', '8']
+</code></pre>
+<p>Subtraction</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;[[a-z]--[b]]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">subject</span> <span class="o">=</span> <span class="s2">&#34;a.b*5_c 8!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['a', 'c']
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;[\w--[_\d]]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">subject</span> <span class="o">=</span> <span class="s2">&#34;a b 3 k _ f 4&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">subject</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['a', 'b', 'k', 'f']
+</code></pre>
+<h2 id="pandas">Pandas</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="insert-text-in-position">Insert text in position</h3>
+<p>Insert an underscore between words</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;HelloWorld&#34;</span><span class="p">,</span> <span class="s2">&#34;HappyDay&#34;</span><span class="p">,</span> <span class="s2">&#34;SunnyHill&#34;</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&#34;(?&lt;=[a-z])(?=[A-Z])&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&#34;_&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Hello_World</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Happy_Day</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sunny_Hill</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">colname_cleaner</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convert column names to stripped lowercase with underscores.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">str_cleaner</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convert string values to stripped lowercase.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s2">&#34;object&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">str_cols</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">movies</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">movies</span><span class="p">()</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">colname_cleaner</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">str_cleaner</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">movies</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>title</th>
+<th>us gross</th>
+<th>worldwide gross</th>
+<th>us dvd sales</th>
+<th>production budget</th>
+<th>release date</th>
+<th>mpaa rating</th>
+<th>running time min</th>
+<th>distributor</th>
+<th>source</th>
+<th>major genre</th>
+<th>creative type</th>
+<th>director</th>
+<th>rotten tomatoes rating</th>
+<th>imdb rating</th>
+<th>imdb votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>the land girls</td>
+<td>146083.0</td>
+<td>146083.0</td>
+<td>NaN</td>
+<td>8000000.0</td>
+<td>jun 12 1998</td>
+<td>r</td>
+<td>NaN</td>
+<td>gramercy</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.1</td>
+<td>1071.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>first love, last rites</td>
+<td>10876.0</td>
+<td>10876.0</td>
+<td>NaN</td>
+<td>300000.0</td>
+<td>aug 07 1998</td>
+<td>r</td>
+<td>NaN</td>
+<td>strand</td>
+<td>None</td>
+<td>drama</td>
+<td>None</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.9</td>
+<td>207.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="finding-a-single-pattern-in-text">Finding a single pattern in text</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;hello world it is a beautiful day.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">(),</span> <span class="n">match</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(0, 5, 'hello')
+</code></pre>
+<p>In Pandas</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">movies</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&#34;(love)&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>1</td>
+<td>love</td>
+</tr>
+<tr>
+<td>2</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>4</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>3196</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>3197</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>3198</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>3199</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td>3200</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<p>3201 rows × 1 columns</p>
+</div>
+<ul>
+<li><code>contains()</code>: Test if pattern or regex is contained within a string of a Series or Index.</li>
+<li><code>match()</code>: Determine if each string starts with a match of a regular expression.</li>
+<li><code>fullmatch()</code>:</li>
+<li><code>extract()</code>: Extract capture groups in the regex pat as columns in a DataFrame.</li>
+<li><code>extractall()</code>: Returns all matches (not just the first match).</li>
+<li><code>find()</code>:</li>
+<li><code>findall()</code>:</li>
+<li><code>replace()</code>:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">movies</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;girls&#34;</span><span class="p">,</span> <span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>0                   the land girls
+1           first love, last rites
+2       i married a strange person
+3             let's talk about sex
+4                             slam
+                   ...            
+3196    zack and miri make a porno
+3197                        zodiac
+3198                          zoom
+3199           the legend of zorro
+3200             the mask of zorro
+Name: title, Length: 3201, dtype: object
+</code></pre>
+<p>Let&rsquo;s drop all movies by distributors with &ldquo;Pictures&rdquo; and &ldquo;Universal&rdquo; in their title.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># inverted masking</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Universal&#34;</span><span class="p">,</span> <span class="s2">&#34;Pictures&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;|&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mask</span> <span class="o">=</span> <span class="n">movies</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>title</th>
+<th>us_gross</th>
+<th>worldwide_gross</th>
+<th>us_dvd_sales</th>
+<th>production_budget</th>
+<th>release_date</th>
+<th>mpaa_rating</th>
+<th>running_time_min</th>
+<th>distributor</th>
+<th>source</th>
+<th>major_genre</th>
+<th>creative_type</th>
+<th>director</th>
+<th>rotten_tomatoes_rating</th>
+<th>imdb_rating</th>
+<th>imdb_votes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>The Land Girls</td>
+<td>146083.0</td>
+<td>146083.0</td>
+<td>NaN</td>
+<td>8000000.0</td>
+<td>Jun 12 1998</td>
+<td>R</td>
+<td>NaN</td>
+<td>Gramercy</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.1</td>
+<td>1071.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>First Love, Last Rites</td>
+<td>10876.0</td>
+<td>10876.0</td>
+<td>NaN</td>
+<td>300000.0</td>
+<td>Aug 07 1998</td>
+<td>R</td>
+<td>NaN</td>
+<td>Strand</td>
+<td>None</td>
+<td>Drama</td>
+<td>None</td>
+<td>None</td>
+<td>NaN</td>
+<td>6.9</td>
+<td>207.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># negated regex</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Universal&#34;</span><span class="p">,</span> <span class="s2">&#34;Pictures&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;\|&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">neg_pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;[^</span><span class="si">{</span><span class="n">pattern</span><span class="si">}</span><span class="s2">]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">neg_pattern</span>
+</span></span><span class="line"><span class="cl"><span class="n">mask</span> <span class="o">=</span> <span class="n">movies</span><span class="o">.</span><span class="n">distributor</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">neg_pattern</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">result2</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">neg_pattern</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'[^Universal\\|Pictures]'
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">drop_card_repayments</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Drop card repayment transactions from current accounts.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;credit card repayment&#34;</span><span class="p">,</span> <span class="s2">&#34;credit card payment&#34;</span><span class="p">,</span> <span class="s2">&#34;credit card&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pattern</span> <span class="o">=</span> <span class="s2">&#34;|&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">auto_tag</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">df</span><span class="o">.</span><span class="n">account_type</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s2">&#34;current&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/string.html#string-formatting" target="_blank" rel="noopener noreffer ">Python string documentation</a></li>
+<li><a href="https://pyformat.info" target="_blank" rel="noopener noreffer ">Pyformat</a></li>
+<li><a href="https://www.oreilly.com/library/view/fluent-python/9781491946237/" target="_blank" rel="noopener noreffer ">Fluent Python</a></li>
+<li><a href="https://www.oreilly.com/library/view/python-cookbook-3rd/9781449357337/" target="_blank" rel="noopener noreffer ">Python Cookbook</a></li>
+<li><a href="https://www.oreilly.com/library/view/learning-python-5th/9781449355722/" target="_blank" rel="noopener noreffer ">Learning Python</a></li>
+<li><a href="https://www.oreilly.com/library/view/python-for-data/9781491957653/" target="_blank" rel="noopener noreffer ">Python for Data Analysis</a></li>
+<li><a href="https://www.oreilly.com/library/view/python-data-science/9781491912126/" target="_blank" rel="noopener noreffer ">Python Data Science Handbook</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-05-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fluent-pandas/" class="prev" rel="prev" title="Fluent Pandas"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Fluent Pandas</a>
+            <a href="/python-decorators/" class="next" rel="next" title="Python Decorators">Python Decorators<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

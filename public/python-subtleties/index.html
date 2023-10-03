@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python subtleties - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Python subtleties" />
+<meta property="og:description" content="A collection of subtle (or not so subtle) mistakes I made and puzzles I&rsquo;ve come across.
+1 2 import pandas as pd import numpy as np Changing a mutable element of an immutable sequence The puzzle is from page 40 in Fluent Python.
+1 2 t = (1, 2, [3, 4]) t[2] &#43;= [5, 6] TypeError: &#39;tuple&#39; object does not support item assignment 1 type(t).__name__ &#39;tuple&#39; 1 t (1, 2, [3, 4, 5, 6]) What&rsquo;s going on here?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/python-subtleties/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python subtleties"/>
+<meta name="twitter:description" content="A collection of subtle (or not so subtle) mistakes I made and puzzles I&rsquo;ve come across.
+1 2 import pandas as pd import numpy as np Changing a mutable element of an immutable sequence The puzzle is from page 40 in Fluent Python.
+1 2 t = (1, 2, [3, 4]) t[2] &#43;= [5, 6] TypeError: &#39;tuple&#39; object does not support item assignment 1 type(t).__name__ &#39;tuple&#39; 1 t (1, 2, [3, 4, 5, 6]) What&rsquo;s going on here?"/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-subtleties/" /><link rel="prev" href="http://example.org/python-functions/" /><link rel="next" href="http://example.org/idiomatic-python/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python subtleties",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/python-subtleties\/"
+        },"genre": "posts","keywords": "python","wordcount":  509 ,
+        "url": "http:\/\/example.org\/python-subtleties\/","datePublished": "2020-10-07T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python subtleties</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-10-07">2020-10-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;509 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#changing-a-mutable-element-of-an-immutable-sequence">Changing a mutable element of an immutable sequence</a></li>
+    <li><a href="#nans-are-true">NANs are True</a></li>
+    <li><a href="#truthy-vs-true">Truthy vs True</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<p>A collection of subtle (or not so subtle) mistakes I made and puzzles I&rsquo;ve come across.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="changing-a-mutable-element-of-an-immutable-sequence">Changing a mutable element of an immutable sequence</h2>
+<p>The puzzle is from page 40 in <a href="https://www.oreilly.com/library/view/fluent-python/9781491946237/" target="_blank" rel="noopener noreffer ">Fluent Python</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>TypeError: 'tuple' object does not support item assignment
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>'tuple'
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">t</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(1, 2, [3, 4, 5, 6])
+</code></pre>
+<p>What&rsquo;s going on here? As part of the assignment, Python does the following:</p>
+<ol>
+<li>
+<p>Performs augmented addition on the value of <code>t[2]</code>, which works because that value is the list <code>[3, 4]</code>, which is mutable.</p>
+</li>
+<li>
+<p>Then it tries to assign the result from 1 to <code>t[2]</code>, which doesn&rsquo;t work, because <code>t</code> is immutable.</p>
+</li>
+<li>
+<p>But because the 2nd element in <code>t</code> is not the list itself but a reference to it, and because the list was changed in step 1, the value of <code>t[2]</code> has changed, too.</p>
+</li>
+</ol>
+<p>A great way to visualise the process is to see what happens under the hood using the amazing <a href="http://www.pythontutor.com" target="_blank" rel="noopener noreffer ">Python Tutor</a>.</p>
+<h2 id="nans-are-true">NANs are True</h2>
+<p>I have a dataframe with some data:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)})</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>a</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b</td>
+</tr>
+<tr>
+<td>2</td>
+<td>c</td>
+</tr>
+<tr>
+<td>3</td>
+<td>d</td>
+</tr>
+<tr>
+<td>4</td>
+<td>e</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>I can shift the data column:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shift</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>0    NaN
+1      a
+2      b
+3      c
+4      d
+Name: data, dtype: object
+</code></pre>
+<p>I want to add a check column that tells me where the shift is missing:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;check&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shift</span><span class="p">(),</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span> <span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>data</th>
+<th>check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>a</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>2</td>
+<td>c</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>3</td>
+<td>d</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>4</td>
+<td>e</td>
+<td>ok</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>That&rsquo;s not what I wanted. The reason it happens is that <strong>missing values that aren&rsquo;t <code>None</code> evaluate to <code>True</code></strong> (follows from the <a href="https://docs.python.org/2/library/stdtypes.html#truth-value-testing" target="_blank" rel="noopener noreffer ">docs</a>). One way to see this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="n">e</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[nan, 'hello', True]
+</code></pre>
+<p>Hence, to get the check I wanted I should do this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="p">[</span><span class="s1">&#39;correct_check&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shift</span><span class="p">()</span><span class="o">.</span><span class="n">notna</span><span class="p">(),</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span> <span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>data</th>
+<th>check</th>
+<th>correct_check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>a</td>
+<td>ok</td>
+<td>missing</td>
+</tr>
+<tr>
+<td>1</td>
+<td>b</td>
+<td>ok</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>2</td>
+<td>c</td>
+<td>ok</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>3</td>
+<td>d</td>
+<td>ok</td>
+<td>ok</td>
+</tr>
+<tr>
+<td>4</td>
+<td>e</td>
+<td>ok</td>
+<td>ok</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="truthy-vs-true">Truthy vs True</h2>
+<p>As follows clearly from the <a href="https://docs.python.org/2/library/stdtypes.html#truth-value-testing" target="_blank" rel="noopener noreffer ">docs</a>, <code>True</code> is one of many values that evaluate to <code>True</code>. This seems clear enough. Yet I just caught myself getting confused by the following:</p>
+<p>I have a list of values that I want to filter for Truthy elements &ndash; elements that evaluate to <code>True</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">mylist</span> <span class="k">if</span> <span class="n">e</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[nan, 'hello', True]
+</code></pre>
+<p>This works as intended. For a moment, however, I got confused by the following:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">mylist</span> <span class="k">if</span> <span class="n">e</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[True]
+</code></pre>
+<p>I expected it to yield the same result as the above. But it doesn&rsquo;t becuase it only returns valus that actually are <code>True</code>, as in having the same object ID as the value <code>True</code> (<a href="https://stackoverflow.com/a/20421344/13666841" target="_blank" rel="noopener noreffer ">this</a> Stack Overflow answer makes the point nicely). We can see this below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[4599359344, 4859333552, 4556488160, 4556589160]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">id</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>4556488160
+</code></pre>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/python-functions/" class="prev" rel="prev" title="Python functions"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python functions</a>
+            <a href="/idiomatic-python/" class="next" rel="next" title="Idiomatic Python">Idiomatic Python<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,109 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Evolving notes on crafting a good life</title>
+        <link>http://example.org/posts/</link>
+        <description>All Posts | Evolving notes on crafting a good life</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sun, 14 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Parenting advice I want to remember</title>
+    <link>http://example.org/parenting-principles/</link>
+    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/parenting-principles/</guid>
+    <description><![CDATA[My wife and I are about to become parents for the first time. In this space, I want to collect a limited number of core pieces of advice I want to remember. They are all from Philippa Perry&rsquo;s wonderful book The book you wish your parents had read, which I can&rsquo;t recommend highly enough to any parent.
+Stuff I want to remember:
+A child is not a thing I need to manage and train to behave well, but an individual I&rsquo;m building a relationship with.]]></description>
+</item>
+<item>
+    <title>Python dicts</title>
+    <link>http://example.org/python-dictionaries/</link>
+    <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-dictionaries/</guid>
+    <description><![CDATA[Drills to practice working with Python dictionaries.
+Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
+1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
+1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?]]></description>
+</item>
+<item>
+    <title>Heaps</title>
+    <link>http://example.org/heaps/</link>
+    <pubDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/heaps/</guid>
+    <description><![CDATA[Basics Define a heap.
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+Load the standard library module that implements heaps. What kind of heaps are supported?
+1 2 # heapq implements min heaps. Push *-item* to implement max heap. import heapq Turn the below list into a min-heap.
+1 heap = [1, -4, 7, 50] 1 heapq.heapify(heap) Add -1 to the heap.]]></description>
+</item>
+<item>
+    <title>Git</title>
+    <link>http://example.org/git/</link>
+    <pubDate>Wed, 02 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/git/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Iterators and generators</title>
+    <link>http://example.org/iterators-and-generators/</link>
+    <pubDate>Sat, 22 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/iterators-and-generators/</guid>
+    <description><![CDATA[Iterators A Python object is described as iterable (adjective) or as an iterable (noun) when it can be iterated over &ndash; when we can process the elements it contains in turn.
+An iterator is a value-producing object that returns the content of an iterable on demand one by one as we call next().
+We can create an iterator from an iterable using the built-in iter() function.
+One (the?) main feature of iterators is that they are lazy: they produce the next item in the sequence only once it is required, which, for large sequences, can save a lot of memory and allow us to process data that doesn&rsquo;t fit into memory all at once.]]></description>
+</item>
+<item>
+    <title>Entropy</title>
+    <link>http://example.org/entropy/</link>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/entropy/</guid>
+    <description><![CDATA[1 2 3 4 import math import matplotlib.pyplot as plt import numpy as np Intro Entropy is a measure of the amount of information contained in an event or a random variable. It is a cornerstone of information theory, a subfield of mathematics concerned with the transmission of data across a noisy channel. Information of an event Key intuition: learning that a low probability event has occurred is more informative than learning that a high probability event has occurred.]]></description>
+</item>
+<item>
+    <title>Python built-in heroes</title>
+    <link>http://example.org/python-built-in-heroes/</link>
+    <pubDate>Mon, 13 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-built-in-heroes/</guid>
+    <description><![CDATA[Operator (docs)
+itemgetter() Basic use:
+1 2 3 4 5 from operator import itemgetter print(itemgetter(1, 3, 5)(&#34;Watermelon&#34;)) print(itemgetter(slice(5, None))(&#34;Watermelon&#34;)) print(itemgetter(&#34;name&#34;)(dict(name=&#34;Paul&#34;, age=44))) ('a', 'e', 'm') melon Paul Application (from docs):
+1 2 3 4 5 6 7 8 9 inventory = [(&#34;apple&#34;, 3), (&#34;banana&#34;, 2), (&#34;pear&#34;, 5), (&#34;orange&#34;, 1)] getcount = itemgetter(1) # get second item from list print(getcount(inventory)) # get second item from each element in list list(map(getcount, inventory)) ('banana', 2) [3, 2, 5, 1] Application: sorting list of dictionaries (from Python Cookbook recipe 1.]]></description>
+</item>
+<item>
+    <title>Python lists</title>
+    <link>http://example.org/python-lists/</link>
+    <pubDate>Tue, 23 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/python-lists/</guid>
+    <description><![CDATA[Solve the below tasks and state their time and space complexities.
+Basics Define a list.
+A list is a finite, ordered, and mutable sequence of elements.
+Create a list a containing the letters a, b, and c.
+1 a = list(&#34;abc&#34;) Append z.
+1 a.append(&#34;z&#34;) Insert x at the second position.
+1 a.insert(1, &#34;x&#34;) Append the characters m, n.
+1 a.extend(&#34;mn&#34;) Remove the first occurrence of x from the list.]]></description>
+</item>
+<item>
+    <title>Algorithm complexity analysis</title>
+    <link>http://example.org/algorithm-complexity-analysis/</link>
+    <pubDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/algorithm-complexity-analysis/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Regex</title>
+    <link>http://example.org/regex/</link>
+    <pubDate>Sat, 13 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/regex/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

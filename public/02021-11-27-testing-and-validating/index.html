@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Testing and validating - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Testing and validating" />
+<meta property="og:description" content="Notes on testing and data validation.
+What I currently do:
+I use assert to test small ad-hoc pieces of code, pytest to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data What I need:
+A process to ensure that my data preprocessing pipeline produces the intended data.
+I still don&rsquo;t fully understand how good data scientists test their code. Unit testing seems incomplete because while it ensures that a piece of code works as expected, the main challenge when working with large datasets is often that there are special cases in the data that I don&rsquo;t know in advance and can&rsquo;t think of." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/02021-11-27-testing-and-validating/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-03T07:07:17+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Testing and validating"/>
+<meta name="twitter:description" content="Notes on testing and data validation.
+What I currently do:
+I use assert to test small ad-hoc pieces of code, pytest to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data What I need:
+A process to ensure that my data preprocessing pipeline produces the intended data.
+I still don&rsquo;t fully understand how good data scientists test their code. Unit testing seems incomplete because while it ensures that a piece of code works as expected, the main challenge when working with large datasets is often that there are special cases in the data that I don&rsquo;t know in advance and can&rsquo;t think of."/>
+<meta name="application-name" content="Evolving notes on crafting a good life">
+<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/02021-11-27-testing-and-validating/" /><link rel="prev" href="http://example.org/clean-code/" /><link rel="next" href="http://example.org/makefiles/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Testing and validating",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/02021-11-27-testing-and-validating\/"
+        },"genre": "posts","keywords": "python, datascience","wordcount":  1515 ,
+        "url": "http:\/\/example.org\/02021-11-27-testing-and-validating\/","datePublished": "2021-08-12T00:00:00+00:00","dateModified": "2023-10-03T07:07:17+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Evolving notes on crafting a good life"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Evolving notes on crafting a good life"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Testing and validating</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1515 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#pytest-notes"><code>pytest</code> notes</a>
+      <ul>
+        <li><a href="#basic-test-for-return-value">Basic test for return value</a></li>
+        <li><a href="#testing-for-exceptions">Testing for exceptions</a></li>
+        <li><a href="#whats-a-well-tested-function">What&rsquo;s a &ldquo;well-tested&rdquo; function?</a></li>
+        <li><a href="#keeping-tests-organised">Keeping tests organised</a></li>
+        <li><a href="#marking-tests-as-expected-to-fail">Marking tests as expected to fail</a></li>
+        <li><a href="#running-pytests">Running pytests</a></li>
+        <li><a href="#fixtures">Fixtures</a></li>
+        <li><a href="#mocking">Mocking</a></li>
+        <li><a href="#testing-models">Testing models</a></li>
+        <li><a href="#testing-plots">Testing plots</a></li>
+      </ul>
+    </li>
+    <li><a href="#ci">CI</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Notes on testing and data validation.</p>
+<p>What I currently do:</p>
+<ul>
+<li>I use <code>assert</code> to test small ad-hoc pieces of code, <code>pytest</code> to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data</li>
+</ul>
+<p>What I need:</p>
+<ul>
+<li>
+<p>A process to ensure that my data preprocessing pipeline produces the intended data.</p>
+</li>
+<li>
+<p>I still don&rsquo;t fully understand how good data scientists test their code. Unit testing seems incomplete because while it ensures that a piece of code works as expected, the main challenge when working with large datasets is often that there are special cases in the data that I don&rsquo;t know in advance and can&rsquo;t think of. To catch these, I need to perform tests on the full data. In addition to that, manually creating a dataframe for testing is a huge pain when I need to test functions that create more complex data patterns (e.g. checking whether, in a financial transactions dataset, certain individuals in the data have a at least a certain number of monthly transactions for a certain type of bank account).</p>
+</li>
+<li>
+<p>I currently mainly use validating functions that operate on the entire dataset at the end of the pipeline (e.g. transaction data production in entropy project), which already has proven invaluable in catching errors. Using a decorator to add each validator function to a list of validators, and then running the data through each validator in that list works well and is fairly convenient.</p>
+</li>
+<li>
+<p><code>pandera</code> seems potentially useful in that the defined schema can be used both to validate data and &ndash; excitingly &ndash; can also be used to generate sample datasets for <code>hypothesis</code> and <code>pytest</code>, which could go a long way towards solving the above problem. But specifying a data schema for a non-trivial dataset is not easy, and I can&rsquo;t see how to write one for a dataset like MDB, where I need constraints such as a certain number of financial accounts of a certain type per user. So, for now, I just use my own validation functions. The testing branch in the entropy project has a <code>schema.py</code> file that expriments with the library.</p>
+</li>
+<li>
+<p><a href="https://www.peterbaumgartner.com/blog/testing-for-data-science/?utm_campaign=Data_Elixir&amp;utm_source=Data_Elixir_368/" target="_blank" rel="noopener noreffer ">This</a> article has been very useful, suggesting the following approach to testing: <code>assert</code> statements for ad-hoc pieces of code in Jupyter Lab, <code>pytest</code> for pieces of code others user, <code>hypothesis</code> for code that operates on the data, and <code>pandera</code> or other validator libraries for overall data validation. I basically do the first and last of these, and am still looking for ways to do</p>
+</li>
+</ul>
+<h2 id="pytest-notes"><code>pytest</code> notes</h2>
+<h3 id="basic-test-for-return-value">Basic test for return value</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">convert_to_int</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Very basic test</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_convert_to_int</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">convert_to_int</span><span class="p">(</span><span class="s2">&#34;1,200&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1200</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>More transparent test with message, which will show when AssertionError is raised</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_convert_to_int</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">actual</span> <span class="o">=</span> <span class="n">convert_to_int</span><span class="p">(</span><span class="s2">&#34;1,200&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expected</span> <span class="o">=</span> <span class="mi">1200</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;convert_to_int(&#39;1,200&#39;) returned </span><span class="si">{</span><span class="n">actual</span><span class="si">}</span><span class="s2"> instead of </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span><span class="p">,</span> <span class="n">message</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Careful with floats: because of this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>False
+</code></pre>
+<p>Use this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>True
+</code></pre>
+<h3 id="testing-for-exceptions">Testing for exceptions</h3>
+<p>Use context manager that silences expected error if raised within context and raises an assertion error if expected error isn&rsquo;t raised.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">raise</span> <span class="ne">ValueError</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>Failed: DID NOT RAISE &lt;class 'ValueError'&gt;
+</code></pre>
+<p>Basic example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">incrementer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&#34;Please enter a number&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_valueerror_on_string</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">example_argument</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">incrementer</span><span class="p">(</span><span class="n">example_argument</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">test_valueerror_on_string</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Test for correct error message</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_valueerror_on_string</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">example_argument</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exception_info</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">incrementer</span><span class="p">(</span><span class="n">example_argument</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">exception_info</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;Please enter a number&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">test_valueerror_on_string</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="whats-a-well-tested-function">What&rsquo;s a &ldquo;well-tested&rdquo; function?</h3>
+<p>Argument types:</p>
+<ul>
+<li>Bad arguments</li>
+<li>Examples: incomplete args, wrong dimensions, wrong type, etc.</li>
+<li>Return value: exception</li>
+<li>Special arguments</li>
+<li>Examples: values triggering special logic, boundary value (value between bad and good arguments and before or after values that raise special logic)</li>
+<li>Return value: expected value</li>
+<li>Normal arguments</li>
+<li>Examples: All other values, test 2 or 3</li>
+<li>Return value: expected value</li>
+</ul>
+<h3 id="keeping-tests-organised">Keeping tests organised</h3>
+<p>Principles to follow:</p>
+<ul>
+<li>Mirror structure of <code>src</code> directory in <code>tests</code> directory</li>
+<li>Name test modules as <code>test_&lt;name of src module&gt;</code></li>
+<li>Within test module, collect all tests for a single function in a class named <code>TestNameOfFunction</code> (from DataCamp: &lsquo;Test classes are containers inside test modules. They help separate tests for different functions within the test module, and serve as a structuring tool in the pytest framework.&rsquo;)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># test class layout</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestNameOfFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_second_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="marking-tests-as-expected-to-fail">Marking tests as expected to fail</h3>
+<p>Sometimes we might want to differentiate between failing code and tests that we know won&rsquo;t run yet or under certain conditions (e.g. we might follow TDD and haven&rsquo;t written a test yet, or we know a function only runs in Python 3). In this case, we can apply decorators to either functions or classes</p>
+<p>Expect to fail always (e.g. because not implemented yet)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestNameOfFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@pytest.mark.xfail</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@pytest.mark.xfail</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&#34;Not implemented yet.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;With optional reason arg.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.mark.xfail</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&#34;Not implemented yet.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestNameOfFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;With optional reason arg.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Expect to fail under certain conditions (e.g. certain Python versions, operating systems, etc.).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestNameOfFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@pytest.mark.skipif</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&#34;Requires Python 3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Only runs in Python 3.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.mark.skipif</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&#34;Requires Python 3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestNameOfFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">test_first_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Only runs in Python 3.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="running-pytests">Running pytests</h3>
+<ul>
+<li><code>pytest</code> runs all tests</li>
+<li><code>pytest -x</code> stops after first failure</li>
+<li><code>pytest &lt;path to test module&gt;</code> runs all tests in test module</li>
+<li><code>pytest &lt;path to test module&gt;::&lt;test class name&gt;</code> runs all tests in test module with specified node id</li>
+<li><code>pytest &lt;path to test module&gt;::&lt;test class name&gt;::&lt;test name&gt;</code> runs test with specified node id</li>
+<li><code>pytest -k &lt;patter&gt;</code> runds tests that fit pattern
+<ul>
+<li><code>pytest -k &lt;TestNameOfFunction&gt;</code> runs all tests in specified class</li>
+<li><code>pytest -k &lt;NameOf and not second thing&gt;</code> runs all tests in specified class except for <code>test_second_thing</code></li>
+</ul>
+</li>
+<li><code>pytest -r</code> show reasons</li>
+<li><code>pytest -rs</code> show reasons for skipped tests</li>
+<li><code>pytest -rx</code> show reasons for xfailed tests</li>
+<li><code>pytest -rsx</code> show reasons for skipped and xfailed</li>
+</ul>
+<h3 id="fixtures">Fixtures</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># create raw and clean data files in fixture</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.fixture</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">raw_and_clean_data</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_path</span> <span class="o">=</span> <span class="s2">&#34;raw.csv&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">clean_path</span> <span class="o">=</span> <span class="s2">&#34;clean.csv&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;1000, 40</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="s2">&#34;2000, 50</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="n">raw_path</span><span class="p">,</span> <span class="n">clean_path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># teardown code so we start with clean env in next test</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">clean_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># use fixture in test</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_on_raw_data</span><span class="p">(</span><span class="n">raw_and_clean_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_path</span><span class="p">,</span> <span class="n">clean_path</span> <span class="o">=</span> <span class="n">raw_and_clean_data</span>
+</span></span><span class="line"><span class="cl">    <span class="n">preprocess</span><span class="p">(</span><span class="n">raw_path</span><span class="p">,</span> <span class="n">clean_path</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Useful alternative using <code>tempdir()</code> and fixture chaining:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@pytest.fixture</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">raw_and_clean_data</span><span class="p">(</span><span class="n">tempdir</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">raw_path</span> <span class="o">=</span> <span class="n">tempdir</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;raw.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">clean_path</span> <span class="o">=</span> <span class="n">tempdir</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&#34;clean.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">raw_path</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;1000, 40</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="s2">&#34;2000, 50</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield</span> <span class="n">raw_path</span><span class="p">,</span> <span class="n">clean_path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># no teardown needed</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>NameError: name 'pytest' is not defined
+</code></pre>
+<h3 id="mocking">Mocking</h3>
+<p>Testing functions independently of dependencies</p>
+<h3 id="testing-models">Testing models</h3>
+<p>To test models, use toy datasets for which I know the correct results and perform sanity-checks using assertions I can know.</p>
+<p>Tests for training function</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">train_model</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_on_linear_data</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Can easily predict results precisely.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_arg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expected_slope</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expected_intercept</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">test_arg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">slope</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">expected_slope</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">intercept</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">expected_intercept</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_on_positively_correlated_data</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Cannot easily predict result precisely,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    but can still assert that slope is positive
+</span></span></span><span class="line"><span class="cl"><span class="s2">    as a sanity-check.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_arg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">test_arg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">slope</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tests for final model</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">model_test</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Assert that R^2 is between 0 and 1.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rsq</span> <span class="o">=</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">rsq</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="testing-plots">Testing plots</h3>
+<p>Overall approach:</p>
+<ol>
+<li>Create baseline plot using plotting function and store as PNG image</li>
+<li>Test plotting function and compare to baseline</li>
+</ol>
+<p>Install <code>pytest-mpl</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plot_best_fit_line</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Plotting function to be tested.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@pytest.mark.mpl_image_compare</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_plot_for_linear_data</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Testing function.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Under the hood, creates baseline and comparisons.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slope</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">intercept</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">title</span> <span class="o">=</span> <span class="s2">&#34;Test plot for linear data&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">plot_best_fit_line</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>baseline image needs to be stored in <code>baseline</code> subfolder of the plot module testing directory.</p>
+<p>To create baseline image, do following:</p>
+<p><code>&gt;pytest -k 'test_plot_for_linear_data' --mpl-generate-path &lt;path-to-baseline-folder&gt;</code></p>
+<p>To compare future tests with baseline image run:</p>
+<p><code>&gt; pytest -k 'test_plot_for_linear_data' --mpl</code></p>
+<h2 id="ci">CI</h2>
+<ul>
+<li>
+<p><a href="https://www.travis-ci.com" target="_blank" rel="noopener noreffer ">Travis CI</a></p>
+</li>
+<li>
+<p><a href="https://docs.travis-ci.com/user/languages/python/" target="_blank" rel="noopener noreffer ">Python stuff</a></p>
+</li>
+<li>
+<p><a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/use-conda-with-travis-ci.html" target="_blank" rel="noopener noreffer ">Using Conda</a></p>
+</li>
+<li>
+<p><a href="https://app.travis-ci.com/github/fabiangunzinger/entropy/jobs/545437220" target="_blank" rel="noopener noreffer ">Travis CI build info</a></p>
+</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.peterbaumgartner.com/blog/testing-for-data-science/?utm_campaign=Data_Elixir&amp;utm_source=Data_Elixir_368/" target="_blank" rel="noopener noreffer ">Peter Baumgartner, Ways I use testing as a data scientist</a></li>
+<li><a href="https://github.com/gutfeeling/univariate-linear-regression" target="_blank" rel="noopener noreffer ">Code from DataCamp course</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python-datascience/">python, datascience</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/clean-code/" class="prev" rel="prev" title="Clean code"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Clean code</a>
+            <a href="/makefiles/" class="next" rel="next" title="Makefiles">Makefiles<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
