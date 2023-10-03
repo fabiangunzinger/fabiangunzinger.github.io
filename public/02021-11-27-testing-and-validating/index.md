@@ -1,11 +1,5 @@
-#     enabled: false
+# Testing and validating
 
-
-title: "Testing and validating"
-date: "2021-08-12"
-tags:
-- python, datascience
-execute:
 
 Notes on testing and data validation.
 

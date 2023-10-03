@@ -4,41 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>    enabled: false - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="    enabled: false" />
-<meta property="og:description" content="title: &ldquo;Testing and validating&rdquo; date: &ldquo;2021-08-12&rdquo; tags:
-python, datascience execute: Notes on testing and data validation.
+        <title>Testing and validating - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Testing and validating" />
+<meta property="og:description" content="Notes on testing and data validation.
 What I currently do:
 I use assert to test small ad-hoc pieces of code, pytest to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data What I need:
 A process to ensure that my data preprocessing pipeline produces the intended data.
-I still don&rsquo;t fully understand how good data scientists test their code." />
+I still don&rsquo;t fully understand how good data scientists test their code. Unit testing seems incomplete because while it ensures that a piece of code works as expected, the main challenge when working with large datasets is often that there are special cases in the data that I don&rsquo;t know in advance and can&rsquo;t think of." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/02021-11-27-testing-and-validating/" /><meta property="article:section" content="posts" />
-
+<meta property="article:published_time" content="2021-08-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="    enabled: false"/>
-<meta name="twitter:description" content="title: &ldquo;Testing and validating&rdquo; date: &ldquo;2021-08-12&rdquo; tags:
-python, datascience execute: Notes on testing and data validation.
+<meta name="twitter:title" content="Testing and validating"/>
+<meta name="twitter:description" content="Notes on testing and data validation.
 What I currently do:
 I use assert to test small ad-hoc pieces of code, pytest to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data What I need:
 A process to ensure that my data preprocessing pipeline produces the intended data.
-I still don&rsquo;t fully understand how good data scientists test their code."/>
+I still don&rsquo;t fully understand how good data scientists test their code. Unit testing seems incomplete because while it ensures that a piece of code works as expected, the main challenge when working with large datasets is often that there are special cases in the data that I don&rsquo;t know in advance and can&rsquo;t think of."/>
 <meta name="application-name" content="Evolving notes on crafting a good life">
 <meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/02021-11-27-testing-and-validating/" /><link rel="next" href="http://example.org/tree-based-methods/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/02021-11-27-testing-and-validating/" /><link rel="prev" href="http://example.org/clean-code/" /><link rel="next" href="http://example.org/makefiles/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "    enabled: false",
+        "headline": "Testing and validating",
         "inLanguage": "en_gb",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/02021-11-27-testing-and-validating\/"
-        },"genre": "posts","wordcount":  1525 ,
-        "url": "http:\/\/example.org\/02021-11-27-testing-and-validating\/","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
+        },"genre": "posts","keywords": "python, datascience","wordcount":  1515 ,
+        "url": "http:\/\/example.org\/02021-11-27-testing-and-validating\/","datePublished": "2021-08-12T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -109,9 +107,9 @@ I still don&rsquo;t fully understand how good data scientists test their code."/
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">    enabled: false</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Testing and validating</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1525 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-08-12">2021-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1515 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -138,14 +136,7 @@ I still don&rsquo;t fully understand how good data scientists test their code."/
     <li><a href="#resources">Resources</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>title: &ldquo;Testing and validating&rdquo;
-date: &ldquo;2021-08-12&rdquo;
-tags:</p>
-<ul>
-<li>python, datascience
-execute:</li>
-</ul>
-<p>Notes on testing and data validation.</p>
+            </div><div class="content" id="content"><p>Notes on testing and data validation.</p>
 <p>What I currently do:</p>
 <ul>
 <li>I use <code>assert</code> to test small ad-hoc pieces of code, <code>pytest</code> to test crucial pieces of code, and a series of validating functions that check certain assumptions about the data</li>
@@ -695,14 +686,14 @@ execute:</li>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python-datascience/">python, datascience</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/tree-based-methods/" class="next" rel="next" title="Tree-based methods">Tree-based methods<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/clean-code/" class="prev" rel="prev" title="Clean code"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Clean code</a>
+            <a href="/makefiles/" class="next" rel="next" title="Makefiles">Makefiles<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
