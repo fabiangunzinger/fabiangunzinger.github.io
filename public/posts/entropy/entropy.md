@@ -1,5 +1,9 @@
-# Entropy
-
+---
+title: "Entropy"
+date: "2022-01-09"
+tags:
+    - cs, stats
+---
 
 ``` python
 import math
@@ -75,7 +79,7 @@ ax.plot(probs, info, marker=".")
 ax.set(xlabel="p(E)", ylabel="I(E)");
 ```
 
-![](../posts/entropy/entropy_files/figure-markdown_strict/cell-6-output-1.png)
+![](entropy_files/figure-markdown_strict/cell-6-output-1.png)
 
 ## Information of a random variable
 
@@ -131,4 +135,3 @@ ax.set(xlabel="p", ylabel="Entropy");
 -   [Wikipedia, Entropy](https://en.wikipedia.org/wiki/Entropy_%28information_theory%29)
 -   [Machine Learning Mastery, A gentle introduction to information entropy](https://machinelearningmastery.com/what-is-information-entropy/)
 -   [Aerin Kim, The intuition behind Shannon's entropy](https://towardsdatascience.com/the-intuition-behind-shannons-entropy-e74820fe9800)
-
