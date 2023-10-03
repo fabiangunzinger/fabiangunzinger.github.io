@@ -75,7 +75,7 @@ ax.plot(probs, info, marker=".")
 ax.set(xlabel="p(E)", ylabel="I(E)");
 ```
 
-![](../posts/entropy/entropy_files/figure-markdown_strict/cell-6-output-1.png)
+![](entropy_files/figure-markdown_strict/cell-6-output-1.png)
 
 ## Information of a random variable
 
