@@ -1,4 +1,4 @@
-# Documenting Sample Selection
+# Numpy essentials
 
 
 ``` python

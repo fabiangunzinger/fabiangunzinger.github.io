@@ -1,10 +1,8 @@
 ---
-title: "Documenting Sample Selection"
+title: "Numpy essentials"
 date: "2020-11-19"
 tags:
     - python, datascience
-execute:
-    enabled: false
 ---
 
 ``` python
