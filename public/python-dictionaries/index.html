@@ -5,20 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Python dicts - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Python dicts" />
-<meta property="og:description" content="Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
+<meta property="og:description" content="Drills to practice working with Python dictionaries.
+Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
 1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
-1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?
-1 {key: value for key in keys for value in values} It returns 2 as the value for every key because for each key it iterates through all the values and returns the last one." />
+1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/python-dictionaries/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python dicts"/>
-<meta name="twitter:description" content="Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
+<meta name="twitter:description" content="Drills to practice working with Python dictionaries.
+Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
 1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
-1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?
-1 {key: value for key in keys for value in values} It returns 2 as the value for every key because for each key it iterates through all the values and returns the last one."/>
+1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?"/>
 <meta name="application-name" content="Evolving notes on crafting a good life">
 <meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/python-dictionaries\/"
-        },"genre": "posts","keywords": "python","wordcount":  1257 ,
+        },"genre": "posts","keywords": "python","wordcount":  1264 ,
         "url": "http:\/\/example.org\/python-dictionaries\/","datePublished": "2022-02-28T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -107,7 +107,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python dicts</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1257 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1264 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -129,7 +129,8 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="built-in-dict">Built-in dict</h2>
+            </div><div class="content" id="content"><p>Drills to practice working with Python dictionaries.</p>
+<h2 id="built-in-dict">Built-in dict</h2>
 <p>Create a dictionary, <code>d</code>, from the two lists below using the <code>dict()</code> constructor.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

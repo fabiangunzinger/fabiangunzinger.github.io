@@ -3,12 +3,12 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>http://example.org/categories/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/</loc><lastmod>2023-10-03T07:07:17&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/categories/growth/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/tags/parenting/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/parenting-principles/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2023-10-03T07:07:17&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2023-10-03T07:07:17&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/python/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-dictionaries/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/heaps/</loc><lastmod>2023-10-02T07:11:36&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -31,12 +31,12 @@
             <loc>http://example.org/tags/dataviz/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-fundamentals/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-fuzzy-matching/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/python-datascience/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/tags/python-datascience/</loc><lastmod>2023-10-03T07:07:17&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/categories/craft/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/python-string-formatting/</loc><lastmod>2023-05-05T23:03:43&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/vim/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/makefiles/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/02021-11-27-testing-and-validating/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/02021-11-27-testing-and-validating/</loc><lastmod>2023-10-03T07:07:17&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/clean-code/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-tricks/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/modules-and-packages/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

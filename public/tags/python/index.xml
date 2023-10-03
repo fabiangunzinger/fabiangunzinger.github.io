@@ -9,10 +9,10 @@
     <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://example.org/python-dictionaries/</guid>
-    <description><![CDATA[Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
+    <description><![CDATA[Drills to practice working with Python dictionaries.
+Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
 1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
-1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?
-1 {key: value for key in keys for value in values} It returns 2 as the value for every key because for each key it iterates through all the values and returns the last one.]]></description>
+1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?]]></description>
 </item>
 <item>
     <title>Heaps</title>

@@ -7,6 +7,8 @@ execute:
     enabled: false
 ---
 
+Drills to practice working with Python dictionaries.
+
 ## Built-in dict
 
 Create a dictionary, `d`, from the two lists below using the `dict()` constructor.
