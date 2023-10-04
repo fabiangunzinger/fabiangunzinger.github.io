@@ -93,9 +93,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   #  date format
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
-  title = "Evolving notes on crafting a good life"
+  # title = "Evolving notes on crafting a good life"
+  title = ""
   # website description for RSS, SEO, Open Graph and Twitter Cards
-  description = "Evolving notes on crafting a good life"
+  # description = "Evolving notes on crafting a good life"
+  description = ""
   # website images for Open Graph and Twitter Cards
   # images = ["/img/fg.jpeg"]
 
@@ -205,7 +207,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       #  title shown in home page (HTML format is supported)
       # title = "Evolving notes on crafting a good life"
       # subtitle shown in home page (HTML format is supported)
-      subtitle = "Evolving notes on crafting a good life"
+      subtitle = ""
       # whether to use typeit animation for subtitle
       typeit = false
       # whether to show social links
