@@ -1,6 +1,11 @@
 ## Workflow
+
 - To review changes locally, run `quarto preview` (which calls `hugo serve` and automatically rerenders all changed `.qmd` and `.ipynb` files).
-- To push changes online, run `quarto render` to render all `.qmd` and `.ipynb` files, then run `hugo`, to build the site for publishing. After that, just push all changes to GitHub.
+
+- To push changes online, delete the `public` directory, run `quarto render` to render all `.qmd` and `.ipynb` files, then run `hugo`, to build the site for publishing. After that, just push all changes to GitHub.
+
+- Images are not automatically rendered, because the folder that contains images `post-folder-name_files` -- which, on rendering gets automatically created as a subfolder in `post-folder-name` in `contents/posts` -- isn't automatically moved to `public/post-folder-name`. So I have to move it manually for post images to be rendered.
+
 
 ## todo
 - [x] Document workflow
