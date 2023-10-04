@@ -4,7 +4,8 @@ baseURL = "http://example.org/"
 theme = "LoveIt"
 
 # website title
-title = "Evolving notes on crafting a good life"
+# title = "Evolving notes on crafting a good life"
+title = ""
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en_gb"
@@ -222,6 +223,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   # Social config about the author
   [params.social]
+    LinkedIn = "fabian-gunzinger"
     GitHub = "fabiangunzinger"
     Email = "xxxx@xxxx.com"
     RSS = true # 
