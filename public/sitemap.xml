@@ -3,22 +3,22 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>http://example.org/categories/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/</loc><lastmod>2023-10-03T14:02:15&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/categories/growth/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/tags/parenting/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/parenting-principles/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2023-10-03T14:02:15&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2023-10-03T14:02:15&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/python/</loc><lastmod>2023-10-03T07:22:39&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/python-dictionaries/</loc><lastmod>2023-10-03T07:22:39&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/heaps/</loc><lastmod>2023-10-02T07:11:36&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/dict-drills/</loc><lastmod>2022-02-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://example.org/tags/python/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/heap-drills/</loc><lastmod>2022-02-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/git/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/tools/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/iterators-and-generators/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/cs-stats/</loc><lastmod>2023-10-03T14:02:15&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/entropy/</loc><lastmod>2023-10-03T14:02:15&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-built-in-heroes/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/python-lists/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/list-drills/</loc><lastmod>2021-11-23T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/algorithm-complexity-analysis/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/cs/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/cheatsheet/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -31,12 +31,12 @@
             <loc>http://example.org/tags/dataviz/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-fundamentals/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-fuzzy-matching/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/python-datascience/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/tags/python-datascience/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/categories/craft/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/python-string-formatting/</loc><lastmod>2023-05-05T23:03:43&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/vim/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/makefiles/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/testing-and-validating/</loc><lastmod>2021-08-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://example.org/testing-and-validating/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/clean-code/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-tricks/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/modules-and-packages/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -45,7 +45,7 @@
             <loc>http://example.org/fluent-pandas/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-dates-and-times/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/hdf5/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/numpy-essentials/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/numpy-essentials/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/unix-basics/</loc><lastmod>2023-06-16T20:32:12&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://example.org/idiomatic-python/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/python-subtleties/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -54,12 +54,12 @@
             <loc>http://example.org/sql-in-python/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/documenting-sample-selection/</loc><lastmod>2023-09-18T19:02:27&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>http://example.org/pandas-cookbook/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/tags/datascience/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/tags/datascience/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/machine-learning-basics/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/aws/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/seattle-bicycle-traffic/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/waiting-time-paradox/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://example.org/naive-bayes/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/naive-bayes/</loc><lastmod>2023-10-03T14:47:14&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tags/stats/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/tree-based-methods/</loc><lastmod>2023-10-02T08:42:30&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://example.org/research/</loc><priority>0</priority></url></urlset>

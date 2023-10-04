@@ -9,17 +9,17 @@ Frequently used interaction patterns with AWS.
 
 -   To add a subfolder to a bucket, use `aws s3api put-object --bucket bucketname   --key foldername`
 
-# Setup
+## Setup
 
 -   There are multiple ways to access your AWS account. I store config and credential files in `~/.aws` as discussed [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html). AWS access methods find these files automatically so I don't have to worry about that.
 
 -   What I do have to worry about is choosing the appropriate profile depending on what AWS account I want to interact with (e.g. my personal one or one for work). This is different for each library, so I cover this below.
 
-# `s3fs`
+## `s3fs`
 
 Built by people at Dask, [`s3fs`](https://github.com/dask/s3fs) is built on top of `botocore` and provides a convenient way to interact with S3. It can read and -- I think -- write data, but there are easier ways to do that, and I use the library mainly to navigate buckets and list content.
 
-## Navigate buckets
+### Navigate buckets
 
 ``` python
 import s3fs
@@ -31,8 +31,6 @@ fs = s3fs.S3FileSystem()
 fs.ls('/fgu-samples')
 ```
 
-    ['fgu-samples/transactions.parquet']
-
 To choose a profile other than `default`, use:
 
 ``` python
@@ -40,8 +38,6 @@ To choose a profile other than `default`, use:
 fs = s3fs.S3FileSystem(profile='tracker-fgu')
 len(fs.ls('/'))
 ```
-
-    6
 
 # Read and write directly from `Pandas`
 
@@ -61,8 +57,6 @@ df = pd.read_parquet(fp)
 df.shape
 ```
 
-    (1168943, 21)
-
 ``` python
 # read using custom profile
 
@@ -70,8 +64,6 @@ fp = 's3://temp-mdb/data_XX7.parquet'
 df = pd.read_parquet(fp, storage_options = dict(profile='tracker-fgu'))
 df.shape
 ```
-
-    (9388334, 23)
 
 This works well for simple jobs, but in a large project, passing the profile information to each read and write call is cumbersome and ugly.
 
@@ -88,8 +80,6 @@ df = read_parquet_s3(fp)
 df.shape
 ```
 
-    (9388334, 23)
-
 ## More flexible solution with custom function
 
 Often, I run projects on my Mac for testing and a virtual machine to run the full code. In this case, I need a way to automatically provide the correct profile name.
@@ -98,8 +88,6 @@ Often, I run projects on my Mac for testing and a virtual machine to run the ful
 s3 = s3fs.S3FileSystem(profile='tracker-fgu')
 s3.ls('/raw-mdb/')
 ```
-
-    ['raw-mdb/data_777.csv', 'raw-mdb/data_X77.csv']
 
 ``` python
 import functools
@@ -152,11 +140,9 @@ fp = 's3://raw-mdb/data_777.csv'
 s3.read_csv(fp)
 ```
 
-    AttributeError: 'str' object has no attribute 'options'
-
 The above is not ideal, as it requires cumbersome unpacking of return. Maybe using decorator is better.
 
-# `awswrangler`
+## `awswrangler`
 
 A new [library](https://github.com/awslabs/aws-data-wrangler) from AWS labs for Pandas interaction with a number of AWS services. Looks very promising, but haven't had any use for it thus far.
 

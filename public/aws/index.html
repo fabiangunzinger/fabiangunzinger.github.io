@@ -35,7 +35,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/aws\/"
-        },"genre": "posts","keywords": "tools","wordcount":  646 ,
+        },"genre": "posts","keywords": "tools","wordcount":  629 ,
         "url": "http:\/\/example.org\/aws\/","datePublished": "2020-03-14T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -109,8 +109,8 @@ What I do have to worry about is choosing the appropriate profile depending on w
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AWS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-14">2020-03-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;646 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-14">2020-03-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;629 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -119,13 +119,16 @@ What I do have to worry about is choosing the appropriate profile depending on w
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#cli">CLI</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#navigate-buckets">Navigate buckets</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#s3fs"><code>s3fs</code></a>
+      <ul>
+        <li><a href="#navigate-buckets">Navigate buckets</a></li>
+      </ul>
+    </li>
     <li><a href="#basics">Basics</a></li>
     <li><a href="#simple-improvement-using-functoolspartial">Simple improvement using <code>functools.partial</code></a></li>
     <li><a href="#more-flexible-solution-with-custom-function">More flexible solution with custom function</a></li>
+    <li><a href="#awswrangler"><code>awswrangler</code></a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Frequently used interaction patterns with AWS.</p>
@@ -138,7 +141,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 <p>To add a subfolder to a bucket, use <code>aws s3api put-object --bucket bucketname   --key foldername</code></p>
 </li>
 </ul>
-<h1 id="setup">Setup</h1>
+<h2 id="setup">Setup</h2>
 <ul>
 <li>
 <p>There are multiple ways to access your AWS account. I store config and credential files in <code>~/.aws</code> as discussed <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html" target="_blank" rel="noopener noreffer ">here</a>. AWS access methods find these files automatically so I don&rsquo;t have to worry about that.</p>
@@ -147,9 +150,9 @@ What I do have to worry about is choosing the appropriate profile depending on w
 <p>What I do have to worry about is choosing the appropriate profile depending on what AWS account I want to interact with (e.g. my personal one or one for work). This is different for each library, so I cover this below.</p>
 </li>
 </ul>
-<h1 id="s3fs"><code>s3fs</code></h1>
+<h2 id="s3fs"><code>s3fs</code></h2>
 <p>Built by people at Dask, <a href="https://github.com/dask/s3fs" target="_blank" rel="noopener noreffer "><code>s3fs</code></a> is built on top of <code>botocore</code> and provides a convenient way to interact with S3. It can read and &ndash; I think &ndash; write data, but there are easier ways to do that, and I use the library mainly to navigate buckets and list content.</p>
-<h2 id="navigate-buckets">Navigate buckets</h2>
+<h3 id="navigate-buckets">Navigate buckets</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -170,9 +173,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/fgu-samples&#39;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>['fgu-samples/transactions.parquet']
-</code></pre>
-<p>To choose a profile other than <code>default</code>, use:</p>
+</div><p>To choose a profile other than <code>default</code>, use:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -185,9 +186,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>6
-</code></pre>
-<p># Read and write directly from <code>Pandas</code></p>
+</div><p># Read and write directly from <code>Pandas</code></p>
 <ul>
 <li>
 <p>Pandas can read and write files to and from S3 directly if you provide the file name as <code>s3://&lt;bucket&gt;/&lt;filename&gt;</code>.</p>
@@ -217,9 +216,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>(1168943, 21)
-</code></pre>
-<div class="highlight"><div class="chroma">
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -235,9 +232,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>(9388334, 23)
-</code></pre>
-<p>This works well for simple jobs, but in a large project, passing the profile information to each read and write call is cumbersome and ugly.</p>
+</div><p>This works well for simple jobs, but in a large project, passing the profile information to each read and write call is cumbersome and ugly.</p>
 <h2 id="simple-improvement-using-functoolspartial">Simple improvement using <code>functools.partial</code></h2>
 <p><code>functools.partial</code>provides a simple solution, as it allows me to create a custom function with a frozen storage options argument.</p>
 <div class="highlight"><div class="chroma">
@@ -258,9 +253,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>(9388334, 23)
-</code></pre>
-<h2 id="more-flexible-solution-with-custom-function">More flexible solution with custom function</h2>
+</div><h2 id="more-flexible-solution-with-custom-function">More flexible solution with custom function</h2>
 <p>Often, I run projects on my Mac for testing and a virtual machine to run the full code. In this case, I need a way to automatically provide the correct profile name.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -272,9 +265,7 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/raw-mdb/&#39;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>['raw-mdb/data_777.csv', 'raw-mdb/data_X77.csv']
-</code></pre>
-<div class="highlight"><div class="chroma">
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -376,10 +367,8 @@ What I do have to worry about is choosing the appropriate profile depending on w
 </span></span><span class="line"><span class="cl"><span class="n">s3</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>AttributeError: 'str' object has no attribute 'options'
-</code></pre>
-<p>The above is not ideal, as it requires cumbersome unpacking of return. Maybe using decorator is better.</p>
-<h1 id="awswrangler"><code>awswrangler</code></h1>
+</div><p>The above is not ideal, as it requires cumbersome unpacking of return. Maybe using decorator is better.</p>
+<h2 id="awswrangler"><code>awswrangler</code></h2>
 <p>A new <a href="https://github.com/awslabs/aws-data-wrangler" target="_blank" rel="noopener noreffer ">library</a> from AWS labs for Pandas interaction with a number of AWS services. Looks very promising, but haven&rsquo;t had any use for it thus far.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

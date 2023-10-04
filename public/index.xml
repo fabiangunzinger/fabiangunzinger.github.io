@@ -16,27 +16,28 @@ Stuff I want to remember:
 A child is not a thing I need to manage and train to behave well, but an individual I&rsquo;m building a relationship with.]]></description>
 </item>
 <item>
-    <title>Python dicts</title>
-    <link>http://example.org/python-dictionaries/</link>
+    <title>Dict drills</title>
+    <link>http://example.org/dict-drills/</link>
     <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/python-dictionaries/</guid>
+    <guid>http://example.org/dict-drills/</guid>
     <description><![CDATA[Drills to practice working with Python dictionaries.
 Built-in dict Create a dictionary, d, from the two lists below using the dict() constructor.
 1 2 keys = [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] values = range(3) 1 d = dict(zip(keys, values)) Recreate the same dictionary using dictionary comprehension and check that the result is identical to d.
 1 2 dd = {key: value for key, value in zip(keys, values)} dd == d What does the below return and why?]]></description>
 </item>
 <item>
-    <title>Heaps</title>
-    <link>http://example.org/heaps/</link>
+    <title>Heap drills</title>
+    <link>http://example.org/heap-drills/</link>
     <pubDate>Fri, 25 Feb 2022 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/heaps/</guid>
-    <description><![CDATA[Basics Define a heap.
+    <guid>http://example.org/heap-drills/</guid>
+    <description><![CDATA[Drills for working with Heaps in Python.
+Basics Define a heap.
 Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
 Load the standard library module that implements heaps. What kind of heaps are supported?
 1 2 # heapq implements min heaps. Push *-item* to implement max heap. import heapq Turn the below list into a min-heap.
-1 heap = [1, -4, 7, 50] 1 heapq.heapify(heap) Add -1 to the heap.]]></description>
+1 heap = [1, -4, 7, 50] 1 heapq.]]></description>
 </item>
 <item>
     <title>Git</title>
@@ -77,13 +78,14 @@ itemgetter() Basic use:
 1 2 3 4 5 6 7 8 9 inventory = [(&#34;apple&#34;, 3), (&#34;banana&#34;, 2), (&#34;pear&#34;, 5), (&#34;orange&#34;, 1)] getcount = itemgetter(1) # get second item from list print(getcount(inventory)) # get second item from each element in list list(map(getcount, inventory)) ('banana', 2) [3, 2, 5, 1] Application: sorting list of dictionaries (from Python Cookbook recipe 1.]]></description>
 </item>
 <item>
-    <title>Python lists</title>
-    <link>http://example.org/python-lists/</link>
+    <title>List drills</title>
+    <link>http://example.org/list-drills/</link>
     <pubDate>Tue, 23 Nov 2021 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://example.org/python-lists/</guid>
-    <description><![CDATA[Solve the below tasks and state their time and space complexities.
-Basics Define a list.
+    <guid>http://example.org/list-drills/</guid>
+    <description><![CDATA[Drills to practice working with lists in Python.
+Basics Solve the below tasks and state their time and space complexities.
+Define a list.
 A list is a finite, ordered, and mutable sequence of elements.
 Create a list a containing the letters a, b, and c.
 1 a = list(&#34;abc&#34;) Append z.
