@@ -5,7 +5,7 @@ theme = "LoveIt"
 
 # website title
 # title = "Evolving notes on crafting a good life"
-title = ""
+title = "Fabian Gunzinger"
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en_gb"
