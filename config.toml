@@ -4,7 +4,6 @@ baseURL = "http://example.org/"
 theme = "LoveIt"
 
 # website title
-# title = "Evolving notes on crafting a good life"
 title = "Fabian Gunzinger"
 
 # language code ["en", "zh-CN", "fr", "pl", ...]
@@ -206,6 +205,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       avatarURL = "/img/fg.png"
       #  title shown in home page (HTML format is supported)
       # title = "Evolving notes on crafting a good life"
+      title = "Fabian Gunzinger"
       # subtitle shown in home page (HTML format is supported)
       subtitle = ""
       # whether to use typeit animation for subtitle
@@ -227,8 +227,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [params.social]
     LinkedIn = "fabian-gunzinger"
     GitHub = "fabiangunzinger"
-    Email = "xxxx@xxxx.com"
-    RSS = true # 
+    Email = "fa.gunzinger@gmail.com"
+    # RSS = true # 
     # Medium = ""
     # Stackoverflow = ""
 
