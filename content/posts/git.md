@@ -16,6 +16,18 @@ summary: " "
 
 My evolving notes and on how to effectively use Git and GitHub.
 
+## Creating a new project/repo
+
+My usual workflow is the following:
+
+- I create a local directory for my project
+
+- Initialise Git: `git init`
+
+- Create a GitHub repo: `gh repo create` (you need the GitHub CLI for this)
+
+
+
 ## Workflow
 
 - I code in Neovim in the terminal, within tmux sessions.
