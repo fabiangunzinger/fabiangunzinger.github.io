@@ -136,7 +136,7 @@ so that function `a` gets loaded into the namespace when I import module `a`.
 
 When uploading packages to either Test PyPI or PyPI, the default behaviour of Twine is to ask for the username and passwort on the respective platform. A more secure and much easier way to verify your identity is to create a tocken in your user account, and save the details in your `~/.pypirc` file. Twine then automatically sources those details during the upload process.
 
-Your `~/pypirc` would look something like this:
+Your `~/.pypirc` would look something like this:
 
 ```
 [pypi]
