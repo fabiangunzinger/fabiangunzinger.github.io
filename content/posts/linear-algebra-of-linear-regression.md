@@ -55,17 +55,9 @@ What are the assumptions we're making here?
 
 We thus have a system of $n$ linear equations, which looks something like this:
 
-$$
-\begin{align*}
-Y_1 &= \beta_0 + \beta_1 X_{1_1} + \beta_2 X_{2_1} + \ldots + \beta_k X_{k_1} + \varepsilon_1 \\
-Y_2 &= \beta_0 + \beta_1 X_{1_2} + \beta_2 X_{2_2} + \ldots + \beta_k X_{k_2} + \varepsilon_2 \\
-&\vdots \\
-Y_n &= \beta_0 + \beta_1 X_{1_n} + \beta_2 X_{2_n} + \ldots + \beta_k X_{k_n} + \varepsilon_n \\
-\end{align*}
-$$
+
+
 
 ### Resources
 
--   [Econometrics by Fumio Hayashi](https://press.princeton.edu/books/hardcover/9780691010182/econometrics) -- a very clear book and my go-to reference, especially for matrix notification.
-
--   Wooldridge
+- Hayashi, Wooldridge, Verbeek, online resources
