@@ -3,8 +3,6 @@ title: "Waiting time paradox"
 date: "2020-01-14"
 tags:
     - datascience
-execute:
-    enabled: false
 ---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -87,7 +85,9 @@ To model the above result analytically, let's model the process we generated to 
 
 For a start, we can write the expected value of intervals $T$ between bus arrivals as
 
-$$ E(T) = \int_{0}^{\infty} Tp(T)dT $$.
+$$
+E(T) = \int_{0}^{\infty} Tp(T)dT.
+$$
 
 In the simulation above, we set $E(T) = \tau = 10$ minutes.
 
@@ -95,39 +95,53 @@ What we're after, however, is the expected value of the waiting time for a rider
 
 From the inspection paradox, we know that the experienced waiting time depends on the actual intervals between buses, $p(T)$ as well as on the length of the intervals, $T$. So we can write
 
-$$ p_{exp}(T) \propto Tp(T)$$.
+$$
+p_{exp}(T) \propto Tp(T).
+$$
 
 Substitute the constant of proportionality for the proportional sign seemed obvious for jvdp, but was less so for me, so I'm gonna back up and explain, based on [this](https://davidrosenberg.github.io/mlcourse/Notes/proportionality.pdf) super helpful resource.
 
 If \$ p\_{exp}(T) Tp(T)\$, then we know that there exists a constant of proportionality $k$ such that
 
-$$ p_{exp}(T) = kTp(T)$$.
+$$
+p_{exp}(T) = kTp(T).
+$$
 
 Because $p_{exp}(T)$ is a density, we have $\int_0^\infty p_{exp}(T)dT = 1$, which means that
 
-$$\int_0^\infty kTp(T)dT = 1$$
-$$k\int_0^\infty Tp(T)dT = 1$$
-$$k = \left[\int_0^\infty kTp(T)dT\right]^{-1}$$
+$$
+\int_0^\infty kTp(T)dT = 1 \\
+k\int_0^\infty Tp(T)dT = 1 \\
+k = \left[\int_0^\infty kTp(T)dT\right]^{-1}. \\
+$$
 
 Using this in our expression above, we get
 
-$$p_{exp}(T) = \frac{Tp(T)}{\int_0^\infty Tp(T)dT}$$.
+$$
+p_{exp}(T) = \frac{Tp(T)}{\int_0^\infty Tp(T)dT}.
+$$
 
 And using the definition of $E(T)$ above, this simplifies to
 
-$$p_{exp}(T) = \frac{Tp(T)}{E(T)}$$.
+$$
+p_{exp}(T) = \frac{Tp(T)}{E(T)}.
+$$
 
 To find the expected waiting time $E(W)$, the final step is use the fact that the expected value for the observed interval is half the expected interval (if riders experience buses at arriving every 20 minutes, then their expected waiting time is 10 minutes). We can thus write:
 
-$$E(W) = \frac{1}{2} E_{exp}(T) = \frac{1}{2} \int_{0}^{\infty} Tp_{exp}(T)dT$$.
+$$
+E(W) = \frac{1}{2} E_{exp}(T) = \frac{1}{2} \int_{0}^{\infty} Tp_{exp}(T)dT.
+$$
 
 Using our expression from above and rewriting gives
 
 $$
-E(W) = \frac{1}{2} \int_{0}^{\infty} T\frac{Tp(T)}{E(T)}dT
-E(W) = \frac{1}{2E(T)} \int_{0}^{\infty} T^2p(T)dT
-E(W) =\frac{E(T^2)}{2E(T)}
-$$.
+\begin{align*}
+E(W) &= \frac{1}{2} \int_{0}^{\infty} T\frac{Tp(T)}{E(T)}dT \\
+E(W) &= \frac{1}{2E(T)} \int_{0}^{\infty} T^2p(T)dT \\
+E(W) &=\frac{E(T^2)}{2E(T)}. \\
+\end{align*}
+$$
 
 What we now need to do is to find a form for $p(T)$ and compute our integrals.
 
