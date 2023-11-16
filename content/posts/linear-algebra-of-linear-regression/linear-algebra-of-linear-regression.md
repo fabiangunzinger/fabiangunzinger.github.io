@@ -1,5 +1,5 @@
 ---
-title: "Linear algebra of linear regression -- test"
+title: "Linear algebra of linear regression"
 subtitle: ""
 tags: [stats]
 date: 2023-10-23
@@ -9,7 +9,11 @@ profile: false
 commentable: true
 ---
 
-We can think of a projection as an operation that maps a vector onto a subspace. The result of a projection is a vector that lies within the subspace and is the closest point in the subspace to the original vector. m \## Projection in 1-D
+ho
+
+We can think of a projection as an operation that maps a vector onto a subspace. The result of a projection is a vector that lies within the subspace and is the closest point in the subspace to the original vector.
+m
+\## Projection in 1-D
 
 The easiest way to visualise a projection is when we project a vector $b$ in 2-dimensional space onto a line $a$ (because a line is a 1-dimensional object, it is a subspace of the vector).
 

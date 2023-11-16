@@ -504,11 +504,12 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [markup.highlight]
     codeFences = true
     guessSyntax = true
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
     # false is a necessary configuration
     # (https://github.com/dillonzq/LoveIt/issues/158)
     noClasses = false
+    # style = "average"
   # Goldmark is from Hugo 0.60 the default library used for Markdown
   [markup.goldmark]
     [markup.goldmark.extensions]
