@@ -23,7 +23,19 @@
 - [ ] Add photos?
 
 ## Ideas for posts
-- [ ] Revenue per employee for Basecamp and other companies (is basecamp really that efficient? What other companies are, too? Look into Twitter pre and post layoffs, look at Meta.)
+- [ ] Revenue per employee for Basecamp and other companies (is basecamp really that efficient? What other companies are, too? Look into Twitter pre and post layoffs, look at Meta.) -- Use this to explore polars and new seaborn api
+
+
+## Categories and tags used
+
+Categories:
+- growth
+- craft
+
+Tags:
+- datascience
+- tools
+- softskills
 
 ## Useful resources
 - [Hugo](https://gohugo.io/getting-started/quick-start/)
