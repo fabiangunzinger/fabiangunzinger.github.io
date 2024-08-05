@@ -8,3 +8,15 @@ I love vim. But for quite some time now, I've questioned whether all the setup e
 
 
 
+# Shortcuts
+
+⌘P will let you navigate to any file or symbol by typing its name
+⌃Tab will cycle you through the last set of files opened
+⇧⌘P will bring you directly to the editor commands
+⇧⌘O will let you navigate to a specific symbol in a file
+⌃G will let you navigate to a specific line in a file
+
+
+
+
+
