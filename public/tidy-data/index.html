@@ -4,21 +4,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Tidy data in Pandas - Evolving notes on crafting a good life</title><meta name="Description" content="Evolving notes on crafting a good life"><meta property="og:title" content="Tidy data in Pandas" />
+        <title>Tidy data in Pandas - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Tidy data in Pandas" />
 <meta property="og:description" content="Based on excellent materials materials from Daniel Chen here and talk here
 1 2 3 from imports import * %load_ext autoreload %autoreload 2 Creating tidy data Definition by Hadley Wickham here:
 Each variable is a column Each observation is a row Each type of observational unit is a table. Columns are values 1 2 pew = pd.read_csv(&#39;https://raw.githubusercontent.com/chendaniely/pydatadc_2018-tidy/master/data/pew.csv&#39;) pew.head() religion &lt;$10k $10-20k $20-30k $30-40k $40-50k $50-75k $75-100k $100-150k &gt;150k Don&#39;t know/refused 0 Agnostic 27 34 60 81 76 137 122 109 84 96 1 Atheist 12 27 37 52 35 70 73 59 74 76 2 Buddhist 27 21 30 34 33 58 62 39 53 54 3 Catholic 418 617 732 670 638 1116 949 792 633 1489 4 Don&rsquo;t know/refused 15 14 15 11 10 35 21 17 18 116 1 2 3 4 5 6 # Create a single income column pew." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/tidy-data/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" /><meta property="og:site_name" content="Evolving notes on crafting a good life" />
+<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tidy data in Pandas"/>
 <meta name="twitter:description" content="Based on excellent materials materials from Daniel Chen here and talk here
 1 2 3 from imports import * %load_ext autoreload %autoreload 2 Creating tidy data Definition by Hadley Wickham here:
 Each variable is a column Each observation is a row Each type of observational unit is a table. Columns are values 1 2 pew = pd.read_csv(&#39;https://raw.githubusercontent.com/chendaniely/pydatadc_2018-tidy/master/data/pew.csv&#39;) pew.head() religion &lt;$10k $10-20k $20-30k $30-40k $40-50k $50-75k $75-100k $100-150k &gt;150k Don&#39;t know/refused 0 Agnostic 27 34 60 81 76 137 122 109 84 96 1 Atheist 12 27 37 52 35 70 73 59 74 76 2 Buddhist 27 21 30 34 33 58 62 39 53 54 3 Catholic 418 617 732 670 638 1116 949 792 633 1489 4 Don&rsquo;t know/refused 15 14 15 11 10 35 21 17 18 116 1 2 3 4 5 6 # Create a single income column pew."/>
-<meta name="application-name" content="Evolving notes on crafting a good life">
-<meta name="apple-mobile-web-app-title" content="Evolving notes on crafting a good life"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="Fabian Gunzinger">
+<meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/tidy-data/" /><link rel="prev" href="http://example.org/sql-in-python/" /><link rel="next" href="http://example.org/python-functions/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -45,7 +45,7 @@ Each variable is a column Each observation is a row Each type of observational u
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="Evolving notes on crafting a good life"></a>
+            <a href="/" title="Fabian Gunzinger"></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -68,7 +68,7 @@ Each variable is a column Each observation is a row Each type of observational u
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="Evolving notes on crafting a good life"></a>
+                <a href="/" title="Fabian Gunzinger"></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -1452,7 +1452,7 @@ Each variable is a column Each observation is a row Each type of observational u
 </article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

@@ -1,9 +1,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>craft - Category - Evolving notes on crafting a good life</title>
+        <title>craft - Category - Fabian Gunzinger</title>
         <link>http://example.org/categories/craft/</link>
-        <description>craft - Category - Evolving notes on crafting a good life</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/craft/" rel="self" type="application/rss+xml" /><item>
+        <description>craft - Category - Fabian Gunzinger</description>
+        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Wed, 11 Oct 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/craft/" rel="self" type="application/rss+xml" /><item>
+    <title>Creating a Python package</title>
+    <link>http://example.org/creating-a-python-package/</link>
+    <pubDate>Wed, 11 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/creating-a-python-package/</guid>
+    <description><![CDATA[Creating a Python package and uploading it to PyPI or Test PyPI isn&rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.
+Creating a basic package To create a package, do the following:
+Create a directory called packagename that has a structure akin to the below: 1 2 3 4 5 6 7 8 packagename/ ├── LICENSE ├── pyproject.]]></description>
+</item>
+<item>
     <title>Vim cheatsheet</title>
     <link>http://example.org/vim/</link>
     <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>

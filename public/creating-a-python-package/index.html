@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en_gb">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Creating a Python package - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Creating a Python package" />
+<meta property="og:description" content="Creating a Python package and uploading it to PyPI or Test PyPI isn&rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.
+Creating a basic package To create a package, do the following:
+Create a directory called packagename that has a structure akin to the below: 1 2 3 4 5 6 7 8 packagename/ ├── LICENSE ├── pyproject." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/creating-a-python-package/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-10-11T14:03:56+01:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Creating a Python package"/>
+<meta name="twitter:description" content="Creating a Python package and uploading it to PyPI or Test PyPI isn&rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.
+Creating a basic package To create a package, do the following:
+Create a directory called packagename that has a structure akin to the below: 1 2 3 4 5 6 7 8 packagename/ ├── LICENSE ├── pyproject."/>
+<meta name="application-name" content="Fabian Gunzinger">
+<meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/creating-a-python-package/" /><link rel="prev" href="http://example.org/dict-drills/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Creating a Python package",
+        "inLanguage": "en_gb",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/creating-a-python-package\/"
+        },"genre": "posts","wordcount":  705 ,
+        "url": "http:\/\/example.org\/creating-a-python-package\/","datePublished": "2023-10-11T00:00:00+00:00","dateModified": "2023-10-11T14:03:56+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Fabian Gunzinger"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/research/"> Research </a><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Fabian Gunzinger"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/research/" title="">Research</a><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Creating a Python package</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/craft/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>craft</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-11">2023-10-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;705 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-a-basic-package">Creating a basic package</a></li>
+    <li><a href="#organising-your-package">Organising your package</a></li>
+    <li><a href="#creating-tokens-for-pypi-and-test-pypi">Creating tokens for pypi and test pypi</a></li>
+    <li><a href="#versioning">Versioning</a></li>
+    <li><a href="#useful-tools">Useful tools</a></li>
+    <li><a href="#useful-resources">Useful resources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Creating a Python package and uploading it to PyPI or Test PyPI isn&rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.</p>
+<h2 id="creating-a-basic-package">Creating a basic package</h2>
+<p>To create a package, do the following:</p>
+<ul>
+<li>Create a directory called <code>packagename</code> that has a structure akin to the below:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">packagename/
+</span></span><span class="line"><span class="cl">├── LICENSE
+</span></span><span class="line"><span class="cl">├── pyproject.toml
+</span></span><span class="line"><span class="cl">├── README.md
+</span></span><span class="line"><span class="cl">│── packagename/
+</span></span><span class="line"><span class="cl">│   ├── __init__.py
+</span></span><span class="line"><span class="cl">│   └── example.py
+</span></span><span class="line"><span class="cl">└── tests/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Add project descriptions to <code>README.md</code></p>
+</li>
+<li>
+<p>Add the appropriate <a href="https://choosealicense.com" target="_blank" rel="noopener noreffer ">text</a> to <code>LICENSE</code></p>
+</li>
+<li>
+<p>Add the following contents to <code>pyproject.toml</code>:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[build-system]
+</span></span><span class="line"><span class="cl">requires = [&#34;hatchling&#34;]
+</span></span><span class="line"><span class="cl">build-backend = &#34;hatchling.build&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[project]
+</span></span><span class="line"><span class="cl">name = &#34;packagename&#34;
+</span></span><span class="line"><span class="cl">version = &#34;0.0.1&#34;
+</span></span><span class="line"><span class="cl">authors = [
+</span></span><span class="line"><span class="cl">  { name=&#34;Example Author&#34;, email=&#34;author@example.com&#34; },
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">description = &#34;Package description&#34;
+</span></span><span class="line"><span class="cl">readme = &#34;README.md&#34;
+</span></span><span class="line"><span class="cl">requires-python = &#34;&gt;=3.7&#34;
+</span></span><span class="line"><span class="cl">classifiers = [
+</span></span><span class="line"><span class="cl">    &#34;Programming Language :: Python :: 3&#34;,
+</span></span><span class="line"><span class="cl">    &#34;License :: OSI Approved :: MIT License&#34;,
+</span></span><span class="line"><span class="cl">    &#34;Operating System :: OS Independent&#34;,
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[project.urls]
+</span></span><span class="line"><span class="cl">&#34;Homepage&#34; = &#34;https://github.com/pypa/sampleproject&#34;
+</span></span><span class="line"><span class="cl">&#34;Bug Tracker&#34; = &#34;https://github.com/pypa/sampleproject/issues&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Create a virtual environment: <code>python3.10 -m venv .venv</code></p>
+</li>
+<li>
+<p>Activate the virtual environment: <code>source ./.venv/bin/activate</code></p>
+</li>
+<li>
+<p>Initialise Git and create a GitHub repo <a href="https://fabiangunzinger.github.io/git/" target="_blank" rel="noopener noreffer ">as usual</a> (only the files in <code>projectname\dist</code> get uploaded, so there is nothing special about the rest of the directory)</p>
+</li>
+<li>
+<p>Write some code to put in the package &hellip;</p>
+</li>
+<li>
+<p>Install distribution and upload dependencies:</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python3 -m pip install --upgrade build
+</span></span><span class="line"><span class="cl">python3 -m pip install --upgrade twine
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Build the package: <code>python3 -m build</code></p>
+</li>
+<li>
+<p>Upload the build files to&hellip;</p>
+<ul>
+<li>Test PyPI: <code>python3 -m twine upload --repository testpypi dist/*</code></li>
+<li>PyPI: <code>python3 -m twine upload dist/*</code></li>
+</ul>
+</li>
+<li>
+<p>Done! You can now install your package using</p>
+<ul>
+<li><code>python -m pip install packagename</code> (from PyPI)</li>
+<li><code>python -m pip install --index-url https://test.pypi.org/simple/ --no-deps packagename</code> (from Test PyPI)</li>
+</ul>
+</li>
+</ul>
+<h2 id="organising-your-package">Organising your package</h2>
+<p>I often want to organise the modules in my package into subpackages and submodules for additional structure. Something like the below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">packagename/
+</span></span><span class="line"><span class="cl">├── LICENSE
+</span></span><span class="line"><span class="cl">├── pyproject.toml
+</span></span><span class="line"><span class="cl">├── README.md
+</span></span><span class="line"><span class="cl">│── packagename/
+</span></span><span class="line"><span class="cl">|   |-- subpackage1
+</span></span><span class="line"><span class="cl">|   |   |-- __init.py__
+</span></span><span class="line"><span class="cl">|   |   |-- a.py
+</span></span><span class="line"><span class="cl">|   |   |-- b.py
+</span></span><span class="line"><span class="cl">|   |-- subpackage2
+</span></span><span class="line"><span class="cl">|   |   |-- __init.py__
+</span></span><span class="line"><span class="cl">|   |   |-- c.py
+</span></span><span class="line"><span class="cl">│   ├── __init__.py
+</span></span><span class="line"><span class="cl">└── tests/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and, if the content of <code>a.py</code> is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def a():
+</span></span><span class="line"><span class="cl">    return &#34;Module a content&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I want to be able to import my package as <code>import packagename as p</code>, and then access function <code>a</code> in module <code>a</code> as <code>p.subpackage1.a</code>.</p>
+<p>To be able to do that, the <code>__init.py__</code> in <code>packagename</code> needs to contain:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from .subpackage1 import a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>so that module <code>a</code> gets loaded into the namespace when I import the package, and <code>__init.py__</code> in <code>subpackage1</code> needs to contain</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from .a import a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>so that function <code>a</code> gets loaded into the namespace when I import module <code>a</code>.</p>
+<h2 id="creating-tokens-for-pypi-and-test-pypi">Creating tokens for pypi and test pypi</h2>
+<p>When uploading packages to either Test PyPI or PyPI, the default behaviour of Twine is to ask for the username and passwort on the respective platform. A more secure and much easier way to verify your identity is to create a tocken in your user account, and save the details in your <code>~/.pypirc</code> file. Twine then automatically sources those details during the upload process.</p>
+<p>Your <code>~/pypirc</code> would look something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[pypi]
+</span></span><span class="line"><span class="cl">  username = __token__
+</span></span><span class="line"><span class="cl">  password = pypi-someverylongkey
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[testpypi]
+</span></span><span class="line"><span class="cl">  username = __token__
+</span></span><span class="line"><span class="cl">  password = pypi-someotherverylongkey
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="versioning">Versioning</h2>
+<p>Making new versions of a package is so easy nobody even seems to bother to mention how it&rsquo;s done. So here are the steps:</p>
+<ul>
+<li>
+<p>Make the desired changes in the code</p>
+</li>
+<li>
+<p>Change the <code>version</code> field in <code>pyproject.toml</code></p>
+</li>
+<li>
+<p>Rebuild the package (see above for command)</p>
+</li>
+<li>
+<p>Upload build files (see above for command)</p>
+</li>
+</ul>
+<h2 id="useful-tools">Useful tools</h2>
+<p>There are a lot of packaging tools that automate some of the above. I&rsquo;ve tried Poetry in the past, and <a href="https://hatch.pypa.io/latest/" target="_blank" rel="noopener noreffer ">Hatch</a> this time. But I find that all these tools do many things I neither need nor understand. So, for the time being, I&rsquo;ll keep things simple and just follow the process above.</p>
+<h2 id="useful-resources">Useful resources</h2>
+<ul>
+<li>
+<p><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" target="_blank" rel="noopener noreffer ">Python docs</a></p>
+</li>
+<li>
+<p><a href="https://www.freecodecamp.org/news/build-your-first-python-package/" target="_blank" rel="noopener noreffer ">How to build your very first Python package</a></p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-11</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/dict-drills/" class="prev" rel="prev" title="Dict drills"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Dict drills</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
