@@ -1,11 +1,12 @@
 ---
-title: "Python Decorators"
-date: "2021-03-23"
+title: Python Decorators
+date: '2021-03-23'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 My notes on decorator functions (I don't use classes enough to worry about class decorators).
 
@@ -413,7 +414,21 @@ def greeter(name):
 greeter("World")
 ```
 
-    AttributeError: 'str' object has no attribute '__module__'
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-8-d69c0930e7ac&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">     12</span>     <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f'Hello {name}'</span>
+<span class="ansi-green-fg ansi-bold">     13</span> 
+<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> </span>greeter<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'World'</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/habits/lib/python3.7/functools.py</span> in <span class="ansi-cyan-fg">update_wrapper</span><span class="ansi-blue-fg">(wrapper, wrapped, assigned, updated)</span>
+<span class="ansi-green-fg ansi-bold">     56</span>             <span class="ansi-green-fg">pass</span>
+<span class="ansi-green-fg ansi-bold">     57</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">             </span>setattr<span class="ansi-blue-fg">(</span>wrapper<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     59</span>     <span class="ansi-green-fg">for</span> attr <span class="ansi-green-fg">in</span> updated<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">     60</span>         getattr<span class="ansi-blue-fg">(</span>wrapper<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>getattr<span class="ansi-blue-fg">(</span>wrapped<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: 'str' object has no attribute '__module__'</pre>
 
 What's wrong, there? `@wraps` should be `@wraps(func)`.
 

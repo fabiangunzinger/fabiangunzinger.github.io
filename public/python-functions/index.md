@@ -1,6 +1,7 @@
 # Python functions
 
 
+
 ## Functions as first-class objects
 
 In Python, functions are first-class objects.
@@ -192,7 +193,28 @@ countdown(3)
 
     3
 
-    UnboundLocalError: local variable 'n' referenced before assignment
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-21-473dc28d8ecc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">     12</span> 
+<span class="ansi-green-fg ansi-bold">     13</span> 
+<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> </span>countdown<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-21-473dc28d8ecc&gt;</span> in <span class="ansi-cyan-fg">countdown</span><span class="ansi-blue-fg">(n)</span>
+<span class="ansi-green-fg ansi-bold">      9</span>     <span class="ansi-green-fg">while</span> n<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">     10</span>         display<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 11</span><span class="ansi-red-fg">         </span>decrement<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     12</span> 
+<span class="ansi-green-fg ansi-bold">     13</span> 
+
+<span class="ansi-green-fg">&lt;ipython-input-21-473dc28d8ecc&gt;</span> in <span class="ansi-cyan-fg">decrement</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg ansi-bold">      5</span> 
+<span class="ansi-green-fg ansi-bold">      6</span>     <span class="ansi-green-fg">def</span> decrement<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">         </span>n <span class="ansi-blue-fg">-=</span> <span class="ansi-cyan-fg">1</span>
+<span class="ansi-green-fg ansi-bold">      8</span> 
+<span class="ansi-green-fg ansi-bold">      9</span>     <span class="ansi-green-fg">while</span> n<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">UnboundLocalError</span>: local variable 'n' referenced before assignment</pre>
 
 `nonlocal` declares `n` to be a variable in the scope of an enclosing function of `decrement`.
 

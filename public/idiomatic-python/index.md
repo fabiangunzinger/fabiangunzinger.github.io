@@ -1,6 +1,7 @@
 # Idiomatic Python
 
 
+
 ## EAFP \> LBYL
 
 Just try to do what you expect to work and handle exceptions later if they occurr - "it's easier to ask for forgiveness than permission" (EAFP) rather than "look before you leap" (LBYL).

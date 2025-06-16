@@ -1,8 +1,9 @@
 # Python subtleties
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -22,7 +23,13 @@ t = (1, 2, [3, 4])
 t[2] += [5, 6]
 ```
 
-    TypeError: 'tuple' object does not support item assignment
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Input <span class="ansi-green-fg">In [2]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      1</span> t <span style="color:rgb(98,98,98)">=</span> (<span style="color:rgb(98,98,98)">1</span>, <span style="color:rgb(98,98,98)">2</span>, [<span style="color:rgb(98,98,98)">3</span>, <span style="color:rgb(98,98,98)">4</span>])
+<span class="ansi-green-fg">----&gt; 2</span> t[<span style="color:rgb(98,98,98)">2</span>] <span style="color:rgb(98,98,98)">+</span><span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(98,98,98)">5</span>, <span style="color:rgb(98,98,98)">6</span>]
+
+<span class="ansi-red-fg">TypeError</span>: 'tuple' object does not support item assignment</pre>
 
 ``` python
 type(t).__name__

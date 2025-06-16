@@ -4,19 +4,23 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Data visualisation notes - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Data visualisation notes" />
-<meta property="og:description" content="1 2 3 4 5 6 import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn as sns sns.set_style(&#39;whitegrid&#39;) 1 2 df = sns.load_dataset(&#39;diamonds&#39;) df.head(2) carat cut color clarity depth table price x y z 0 0.23 Ideal E SI2 61.5 55.0 326 3.95 3.98 2.43 1 0.21 Premium E SI1 59.8 61.0 326 3.89 3.84 2.31 1 df.clarity.value_counts() SI1 13065 VS2 12258 SI2 9194 VS1 8171 VVS2 5066 VVS1 3655 IF 1790 I1 741 Name: clarity, dtype: int64 Use countplot() (not a histogram!" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/data-visualisation-notes/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Data visualisation notes"/>
-<meta name="twitter:description" content="1 2 3 4 5 6 import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn as sns sns.set_style(&#39;whitegrid&#39;) 1 2 df = sns.load_dataset(&#39;diamonds&#39;) df.head(2) carat cut color clarity depth table price x y z 0 0.23 Ideal E SI2 61.5 55.0 326 3.95 3.98 2.43 1 0.21 Premium E SI1 59.8 61.0 326 3.89 3.84 2.31 1 df.clarity.value_counts() SI1 13065 VS2 12258 SI2 9194 VS1 8171 VVS2 5066 VVS1 3655 IF 1790 I1 741 Name: clarity, dtype: int64 Use countplot() (not a histogram!"/>
+        <title>Data visualisation notes - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/data-visualisation-notes/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Data visualisation notes">
+  <meta property="og:description" content="1 2 3 4 5 6 import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn as sns sns.set_style(&#39;whitegrid&#39;) 1 2 df = sns.load_dataset(&#39;diamonds&#39;) df.head(2) carat cut color clarity depth table price x y z 0 0.23 Ideal E SI2 61.5 55.0 326 3.95 3.98 2.43 1 0.21 Premium E SI1 59.8 61.0 326 3.89 3.84 2.31 1 df.clarity.value_counts() SI1 13065 VS2 12258 SI2 9194 VS1 8171 VVS2 5066 VVS1 3655 IF 1790 I1 741 Name: clarity, dtype: int64 Use countplot() (not a histogram!) for categorical frequencies To visualise the frequency of a categorical variable, I’d often reflexively plot a histogram, even though I kind of knew that that’s not what it’s for (it’s for plotting the distribution of continuous variables). For categorical frequencies, it’s much better to use countplot(), one several plot types seaborn provides for categorical variables.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-10-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Data visualisation notes">
+  <meta name="twitter:description" content="1 2 3 4 5 6 import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn as sns sns.set_style(&#39;whitegrid&#39;) 1 2 df = sns.load_dataset(&#39;diamonds&#39;) df.head(2) carat cut color clarity depth table price x y z 0 0.23 Ideal E SI2 61.5 55.0 326 3.95 3.98 2.43 1 0.21 Premium E SI1 59.8 61.0 326 3.89 3.84 2.31 1 df.clarity.value_counts() SI1 13065 VS2 12258 SI2 9194 VS1 8171 VVS2 5066 VVS1 3655 IF 1790 I1 741 Name: clarity, dtype: int64 Use countplot() (not a histogram!) for categorical frequencies To visualise the frequency of a categorical variable, I’d often reflexively plot a histogram, even though I kind of knew that that’s not what it’s for (it’s for plotting the distribution of continuous variables). For categorical frequencies, it’s much better to use countplot(), one several plot types seaborn provides for categorical variables.">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/data-visualisation-notes/" /><link rel="prev" href="http://example.org/python-fundamentals/" /><link rel="next" href="http://example.org/pandas-categories/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/data-visualisation-notes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -27,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/data-visualisation-notes\/"
-        },"genre": "posts","keywords": "dataviz","wordcount":  629 ,
+        },"genre": "posts","keywords": "dataviz","wordcount":  664 ,
         "url": "http:\/\/example.org\/data-visualisation-notes\/","datePublished": "2021-10-15T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -100,9 +104,9 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Data visualisation notes</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-10-15">2021-10-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;629 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-10-15">2021-10-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;664 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -111,7 +115,8 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#use-countplot-not-a-histogram-for-categorical-frequencies">Use <code>countplot()</code> (not a histogram!) for categorical frequencies</a></li>
-    <li><a href="#letter-value-plots">Letter-value plots</a>
+    <li><a href="#letter-value-plots">Letter-value plots</a></li>
+    <li><a href="#explore-colour-palettes">Explore colour palettes</a>
       <ul>
         <li><a href="#sources">Sources:</a></li>
       </ul>
@@ -119,7 +124,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -164,49 +169,49 @@
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>carat</th>
-<th>cut</th>
-<th>color</th>
-<th>clarity</th>
-<th>depth</th>
-<th>table</th>
-<th>price</th>
-<th>x</th>
-<th>y</th>
-<th>z</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0.23</td>
-<td>Ideal</td>
-<td>E</td>
-<td>SI2</td>
-<td>61.5</td>
-<td>55.0</td>
-<td>326</td>
-<td>3.95</td>
-<td>3.98</td>
-<td>2.43</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.21</td>
-<td>Premium</td>
-<td>E</td>
-<td>SI1</td>
-<td>59.8</td>
-<td>61.0</td>
-<td>326</td>
-<td>3.89</td>
-<td>3.84</td>
-<td>2.31</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>carat</th>
+          <th>cut</th>
+          <th>color</th>
+          <th>clarity</th>
+          <th>depth</th>
+          <th>table</th>
+          <th>price</th>
+          <th>x</th>
+          <th>y</th>
+          <th>z</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0.23</td>
+          <td>Ideal</td>
+          <td>E</td>
+          <td>SI2</td>
+          <td>61.5</td>
+          <td>55.0</td>
+          <td>326</td>
+          <td>3.95</td>
+          <td>3.98</td>
+          <td>2.43</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0.21</td>
+          <td>Premium</td>
+          <td>E</td>
+          <td>SI1</td>
+          <td>59.8</td>
+          <td>61.0</td>
+          <td>326</td>
+          <td>3.89</td>
+          <td>3.84</td>
+          <td>2.31</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -291,31 +296,31 @@ Name: clarity, dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>account_type</th>
-<th>account_id</th>
-<th>date</th>
-<th>num_txns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>current</td>
-<td>15837</td>
-<td>2014-07-31</td>
-<td>5</td>
-</tr>
-<tr>
-<td>1</td>
-<td>current</td>
-<td>15837</td>
-<td>2014-08-31</td>
-<td>27</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>account_type</th>
+          <th>account_id</th>
+          <th>date</th>
+          <th>num_txns</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>current</td>
+          <td>15837</td>
+          <td>2014-07-31</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>current</td>
+          <td>15837</td>
+          <td>2014-08-31</td>
+          <td>27</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>I want to compare the distributions of monthly transactions per account types. An obvious choice is a boxplot.</p>
@@ -381,6 +386,30 @@ Name: clarity, dtype: int64
 <li>Boxes with identical heights correspond the the same level.</li>
 <li>The width of each box indicates how spread out the data are in that region of the distribution (e.g. the large width of the right-most boxes shows that in the extremes, the data is very spread out).</li>
 </ul>
+<h2 id="explore-colour-palettes">Explore colour palettes</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pal</span> <span class="o">=</span> <span class="s1">&#39;Paired&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">pal</span><span class="p">)</span><span class="o">.</span><span class="n">as_hex</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">pal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># colors = sns.color_palatte(&#39;Paired&#39;)[:4]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928']
+</code></pre>
+<p><svg  width="660" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#a6cee3;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#1f78b4;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#b2df8a;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#33a02c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#fb9a99;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#e31a1c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#fdbf6f;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#ff7f00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#cab2d6;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#6a3d9a;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="550" y="0" width="55" height="55" style="fill:#ffff99;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="605" y="0" width="55" height="55" style="fill:#b15928;stroke-width:2;stroke:rgb(255,255,255)"/></svg></p>
 <h3 id="sources">Sources:</h3>
 <ul>
 <li><a href="https://vita.had.co.nz/papers/letter-value-plot.html" target="_blank" rel="noopener noreffer ">Letter-value plots paper</a></li>
@@ -402,19 +431,18 @@ Name: clarity, dtype: int64
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dataviz/">dataviz</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/python-fundamentals/" class="prev" rel="prev" title="Python fundamentals"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python fundamentals</a>
-            <a href="/pandas-categories/" class="next" rel="next" title="Pandas categories">Pandas categories<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -423,5 +451,5 @@ Name: clarity, dtype: int64
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

@@ -1,14 +1,17 @@
 ---
-title: "Unix basics"
-date: "2020-11-12"
-categories: [craft]
-tag: [tools]
+title: Unix basics
+date: '2020-11-12'
+categories:
+  - craft
+tag:
+  - tools
 format: hugo-md
 jupyter: python3
 draft: false
 math:
   enable: true
 ---
+
 
 This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.
 

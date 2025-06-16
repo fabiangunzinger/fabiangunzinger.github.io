@@ -1,11 +1,12 @@
 ---
-title: "Python fundamentals"
-date: "2021-10-10"
+title: Python fundamentals
+date: '2021-10-10'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Data model - everything is an object
 

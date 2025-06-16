@@ -1,8 +1,9 @@
 # Pandas categories
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -78,10 +79,10 @@ df.head(2)
     }
 </style>
 
-|     | pickup              | dropoff             | passengers | distance | fare | tip  | tolls | total | color  | payment     | pickup_zone           | dropoff_zone          | pickup_borough | dropoff_borough |
-|-----|---------------------|---------------------|------------|----------|------|------|-------|-------|--------|-------------|-----------------------|-----------------------|----------------|-----------------|
-| 0   | 2019-03-23 20:21:09 | 2019-03-23 20:27:24 | 1          | 1.60     | 7.0  | 2.15 | 0.0   | 12.95 | yellow | credit card | Lenox Hill West       | UN/Turtle Bay South   | Manhattan      | Manhattan       |
-| 1   | 2019-03-04 16:11:55 | 2019-03-04 16:19:00 | 1          | 0.79     | 5.0  | 0.00 | 0.0   | 9.30  | yellow | cash        | Upper West Side South | Upper West Side South | Manhattan      | Manhattan       |
+|  | pickup | dropoff | passengers | distance | fare | tip | tolls | total | color | payment | pickup_zone | dropoff_zone | pickup_borough | dropoff_borough |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 2019-03-23 20:21:09 | 2019-03-23 20:27:24 | 1 | 1.60 | 7.0 | 2.15 | 0.0 | 12.95 | yellow | credit card | Lenox Hill West | UN/Turtle Bay South | Manhattan | Manhattan |
+| 1 | 2019-03-04 16:11:55 | 2019-03-04 16:19:00 | 1 | 0.79 | 5.0 | 0.00 | 0.0 | 9.30 | yellow | cash | Upper West Side South | Upper West Side South | Manhattan | Manhattan |
 
 </div>
 

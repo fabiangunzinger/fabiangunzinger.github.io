@@ -4,21 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Python Decorators - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Python Decorators" />
-<meta property="og:description" content="My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/python-decorators/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-23T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-09-18T19:02:27+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python Decorators"/>
-<meta name="twitter:description" content="My notes on decorator functions (I don&rsquo;t use classes enough to worry about class decorators).
-Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime)."/>
+        <title>Python Decorators - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/python-decorators/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Python Decorators">
+  <meta property="og:description" content="My notes on decorator functions (I don’t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime). Basic mechanics 1 2 3 4 5 6 7 8 9 10 11 def decorator(func): print(&#34;Running decorator&#34;) return func @decorator def greeter(): return &#34;Hello&#34; greeter() Running decorator &#39;Hello&#39; The above is equivalent to:">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-03-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-09-18T19:02:27+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python Decorators">
+  <meta name="twitter:description" content="My notes on decorator functions (I don’t use classes enough to worry about class decorators).
+Intro Decorators are functions designed to wrap other functions to enhance their capability at runtime. They do this by replacing the wrapped function with the return value of the decorator. They work as syntactic sugar for decorated = decorator(decorated). Decorators are run when the decorated function is defined, not when it is run (i.e. they run at import time, not runtime). Basic mechanics 1 2 3 4 5 6 7 8 9 10 11 def decorator(func): print(&#34;Running decorator&#34;) return func @decorator def greeter(): return &#34;Hello&#34; greeter() Running decorator &#39;Hello&#39; The above is equivalent to:">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-decorators/" /><link rel="prev" href="http://example.org/python-regex/" /><link rel="next" href="http://example.org/modules-and-packages/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-decorators/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -29,7 +33,7 @@ Intro Decorators are functions designed to wrap other functions to enhance their
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/python-decorators\/"
-        },"genre": "posts","keywords": "python","wordcount":  1756 ,
+        },"genre": "posts","keywords": "python","wordcount":  1799 ,
         "url": "http:\/\/example.org\/python-decorators\/","datePublished": "2021-03-23T00:00:00+00:00","dateModified": "2023-09-18T19:02:27+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,8 +106,8 @@ Intro Decorators are functions designed to wrap other functions to enhance their
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python Decorators</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-23">2021-03-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1756 words&nbsp;
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-23">2021-03-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1799 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -769,8 +773,21 @@ Congratulations!
 </span></span><span class="line"><span class="cl"><span class="n">greeter</span><span class="p">(</span><span class="s2">&#34;World&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>AttributeError: 'str' object has no attribute '__module__'
-</code></pre>
+</div><pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-8-d69c0930e7ac&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">     12</span>     <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f'Hello {name}'</span>
+<span class="ansi-green-fg ansi-bold">     13</span> 
+<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> </span>greeter<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'World'</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/habits/lib/python3.7/functools.py</span> in <span class="ansi-cyan-fg">update_wrapper</span><span class="ansi-blue-fg">(wrapper, wrapped, assigned, updated)</span>
+<span class="ansi-green-fg ansi-bold">     56</span>             <span class="ansi-green-fg">pass</span>
+<span class="ansi-green-fg ansi-bold">     57</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">             </span>setattr<span class="ansi-blue-fg">(</span>wrapper<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     59</span>     <span class="ansi-green-fg">for</span> attr <span class="ansi-green-fg">in</span> updated<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">     60</span>         getattr<span class="ansi-blue-fg">(</span>wrapper<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>getattr<span class="ansi-blue-fg">(</span>wrapped<span class="ansi-blue-fg">,</span> attr<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: 'str' object has no attribute '__module__'</pre>
 <p>What&rsquo;s wrong, there? <code>@wraps</code> should be <code>@wraps(func)</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -981,19 +998,18 @@ Congratulations!
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/python-regex/" class="prev" rel="prev" title="Regex in Python"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Regex in Python</a>
-            <a href="/modules-and-packages/" class="next" rel="next" title="Python modules and packages">Python modules and packages<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -1002,5 +1018,5 @@ Congratulations!
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

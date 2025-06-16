@@ -1,14 +1,15 @@
 ---
-title: "SQL in Python"
-date: "2020-09-12"
+title: SQL in Python
+date: '2020-09-12'
 tags:
-    - tools
+  - tools
 execute:
-    enabled: false
+  enabled: false
 ---
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -57,10 +58,10 @@ df.head(2)
     }
 </style>
 
-|     | user_id | transaction_date | amount | transaction_description           | merchant_name | auto_tag          | tag               | manual_tag | postcode | credit_debit | \... | account_created | user_registration_date | year_of_birth | account_id | merchant_business_line    | latest_balance | transaction_id | account_last_refreshed | account_type | gender |
-|-----|---------|------------------|--------|-----------------------------------|---------------|-------------------|-------------------|------------|----------|--------------|------|-----------------|------------------------|---------------|------------|---------------------------|----------------|----------------|------------------------|--------------|--------|
-| 0   | 60777   | 2014-11-27       | 100.0  | xxxxxx xxxx5014 internet transfer | no merchant   | transfers         | broadband         | no tag     | n16 0    | debit        | \... | 2015-02-12      | 2014-05-23             | 1988.0        | 378967     | personal                  | 0.0            | 58866450       | 2017-04-04 07:33:00    | savings      | m      |
-| 1   | 60777   | 2014-11-27       | -250.0 | \<mdbremoved\>                    | no merchant   | savings (general) | savings (general) | no tag     | n16 0    | credit       | \... | 2015-02-12      | 2014-05-23             | 1988.0        | 378968     | no merchant business line | 3000.0         | 58866344       | 2017-04-04 07:33:00    | savings      | m      |
+|  | user_id | transaction_date | amount | transaction_description | merchant_name | auto_tag | tag | manual_tag | postcode | credit_debit | \... | account_created | user_registration_date | year_of_birth | account_id | merchant_business_line | latest_balance | transaction_id | account_last_refreshed | account_type | gender |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 60777 | 2014-11-27 | 100.0 | xxxxxx xxxx5014 internet transfer | no merchant | transfers | broadband | no tag | n16 0 | debit | \... | 2015-02-12 | 2014-05-23 | 1988.0 | 378967 | personal | 0.0 | 58866450 | 2017-04-04 07:33:00 | savings | m |
+| 1 | 60777 | 2014-11-27 | -250.0 | \<mdbremoved\> | no merchant | savings (general) | savings (general) | no tag | n16 0 | credit | \... | 2015-02-12 | 2014-05-23 | 1988.0 | 378968 | no merchant business line | 3000.0 | 58866344 | 2017-04-04 07:33:00 | savings | m |
 
 <p>2 rows × 22 columns</p>
 </div>
@@ -168,14 +169,14 @@ pd.read_sql("select * from sqlite_master", conn)
     }
 </style>
 
-|     | type  | name                    | tbl_name    | rootpage | sql                                                    |
-|-----|-------|-------------------------|-------------|----------|--------------------------------------------------------|
-| 0   | table | targets                 | targets     | 2        | CREATE TABLE \"targets\" (\n\"user_id\" INTEGER\n)     |
-| 1   | index | idx_targets_user_id     | targets     | 3        | CREATE INDEX idx_targets_user_id on targets(us\...     |
-| 2   | table | predictions             | predictions | 4        | CREATE TABLE \"predictions\" (\n\"user_id\" INTEGE\... |
-| 3   | index | idx_predictions_user_id | predictions | 5        | CREATE INDEX idx_predictions_user_id on predic\...     |
-| 4   | table | outcomes                | outcomes    | 6        | CREATE TABLE \"outcomes\" (\n\"user_id\" INTEGER\n)    |
-| 5   | index | idx_outcomes_user_id    | outcomes    | 7        | CREATE INDEX idx_outcomes_user_id on outcomes(\...     |
+|  | type | name | tbl_name | rootpage | sql |
+|----|----|----|----|----|----|
+| 0 | table | targets | targets | 2 | CREATE TABLE \"targets\" (\n\"user_id\" INTEGER\n) |
+| 1 | index | idx_targets_user_id | targets | 3 | CREATE INDEX idx_targets_user_id on targets(us\... |
+| 2 | table | predictions | predictions | 4 | CREATE TABLE \"predictions\" (\n\"user_id\" INTEGE\... |
+| 3 | index | idx_predictions_user_id | predictions | 5 | CREATE INDEX idx_predictions_user_id on predic\... |
+| 4 | table | outcomes | outcomes | 6 | CREATE TABLE \"outcomes\" (\n\"user_id\" INTEGER\n) |
+| 5 | index | idx_outcomes_user_id | outcomes | 7 | CREATE INDEX idx_outcomes_user_id on outcomes(\... |
 
 </div>
 

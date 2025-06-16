@@ -1,6 +1,7 @@
 # Python fundamentals
 
 
+
 ## Data model - everything is an object
 
 ``` python

@@ -1,11 +1,12 @@
 ---
-title: "Iterators and generators"
-date: "2022-01-22"
+title: Iterators and generators
+date: '2022-01-22'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Iterators
 

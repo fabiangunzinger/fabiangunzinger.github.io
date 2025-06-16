@@ -1,41 +1,33 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>craft - Category - Fabian Gunzinger</title>
-        <link>http://example.org/categories/craft/</link>
-        <description>craft - Category - Fabian Gunzinger</description>
-        <generator>Hugo -- gohugo.io</generator><language>en_gb</language><lastBuildDate>Wed, 11 Oct 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/craft/" rel="self" type="application/rss+xml" /><item>
-    <title>Creating a Python package</title>
-    <link>http://example.org/creating-a-python-package/</link>
-    <pubDate>Wed, 11 Oct 2023 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/creating-a-python-package/</guid>
-    <description><![CDATA[Creating a Python package and uploading it to PyPI or Test PyPI isn&rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.
-Creating a basic package To create a package, do the following:
-Create a directory called packagename that has a structure akin to the below: 1 2 3 4 5 6 7 8 packagename/ ├── LICENSE ├── pyproject.]]></description>
-</item>
-<item>
-    <title>Vim cheatsheet</title>
-    <link>http://example.org/vim/</link>
-    <pubDate>Sat, 11 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/vim/</guid>
-    <description><![CDATA[Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
-I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
-Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
-Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.]]></description>
-</item>
-<item>
-    <title>Unix basics</title>
-    <link>http://example.org/unix-basics/</link>
-    <pubDate>Thu, 12 Nov 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/unix-basics/</guid>
-    <description><![CDATA[This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.
-Basics A process is a running instance of a program.
-Everything is a fiele (the keyboard is read-only, the screen write only)
-man &lt;command&gt; opens the manual for &lt;command&gt;.
-man -k &lt;search term&gt; lists all commands with &lt;search term&gt; in the manual pages.
-Stuff I use often and tend to forget Creating a soft link: ln -s &lt;file&gt; &lt;link&gt;.]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Craft on Fabian Gunzinger</title>
+    <link>http://example.org/categories/craft/</link>
+    <description>Recent content in Craft on Fabian Gunzinger</description>
+    <generator>Hugo</generator>
+    <language>en_gb</language>
+    <lastBuildDate>Wed, 18 Oct 2023 09:34:48 +0100</lastBuildDate>
+    <atom:link href="http://example.org/categories/craft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a Python package</title>
+      <link>http://example.org/creating-a-python-package/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://example.org/creating-a-python-package/</guid>
+      <description>&lt;p&gt;Creating a Python package and uploading it to PyPI or Test PyPI isn&amp;rsquo;t that complicated, but there are a few details I want to remember next time. Some of the steps below reflect my personal preferences and are not necessary.&lt;/p&gt;&#xA;&lt;h2 id=&#34;creating-a-basic-package&#34;&gt;Creating a basic package&lt;/h2&gt;&#xA;&lt;p&gt;To create a package, do the following:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Create a directory called &lt;code&gt;packagename&lt;/code&gt; that has a structure akin to the below:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;packagename/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── LICENSE&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── pyproject.toml&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── README.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│── packagename/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── __init__.py&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── example.py&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── tests/&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Add project descriptions to &lt;code&gt;README.md&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Vim cheatsheet</title>
+      <link>http://example.org/vim/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://example.org/vim/</guid>
+      <description>&lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;I use &lt;a href=&#34;https://neovim.io&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;neovim&lt;/a&gt;. My configuration is&#xA;&lt;a href=&#34;https://github.com/fabiangunzinger/dotfiles/blob/main/init.vim&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;here&lt;/a&gt;.&#xA;There, I map &lt;code&gt;&amp;lt;esc&amp;gt;&lt;/code&gt; to &lt;code&gt;jk&lt;/code&gt;, a mapping I also use throughout this&#xA;file.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve remaped Caps Look to &lt;code&gt;&amp;lt;ctrl&amp;gt;&lt;/code&gt; on my mac.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;quarto-setup&#34;&gt;Quarto setup&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;&amp;lt;shift-k&amp;gt;&lt;/code&gt; to open help on object under cursor, &lt;code&gt;&amp;lt;shift-kk&amp;gt;&lt;/code&gt; to ender help window, &lt;code&gt;q&lt;/code&gt; to quit help.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Terminal: open new terminal with &lt;code&gt;&amp;lt;leader&amp;gt;c&lt;/code&gt;, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unix basics</title>
+      <link>http://example.org/unix-basics/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://example.org/unix-basics/</guid>
+      <description>&lt;p&gt;This is my cheetsheet for all things Unix. I use it to keep track of useful things I learn and want to remember.&lt;/p&gt;&#xA;&lt;h2 id=&#34;basics&#34;&gt;Basics&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;A process is a running instance of a program.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Everything is a fiele (the keyboard is read-only, the screen write only)&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;man &amp;lt;command&amp;gt;&lt;/code&gt; opens the manual for &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;man -k &amp;lt;search term&amp;gt;&lt;/code&gt; lists all commands with &lt;code&gt;&amp;lt;search term&amp;gt;&lt;/code&gt; in the manual&#xA;pages.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;stuff-i-use-often-and-tend-to-forget&#34;&gt;Stuff I use often and tend to forget&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Creating a soft link: &lt;code&gt;ln -s &amp;lt;file&amp;gt; &amp;lt;link&amp;gt;&lt;/code&gt;. If you use &lt;code&gt;.&lt;/code&gt; for &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;, a&#xA;link with the same name as &lt;code&gt;&amp;lt;file&amp;gt;&lt;/code&gt; will be created in the current location.&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

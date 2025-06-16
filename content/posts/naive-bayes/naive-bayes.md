@@ -1,11 +1,12 @@
 ---
-title: "Naive Bayes"
-date: "2019-11-23"
+title: Naive Bayes
+date: '2019-11-23'
 tags:
-    - datascience
+  - datascience
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Setup
 
@@ -42,7 +43,7 @@ Xtrain, Xtest, ytrain, ytest = train_test_split(X, y)
 plt.scatter(Xtrain[:, 0], Xtrain[:, 1], c=ytrain, cmap="Paired");
 ```
 
-![](naive-bayes_files/figure-markdown_strict/cell-2-output-1.png)
+<img src="naive-bayes_files/figure-markdown_strict/cell-2-output-1.png" width="377" height="251" />
 
 ``` python
 from sklearn.naive_bayes import GaussianNB
@@ -64,7 +65,7 @@ plt.legend()
 plt.title("Training and testing data with decision boundary");
 ```
 
-![](naive-bayes_files/figure-markdown_strict/cell-3-output-1.png)
+<img src="naive-bayes_files/figure-markdown_strict/cell-3-output-1.png" width="377" height="266" />
 
 ## Sources
 

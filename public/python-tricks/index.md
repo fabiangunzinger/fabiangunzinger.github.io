@@ -1,6 +1,7 @@
 # Python tricks
 
 
+
 ## Switching 0 to 1 and 1 to 0
 
 Using `not`.

@@ -1,11 +1,12 @@
 ---
-title: "Idiomatic Python"
-date: "2020-11-03"
+title: Idiomatic Python
+date: '2020-11-03'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## EAFP \> LBYL
 

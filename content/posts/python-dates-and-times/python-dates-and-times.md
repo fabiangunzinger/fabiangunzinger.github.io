@@ -1,11 +1,12 @@
 ---
-title: "Dates and times in Python"
-date: "2021-01-23"
+title: Dates and times in Python
+date: '2021-01-23'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Overview of Python libraries
 

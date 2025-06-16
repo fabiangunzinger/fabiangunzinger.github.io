@@ -4,25 +4,29 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Fuzzy matching in Python - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Fuzzy matching in Python" />
-<meta property="og:description" content="difflib Docs here 1 import difflib Most simple use case
-1 2 m = difflib.SequenceMatcher(None, &#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;) m.ratio() 0.9629629629629629 Create helper function so we don&rsquo;t need to specify None each time.
+        <title>Fuzzy matching in Python - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/python-fuzzy-matching/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Fuzzy matching in Python">
+  <meta property="og:description" content="difflib Docs here 1 import difflib Most simple use case
+1 2 m = difflib.SequenceMatcher(None, &#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;) m.ratio() 0.9629629629629629 Create helper function so we don’t need to specify None each time.
 1 2 3 4 from functools import partial matcher = partial(difflib.SequenceMatcher, None) matcher(&#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;).ratio() 0.9629629629629629 Compare one sequence to multiple other sequences (SequenceMatcher caches second sequence)
-1 2 3 4 5 6 7 m = difflib." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/python-fuzzy-matching/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Fuzzy matching in Python"/>
-<meta name="twitter:description" content="difflib Docs here 1 import difflib Most simple use case
-1 2 m = difflib.SequenceMatcher(None, &#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;) m.ratio() 0.9629629629629629 Create helper function so we don&rsquo;t need to specify None each time.
+1 2 3 4 5 6 7 m = difflib.SequenceMatcher() m.set_seq2(&#39;abc&#39;) for s in [&#39;abc&#39;, &#39;ab&#39;, &#39;abcd&#39;, &#39;cde&#39;, &#39;def&#39;]: m.set_seq1(s) length = len(m.a) &#43; len(m.b) print(&#39;{}, {:{}} -&gt; {:.3f}&#39;.format(m.a, m.b, 10-length, m.ratio())) abc, abc -&gt; 1.000 ab, abc -&gt; 0.800 abcd, abc -&gt; 0.857 cde, abc -&gt; 0.333 def, abc -&gt; 0.000 fuzzywuzzy Based on this tutorial.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-09-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fuzzy matching in Python">
+  <meta name="twitter:description" content="difflib Docs here 1 import difflib Most simple use case
+1 2 m = difflib.SequenceMatcher(None, &#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;) m.ratio() 0.9629629629629629 Create helper function so we don’t need to specify None each time.
 1 2 3 4 from functools import partial matcher = partial(difflib.SequenceMatcher, None) matcher(&#39;NEW YORK METS&#39;, &#39;NEW YORK MEATS&#39;).ratio() 0.9629629629629629 Compare one sequence to multiple other sequences (SequenceMatcher caches second sequence)
-1 2 3 4 5 6 7 m = difflib."/>
+1 2 3 4 5 6 7 m = difflib.SequenceMatcher() m.set_seq2(&#39;abc&#39;) for s in [&#39;abc&#39;, &#39;ab&#39;, &#39;abcd&#39;, &#39;cde&#39;, &#39;def&#39;]: m.set_seq1(s) length = len(m.a) &#43; len(m.b) print(&#39;{}, {:{}} -&gt; {:.3f}&#39;.format(m.a, m.b, 10-length, m.ratio())) abc, abc -&gt; 1.000 ab, abc -&gt; 0.800 abcd, abc -&gt; 0.857 cde, abc -&gt; 0.333 def, abc -&gt; 0.000 fuzzywuzzy Based on this tutorial.">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-fuzzy-matching/" /><link rel="prev" href="http://example.org/python-string-formatting/" /><link rel="next" href="http://example.org/python-fundamentals/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/python-fuzzy-matching/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -106,7 +110,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Fuzzy matching in Python</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-09-27">2021-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;253 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
@@ -253,19 +257,18 @@ def, abc  -&gt; 0.000
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python-datascience/">python, datascience</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/python-string-formatting/" class="prev" rel="prev" title="Python string formatting"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python string formatting</a>
-            <a href="/python-fundamentals/" class="next" rel="next" title="Python fundamentals">Python fundamentals<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -274,5 +277,5 @@ def, abc  -&gt; 0.000
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

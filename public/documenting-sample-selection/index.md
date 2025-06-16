@@ -1,8 +1,9 @@
 # Documenting Sample Selection
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -735,7 +736,21 @@ avg = make_fast_averager()
 avg(10), avg(11), avg(12)
 ```
 
-    UnboundLocalError: local variable 'count' referenced before assignment
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_10646/1095891491.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">     10</span> avg <span class="ansi-blue-fg">=</span> make_fast_averager<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     11</span> 
+<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg"> </span>avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">11</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">12</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_10646/1095891491.py</span> in <span class="ansi-cyan-fg">averager</span><span class="ansi-blue-fg">(new_value)</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     total <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">0</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span class="ansi-green-fg">def</span> averager<span class="ansi-blue-fg">(</span>new_value<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">         </span>count <span class="ansi-blue-fg">+=</span> <span class="ansi-cyan-fg">1</span>
+<span class="ansi-green-fg ansi-bold">      6</span>         total <span class="ansi-blue-fg">+=</span> new_value
+<span class="ansi-green-fg ansi-bold">      7</span>         <span class="ansi-green-fg">return</span> total <span class="ansi-blue-fg">/</span> count
+
+<span class="ansi-red-fg">UnboundLocalError</span>: local variable 'count' referenced before assignment</pre>
 
 How come our fast averager can't find count and total even though our slow averager could find series just fine?
 

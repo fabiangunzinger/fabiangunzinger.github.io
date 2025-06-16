@@ -1,11 +1,12 @@
 ---
-title: "Python string formatting"
-date: "2021-09-11"
+title: Python string formatting
+date: '2021-09-11'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Formatted string literals (f-strings)
 

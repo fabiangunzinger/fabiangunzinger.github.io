@@ -1,11 +1,12 @@
 ---
-title: "Testing and validating"
-date: "2021-08-12"
+title: Testing and validating
+date: '2021-08-12'
 tags:
-    - python, datascience
+  - 'python, datascience'
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 Notes on testing and data validation.
 
@@ -81,7 +82,22 @@ with pytest.raises(ValueError):
     pass
 ```
 
-    Failed: DID NOT RAISE <class 'ValueError'>
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">Failed</span>                                    Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_3961/1768107249.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span class="ansi-green-fg">with</span> pytest<span class="ansi-blue-fg">.</span>raises<span class="ansi-blue-fg">(</span>ValueError<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">pass</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 1 frame]</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/blog/lib/python3.9/site-packages/_pytest/outcomes.py</span> in <span class="ansi-cyan-fg">fail</span><span class="ansi-blue-fg">(msg, pytrace)</span>
+<span class="ansi-green-fg ansi-bold">    151</span>     """
+<span class="ansi-green-fg ansi-bold">    152</span>     __tracebackhide__ <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span>
+<span class="ansi-green-fg">--&gt; 153</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">raise</span> Failed<span class="ansi-blue-fg">(</span>msg<span class="ansi-blue-fg">=</span>msg<span class="ansi-blue-fg">,</span> pytrace<span class="ansi-blue-fg">=</span>pytrace<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    154</span> 
+<span class="ansi-green-fg ansi-bold">    155</span> 
+
+<span class="ansi-red-fg">Failed</span>: DID NOT RAISE &lt;class 'ValueError'&gt;</pre>
 
 Basic example:
 
@@ -254,7 +270,16 @@ def raw_and_clean_data(tempdir):
     # no teardown needed
 ```
 
-    NameError: name 'pytest' is not defined
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_2101/1056953037.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-blue-fg">@</span>pytest<span class="ansi-blue-fg">.</span>fixture
+<span class="ansi-green-fg ansi-bold">      2</span> <span class="ansi-green-fg">def</span> raw_and_clean_data<span class="ansi-blue-fg">(</span>tempdir<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     raw_path <span class="ansi-blue-fg">=</span> tempdir<span class="ansi-blue-fg">.</span>join<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'raw.csv'</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     clean_path <span class="ansi-blue-fg">=</span> tempdir<span class="ansi-blue-fg">.</span>join<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">'clean.csv'</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      5</span>     <span class="ansi-green-fg">with</span> open<span class="ansi-blue-fg">(</span>raw_path<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'w'</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> f<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'pytest' is not defined</pre>
 
 ### Mocking
 

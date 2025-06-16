@@ -34,7 +34,7 @@ packagename/
   
 - Add the following contents to `pyproject.toml`:
 
-```{toml}
+```toml
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -57,7 +57,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/pypa/sampleproject"
 "Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
-
 ```
 
 - Create a virtual environment: `python3.10 -m venv .venv`
@@ -110,7 +109,7 @@ packagename/
 
 and, if the content of `a.py` is:
 
-```{python}
+```python
 def a():
     return "Module a content"
 ```
@@ -119,13 +118,13 @@ I want to be able to import my package as `import packagename as p`, and then ac
 
 To be able to do that, the `__init.py__` in `packagename` needs to contain:
 
-```{python}
+```python
 from .subpackage1 import a
 ```
 
 so that module `a` gets loaded into the namespace when I import the package, and `__init.py__` in `subpackage1` needs to contain
 
-```{python}
+```python
 from .a import a
 ```
 

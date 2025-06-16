@@ -1,11 +1,12 @@
 ---
-title: "Heap drills"
-date: "2022-02-25"
+title: Heap drills
+date: '2022-02-25'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 Drills for working with Heaps in Python.
 

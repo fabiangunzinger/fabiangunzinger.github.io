@@ -4,23 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Documenting Sample Selection - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Documenting Sample Selection" />
-<meta property="og:description" content="1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
-Here&rsquo;s a mock dataset:
-1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/documenting-sample-selection/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-08-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-09-18T19:02:27+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Documenting Sample Selection"/>
-<meta name="twitter:description" content="1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
-Here&rsquo;s a mock dataset:
-1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np."/>
+        <title>Documenting Sample Selection - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/documenting-sample-selection/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Documenting Sample Selection">
+  <meta property="og:description" content="1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
+Here’s a mock dataset:
+1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np.random.rand(8)}) .sort_values(&#39;user_id&#39;)) df">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-08-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-09-18T19:02:27+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Documenting Sample Selection">
+  <meta name="twitter:description" content="1 2 import numpy as np import pandas as pd Problem I have a dataframe on which I perform a series of data selection steps. What I want is to automatically build a table for the appendix of my paper that tells me the number of users left in the data after each selection step.
+Here’s a mock dataset:
+1 2 3 df = (pd.DataFrame({&#39;user_id&#39;: [1, 2, 3, 4] * 2, &#39;data&#39;: np.random.rand(8)}) .sort_values(&#39;user_id&#39;)) df">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/documenting-sample-selection/" /><link rel="prev" href="http://example.org/pandas-cookbook/" /><link rel="next" href="http://example.org/sql-in-python/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/documenting-sample-selection/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -31,7 +35,7 @@ Here&rsquo;s a mock dataset:
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/documenting-sample-selection\/"
-        },"genre": "posts","keywords": "python, datascience","wordcount":  2092 ,
+        },"genre": "posts","keywords": "python, datascience","wordcount":  2136 ,
         "url": "http:\/\/example.org\/documenting-sample-selection\/","datePublished": "2020-08-12T00:00:00+00:00","dateModified": "2023-09-18T19:02:27+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,9 +108,9 @@ Here&rsquo;s a mock dataset:
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Documenting Sample Selection</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-08-12">2020-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2092 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-08-12">2020-08-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2136 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -131,7 +135,7 @@ Here&rsquo;s a mock dataset:
   </ul>
 </nav></div>
             </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -173,55 +177,55 @@ Here&rsquo;s a mock dataset:
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0.107515</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>0.306182</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>0.184724</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2</td>
-<td>0.217231</td>
-</tr>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>0.688004</td>
-</tr>
-<tr>
-<td>6</td>
-<td>3</td>
-<td>0.284524</td>
-</tr>
-<tr>
-<td>3</td>
-<td>4</td>
-<td>0.990159</td>
-</tr>
-<tr>
-<td>7</td>
-<td>4</td>
-<td>0.466758</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>0.107515</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>0.306182</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>0.184724</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>0.217231</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>0.688004</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>3</td>
+          <td>0.284524</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>4</td>
+          <td>0.990159</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>4</td>
+          <td>0.466758</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>here some selection functions:</p>
@@ -274,30 +278,30 @@ Here&rsquo;s a mock dataset:
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>0.688004</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>0.306182</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2</td>
-<td>0.217231</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>0.688004</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>0.306182</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>0.217231</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <h2 id="solution">Solution</h2>
@@ -381,30 +385,30 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>0.688004</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>0.306182</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2</td>
-<td>0.217231</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>0.688004</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>0.306182</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>0.217231</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>That&rsquo;s already nice. But I need those counts for the data appendix of my paper, so what I really want is to store the counts in a container that I can turn into a table. To do this, we can store the counts in a dictionary instead of printing them.</p>
@@ -485,30 +489,30 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>0.688004</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>0.306182</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2</td>
-<td>0.217231</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>0.688004</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>0.306182</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>0.217231</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <pre><code>{'first_five': 3, 'n_largest': 3}
@@ -605,30 +609,30 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>3</td>
-<td>0.688004</td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>0.306182</td>
-</tr>
-<tr>
-<td>5</td>
-<td>2</td>
-<td>0.217231</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>3</td>
+          <td>0.688004</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>0.306182</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>0.217231</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <pre><code>{'start': 4, 'first_five': 3, 'n_largest': 3, 'end': 3}
@@ -659,35 +663,35 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>Processing step</th>
-<th>Number of unique users</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>start</td>
-<td>4</td>
-</tr>
-<tr>
-<td>1</td>
-<td>first_five</td>
-<td>3</td>
-</tr>
-<tr>
-<td>2</td>
-<td>n_largest</td>
-<td>3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>end</td>
-<td>3</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Processing step</th>
+          <th>Number of unique users</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>start</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>first_five</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>n_largest</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>end</td>
+          <td>3</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>Finally, let&rsquo;s make sure readers of our paper (and we ourselves a few weeks from now) actually understand what&rsquo;s going on at each step.</p>
@@ -730,35 +734,35 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>Processing step</th>
-<th>Number of unique users</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>Raw dataset</td>
-<td>4</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Keep first five observations</td>
-<td>3</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Keep three largest datapoints</td>
-<td>3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Final dataset</td>
-<td>3</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Processing step</th>
+          <th>Number of unique users</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>Raw dataset</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Keep first five observations</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Keep three largest datapoints</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Final dataset</td>
+          <td>3</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>That&rsquo;s it. We can can now export this as a Latex table (or some other format) and automatically load it in our paper.</p>
@@ -790,75 +794,75 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0.507218</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0.933454</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2</td>
-<td>0.740951</td>
-</tr>
-<tr>
-<td>3</td>
-<td>3</td>
-<td>0.654135</td>
-</tr>
-<tr>
-<td>4</td>
-<td>4</td>
-<td>0.952187</td>
-</tr>
-<tr>
-<td>5</td>
-<td>5</td>
-<td>0.807332</td>
-</tr>
-<tr>
-<td>6</td>
-<td>6</td>
-<td>0.742915</td>
-</tr>
-<tr>
-<td>7</td>
-<td>7</td>
-<td>0.344259</td>
-</tr>
-<tr>
-<td>8</td>
-<td>8</td>
-<td>0.134813</td>
-</tr>
-<tr>
-<td>9</td>
-<td>9</td>
-<td>0.952129</td>
-</tr>
-<tr>
-<td>10</td>
-<td>10</td>
-<td>0.859282</td>
-</tr>
-<tr>
-<td>11</td>
-<td>11</td>
-<td>0.376175</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0.507218</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>0.933454</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>0.740951</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>3</td>
+          <td>0.654135</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>4</td>
+          <td>0.952187</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>5</td>
+          <td>0.807332</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>6</td>
+          <td>0.742915</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>7</td>
+          <td>0.344259</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>8</td>
+          <td>0.134813</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>9</td>
+          <td>0.952129</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>10</td>
+          <td>0.859282</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>11</td>
+          <td>0.376175</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -890,45 +894,45 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0.507218</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0.933454</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2</td>
-<td>0.740951</td>
-</tr>
-<tr>
-<td>3</td>
-<td>3</td>
-<td>0.654135</td>
-</tr>
-<tr>
-<td>4</td>
-<td>4</td>
-<td>0.952187</td>
-</tr>
-<tr>
-<td>5</td>
-<td>5</td>
-<td>0.807332</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0.507218</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>0.933454</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2</td>
+          <td>0.740951</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>3</td>
+          <td>0.654135</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>4</td>
+          <td>0.952187</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>5</td>
+          <td>0.807332</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div>
@@ -946,45 +950,45 @@ n_largest: 3
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>user_id</th>
-<th>data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>6</td>
-<td>6</td>
-<td>0.742915</td>
-</tr>
-<tr>
-<td>7</td>
-<td>7</td>
-<td>0.344259</td>
-</tr>
-<tr>
-<td>8</td>
-<td>8</td>
-<td>0.134813</td>
-</tr>
-<tr>
-<td>9</td>
-<td>9</td>
-<td>0.952129</td>
-</tr>
-<tr>
-<td>10</td>
-<td>10</td>
-<td>0.859282</td>
-</tr>
-<tr>
-<td>11</td>
-<td>11</td>
-<td>0.376175</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>user_id</th>
+          <th>data</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>6</td>
+          <td>6</td>
+          <td>0.742915</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>7</td>
+          <td>0.344259</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>8</td>
+          <td>0.134813</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>9</td>
+          <td>0.952129</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>10</td>
+          <td>0.859282</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td>11</td>
+          <td>0.376175</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>What happens if we use a <code>dict()</code> as our counts object as we did above.</p>
@@ -1468,8 +1472,21 @@ Counter({'largest': 3})
 </span></span><span class="line"><span class="cl"><span class="n">avg</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">avg</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">avg</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>UnboundLocalError: local variable 'count' referenced before assignment
-</code></pre>
+</div><pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">UnboundLocalError</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_10646/1095891491.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">     10</span> avg <span class="ansi-blue-fg">=</span> make_fast_averager<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">     11</span> 
+<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg"> </span>avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">11</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> avg<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">12</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_10646/1095891491.py</span> in <span class="ansi-cyan-fg">averager</span><span class="ansi-blue-fg">(new_value)</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     total <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">0</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span class="ansi-green-fg">def</span> averager<span class="ansi-blue-fg">(</span>new_value<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">         </span>count <span class="ansi-blue-fg">+=</span> <span class="ansi-cyan-fg">1</span>
+<span class="ansi-green-fg ansi-bold">      6</span>         total <span class="ansi-blue-fg">+=</span> new_value
+<span class="ansi-green-fg ansi-bold">      7</span>         <span class="ansi-green-fg">return</span> total <span class="ansi-blue-fg">/</span> count
+
+<span class="ansi-red-fg">UnboundLocalError</span>: local variable 'count' referenced before assignment</pre>
 <p>How come our fast averager can&rsquo;t find count and total even though our slow averager could find series just fine?</p>
 <p>The answer lies in Python&rsquo;s variable scope rules and the difference between assigning to unmutable objects and updating mutable ones.</p>
 <ol>
@@ -1505,19 +1522,18 @@ Counter({'largest': 3})
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python-datascience/">python, datascience</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/pandas-cookbook/" class="prev" rel="prev" title="Pandas cookbook"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Pandas cookbook</a>
-            <a href="/sql-in-python/" class="next" rel="next" title="SQL in Python">SQL in Python<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -1526,5 +1542,5 @@ Counter({'largest': 3})
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

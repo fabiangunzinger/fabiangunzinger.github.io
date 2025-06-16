@@ -1,11 +1,12 @@
 ---
-title: "Machine learning basics"
-date: "2020-04-01"
+title: Machine learning basics
+date: '2020-04-01'
 tags:
-    - datascience
+  - datascience
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 # Introduction and definitions
 

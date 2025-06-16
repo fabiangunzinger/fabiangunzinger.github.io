@@ -1,8 +1,9 @@
 # Fluent Pandas
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -20,10 +21,10 @@ import pandas as pd
 import seaborn as sns
 ```
 
-## Sort and filter
+## Filter
 
 ``` python
-df = sns.load_dataset("diamonds")
+df = sns.load_dataset("diamonds", cache=False)
 print(df.shape)
 df.head(2)
 ```
@@ -52,22 +53,116 @@ df.head(2)
 
 </div>
 
-### Filter data
+### Filter rows
+
+Filter based on column value
 
 ``` python
-cutoff = 30_000
-a = df.loc[df.amount > cutoff]
-b = df.query("amount > @cutoff")
-c = df[df.amount > cutoff]
+cutoff = 5_000
+
+a = df.loc[df.price > cutoff]
+b = df.query("price > @cutoff")
+c = df[df.price > cutoff]
+
 all(a == b) == all(b == c)
 ```
 
     True
 
+Filter based on index
+
+``` python
+df.iloc[5:10]
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | sepal_length | sepal_width | petal_length | petal_width | species |
+|-----|--------------|-------------|--------------|-------------|---------|
+| 5   | 5.4          | 3.9         | 1.7          | 0.4         | setosa  |
+| 6   | 4.6          | 3.4         | 1.4          | 0.3         | setosa  |
+| 7   | 5.0          | 3.4         | 1.5          | 0.2         | setosa  |
+| 8   | 4.4          | 2.9         | 1.4          | 0.2         | setosa  |
+| 9   | 4.9          | 3.1         | 1.5          | 0.1         | setosa  |
+
+</div>
+
+More complex index filtering
+
+``` python
+df.filter(regex='^\d0$', axis=0).head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | sepal_length | sepal_width | petal_length | petal_width | species    |
+|-----|--------------|-------------|--------------|-------------|------------|
+| 10  | 5.4          | 3.7         | 1.5          | 0.2         | setosa     |
+| 20  | 5.4          | 3.4         | 1.7          | 0.2         | setosa     |
+| 30  | 4.8          | 3.1         | 1.6          | 0.2         | setosa     |
+| 40  | 5.0          | 3.5         | 1.3          | 0.3         | setosa     |
+| 50  | 7.0          | 3.2         | 4.7          | 1.4         | versicolor |
+
+</div>
+
 ### Filter columns
 
 ``` python
-df.filter(like="sepal", axis=1).head(2)
+df = sns.load_dataset('iris', cache=False)
+df.head(3)
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | sepal_length | sepal_width | petal_length | petal_width | species |
+|-----|--------------|-------------|--------------|-------------|---------|
+| 0   | 5.1          | 3.5         | 1.4          | 0.2         | setosa  |
+| 1   | 4.9          | 3.0         | 1.4          | 0.2         | setosa  |
+| 2   | 4.7          | 3.2         | 1.3          | 0.2         | setosa  |
+
+</div>
+
+``` python
+df.filter(like='sepal', axis=1).head(3)
 ```
 
 <div>
@@ -89,11 +184,12 @@ df.filter(like="sepal", axis=1).head(2)
 |-----|--------------|-------------|
 | 0   | 5.1          | 3.5         |
 | 1   | 4.9          | 3.0         |
+| 2   | 4.7          | 3.2         |
 
 </div>
 
 ``` python
-df.filter(regex=".+_length").head(2)
+df.filter(regex="_length").head(2)
 ```
 
 <div>
@@ -118,14 +214,49 @@ df.filter(regex=".+_length").head(2)
 
 </div>
 
-## `groupb()` vs `resample()`
+## Expanding dataset
+
+Sometimes I want to duplicate each row in a dataset a certain number of times.
+
+``` python
+df.iloc[df.index.repeat(2)].reset_index(drop=True).head()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | sepal_length | sepal_width | petal_length | petal_width | species |
+|-----|--------------|-------------|--------------|-------------|---------|
+| 0   | 5.1          | 3.5         | 1.4          | 0.2         | setosa  |
+| 1   | 5.1          | 3.5         | 1.4          | 0.2         | setosa  |
+| 2   | 4.9          | 3.0         | 1.4          | 0.2         | setosa  |
+| 3   | 4.9          | 3.0         | 1.4          | 0.2         | setosa  |
+| 4   | 4.7          | 3.2         | 1.3          | 0.2         | setosa  |
+
+</div>
+
+## Grouping and resampling
 
 `groupby()` implements the splict-apply-combine paradigm, while `resample()` is a convenience method for frequency conversion and resampling of time series. When both are used on time series, the main difference is that `resample()` fills in missing dates while `groupby()` doesn't.
 
 ``` python
-index = pd.date_range("2020", freq="2d", periods=3)
-data = pd.DataFrame({"col": range(len(index))}, index=index)
-data
+index = pd.date_range('2024', freq='2d', periods=3)
+data = {'col': range(len(index))}
+df = (pd.DataFrame(data=data, index=index)
+      .loc[lambda df: df.index.repeat(2)])
+df
 ```
 
 <div>
@@ -145,35 +276,36 @@ data
 
 |            | col |
 |------------|-----|
-| 2020-01-01 | 0   |
-| 2020-01-03 | 1   |
-| 2020-01-05 | 2   |
+| 2024-01-01 | 0   |
+| 2024-01-01 | 0   |
+| 2024-01-03 | 1   |
+| 2024-01-03 | 1   |
+| 2024-01-05 | 2   |
+| 2024-01-05 | 2   |
 
 </div>
 
 ``` python
-data.resample("d").col.sum()
+df.resample("d").col.sum()
 ```
 
-    2020-01-01    0
-    2020-01-02    0
-    2020-01-03    1
-    2020-01-04    0
-    2020-01-05    2
+    2024-01-01    0
+    2024-01-02    0
+    2024-01-03    2
+    2024-01-04    0
+    2024-01-05    4
     Freq: D, Name: col, dtype: int64
 
 ``` python
-data.groupby(level=0).col.sum()
+df.groupby(level=0).col.sum()
 ```
 
-    2020-01-01    0
-    2020-01-03    1
-    2020-01-05    2
-    Freq: 2D, Name: col, dtype: int64
+    2024-01-01    0
+    2024-01-03    2
+    2024-01-05    4
+    Name: col, dtype: int64
 
-## Aggregate
-
-### `count()` vs `size()`
+## Grouping -- count vs size
 
 -   `count()` is a DataFrame, Series, and Grouper method that return the count of non-missing rows.
 -   `size()` is a Grouper method that returns the count of rows per group (including rows with missing elements)
@@ -181,6 +313,33 @@ data.groupby(level=0).col.sum()
 
 ``` python
 df = sns.load_dataset("titanic")
+df.head(3)
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  | survived | pclass | sex | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 0 | 3 | male | 22.0 | 1 | 0 | 7.2500 | S | Third | man | True | NaN | Southampton | no | False |
+| 1 | 1 | 1 | female | 38.0 | 1 | 0 | 71.2833 | C | First | woman | False | C | Cherbourg | yes | False |
+| 2 | 1 | 3 | female | 26.0 | 0 | 0 | 7.9250 | S | Third | woman | False | NaN | Southampton | yes | True |
+
+</div>
+
+``` python
 df.groupby("sex").count()
 ```
 
@@ -199,11 +358,11 @@ df.groupby("sex").count()
     }
 </style>
 
-|        | survived | pclass | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
-|--------|----------|--------|-----|-------|-------|------|----------|-------|-----|------------|------|-------------|-------|-------|
-| sex    |          |        |     |       |       |      |          |       |     |            |      |             |       |       |
-| female | 314      | 314    | 261 | 314   | 314   | 314  | 312      | 314   | 314 | 314        | 97   | 312         | 314   | 314   |
-| male   | 577      | 577    | 453 | 577   | 577   | 577  | 577      | 577   | 577 | 577        | 106  | 577         | 577   | 577   |
+|  | survived | pclass | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| sex |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| female | 314 | 314 | 261 | 314 | 314 | 314 | 312 | 314 | 314 | 314 | 97 | 312 | 314 | 314 |
+| male | 577 | 577 | 453 | 577 | 577 | 577 | 577 | 577 | 577 | 577 | 106 | 577 | 577 | 577 |
 
 </div>
 
@@ -216,17 +375,51 @@ df.groupby("sex").size()
     male      577
     dtype: int64
 
-### Naming columns
+``` python
+df.size, df.sex.size
+```
+
+    (13365, 891)
+
+## Aggregating -- different methods
 
 ``` python
-def spread(s):
-    return s.max() - s.min()
+df.head()
+```
 
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-df.groupby("species").agg(
-    mean_sepal_length=("sepal_length", "mean"),
-    max_petal_width=("petal_width", "max"),
-    spread_petal_width=("petal_width", spread),
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|  | survived | pclass | sex | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 0 | 3 | male | 22.0 | 1 | 0 | 7.2500 | S | Third | man | True | NaN | Southampton | no | False |
+| 1 | 1 | 1 | female | 38.0 | 1 | 0 | 71.2833 | C | First | woman | False | C | Cherbourg | yes | False |
+| 2 | 1 | 3 | female | 26.0 | 0 | 0 | 7.9250 | S | Third | woman | False | NaN | Southampton | yes | True |
+| 3 | 1 | 1 | female | 35.0 | 1 | 0 | 53.1000 | S | First | woman | False | C | Southampton | yes | False |
+| 4 | 0 | 3 | male | 35.0 | 0 | 0 | 8.0500 | S | Third | man | True | NaN | Southampton | no | True |
+
+</div>
+
+``` python
+def range(x):
+    return int(x.min()), int(x.max())
+
+df.groupby(['class', 'sex']).agg(
+    age_mean=('age', 'mean'),
+    fare_range=('fare',range),
+    survived_mean=('survived', 'mean')
 )
 ```
 
@@ -245,12 +438,15 @@ df.groupby("species").agg(
     }
 </style>
 
-|            | mean_sepal_length | max_petal_width | spread_petal_width |
-|------------|-------------------|-----------------|--------------------|
-| species    |                   |                 |                    |
-| setosa     | 5.006             | 0.6             | 0.5                |
-| versicolor | 5.936             | 1.8             | 0.8                |
-| virginica  | 6.588             | 2.5             | 1.1                |
+|        |        | age_mean  | fare_range | survived_mean |
+|--------|--------|-----------|------------|---------------|
+| class  | sex    |           |            |               |
+| First  | female | 34.611765 | (25, 512)  | 0.968085      |
+|        | male   | 41.281386 | (0, 512)   | 0.368852      |
+| Second | female | 28.722973 | (10, 65)   | 0.921053      |
+|        | male   | 30.740707 | (0, 73)    | 0.157407      |
+| Third  | female | 21.750000 | (6, 69)    | 0.500000      |
+|        | male   | 26.507589 | (0, 69)    | 0.135447      |
 
 </div>
 
@@ -374,9 +570,7 @@ df.set_axis(["_".join(c) for c in df.columns], axis=1)
 -   `applymap` applies a function to each element in a dataframe
 
 ``` python
-data = df.loc[:2, ["gender", "merchant"]]
-gender = {"m": "male", "f": "female"}
-data
+df.head(3)
 ```
 
 <div>
@@ -394,16 +588,34 @@ data
     }
 </style>
 
-|     | gender | merchant  |
-|-----|--------|-----------|
-| 0   | m      | aviva     |
-| 1   | m      | tesco     |
-| 2   | m      | mcdonalds |
+|  | survived | pclass | sex | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 0 | 3 | male | 22.0 | 1 | 0 | 7.2500 | S | Third | man | True | NaN | Southampton | no | False |
+| 1 | 1 | 1 | female | 38.0 | 1 | 0 | 71.2833 | C | First | woman | False | C | Cherbourg | yes | False |
+| 2 | 1 | 3 | female | 26.0 | 0 | 0 | 7.9250 | S | Third | woman | False | NaN | Southampton | yes | True |
 
 </div>
 
 ``` python
-data.apply(lambda x: x.map(gender))
+df.sex.apply(lambda x: len(x)).head(3)
+```
+
+    0    4
+    1    6
+    2    6
+    Name: sex, dtype: int64
+
+``` python
+df.sex.map(lambda x: len(x)).head(3)
+```
+
+    0    4
+    1    6
+    2    6
+    Name: sex, dtype: int64
+
+``` python
+df.applymap(lambda x: len(str(x))).head(3)
 ```
 
 <div>
@@ -421,51 +633,106 @@ data.apply(lambda x: x.map(gender))
     }
 </style>
 
-|     | gender | merchant |
-|-----|--------|----------|
-| 0   | male   | NaN      |
-| 1   | male   | NaN      |
-| 2   | male   | NaN      |
+|  | survived | pclass | sex | age | sibsp | parch | fare | embarked | class | who | adult_male | deck | embark_town | alive | alone |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | 1 | 1 | 4 | 4 | 1 | 1 | 4 | 1 | 5 | 3 | 4 | 3 | 11 | 2 | 5 |
+| 1 | 1 | 1 | 6 | 4 | 1 | 1 | 7 | 1 | 5 | 5 | 5 | 1 | 9 | 3 | 5 |
+| 2 | 1 | 1 | 6 | 4 | 1 | 1 | 5 | 1 | 5 | 5 | 5 | 3 | 11 | 3 | 4 |
 
 </div>
 
 ``` python
-data.gender.map(gender)
+new_labs = {"male": "m", "female": "f"}
+df.sex.apply(new_labs.get).head(3)
 ```
 
-    0    male
-    1    male
-    2    male
-    Name: gender, dtype: object
-
-``` python
-data.applymap(gender.get)
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | gender | merchant |
-|-----|--------|----------|
-| 0   | male   | None     |
-| 1   | male   | None     |
-| 2   | male   | None     |
-
-</div>
+    0    m
+    1    f
+    2    f
+    Name: sex, dtype: object
 
 `get` turns a dictionary into a function that takes a key and returns its corresponding value if the key is in the dictionary and a default value otherwise.
+
+## Create Meta type retention curves
+
+``` python
+np.random.choice([0, 1])
+```
+
+    1
+
+``` python
+n_users = 3
+n_periods = 2
+
+date = pd.period_range(start="Jan 2023", freq="D", periods=n_periods).to_list() * n_users
+uid = np.arange(n_users).repeat(n_periods)
+active = np.random.choice([0, 1], n_users * n_periods)
+
+df = pd.DataFrame({
+    "uid": uid,
+    "date": date,
+    "active": active
+})
+df
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | uid | date       | active |
+|-----|-----|------------|--------|
+| 0   | 0   | 2023-01-01 | 1      |
+| 1   | 0   | 2023-01-02 | 0      |
+| 2   | 1   | 2023-01-01 | 1      |
+| 3   | 1   | 2023-01-02 | 1      |
+| 4   | 2   | 2023-01-01 | 1      |
+| 5   | 2   | 2023-01-02 | 1      |
+
+</div>
+
+``` python
+df.groupby('uid').rolling(window=2, min_periods=1).mean()
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     |     | active |
+|-----|-----|--------|
+| uid |     |        |
+| 0   | 0   | 1.0    |
+|     | 1   | 0.5    |
+| 1   | 2   | 1.0    |
+|     | 3   | 1.0    |
+| 2   | 4   | 1.0    |
+|     | 5   | 1.0    |
+
+</div>
 
 ## Sources
 

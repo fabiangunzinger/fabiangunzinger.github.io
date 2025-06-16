@@ -4,21 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Seattle bicycle traffic - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Seattle bicycle traffic" />
-<meta property="og:description" content="This notebook contains my replication of this blog post by Jake VanderPlas on using data from bicycle traffic across Seattle&rsquo;s Fremont Bridge to learn about commuting patterns.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import os import ssl from urllib.request import urlretrieve import altair as alt import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn from pandas." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/seattle-bicycle-traffic/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-02-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Seattle bicycle traffic"/>
-<meta name="twitter:description" content="This notebook contains my replication of this blog post by Jake VanderPlas on using data from bicycle traffic across Seattle&rsquo;s Fremont Bridge to learn about commuting patterns.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import os import ssl from urllib.request import urlretrieve import altair as alt import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn from pandas."/>
+        <title>Seattle bicycle traffic - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/seattle-bicycle-traffic/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Seattle bicycle traffic">
+  <meta property="og:description" content="This notebook contains my replication of this blog post by Jake VanderPlas on using data from bicycle traffic across Seattle’s Fremont Bridge to learn about commuting patterns.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import os import ssl from urllib.request import urlretrieve import altair as alt import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn from pandas.tseries.holiday import USFederalHolidayCalendar from seattlecycling.data import get_fremont_data from seattlecycling.toolbox import csnap from sklearn.decomposition import PCA from sklearn.mixture import GaussianMixture as GMM from vega_datasets import data as vega_data seaborn.set() Helper functions">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-02-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Seattle bicycle traffic">
+  <meta name="twitter:description" content="This notebook contains my replication of this blog post by Jake VanderPlas on using data from bicycle traffic across Seattle’s Fremont Bridge to learn about commuting patterns.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import os import ssl from urllib.request import urlretrieve import altair as alt import matplotlib.pyplot as plt import numpy as np import pandas as pd import seaborn from pandas.tseries.holiday import USFederalHolidayCalendar from seattlecycling.data import get_fremont_data from seattlecycling.toolbox import csnap from sklearn.decomposition import PCA from sklearn.mixture import GaussianMixture as GMM from vega_datasets import data as vega_data seaborn.set() Helper functions">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/seattle-bicycle-traffic/" /><link rel="prev" href="http://example.org/waiting-time-paradox/" /><link rel="next" href="http://example.org/aws/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/seattle-bicycle-traffic/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -29,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/seattle-bicycle-traffic\/"
-        },"genre": "posts","keywords": "datascience","wordcount":  2768 ,
+        },"genre": "posts","keywords": "datascience","wordcount":  2753 ,
         "url": "http:\/\/example.org\/seattle-bicycle-traffic\/","datePublished": "2020-02-07T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,8 +106,8 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Seattle bicycle traffic</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-02-07">2020-02-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2768 words&nbsp;
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-02-07">2020-02-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2753 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -139,7 +143,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <p>This notebook contains my replication of <a href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/" target="_blank" rel="noopener noreffer ">this</a> blog post by <a href="http://vanderplas.com/" target="_blank" rel="noopener noreffer ">Jake VanderPlas</a> on using data from bicycle traffic across Seattle&rsquo;s Fremont Bridge to learn about commuting patterns.</p>
 <div class="highlight"><div class="chroma">
@@ -366,40 +370,40 @@
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>total</th>
-<th>west</th>
-<th>east</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Date</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2012-10-03 00:00:00</td>
-<td>13.0</td>
-<td>4.0</td>
-<td>9.0</td>
-</tr>
-<tr>
-<td>2012-10-03 01:00:00</td>
-<td>10.0</td>
-<td>4.0</td>
-<td>6.0</td>
-</tr>
-<tr>
-<td>2012-10-03 02:00:00</td>
-<td>2.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>total</th>
+          <th>west</th>
+          <th>east</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Date</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2012-10-03 00:00:00</td>
+          <td>13.0</td>
+          <td>4.0</td>
+          <td>9.0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 01:00:00</td>
+          <td>10.0</td>
+          <td>4.0</td>
+          <td>6.0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 02:00:00</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -414,16 +418,14 @@
 </span></span><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&#34;w&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a23e32850&gt;
-</code></pre>
-<p><img
+</div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png"
-        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png 2x"
+        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png"
+        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png 2x"
         data-sizes="auto"
-        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png"
-        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png" /></p>
+        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png"
+        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png" /></p>
 <p>Same graph as above using Altair</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -476,46 +478,46 @@
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>date</th>
-<th>side</th>
-<th>crossings</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>2012-10-07</td>
-<td>total</td>
-<td>14292.0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2012-10-14</td>
-<td>total</td>
-<td>16795.0</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2012-10-21</td>
-<td>total</td>
-<td>15509.0</td>
-</tr>
-<tr>
-<td>3</td>
-<td>2012-10-28</td>
-<td>total</td>
-<td>13437.0</td>
-</tr>
-<tr>
-<td>4</td>
-<td>2012-11-04</td>
-<td>total</td>
-<td>12194.0</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>date</th>
+          <th>side</th>
+          <th>crossings</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>2012-10-07</td>
+          <td>total</td>
+          <td>14292.0</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>2012-10-14</td>
+          <td>total</td>
+          <td>16795.0</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>2012-10-21</td>
+          <td>total</td>
+          <td>15509.0</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>2012-10-28</td>
+          <td>total</td>
+          <td>13437.0</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>2012-11-04</td>
+          <td>total</td>
+          <td>12194.0</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -611,178 +613,178 @@ require(["nbextensions/jupyter-vega/index"], function(vega) {
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>east</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th>...</th>
-<th>west</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Date</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-<td>7</td>
-<td>8</td>
-<td>9</td>
-<td>...</td>
-<td>14</td>
-<td>15</td>
-<td>16</td>
-<td>17</td>
-<td>18</td>
-<td>19</td>
-<td>20</td>
-<td>21</td>
-<td>22</td>
-<td>23</td>
-</tr>
-<tr>
-<td>2012-10-03</td>
-<td>9</td>
-<td>6</td>
-<td>1</td>
-<td>3</td>
-<td>1</td>
-<td>10</td>
-<td>50</td>
-<td>95</td>
-<td>146</td>
-<td>104</td>
-<td>...</td>
-<td>77</td>
-<td>72</td>
-<td>133</td>
-<td>192</td>
-<td>122</td>
-<td>59</td>
-<td>29</td>
-<td>25</td>
-<td>24</td>
-<td>5</td>
-</tr>
-<tr>
-<td>2012-10-04</td>
-<td>11</td>
-<td>0</td>
-<td>6</td>
-<td>3</td>
-<td>1</td>
-<td>11</td>
-<td>51</td>
-<td>89</td>
-<td>134</td>
-<td>94</td>
-<td>...</td>
-<td>63</td>
-<td>73</td>
-<td>114</td>
-<td>154</td>
-<td>137</td>
-<td>57</td>
-<td>27</td>
-<td>31</td>
-<td>25</td>
-<td>11</td>
-</tr>
-<tr>
-<td>2012-10-05</td>
-<td>7</td>
-<td>4</td>
-<td>3</td>
-<td>2</td>
-<td>2</td>
-<td>7</td>
-<td>37</td>
-<td>101</td>
-<td>119</td>
-<td>81</td>
-<td>...</td>
-<td>63</td>
-<td>80</td>
-<td>120</td>
-<td>144</td>
-<td>107</td>
-<td>42</td>
-<td>27</td>
-<td>11</td>
-<td>10</td>
-<td>16</td>
-</tr>
-<tr>
-<td>2012-10-06</td>
-<td>7</td>
-<td>5</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>15</td>
-<td>16</td>
-<td>47</td>
-<td>55</td>
-<td>...</td>
-<td>89</td>
-<td>115</td>
-<td>107</td>
-<td>107</td>
-<td>41</td>
-<td>40</td>
-<td>25</td>
-<td>18</td>
-<td>14</td>
-<td>15</td>
-</tr>
-<tr>
-<td>2012-10-07</td>
-<td>5</td>
-<td>5</td>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-<td>8</td>
-<td>12</td>
-<td>26</td>
-<td>36</td>
-<td>...</td>
-<td>126</td>
-<td>122</td>
-<td>132</td>
-<td>118</td>
-<td>68</td>
-<td>26</td>
-<td>19</td>
-<td>12</td>
-<td>9</td>
-<td>5</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>east</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>...</th>
+          <th>west</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Date</td>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+          <td>...</td>
+          <td>14</td>
+          <td>15</td>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+          <td>19</td>
+          <td>20</td>
+          <td>21</td>
+          <td>22</td>
+          <td>23</td>
+      </tr>
+      <tr>
+          <td>2012-10-03</td>
+          <td>9</td>
+          <td>6</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+          <td>10</td>
+          <td>50</td>
+          <td>95</td>
+          <td>146</td>
+          <td>104</td>
+          <td>...</td>
+          <td>77</td>
+          <td>72</td>
+          <td>133</td>
+          <td>192</td>
+          <td>122</td>
+          <td>59</td>
+          <td>29</td>
+          <td>25</td>
+          <td>24</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>2012-10-04</td>
+          <td>11</td>
+          <td>0</td>
+          <td>6</td>
+          <td>3</td>
+          <td>1</td>
+          <td>11</td>
+          <td>51</td>
+          <td>89</td>
+          <td>134</td>
+          <td>94</td>
+          <td>...</td>
+          <td>63</td>
+          <td>73</td>
+          <td>114</td>
+          <td>154</td>
+          <td>137</td>
+          <td>57</td>
+          <td>27</td>
+          <td>31</td>
+          <td>25</td>
+          <td>11</td>
+      </tr>
+      <tr>
+          <td>2012-10-05</td>
+          <td>7</td>
+          <td>4</td>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
+          <td>7</td>
+          <td>37</td>
+          <td>101</td>
+          <td>119</td>
+          <td>81</td>
+          <td>...</td>
+          <td>63</td>
+          <td>80</td>
+          <td>120</td>
+          <td>144</td>
+          <td>107</td>
+          <td>42</td>
+          <td>27</td>
+          <td>11</td>
+          <td>10</td>
+          <td>16</td>
+      </tr>
+      <tr>
+          <td>2012-10-06</td>
+          <td>7</td>
+          <td>5</td>
+          <td>2</td>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+          <td>15</td>
+          <td>16</td>
+          <td>47</td>
+          <td>55</td>
+          <td>...</td>
+          <td>89</td>
+          <td>115</td>
+          <td>107</td>
+          <td>107</td>
+          <td>41</td>
+          <td>40</td>
+          <td>25</td>
+          <td>18</td>
+          <td>14</td>
+          <td>15</td>
+      </tr>
+      <tr>
+          <td>2012-10-07</td>
+          <td>5</td>
+          <td>5</td>
+          <td>1</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3</td>
+          <td>8</td>
+          <td>12</td>
+          <td>26</td>
+          <td>36</td>
+          <td>...</td>
+          <td>126</td>
+          <td>122</td>
+          <td>132</td>
+          <td>118</td>
+          <td>68</td>
+          <td>26</td>
+          <td>19</td>
+          <td>12</td>
+          <td>9</td>
+          <td>5</td>
+      </tr>
+  </tbody>
 </table>
 <p>5 rows × 72 columns</p>
 </div>
@@ -830,16 +832,14 @@ require(["nbextensions/jupyter-vega/index"], function(vega) {
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&#34;Total trips&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>&lt;matplotlib.colorbar.Colorbar at 0x1a26ec9dd0&gt;
-</code></pre>
-<p><img
+</div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png"
-        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png 2x"
+        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png"
+        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png 2x"
         data-sizes="auto"
-        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png"
-        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png" /></p>
+        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png"
+        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png" /></p>
 <p>What can we learn from this graph? We can see that the days fall into two quite distinct cluster, one with a higher number of trips and one with a lower number of trips, that the number of trips increases along the length of each projected cluster (i.e. as we move away from the origin), and that close to the origin, the groups are less distinguishable. Overall, we can see that there are, in effect, two types of days for Seattle cyclists. This is indeed pretty cool.</p>
 <h3 id="unsupervised-clustering">Unsupervised clustering</h3>
 <div class="highlight"><div class="chroma">
@@ -860,16 +860,14 @@ require(["nbextensions/jupyter-vega/index"], function(vega) {
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Xpca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Xpca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cluster_label</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&#34;Paired&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x1a249be050&gt;
-</code></pre>
-<p><img
+</div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png"
-        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png 2x"
+        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png"
+        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png 2x"
         data-sizes="auto"
-        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png"
-        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png" /></p>
+        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png"
+        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -901,59 +899,59 @@ require(["nbextensions/jupyter-vega/index"], function(vega) {
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>total</th>
-<th>west</th>
-<th>east</th>
-<th>cluster</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Date</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2012-10-03 00:00:00</td>
-<td>13.0</td>
-<td>4.0</td>
-<td>9.0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2012-10-03 01:00:00</td>
-<td>10.0</td>
-<td>4.0</td>
-<td>6.0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2012-10-03 02:00:00</td>
-<td>2.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2012-10-03 03:00:00</td>
-<td>5.0</td>
-<td>2.0</td>
-<td>3.0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2012-10-03 04:00:00</td>
-<td>7.0</td>
-<td>6.0</td>
-<td>1.0</td>
-<td>0</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>total</th>
+          <th>west</th>
+          <th>east</th>
+          <th>cluster</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Date</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2012-10-03 00:00:00</td>
+          <td>13.0</td>
+          <td>4.0</td>
+          <td>9.0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 01:00:00</td>
+          <td>10.0</td>
+          <td>4.0</td>
+          <td>6.0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 02:00:00</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 03:00:00</td>
+          <td>5.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 04:00:00</td>
+          <td>7.0</td>
+          <td>6.0</td>
+          <td>1.0</td>
+          <td>0</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -1062,46 +1060,46 @@ require(["nbextensions/jupyter-vega/index"], function(vega) {
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>cluster</th>
-<th>is_weekend</th>
-<th>weekday</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2012-10-03</td>
-<td>0</td>
-<td>False</td>
-<td>Wed</td>
-</tr>
-<tr>
-<td>2012-10-04</td>
-<td>0</td>
-<td>False</td>
-<td>Thu</td>
-</tr>
-<tr>
-<td>2012-10-05</td>
-<td>0</td>
-<td>False</td>
-<td>Fri</td>
-</tr>
-<tr>
-<td>2012-10-06</td>
-<td>1</td>
-<td>True</td>
-<td>Sat</td>
-</tr>
-<tr>
-<td>2012-10-07</td>
-<td>1</td>
-<td>True</td>
-<td>Sun</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>cluster</th>
+          <th>is_weekend</th>
+          <th>weekday</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2012-10-03</td>
+          <td>0</td>
+          <td>False</td>
+          <td>Wed</td>
+      </tr>
+      <tr>
+          <td>2012-10-04</td>
+          <td>0</td>
+          <td>False</td>
+          <td>Thu</td>
+      </tr>
+      <tr>
+          <td>2012-10-05</td>
+          <td>0</td>
+          <td>False</td>
+          <td>Fri</td>
+      </tr>
+      <tr>
+          <td>2012-10-06</td>
+          <td>1</td>
+          <td>True</td>
+          <td>Sat</td>
+      </tr>
+      <tr>
+          <td>2012-10-07</td>
+          <td>1</td>
+          <td>True</td>
+          <td>Sun</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>Count number of weekend days with a workday pattern</p>
@@ -1249,16 +1247,14 @@ dtype: object
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Xpca</span><span class="p">[</span><span class="n">fridays</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Xpca</span><span class="p">[</span><span class="n">fridays</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&#34;green&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>&lt;matplotlib.collections.PathCollection at 0x1a26303c10&gt;
-</code></pre>
-<p><img
+</div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png"
-        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png 2x"
+        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png"
+        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png 2x"
         data-sizes="auto"
-        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png"
-        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png" /></p>
+        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png"
+        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png" /></p>
 <p>What&rsquo;s going on with the three strange outliers in the right bottom corner?</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1294,16 +1290,14 @@ dtype: object
 </span></span><span class="line"><span class="cl"><span class="n">all_days</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;grey&#34;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a2631b750&gt;
-</code></pre>
-<p><img
+</div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png"
-        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png 2x"
+        data-src="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png"
+        data-srcset="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png, seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png 1.5x, seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png 2x"
         data-sizes="auto"
-        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png"
-        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png" /></p>
+        alt="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png"
+        title="seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png" /></p>
 <p>We&rsquo;ve found Seattle&rsquo;s <a href="https://www.cascade.org/bikeeverywhereday" target="_blank" rel="noopener noreffer ">bike to work day</a>.</p>
 <h2 id="supervised-modeling">Supervised modeling</h2>
 <p>This part contains my replication of <a href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/" target="_blank" rel="noopener noreffer ">this</a> blog post by <a href="http://vanderplas.com/" target="_blank" rel="noopener noreffer ">Jake VanderPlan</a> on using data from bicycle traffic across Seattle&rsquo;s Fremont Bridge to learn about commuting patterns.</p>
@@ -1370,40 +1364,40 @@ dtype: object
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>total</th>
-<th>west</th>
-<th>east</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Date</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2012-10-03 00:00:00</td>
-<td>13.0</td>
-<td>4.0</td>
-<td>9.0</td>
-</tr>
-<tr>
-<td>2012-10-03 01:00:00</td>
-<td>10.0</td>
-<td>4.0</td>
-<td>6.0</td>
-</tr>
-<tr>
-<td>2012-10-03 02:00:00</td>
-<td>2.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>total</th>
+          <th>west</th>
+          <th>east</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Date</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2012-10-03 00:00:00</td>
+          <td>13.0</td>
+          <td>4.0</td>
+          <td>9.0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 01:00:00</td>
+          <td>10.0</td>
+          <td>4.0</td>
+          <td>6.0</td>
+      </tr>
+      <tr>
+          <td>2012-10-03 02:00:00</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -2139,19 +2133,18 @@ annual change: (7 +/- 2)%
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/datascience/">datascience</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/waiting-time-paradox/" class="prev" rel="prev" title="Waiting time paradox"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Waiting time paradox</a>
-            <a href="/aws/" class="next" rel="next" title="AWS">AWS<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -2160,5 +2153,5 @@ annual change: (7 +/- 2)%
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

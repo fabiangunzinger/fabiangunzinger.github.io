@@ -1,9 +1,10 @@
 ---
-title: "Entropy"
-date: "2022-01-09"
+title: Entropy
+date: '2022-01-09'
 tags:
-    - cs, stats
+  - 'cs, stats'
 ---
+
 
 ``` python
 import math

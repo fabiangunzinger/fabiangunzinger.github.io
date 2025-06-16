@@ -1,11 +1,12 @@
 ---
-title: "Python tricks"
-date: "2021-07-03"
+title: Python tricks
+date: '2021-07-03'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Switching 0 to 1 and 1 to 0
 

@@ -1,11 +1,12 @@
 ---
-title: "Tree-based methods"
-date: "2019-11-21"
+title: Tree-based methods
+date: '2019-11-21'
 tags:
-    - stats
+  - stats
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 -   Trees
     -   Are an easy and intuitive way to split data within a sample. 

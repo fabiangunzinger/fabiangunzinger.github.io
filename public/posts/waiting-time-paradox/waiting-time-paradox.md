@@ -1,14 +1,15 @@
 ---
-title: "Waiting time paradox"
-date: "2020-01-14"
+title: Waiting time paradox
+date: '2020-01-14'
 tags:
-    - datascience
+  - datascience
 execute:
-    enabled: false
+  enabled: false
 ---
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -202,13 +203,13 @@ df.head()
     }
 </style>
 
-|     | OPD_DATE   | VEHICLE_ID | RTE | DIR | TRIP_ID  | STOP_ID | STOP_NAME               | SCH_STOP_TM | ACT_STOP_TM |
-|-----|------------|------------|-----|-----|----------|---------|-------------------------|-------------|-------------|
-| 0   | 2016-03-26 | 6201       | 673 | S   | 30908177 | 431     | 3RD AVE & PIKE ST (431) | 01:11:57    | 01:13:19    |
-| 1   | 2016-03-26 | 6201       | 673 | S   | 30908033 | 431     | 3RD AVE & PIKE ST (431) | 23:19:57    | 23:16:13    |
-| 2   | 2016-03-26 | 6201       | 673 | S   | 30908028 | 431     | 3RD AVE & PIKE ST (431) | 21:19:57    | 21:18:46    |
-| 3   | 2016-03-26 | 6201       | 673 | S   | 30908019 | 431     | 3RD AVE & PIKE ST (431) | 19:04:57    | 19:01:49    |
-| 4   | 2016-03-26 | 6201       | 673 | S   | 30908252 | 431     | 3RD AVE & PIKE ST (431) | 16:42:57    | 16:42:39    |
+|  | OPD_DATE | VEHICLE_ID | RTE | DIR | TRIP_ID | STOP_ID | STOP_NAME | SCH_STOP_TM | ACT_STOP_TM |
+|----|----|----|----|----|----|----|----|----|----|
+| 0 | 2016-03-26 | 6201 | 673 | S | 30908177 | 431 | 3RD AVE & PIKE ST (431) | 01:11:57 | 01:13:19 |
+| 1 | 2016-03-26 | 6201 | 673 | S | 30908033 | 431 | 3RD AVE & PIKE ST (431) | 23:19:57 | 23:16:13 |
+| 2 | 2016-03-26 | 6201 | 673 | S | 30908028 | 431 | 3RD AVE & PIKE ST (431) | 21:19:57 | 21:18:46 |
+| 3 | 2016-03-26 | 6201 | 673 | S | 30908019 | 431 | 3RD AVE & PIKE ST (431) | 19:04:57 | 19:01:49 |
+| 4 | 2016-03-26 | 6201 | 673 | S | 30908252 | 431 | 3RD AVE & PIKE ST (431) | 16:42:57 | 16:42:39 |
 
 </div>
 
@@ -380,13 +381,13 @@ sequenced.head()
     }
 </style>
 
-|     | route | direction  | scheduled | actual    | minutes_late | actual_interval | scheduled_interval |
-|-----|-------|------------|-----------|-----------|--------------|-----------------|--------------------|
-| 0   | C     | northbound | 10.0      | 12.400000 | 2.400000     | NaN             | 10.0               |
-| 1   | C     | northbound | 20.0      | 27.150000 | 7.150000     | 14.750000       | 10.0               |
-| 2   | C     | northbound | 30.0      | 26.966667 | -3.033333    | -0.183333       | 10.0               |
-| 3   | C     | northbound | 40.0      | 35.516667 | -4.483333    | 8.550000        | 10.0               |
-| 4   | C     | northbound | 50.0      | 53.583333 | 3.583333     | 18.066667       | 10.0               |
+|  | route | direction | scheduled | actual | minutes_late | actual_interval | scheduled_interval |
+|----|----|----|----|----|----|----|----|
+| 0 | C | northbound | 10.0 | 12.400000 | 2.400000 | NaN | 10.0 |
+| 1 | C | northbound | 20.0 | 27.150000 | 7.150000 | 14.750000 | 10.0 |
+| 2 | C | northbound | 30.0 | 26.966667 | -3.033333 | -0.183333 | 10.0 |
+| 3 | C | northbound | 40.0 | 35.516667 | -4.483333 | 8.550000 | 10.0 |
+| 4 | C | northbound | 50.0 | 53.583333 | 3.583333 | 18.066667 | 10.0 |
 
 </div>
 

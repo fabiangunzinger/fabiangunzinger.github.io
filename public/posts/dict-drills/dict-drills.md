@@ -1,11 +1,12 @@
 ---
-title: "Dict drills"
-date: "2022-02-28"
+title: Dict drills
+date: '2022-02-28'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 Drills to practice working with Python dictionaries.
 

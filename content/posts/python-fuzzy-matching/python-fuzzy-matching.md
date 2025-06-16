@@ -1,11 +1,12 @@
 ---
-title: "Fuzzy matching in Python"
-date: "2021-09-27"
+title: Fuzzy matching in Python
+date: '2021-09-27'
 tags:
-    - python, datascience
+  - 'python, datascience'
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## `difflib`
 

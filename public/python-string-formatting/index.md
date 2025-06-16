@@ -1,6 +1,7 @@
 # Python string formatting
 
 
+
 ## Formatted string literals (f-strings)
 
 A basic f-string consists of a combination of literal characters and replacement characters, the latter of which are placed inside braces (full grammar [here](https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals), useful explanation of how they are parsed [here](https://mail.python.org/pipermail/python-dev/2016-November/146797.html)).

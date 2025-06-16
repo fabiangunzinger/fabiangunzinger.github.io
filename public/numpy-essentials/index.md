@@ -1,6 +1,7 @@
 # Numpy essentials
 
 
+
 ``` python
 from imports import *
 
@@ -454,7 +455,7 @@ plt.scatter(data[:,0], data[:,1], alpha=0.5)
 plt.scatter(sample[:,0], sample[:,1], alpha=0.5, **fmt);
 ```
 
-![](numpy-essentials_files/figure-markdown_strict/cell-50-output-1.png)
+<img src="numpy-essentials_files/figure-markdown_strict/cell-50-output-1.png" width="371" height="251" />
 
 ### Manually draw a histogram of 1000 random values using only numpy functions and `plt.plot()`.
 
@@ -473,7 +474,7 @@ np.add.at(counts, labels, 1)
 plt.plot(bins, counts, drawstyle='steps', lw=5);
 ```
 
-![](numpy-essentials_files/figure-markdown_strict/cell-51-output-1.png)
+<img src="numpy-essentials_files/figure-markdown_strict/cell-51-output-1.png" width="377" height="251" />
 
 ### Write a simple selection sort algorithm
 
@@ -512,7 +513,7 @@ for i in range(len(x)):
         plt.plot(*zip(x[i], x[j]), color='green')
 ```
 
-![](numpy-essentials_files/figure-markdown_strict/cell-53-output-1.png)
+<img src="numpy-essentials_files/figure-markdown_strict/cell-53-output-1.png" width="374" height="251" />
 
 #### Understanding the solution
 

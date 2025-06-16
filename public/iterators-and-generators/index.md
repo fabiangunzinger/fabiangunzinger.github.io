@@ -1,6 +1,7 @@
 # Iterators and generators
 
 
+
 ## Iterators
 
 -   A Python object is described as *iterable* (adjective) or as *an iterable* (noun) when it can be iterated over -- when we can process the elements it contains in turn.

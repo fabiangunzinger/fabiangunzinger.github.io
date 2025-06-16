@@ -1,11 +1,12 @@
 ---
-title: "Advanced data structures"
-date: "2021-11-12"
+title: Advanced data structures
+date: '2021-11-12'
 tags:
-    - python, cs
+  - 'python, cs'
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 ## Queues
 

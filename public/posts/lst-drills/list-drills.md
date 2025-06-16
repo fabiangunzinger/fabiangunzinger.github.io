@@ -1,11 +1,12 @@
 ---
-title: "List drills"
-date: "2021-11-23"
+title: List drills
+date: '2021-11-23'
 tags:
-    - python
+  - python
 execute:
-    enabled: false
+  enabled: false
 ---
+
 
 Drills to practice working with lists in Python.
 

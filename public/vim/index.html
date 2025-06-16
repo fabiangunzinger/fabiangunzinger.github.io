@@ -4,25 +4,29 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Vim cheatsheet - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Vim cheatsheet" />
-<meta property="og:description" content="Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
-I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
+        <title>Vim cheatsheet - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/vim/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Vim cheatsheet">
+  <meta property="og:description" content="Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
+I’ve remaped Caps Look to &lt;ctrl&gt; on my mac.
 Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
-Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/vim/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-16T20:32:12+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Vim cheatsheet"/>
-<meta name="twitter:description" content="Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
-I&rsquo;ve remaped Caps Look to &lt;ctrl&gt; on my mac.
+Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-09-11T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-16T20:32:12+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vim cheatsheet">
+  <meta name="twitter:description" content="Preliminaries I use neovim. My configuration is here. There, I map &lt;esc&gt; to jk, a mapping I also use throughout this file.
+I’ve remaped Caps Look to &lt;ctrl&gt; on my mac.
 Quarto setup &lt;shift-k&gt; to open help on object under cursor, &lt;shift-kk&gt; to ender help window, q to quit help.
-Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding."/>
+Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by going into insert mode and going back to normal mode with usual keybinding.">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/vim/" /><link rel="prev" href="http://example.org/makefiles/" /><link rel="next" href="http://example.org/python-string-formatting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/vim/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -106,7 +110,7 @@ Terminal: open new terminal with &lt;leader&gt;c, then activate terminal by goin
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vim cheatsheet</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/craft/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>craft</a></span></div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a>&nbsp;<span class="post-category">included in <a href=""><i class="far fa-folder fa-fw" aria-hidden="true"></i></a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6396 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;31 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
@@ -247,81 +251,81 @@ check whether one of Tim Pope&rsquo;s plugins solves it).</p>
 </ul>
 <p>Useful stuff I tend to forget:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-f&gt;</code>/<code>&lt;C-b&gt;</code></td>
-<td>Scroll down/up screen-wise (&ldquo;forwards-backwards&rdquo;)</td>
-</tr>
-<tr>
-<td><code>c-x c-e</code></td>
-<td>In command line: edit current line in vim, run after quit</td>
-</tr>
-<tr>
-<td><code>:x</code></td>
-<td>Like <code>:wq</code> but only write if file was changed</td>
-</tr>
-<tr>
-<td><code>set: {option}?</code></td>
-<td>Show present setting for {option}</td>
-</tr>
-<tr>
-<td><code>set: {option}&amp;</code></td>
-<td>Set option back to default value</td>
-</tr>
-<tr>
-<td><code>|</code></td>
-<td>Command separator (equivalent to <code>;</code> in shell)</td>
-</tr>
-<tr>
-<td><code>&lt;c-k&gt;-N</code></td>
-<td>Enter en dash in insert mode using digraphs</td>
-</tr>
-<tr>
-<td><code>&lt;c-o-o&gt;</code></td>
-<td>After opening vim, opens last file with cursor at last edit</td>
-</tr>
-<tr>
-<td><code>:scriptnames</code></td>
-<td>List of scripts loaded on startup</td>
-</tr>
-<tr>
-<td><code>:map</code>, <code>:nmap</code>, &hellip;</td>
-<td>Show existing mappings</td>
-</tr>
-<tr>
-<td><code>&lt;c-o&gt;</code> / <code>&lt;c-i&gt;</code></td>
-<td>To move back and forth in the jumplist</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-f&gt;</code>/<code>&lt;C-b&gt;</code></td>
+          <td>Scroll down/up screen-wise (&ldquo;forwards-backwards&rdquo;)</td>
+      </tr>
+      <tr>
+          <td><code>c-x c-e</code></td>
+          <td>In command line: edit current line in vim, run after quit</td>
+      </tr>
+      <tr>
+          <td><code>:x</code></td>
+          <td>Like <code>:wq</code> but only write if file was changed</td>
+      </tr>
+      <tr>
+          <td><code>set: {option}?</code></td>
+          <td>Show present setting for {option}</td>
+      </tr>
+      <tr>
+          <td><code>set: {option}&amp;</code></td>
+          <td>Set option back to default value</td>
+      </tr>
+      <tr>
+          <td><code>|</code></td>
+          <td>Command separator (equivalent to <code>;</code> in shell)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-k&gt;-N</code></td>
+          <td>Enter en dash in insert mode using digraphs</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-o-o&gt;</code></td>
+          <td>After opening vim, opens last file with cursor at last edit</td>
+      </tr>
+      <tr>
+          <td><code>:scriptnames</code></td>
+          <td>List of scripts loaded on startup</td>
+      </tr>
+      <tr>
+          <td><code>:map</code>, <code>:nmap</code>, &hellip;</td>
+          <td>Show existing mappings</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-o&gt;</code> / <code>&lt;c-i&gt;</code></td>
+          <td>To move back and forth in the jumplist</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="help">Help</h2>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>gO</code></td>
-<td>Show table of contents for current help file</td>
-</tr>
-<tr>
-<td><code>:helpc[lose]</code></td>
-<td>Close help windows if any are open</td>
-</tr>
-<tr>
-<td><code>:vert h {keyword}</code></td>
-<td>Open help in a vertical split</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>gO</code></td>
+          <td>Show table of contents for current help file</td>
+      </tr>
+      <tr>
+          <td><code>:helpc[lose]</code></td>
+          <td>Close help windows if any are open</td>
+      </tr>
+      <tr>
+          <td><code>:vert h {keyword}</code></td>
+          <td>Open help in a vertical split</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="modes">Modes</h2>
 <h3 id="normal-mode">Normal mode</h3>
@@ -334,378 +338,378 @@ uppercase.</li>
 </ul>
 <p>Common operators:</p>
 <table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>c</code></td>
-<td>Change</td>
-</tr>
-<tr>
-<td><code>d</code></td>
-<td>Delete into register</td>
-</tr>
-<tr>
-<td><code>d</code></td>
-<td>Delete into register</td>
-</tr>
-<tr>
-<td><code>y</code></td>
-<td>Yank into register</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>Paste after cursor</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>Paste before cursor</td>
-</tr>
-<tr>
-<td><code>~</code></td>
-<td>Swap case of character under cursor and move right</td>
-</tr>
-<tr>
-<td><code>gu</code></td>
-<td>Make lowercase</td>
-</tr>
-<tr>
-<td><code>gU</code></td>
-<td>Make uppercase</td>
-</tr>
-<tr>
-<td><code>g~</code></td>
-<td>Swap case</td>
-</tr>
-<tr>
-<td><code>&gt;</code></td>
-<td>Shift right</td>
-</tr>
-<tr>
-<td><code>&lt;</code></td>
-<td>Shift left</td>
-</tr>
-<tr>
-<td><code>=</code></td>
-<td>Autoindent</td>
-</tr>
-<tr>
-<td><code>!</code></td>
-<td>Filter {motion} lines through an external program</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Trigger</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>c</code></td>
+          <td>Change</td>
+      </tr>
+      <tr>
+          <td><code>d</code></td>
+          <td>Delete into register</td>
+      </tr>
+      <tr>
+          <td><code>d</code></td>
+          <td>Delete into register</td>
+      </tr>
+      <tr>
+          <td><code>y</code></td>
+          <td>Yank into register</td>
+      </tr>
+      <tr>
+          <td><code>p</code></td>
+          <td>Paste after cursor</td>
+      </tr>
+      <tr>
+          <td><code>P</code></td>
+          <td>Paste before cursor</td>
+      </tr>
+      <tr>
+          <td><code>~</code></td>
+          <td>Swap case of character under cursor and move right</td>
+      </tr>
+      <tr>
+          <td><code>gu</code></td>
+          <td>Make lowercase</td>
+      </tr>
+      <tr>
+          <td><code>gU</code></td>
+          <td>Make uppercase</td>
+      </tr>
+      <tr>
+          <td><code>g~</code></td>
+          <td>Swap case</td>
+      </tr>
+      <tr>
+          <td><code>&gt;</code></td>
+          <td>Shift right</td>
+      </tr>
+      <tr>
+          <td><code>&lt;</code></td>
+          <td>Shift left</td>
+      </tr>
+      <tr>
+          <td><code>=</code></td>
+          <td>Autoindent</td>
+      </tr>
+      <tr>
+          <td><code>!</code></td>
+          <td>Filter {motion} lines through an external program</td>
+      </tr>
+  </tbody>
 </table>
 <p>Moving back and forth:</p>
 <table>
-<thead>
-<tr>
-<th>Forwards</th>
-<th>Backwards</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/</code></td>
-<td><code>?</code></td>
-<td>Seach for pattern</td>
-</tr>
-<tr>
-<td><code>*</code></td>
-<td><code>#</code></td>
-<td>Search for word under cursor</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td><code>N</code></td>
-<td>Jump to next search match</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>^</code></td>
-<td>Jump to end of line</td>
-</tr>
-<tr>
-<td><code>f{char}</code></td>
-<td><code>F{char}</code></td>
-<td>Position cursor on character</td>
-</tr>
-<tr>
-<td><code>t{char}</code></td>
-<td><code>T{char}</code></td>
-<td>Position cursor before character</td>
-</tr>
-<tr>
-<td><code>;</code></td>
-<td><code>,</code></td>
-<td>Repeat the last r, F, t, or T</td>
-</tr>
-<tr>
-<td><code>w</code></td>
-<td><code>b</code></td>
-<td>Move to the start of the next word</td>
-</tr>
-<tr>
-<td><code>W</code></td>
-<td><code>B</code></td>
-<td>Move to the start of the next WORD</td>
-</tr>
-<tr>
-<td><code>}</code></td>
-<td><code>{</code></td>
-<td>Move down one (blank-line-separated) paragraph</td>
-</tr>
-<tr>
-<td><code>gg</code></td>
-<td></td>
-<td>Jump to the first line of the document</td>
-</tr>
-<tr>
-<td><code>G</code></td>
-<td></td>
-<td>Jump to the last line of the document</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Forwards</th>
+          <th>Backwards</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/</code></td>
+          <td><code>?</code></td>
+          <td>Seach for pattern</td>
+      </tr>
+      <tr>
+          <td><code>*</code></td>
+          <td><code>#</code></td>
+          <td>Search for word under cursor</td>
+      </tr>
+      <tr>
+          <td><code>n</code></td>
+          <td><code>N</code></td>
+          <td>Jump to next search match</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td><code>^</code></td>
+          <td>Jump to end of line</td>
+      </tr>
+      <tr>
+          <td><code>f{char}</code></td>
+          <td><code>F{char}</code></td>
+          <td>Position cursor on character</td>
+      </tr>
+      <tr>
+          <td><code>t{char}</code></td>
+          <td><code>T{char}</code></td>
+          <td>Position cursor before character</td>
+      </tr>
+      <tr>
+          <td><code>;</code></td>
+          <td><code>,</code></td>
+          <td>Repeat the last r, F, t, or T</td>
+      </tr>
+      <tr>
+          <td><code>w</code></td>
+          <td><code>b</code></td>
+          <td>Move to the start of the next word</td>
+      </tr>
+      <tr>
+          <td><code>W</code></td>
+          <td><code>B</code></td>
+          <td>Move to the start of the next WORD</td>
+      </tr>
+      <tr>
+          <td><code>}</code></td>
+          <td><code>{</code></td>
+          <td>Move down one (blank-line-separated) paragraph</td>
+      </tr>
+      <tr>
+          <td><code>gg</code></td>
+          <td></td>
+          <td>Jump to the first line of the document</td>
+      </tr>
+      <tr>
+          <td><code>G</code></td>
+          <td></td>
+          <td>Jump to the last line of the document</td>
+      </tr>
+  </tbody>
 </table>
 <p>Act, repeat, reverse:</p>
 <table>
-<thead>
-<tr>
-<th>Intent</th>
-<th>Act</th>
-<th>Repeat</th>
-<th>Reverse</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Make a change</td>
-<td><code>{edit}</code></td>
-<td><code>.</code></td>
-<td><code>u</code></td>
-</tr>
-<tr>
-<td>Scan line for next character</td>
-<td><code>f{char}/t{char}</code></td>
-<td><code>;</code></td>
-<td><code>,</code></td>
-</tr>
-<tr>
-<td>Scan line for previous character</td>
-<td><code>F{char}/T{char}</code></td>
-<td><code>;</code></td>
-<td><code>,</code></td>
-</tr>
-<tr>
-<td>Scan document for next match</td>
-<td><code>/pattern&lt;CR&gt;</code></td>
-<td><code>n</code></td>
-<td><code>N</code></td>
-</tr>
-<tr>
-<td>Scan document for previous match</td>
-<td><code>?pattern&lt;CR&gt;</code></td>
-<td><code>n</code></td>
-<td><code>N</code></td>
-</tr>
-<tr>
-<td>Perform substitution</td>
-<td><code>:s/old/new</code></td>
-<td><code>&amp;</code></td>
-<td><code>u</code></td>
-</tr>
-<tr>
-<td>Execute a sequence of changes</td>
-<td><code>qx{change}q</code></td>
-<td><code>@x</code></td>
-<td><code>u</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Intent</th>
+          <th>Act</th>
+          <th>Repeat</th>
+          <th>Reverse</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Make a change</td>
+          <td><code>{edit}</code></td>
+          <td><code>.</code></td>
+          <td><code>u</code></td>
+      </tr>
+      <tr>
+          <td>Scan line for next character</td>
+          <td><code>f{char}/t{char}</code></td>
+          <td><code>;</code></td>
+          <td><code>,</code></td>
+      </tr>
+      <tr>
+          <td>Scan line for previous character</td>
+          <td><code>F{char}/T{char}</code></td>
+          <td><code>;</code></td>
+          <td><code>,</code></td>
+      </tr>
+      <tr>
+          <td>Scan document for next match</td>
+          <td><code>/pattern&lt;CR&gt;</code></td>
+          <td><code>n</code></td>
+          <td><code>N</code></td>
+      </tr>
+      <tr>
+          <td>Scan document for previous match</td>
+          <td><code>?pattern&lt;CR&gt;</code></td>
+          <td><code>n</code></td>
+          <td><code>N</code></td>
+      </tr>
+      <tr>
+          <td>Perform substitution</td>
+          <td><code>:s/old/new</code></td>
+          <td><code>&amp;</code></td>
+          <td><code>u</code></td>
+      </tr>
+      <tr>
+          <td>Execute a sequence of changes</td>
+          <td><code>qx{change}q</code></td>
+          <td><code>@x</code></td>
+          <td><code>u</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>Compound commands:</p>
 <table>
-<thead>
-<tr>
-<th>Compound command</th>
-<th>Equivalent in longhand</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>C</code></td>
-<td><code>c$</code> (delete from cursor until end of line and start insert)</td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td><code>d$</code> (delete from cursor until end of line)</td>
-</tr>
-<tr>
-<td><code>Y</code></td>
-<td><code>y$</code> (similar to above, but has to be mapped, see <code>h: Y</code>)</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td><code>cl</code> (delete single character and start insert)</td>
-</tr>
-<tr>
-<td><code>S</code></td>
-<td><code>^c</code> (delete entire line and start inster, synonym for <code>cc</code>)</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td><code>dl</code> (delete one character to the right)</td>
-</tr>
-<tr>
-<td><code>X</code></td>
-<td><code>dh</code> (delete one character to the left)</td>
-</tr>
-<tr>
-<td><code>I</code></td>
-<td><code>^i</code> (jump to beginning of line and start insert)</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td><code>$a</code> (jumpt to end of line and start insert)</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td><code>A&lt;cr&gt;</code></td>
-</tr>
-<tr>
-<td><code>O</code></td>
-<td><code>ko</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Compound command</th>
+          <th>Equivalent in longhand</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>C</code></td>
+          <td><code>c$</code> (delete from cursor until end of line and start insert)</td>
+      </tr>
+      <tr>
+          <td><code>D</code></td>
+          <td><code>d$</code> (delete from cursor until end of line)</td>
+      </tr>
+      <tr>
+          <td><code>Y</code></td>
+          <td><code>y$</code> (similar to above, but has to be mapped, see <code>h: Y</code>)</td>
+      </tr>
+      <tr>
+          <td><code>s</code></td>
+          <td><code>cl</code> (delete single character and start insert)</td>
+      </tr>
+      <tr>
+          <td><code>S</code></td>
+          <td><code>^c</code> (delete entire line and start inster, synonym for <code>cc</code>)</td>
+      </tr>
+      <tr>
+          <td><code>x</code></td>
+          <td><code>dl</code> (delete one character to the right)</td>
+      </tr>
+      <tr>
+          <td><code>X</code></td>
+          <td><code>dh</code> (delete one character to the left)</td>
+      </tr>
+      <tr>
+          <td><code>I</code></td>
+          <td><code>^i</code> (jump to beginning of line and start insert)</td>
+      </tr>
+      <tr>
+          <td><code>A</code></td>
+          <td><code>$a</code> (jumpt to end of line and start insert)</td>
+      </tr>
+      <tr>
+          <td><code>o</code></td>
+          <td><code>A&lt;cr&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>O</code></td>
+          <td><code>ko</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>Miscellaneous:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-a&gt;</code>/ <code>&lt;C-x&gt;</code></td>
-<td>Add / subtract from the next number</td>
-</tr>
-<tr>
-<td><code>&lt;C-o&gt;</code>/ <code>&lt;C-i&gt;</code></td>
-<td>Move backwards to last / forward to previous location</td>
-</tr>
-<tr>
-<td><code>u</code>/<code>&lt;C-r&gt;</code></td>
-<td>Undo / redo change</td>
-</tr>
-<tr>
-<td><code>ga</code></td>
-<td>Reveal numeric representation of character under cursor</td>
-</tr>
-<tr>
-<td><code>gx</code></td>
-<td>Open url under cursor</td>
-</tr>
-<tr>
-<td><code>&lt;C-z&gt;</code>/<code>fg</code></td>
-<td>Put vim in background / return to vim</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-a&gt;</code>/ <code>&lt;C-x&gt;</code></td>
+          <td>Add / subtract from the next number</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-o&gt;</code>/ <code>&lt;C-i&gt;</code></td>
+          <td>Move backwards to last / forward to previous location</td>
+      </tr>
+      <tr>
+          <td><code>u</code>/<code>&lt;C-r&gt;</code></td>
+          <td>Undo / redo change</td>
+      </tr>
+      <tr>
+          <td><code>ga</code></td>
+          <td>Reveal numeric representation of character under cursor</td>
+      </tr>
+      <tr>
+          <td><code>gx</code></td>
+          <td>Open url under cursor</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-z&gt;</code>/<code>fg</code></td>
+          <td>Put vim in background / return to vim</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="insert-mode">Insert mode</h3>
 <p>Entering insert mode:</p>
 <table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>i</code></td>
-<td>Insert before cursor</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>Insert after cursor</td>
-</tr>
-<tr>
-<td><code>I</code></td>
-<td>Insert at beginning of current line</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>Insert at end of current line</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>Insert in a new line below the current one</td>
-</tr>
-<tr>
-<td><code>O</code></td>
-<td>Insert in a new line above the current one</td>
-</tr>
-<tr>
-<td><code>gi</code></td>
-<td>Insert at the end of last insert</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Trigger</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>i</code></td>
+          <td>Insert before cursor</td>
+      </tr>
+      <tr>
+          <td><code>a</code></td>
+          <td>Insert after cursor</td>
+      </tr>
+      <tr>
+          <td><code>I</code></td>
+          <td>Insert at beginning of current line</td>
+      </tr>
+      <tr>
+          <td><code>A</code></td>
+          <td>Insert at end of current line</td>
+      </tr>
+      <tr>
+          <td><code>o</code></td>
+          <td>Insert in a new line below the current one</td>
+      </tr>
+      <tr>
+          <td><code>O</code></td>
+          <td>Insert in a new line above the current one</td>
+      </tr>
+      <tr>
+          <td><code>gi</code></td>
+          <td>Insert at the end of last insert</td>
+      </tr>
+  </tbody>
 </table>
 <p>Useful commands:</p>
 <table>
-<thead>
-<tr>
-<th>Keystroke</th>
-<th>action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;c-h&gt;</code></td>
-<td>delete back one character (backspace)</td>
-</tr>
-<tr>
-<td><code>&lt;c-w&gt;</code></td>
-<td>delete back one word</td>
-</tr>
-<tr>
-<td><code>&lt;c-u&gt;</code></td>
-<td>delete back one line</td>
-</tr>
-<tr>
-<td><code>&lt;c-o&gt;</code></td>
-<td>Enter insert normal mode to execute a single normal cmd</td>
-</tr>
-<tr>
-<td><code>&lt;C-r&gt;{register}</code></td>
-<td>Paste content from address (use 0 for last yanked text)</td>
-</tr>
-<tr>
-<td><code>&lt;C-r&gt;=</code></td>
-<td>Perform calculation in place</td>
-</tr>
-<tr>
-<td><code>r</code>, <code>R</code></td>
-<td>Enter replace mode for single replacement or until exit</td>
-</tr>
-<tr>
-<td><code>&lt;C-v&gt;{123}</code></td>
-<td>Insert character by decimal code</td>
-</tr>
-<tr>
-<td><code>&lt;C-v&gt;u{1234}</code></td>
-<td>Insert character by hexadecimal code</td>
-</tr>
-<tr>
-<td><code>&lt;C-v&gt;{char1}{char2}</code></td>
-<td>Insert character by digraph</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Keystroke</th>
+          <th>action</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;c-h&gt;</code></td>
+          <td>delete back one character (backspace)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-w&gt;</code></td>
+          <td>delete back one word</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-u&gt;</code></td>
+          <td>delete back one line</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-o&gt;</code></td>
+          <td>Enter insert normal mode to execute a single normal cmd</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-r&gt;{register}</code></td>
+          <td>Paste content from address (use 0 for last yanked text)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-r&gt;=</code></td>
+          <td>Perform calculation in place</td>
+      </tr>
+      <tr>
+          <td><code>r</code>, <code>R</code></td>
+          <td>Enter replace mode for single replacement or until exit</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-v&gt;{123}</code></td>
+          <td>Insert character by decimal code</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-v&gt;u{1234}</code></td>
+          <td>Insert character by hexadecimal code</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-v&gt;{char1}{char2}</code></td>
+          <td>Insert character by digraph</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="visual-mode">Visual mode</h3>
 <ul>
@@ -713,34 +717,34 @@ uppercase.</li>
 the area to be selected. Reminder to myself: use search more often for this.</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>v</code></td>
-<td>Enter character-wise visual mode / back to normal mode</td>
-</tr>
-<tr>
-<td><code>V</code></td>
-<td>Enter line-wise visual mode / back to normal mode</td>
-</tr>
-<tr>
-<td><code>&lt;C-v&gt;</code></td>
-<td>Enter block-wise visual mode / back to normal mode</td>
-</tr>
-<tr>
-<td><code>gv</code></td>
-<td>Reselect last visual selection</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>Toggle the free end of a selection</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>v</code></td>
+          <td>Enter character-wise visual mode / back to normal mode</td>
+      </tr>
+      <tr>
+          <td><code>V</code></td>
+          <td>Enter line-wise visual mode / back to normal mode</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-v&gt;</code></td>
+          <td>Enter block-wise visual mode / back to normal mode</td>
+      </tr>
+      <tr>
+          <td><code>gv</code></td>
+          <td>Reselect last visual selection</td>
+      </tr>
+      <tr>
+          <td><code>o</code></td>
+          <td>Toggle the free end of a selection</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -783,155 +787,155 @@ marks.</p>
 </ul>
 <p>Command mode commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:</code>, <code>/</code>, <code>?</code></td>
-<td>Opens command line / search /reverse search mode</td>
-</tr>
-<tr>
-<td><code>&lt;C-r&gt;&lt;C-w&gt;</code></td>
-<td>Insert word under cursor in command prompt</td>
-</tr>
-<tr>
-<td><code>&lt;left&gt;</code>/<code>&lt;right&gt;</code></td>
-<td>Move one character left or right</td>
-</tr>
-<tr>
-<td><code>&lt;S-left&gt;</code></td>
-<td>Move one word left (similar for right)</td>
-</tr>
-<tr>
-<td><code>&lt;C-b&gt;</code>/<code>&lt;C-e&gt;</code></td>
-<td>Move to the beginning/end of the command</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;</code></td>
-<td>Delete last word</td>
-</tr>
-<tr>
-<td><code>&lt;C-u&gt;</code></td>
-<td>Delete from cursor to beginning of line</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:</code>, <code>/</code>, <code>?</code></td>
+          <td>Opens command line / search /reverse search mode</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-r&gt;&lt;C-w&gt;</code></td>
+          <td>Insert word under cursor in command prompt</td>
+      </tr>
+      <tr>
+          <td><code>&lt;left&gt;</code>/<code>&lt;right&gt;</code></td>
+          <td>Move one character left or right</td>
+      </tr>
+      <tr>
+          <td><code>&lt;S-left&gt;</code></td>
+          <td>Move one word left (similar for right)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-b&gt;</code>/<code>&lt;C-e&gt;</code></td>
+          <td>Move to the beginning/end of the command</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;</code></td>
+          <td>Delete last word</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-u&gt;</code></td>
+          <td>Delete from cursor to beginning of line</td>
+      </tr>
+  </tbody>
 </table>
 <p>Types of addresses:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:4{cmd}</code></td>
-<td>execute command on line 4</td>
-</tr>
-<tr>
-<td><code>:4,8{cmd}</code></td>
-<td>execute command on lines 4 to 8 (inclusive)</td>
-</tr>
-<tr>
-<td><code>:/#/{cmd}</code></td>
-<td>execute command on next line with an <code>#</code></td>
-</tr>
-<tr>
-<td><code>:/&lt;tag&gt;/&lt;\/tag&gt;/{cmd}</code></td>
-<td>Execute command on next occurring html tag</td>
-</tr>
-<tr>
-<td><code>:'&lt;,'&gt;{cmd}</code></td>
-<td>Execute command on selected lines</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:4{cmd}</code></td>
+          <td>execute command on line 4</td>
+      </tr>
+      <tr>
+          <td><code>:4,8{cmd}</code></td>
+          <td>execute command on lines 4 to 8 (inclusive)</td>
+      </tr>
+      <tr>
+          <td><code>:/#/{cmd}</code></td>
+          <td>execute command on next line with an <code>#</code></td>
+      </tr>
+      <tr>
+          <td><code>:/&lt;tag&gt;/&lt;\/tag&gt;/{cmd}</code></td>
+          <td>Execute command on next occurring html tag</td>
+      </tr>
+      <tr>
+          <td><code>:'&lt;,'&gt;{cmd}</code></td>
+          <td>Execute command on selected lines</td>
+      </tr>
+  </tbody>
 </table>
 <p>Useful address/range characters:</p>
 <table>
-<thead>
-<tr>
-<th>Symobol</th>
-<th>Address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>1</code></td>
-<td>First line of the file</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>Last line of the file</td>
-</tr>
-<tr>
-<td><code>0</code></td>
-<td>Virtual line above first line (e.g. to paste to top of file)</td>
-</tr>
-<tr>
-<td><code>.</code></td>
-<td>Line of cursor</td>
-</tr>
-<tr>
-<td><code>'m</code></td>
-<td>Line containing mark m</td>
-</tr>
-<tr>
-<td><code>'&lt;</code></td>
-<td>Start of visual selection</td>
-</tr>
-<tr>
-<td><code>'&gt;</code></td>
-<td>End of visual selection</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>The entire file (short for <code>:1,$</code>)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Symobol</th>
+          <th>Address</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>1</code></td>
+          <td>First line of the file</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td>Last line of the file</td>
+      </tr>
+      <tr>
+          <td><code>0</code></td>
+          <td>Virtual line above first line (e.g. to paste to top of file)</td>
+      </tr>
+      <tr>
+          <td><code>.</code></td>
+          <td>Line of cursor</td>
+      </tr>
+      <tr>
+          <td><code>'m</code></td>
+          <td>Line containing mark m</td>
+      </tr>
+      <tr>
+          <td><code>'&lt;</code></td>
+          <td>Start of visual selection</td>
+      </tr>
+      <tr>
+          <td><code>'&gt;</code></td>
+          <td>End of visual selection</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>The entire file (short for <code>:1,$</code>)</td>
+      </tr>
+  </tbody>
 </table>
 <p>Common Ex-commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>p[rint]</code></td>
-<td>Print</td>
-</tr>
-<tr>
-<td><code>d[elete]</code></td>
-<td>Delete</td>
-</tr>
-<tr>
-<td><code>j[oin]</code></td>
-<td>Join lines</td>
-</tr>
-<tr>
-<td><code>s[ubstitute]</code></td>
-<td>Substitute (e.g. <code>s/old/new</code>)</td>
-</tr>
-<tr>
-<td><code>n[ormal]</code></td>
-<td>Execute normal mode command</td>
-</tr>
-<tr>
-<td><code>m[ove]</code></td>
-<td>Move to <code>{address}</code>, (e.g. <code>:1,5m$</code> moves lines to end of file)</td>
-</tr>
-<tr>
-<td><code>co[py]</code> (or <code>t)</code></td>
-<td>Copy to <code>{address}</code>, (e.g. <code>:6t.</code> copies line 6 to current line)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>p[rint]</code></td>
+          <td>Print</td>
+      </tr>
+      <tr>
+          <td><code>d[elete]</code></td>
+          <td>Delete</td>
+      </tr>
+      <tr>
+          <td><code>j[oin]</code></td>
+          <td>Join lines</td>
+      </tr>
+      <tr>
+          <td><code>s[ubstitute]</code></td>
+          <td>Substitute (e.g. <code>s/old/new</code>)</td>
+      </tr>
+      <tr>
+          <td><code>n[ormal]</code></td>
+          <td>Execute normal mode command</td>
+      </tr>
+      <tr>
+          <td><code>m[ove]</code></td>
+          <td>Move to <code>{address}</code>, (e.g. <code>:1,5m$</code> moves lines to end of file)</td>
+      </tr>
+      <tr>
+          <td><code>co[py]</code> (or <code>t)</code></td>
+          <td>Copy to <code>{address}</code>, (e.g. <code>:6t.</code> copies line 6 to current line)</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -971,66 +975,66 @@ windows, while there is only a single globally available quickfix list.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:make [target]</code></td>
-<td>Compile target (and jump to first error if there are some)</td>
-</tr>
-<tr>
-<td><code>:make! [target]</code></td>
-<td>Compile target without jumping to first error</td>
-</tr>
-<tr>
-<td><code>:copen</code></td>
-<td>Open quickfix window</td>
-</tr>
-<tr>
-<td><code>:cclose</code></td>
-<td>Close quickfix window</td>
-</tr>
-<tr>
-<td><code>]q</code> / <code>[q</code></td>
-<td>Jump to next/previous match (uses vim-unimpaired plugin)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:make [target]</code></td>
+          <td>Compile target (and jump to first error if there are some)</td>
+      </tr>
+      <tr>
+          <td><code>:make! [target]</code></td>
+          <td>Compile target without jumping to first error</td>
+      </tr>
+      <tr>
+          <td><code>:copen</code></td>
+          <td>Open quickfix window</td>
+      </tr>
+      <tr>
+          <td><code>:cclose</code></td>
+          <td>Close quickfix window</td>
+      </tr>
+      <tr>
+          <td><code>]q</code> / <code>[q</code></td>
+          <td>Jump to next/previous match (uses vim-unimpaired plugin)</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="files">Files</h2>
 <p>Setting the working directory:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:pwd</code></td>
-<td>Show current directory window</td>
-</tr>
-<tr>
-<td><code>:cd</code></td>
-<td>Set directory for all windows</td>
-</tr>
-<tr>
-<td><code>:cd -</code></td>
-<td>Revert back to previous directory</td>
-</tr>
-<tr>
-<td><code>:lcd</code></td>
-<td>Set directory for current window</td>
-</tr>
-<tr>
-<td><code>:tcd</code></td>
-<td>Set directory for current tab</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:pwd</code></td>
+          <td>Show current directory window</td>
+      </tr>
+      <tr>
+          <td><code>:cd</code></td>
+          <td>Set directory for all windows</td>
+      </tr>
+      <tr>
+          <td><code>:cd -</code></td>
+          <td>Revert back to previous directory</td>
+      </tr>
+      <tr>
+          <td><code>:lcd</code></td>
+          <td>Set directory for current window</td>
+      </tr>
+      <tr>
+          <td><code>:tcd</code></td>
+          <td>Set directory for current tab</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="buffers">Buffers</h3>
 <ul>
@@ -1058,88 +1062,88 @@ Ex-commands (see above).</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:x[it]</code> / <code>exi[t]</code></td>
-<td>Like <code>:wq</code> but only write if file was changed</td>
-</tr>
-<tr>
-<td><code>:xa</code></td>
-<td>Write all changed buffers and exit (like <code>:wqa</code>)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:x[it]</code> / <code>exi[t]</code></td>
+          <td>Like <code>:wq</code> but only write if file was changed</td>
+      </tr>
+      <tr>
+          <td><code>:xa</code></td>
+          <td>Write all changed buffers and exit (like <code>:wqa</code>)</td>
+      </tr>
+  </tbody>
 </table>
 <p><a href="https://github.com/tpope/vim-eunuch" target="_blank" rel="noopener noreffer ">vim-eunuch</a> commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Move[!] {file}</code></td>
-<td>Like <code>:saveas</code>, but deletes old file</td>
-</tr>
-<tr>
-<td><code>Rename[!] {file}</code></td>
-<td>Rename current buffer and file</td>
-</tr>
-<tr>
-<td><code>Chmod {mode}</code></td>
-<td>Change permissions of current file</td>
-</tr>
-<tr>
-<td><code>Mkdir {dir}</code></td>
-<td>Create dir with <code>mkdir()</code></td>
-</tr>
-<tr>
-<td><code>Mkdir! {dir}</code></td>
-<td>Create dir with <code>mkdir()</code> with &ldquo;p&rdquo; argument (mkdir -p)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Move[!] {file}</code></td>
+          <td>Like <code>:saveas</code>, but deletes old file</td>
+      </tr>
+      <tr>
+          <td><code>Rename[!] {file}</code></td>
+          <td>Rename current buffer and file</td>
+      </tr>
+      <tr>
+          <td><code>Chmod {mode}</code></td>
+          <td>Change permissions of current file</td>
+      </tr>
+      <tr>
+          <td><code>Mkdir {dir}</code></td>
+          <td>Create dir with <code>mkdir()</code></td>
+      </tr>
+      <tr>
+          <td><code>Mkdir! {dir}</code></td>
+          <td>Create dir with <code>mkdir()</code> with &ldquo;p&rdquo; argument (mkdir -p)</td>
+      </tr>
+  </tbody>
 </table>
 <p>Toggle buffer settings from vim-unimpaired:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>yoh</code></td>
-<td>Toggle search highlighting</td>
-</tr>
-<tr>
-<td><code>yob</code></td>
-<td>Toggle light background</td>
-</tr>
-<tr>
-<td><code>yoc</code></td>
-<td>Toggle cursor line highlighting</td>
-</tr>
-<tr>
-<td><code>yon</code></td>
-<td>Toggle line numbers</td>
-</tr>
-<tr>
-<td><code>yor</code></td>
-<td>Toggle relative line numbers</td>
-</tr>
-<tr>
-<td><code>yos</code></td>
-<td>Toggle the spell checker</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>yoh</code></td>
+          <td>Toggle search highlighting</td>
+      </tr>
+      <tr>
+          <td><code>yob</code></td>
+          <td>Toggle light background</td>
+      </tr>
+      <tr>
+          <td><code>yoc</code></td>
+          <td>Toggle cursor line highlighting</td>
+      </tr>
+      <tr>
+          <td><code>yon</code></td>
+          <td>Toggle line numbers</td>
+      </tr>
+      <tr>
+          <td><code>yor</code></td>
+          <td>Toggle relative line numbers</td>
+      </tr>
+      <tr>
+          <td><code>yos</code></td>
+          <td>Toggle the spell checker</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="windows">Windows</h3>
 <ul>
@@ -1152,147 +1156,147 @@ same buffer, or load multiple buffers into one window.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-w&gt;w</code></td>
-<td>Go to next window</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;s</code></td>
-<td>Split window horizontally</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;v</code></td>
-<td>Split window vertically</td>
-</tr>
-<tr>
-<td><code>:sp[lit] {file}</code></td>
-<td>Horizontally split window and load {file} into new buffer</td>
-</tr>
-<tr>
-<td><code>:vsp[lit] {file}</code></td>
-<td>Vertically split window and load {file} into new buffer</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>:new</code></td>
-<td>Split horizontally with new file</td>
-</tr>
-<tr>
-<td><code>:vne[w]</code></td>
-<td>Split vertically with new file</td>
-</tr>
-<tr>
-<td><code>on[ly]</code></td>
-<td>Close all but current window</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;=</code></td>
-<td>Equalize width and height of all windows</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;r</code></td>
-<td>Rorate windows</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;x</code></td>
-<td>Exchange position of current window with its neighbour</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>q[uit]</code></td>
-<td>Close current window</td>
-</tr>
-<tr>
-<td><code>:sb[uffer]</code></td>
-<td>Open buffer number N in horizontal split</td>
-</tr>
-<tr>
-<td><code>:vert sb N</code></td>
-<td>Open buffer number N in vertical split (<code>&lt;leader&gt;vb</code>)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-w&gt;w</code></td>
+          <td>Go to next window</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;s</code></td>
+          <td>Split window horizontally</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;v</code></td>
+          <td>Split window vertically</td>
+      </tr>
+      <tr>
+          <td><code>:sp[lit] {file}</code></td>
+          <td>Horizontally split window and load {file} into new buffer</td>
+      </tr>
+      <tr>
+          <td><code>:vsp[lit] {file}</code></td>
+          <td>Vertically split window and load {file} into new buffer</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>:new</code></td>
+          <td>Split horizontally with new file</td>
+      </tr>
+      <tr>
+          <td><code>:vne[w]</code></td>
+          <td>Split vertically with new file</td>
+      </tr>
+      <tr>
+          <td><code>on[ly]</code></td>
+          <td>Close all but current window</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;=</code></td>
+          <td>Equalize width and height of all windows</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;r</code></td>
+          <td>Rorate windows</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;x</code></td>
+          <td>Exchange position of current window with its neighbour</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>q[uit]</code></td>
+          <td>Close current window</td>
+      </tr>
+      <tr>
+          <td><code>:sb[uffer]</code></td>
+          <td>Open buffer number N in horizontal split</td>
+      </tr>
+      <tr>
+          <td><code>:vert sb N</code></td>
+          <td>Open buffer number N in vertical split (<code>&lt;leader&gt;vb</code>)</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="tabs">Tabs</h3>
 <ul>
 <li>A tab is a container of windows.</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:tabe[dit]{file}</code></td>
-<td>Open new tab with {file} if specified or empty otherwise</td>
-</tr>
-<tr>
-<td><code>:[count]tabnew</code></td>
-<td>Open a new tab in an empty window.</td>
-</tr>
-<tr>
-<td><code>&lt;C-w&gt;T</code></td>
-<td>Move current window into new tab</td>
-</tr>
-<tr>
-<td><code>:tabc[lose]</code></td>
-<td>Close current tab with all its windows</td>
-</tr>
-<tr>
-<td><code>:tabo[nly]</code></td>
-<td>Close all tabs but the current one</td>
-</tr>
-<tr>
-<td><code>{N}</code>gt</td>
-<td>Go to tab {N} if specified, or to next otherwise</td>
-</tr>
-<tr>
-<td><code>gT</code></td>
-<td>Go to previous tab</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:tabe[dit]{file}</code></td>
+          <td>Open new tab with {file} if specified or empty otherwise</td>
+      </tr>
+      <tr>
+          <td><code>:[count]tabnew</code></td>
+          <td>Open a new tab in an empty window.</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-w&gt;T</code></td>
+          <td>Move current window into new tab</td>
+      </tr>
+      <tr>
+          <td><code>:tabc[lose]</code></td>
+          <td>Close current tab with all its windows</td>
+      </tr>
+      <tr>
+          <td><code>:tabo[nly]</code></td>
+          <td>Close all tabs but the current one</td>
+      </tr>
+      <tr>
+          <td><code>{N}</code>gt</td>
+          <td>Go to tab {N} if specified, or to next otherwise</td>
+      </tr>
+      <tr>
+          <td><code>gT</code></td>
+          <td>Go to previous tab</td>
+      </tr>
+  </tbody>
 </table>
 <p>Handy [count] options for <code>tabnew</code>:</p>
 <table>
-<thead>
-<tr>
-<th>Count</th>
-<th>Opens new tab &hellip;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[.]</code></td>
-<td>&hellip; after current one</td>
-</tr>
-<tr>
-<td><code>-</code></td>
-<td>&hellip; before current one</td>
-</tr>
-<tr>
-<td><code>0</code></td>
-<td>&hellip; before first one</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>&hellip; after last one</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Count</th>
+          <th>Opens new tab &hellip;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>[.]</code></td>
+          <td>&hellip; after current one</td>
+      </tr>
+      <tr>
+          <td><code>-</code></td>
+          <td>&hellip; before current one</td>
+      </tr>
+      <tr>
+          <td><code>0</code></td>
+          <td>&hellip; before first one</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td>&hellip; after last one</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="opening-files">Opening files</h3>
 <ul>
@@ -1316,81 +1320,81 @@ following <a href="http://vimcasts.org/episodes/the-edit-command/" target="_blan
 </ul>
 <p>command-t commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;c-o&gt;</code></td>
-<td>Open or close command-t</td>
-</tr>
-<tr>
-<td><code>&lt;c-i&gt;</code></td>
-<td>Open command-t for open buffers</td>
-</tr>
-<tr>
-<td><code>&lt;c-f&gt;</code></td>
-<td>Flush path cash and rescan directory</td>
-</tr>
-<tr>
-<td><code>&lt;c-v&gt;</code></td>
-<td>Open file in vertical split</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;c-o&gt;</code></td>
+          <td>Open or close command-t</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-i&gt;</code></td>
+          <td>Open command-t for open buffers</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-f&gt;</code></td>
+          <td>Flush path cash and rescan directory</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-v&gt;</code></td>
+          <td>Open file in vertical split</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>netrw</code> commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>e[dit].</code></td>
-<td>Open file explorer for current working directory</td>
-</tr>
-<tr>
-<td><code>E[xplore]</code></td>
-<td>Open file explorer for the directory of active buffer</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>Open new file in current directory</td>
-</tr>
-<tr>
-<td><code>d</code></td>
-<td>Create new directory in current one</td>
-</tr>
-<tr>
-<td><code>R</code></td>
-<td>Rename file or directory under cursor</td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td>Delete file or directory under cursor</td>
-</tr>
-<tr>
-<td><code>gh</code></td>
-<td>Toggle hiding dot-files</td>
-</tr>
-<tr>
-<td><code>:Ve</code></td>
-<td>Open explorer in vertical split</td>
-</tr>
-<tr>
-<td><code>:Rex</code></td>
-<td>Exit/return to explorer</td>
-</tr>
-<tr>
-<td><code>&lt;c-l&gt;</code></td>
-<td>Refresh listing</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>e[dit].</code></td>
+          <td>Open file explorer for current working directory</td>
+      </tr>
+      <tr>
+          <td><code>E[xplore]</code></td>
+          <td>Open file explorer for the directory of active buffer</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>Open new file in current directory</td>
+      </tr>
+      <tr>
+          <td><code>d</code></td>
+          <td>Create new directory in current one</td>
+      </tr>
+      <tr>
+          <td><code>R</code></td>
+          <td>Rename file or directory under cursor</td>
+      </tr>
+      <tr>
+          <td><code>D</code></td>
+          <td>Delete file or directory under cursor</td>
+      </tr>
+      <tr>
+          <td><code>gh</code></td>
+          <td>Toggle hiding dot-files</td>
+      </tr>
+      <tr>
+          <td><code>:Ve</code></td>
+          <td>Open explorer in vertical split</td>
+      </tr>
+      <tr>
+          <td><code>:Rex</code></td>
+          <td>Exit/return to explorer</td>
+      </tr>
+      <tr>
+          <td><code>&lt;c-l&gt;</code></td>
+          <td>Refresh listing</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="navigation">Navigation</h2>
 <ul>
@@ -1405,26 +1409,26 @@ right).</p>
 <h3 id="within-files">Within files</h3>
 <p>General:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-g&gt;</code></td>
-<td>Shows current filepath and line number</td>
-</tr>
-<tr>
-<td><code>zz</code></td>
-<td>Redraw current line in middle of window</td>
-</tr>
-<tr>
-<td><code>zt</code></td>
-<td>Redraw current line at top of window</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-g&gt;</code></td>
+          <td>Shows current filepath and line number</td>
+      </tr>
+      <tr>
+          <td><code>zz</code></td>
+          <td>Redraw current line in middle of window</td>
+      </tr>
+      <tr>
+          <td><code>zt</code></td>
+          <td>Redraw current line at top of window</td>
+      </tr>
+  </tbody>
 </table>
 <p>Left-right and up-down:</p>
 <ul>
@@ -1441,85 +1445,85 @@ screen-wise scrolling.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>h</code>/<code>l</code></td>
-<td>Move left/right (use <code>[count]</code> as needed)</td>
-</tr>
-<tr>
-<td><code>j</code>/<code>k</code></td>
-<td>Down/up one line (think of <code>j</code> as a down arrow, use <code>[count]</code> as needed)</td>
-</tr>
-<tr>
-<td><code>gj</code>/<code>gk</code></td>
-<td>Down/up by display rather than real lines</td>
-</tr>
-<tr>
-<td><code>0</code>/<code>^</code>/<code>$</code></td>
-<td>To first non-blank/first/last character of line</td>
-</tr>
-<tr>
-<td><code>G</code></td>
-<td>Goto line <code>[count]</code>, default is last line</td>
-</tr>
-<tr>
-<td><code>gg</code></td>
-<td>Goto line <code>[count]</code>, default is first line</td>
-</tr>
-<tr>
-<td><code>f{char}</code>/<code>F{char}</code></td>
-<td>To next occurrence of {char} to the right/left</td>
-</tr>
-<tr>
-<td><code>t{char}</code>/<code>T{char}</code></td>
-<td>Till (before) next occurrence of {char} to the right/left</td>
-</tr>
-<tr>
-<td><code>H</code>/<code>M</code>/<code>L</code></td>
-<td>Jump to the top/middle/bottom of the screen</td>
-</tr>
-<tr>
-<td><code>&lt;C-e&gt;</code>/<code>&lt;C-y&gt;</code></td>
-<td>Scroll down/up linewise</td>
-</tr>
-<tr>
-<td><code>&lt;C-d&gt;</code>/<code>&lt;C-u&gt;</code></td>
-<td>Scroll down/up half-screen-wise (&ldquo;down-up&rdquo;)</td>
-</tr>
-<tr>
-<td><code>&lt;C-f&gt;</code>/<code>&lt;C-b&gt;</code></td>
-<td>Scroll down/up screen-wise (&ldquo;forwards-backwards&rdquo;)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>h</code>/<code>l</code></td>
+          <td>Move left/right (use <code>[count]</code> as needed)</td>
+      </tr>
+      <tr>
+          <td><code>j</code>/<code>k</code></td>
+          <td>Down/up one line (think of <code>j</code> as a down arrow, use <code>[count]</code> as needed)</td>
+      </tr>
+      <tr>
+          <td><code>gj</code>/<code>gk</code></td>
+          <td>Down/up by display rather than real lines</td>
+      </tr>
+      <tr>
+          <td><code>0</code>/<code>^</code>/<code>$</code></td>
+          <td>To first non-blank/first/last character of line</td>
+      </tr>
+      <tr>
+          <td><code>G</code></td>
+          <td>Goto line <code>[count]</code>, default is last line</td>
+      </tr>
+      <tr>
+          <td><code>gg</code></td>
+          <td>Goto line <code>[count]</code>, default is first line</td>
+      </tr>
+      <tr>
+          <td><code>f{char}</code>/<code>F{char}</code></td>
+          <td>To next occurrence of {char} to the right/left</td>
+      </tr>
+      <tr>
+          <td><code>t{char}</code>/<code>T{char}</code></td>
+          <td>Till (before) next occurrence of {char} to the right/left</td>
+      </tr>
+      <tr>
+          <td><code>H</code>/<code>M</code>/<code>L</code></td>
+          <td>Jump to the top/middle/bottom of the screen</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-e&gt;</code>/<code>&lt;C-y&gt;</code></td>
+          <td>Scroll down/up linewise</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-d&gt;</code>/<code>&lt;C-u&gt;</code></td>
+          <td>Scroll down/up half-screen-wise (&ldquo;down-up&rdquo;)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-f&gt;</code>/<code>&lt;C-b&gt;</code></td>
+          <td>Scroll down/up screen-wise (&ldquo;forwards-backwards&rdquo;)</td>
+      </tr>
+  </tbody>
 </table>
 <p>Words:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>w</code>/<code>e</code></td>
-<td>Forward to start/end of current or next word</td>
-</tr>
-<tr>
-<td><code>b</code>/<code>ge</code></td>
-<td>Backward to start/end of current or previous word</td>
-</tr>
-<tr>
-<td><code>W</code>, <code>E</code>, <code>B</code></td>
-<td>Move WORD rather than word wise</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>w</code>/<code>e</code></td>
+          <td>Forward to start/end of current or next word</td>
+      </tr>
+      <tr>
+          <td><code>b</code>/<code>ge</code></td>
+          <td>Backward to start/end of current or previous word</td>
+      </tr>
+      <tr>
+          <td><code>W</code>, <code>E</code>, <code>B</code></td>
+          <td>Move WORD rather than word wise</td>
+      </tr>
+  </tbody>
 </table>
 <p>Text objects:</p>
 <ul>
@@ -1541,95 +1545,95 @@ the parentheses themselves, while <code>va)</code> highlights the parentheses as
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>)</code>/<code>(</code></td>
-<td>Move [count] sentences forward/backward</td>
-</tr>
-<tr>
-<td><code>}</code>/<code>{</code></td>
-<td>Move [count] paragraphs forward/backward</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>)</code>/<code>(</code></td>
+          <td>Move [count] sentences forward/backward</td>
+      </tr>
+      <tr>
+          <td><code>}</code>/<code>{</code></td>
+          <td>Move [count] paragraphs forward/backward</td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Select inside or around&hellip;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>w</code>/<code>W</code></td>
-<td>word/WORD</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td>sentence</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>paragraph</td>
-</tr>
-<tr>
-<td><code>]</code></td>
-<td>a <code>[]</code> block</td>
-</tr>
-<tr>
-<td><code>)</code> or <code>b</code></td>
-<td>a <code>()</code> block</td>
-</tr>
-<tr>
-<td><code>}</code> or <code>B</code></td>
-<td>a <code>{}</code> block</td>
-</tr>
-<tr>
-<td><code>&lt;</code></td>
-<td>a <code>&lt;&gt;</code> block</td>
-</tr>
-<tr>
-<td><code>t</code></td>
-<td>a tag block</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Select inside or around&hellip;</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>w</code>/<code>W</code></td>
+          <td>word/WORD</td>
+      </tr>
+      <tr>
+          <td><code>s</code></td>
+          <td>sentence</td>
+      </tr>
+      <tr>
+          <td><code>p</code></td>
+          <td>paragraph</td>
+      </tr>
+      <tr>
+          <td><code>]</code></td>
+          <td>a <code>[]</code> block</td>
+      </tr>
+      <tr>
+          <td><code>)</code> or <code>b</code></td>
+          <td>a <code>()</code> block</td>
+      </tr>
+      <tr>
+          <td><code>}</code> or <code>B</code></td>
+          <td>a <code>{}</code> block</td>
+      </tr>
+      <tr>
+          <td><code>&lt;</code></td>
+          <td>a <code>&lt;&gt;</code> block</td>
+      </tr>
+      <tr>
+          <td><code>t</code></td>
+          <td>a tag block</td>
+      </tr>
+  </tbody>
 </table>
 <p>Marks:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>m{a-zA-Z}</code></td>
-<td>Set lowercase (local) or uppercase (global) mark</td>
-</tr>
-<tr>
-<td><code>`{mark}</code></td>
-<td>Jump to mark</td>
-</tr>
-<tr>
-<td>double-backquote</td>
-<td>Go to position before last jump</td>
-</tr>
-<tr>
-<td><code>`.</code></td>
-<td>Go to position of last change</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>Go to matching bracket</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>m{a-zA-Z}</code></td>
+          <td>Set lowercase (local) or uppercase (global) mark</td>
+      </tr>
+      <tr>
+          <td><code>`{mark}</code></td>
+          <td>Jump to mark</td>
+      </tr>
+      <tr>
+          <td>double-backquote</td>
+          <td>Go to position before last jump</td>
+      </tr>
+      <tr>
+          <td><code>`.</code></td>
+          <td>Go to position of last change</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>Go to matching bracket</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="between-files">Between files</h3>
 <ul>
@@ -1638,38 +1642,38 @@ WORD-wise).</li>
 </ul>
 <p>Traversing the jumps and changes lists</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:jumps</code></td>
-<td>Show the jump list</td>
-</tr>
-<tr>
-<td><code>&lt;C-o&gt;</code>/<code>&lt;C-i&gt;</code></td>
-<td>Traverse jump history backwards/forwards</td>
-</tr>
-<tr>
-<td><code>:changes</code></td>
-<td>Show the change list</td>
-</tr>
-<tr>
-<td><code>g;</code>/<code>g,</code></td>
-<td>Traverse change list backwards/forwards</td>
-</tr>
-<tr>
-<td><code>gf</code></td>
-<td>Jump to file under cursor</td>
-</tr>
-<tr>
-<td><code>&lt;C-]&gt;</code></td>
-<td>Jump to definition of keyword under cursor</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:jumps</code></td>
+          <td>Show the jump list</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-o&gt;</code>/<code>&lt;C-i&gt;</code></td>
+          <td>Traverse jump history backwards/forwards</td>
+      </tr>
+      <tr>
+          <td><code>:changes</code></td>
+          <td>Show the change list</td>
+      </tr>
+      <tr>
+          <td><code>g;</code>/<code>g,</code></td>
+          <td>Traverse change list backwards/forwards</td>
+      </tr>
+      <tr>
+          <td><code>gf</code></td>
+          <td>Jump to file under cursor</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-]&gt;</code></td>
+          <td>Jump to definition of keyword under cursor</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="back-and-forth">Back and forth</h3>
 <ul>
@@ -1681,22 +1685,22 @@ lowercase jumpts to first or last (e.g.  <code>[b</code> moves to previous buffe
 jumps to first one).</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>]&lt;space&gt;</code>/<code>[&lt;space&gt;</code></td>
-<td>Add [count] blank lines below/above the cursor</td>
-</tr>
-<tr>
-<td><code>]e</code>/<code>[e</code></td>
-<td>Exchanges the current line with the one below/above</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>]&lt;space&gt;</code>/<code>[&lt;space&gt;</code></td>
+          <td>Add [count] blank lines below/above the cursor</td>
+      </tr>
+      <tr>
+          <td><code>]e</code>/<code>[e</code></td>
+          <td>Exchanges the current line with the one below/above</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="registers">Registers</h2>
 <h3 id="copy-and-paste">Copy and paste</h3>
@@ -1724,70 +1728,70 @@ press <code>&lt;CR&gt;</code>, Vim will coerce the result into a string if possi
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;{reg}{cmd}</code></td>
-<td>Make {cmd} interact with register {reg}</td>
-</tr>
-<tr>
-<td><code>&quot;&quot;</code></td>
-<td>The unnamed register (redundant, as it&rsquo;s the default)</td>
-</tr>
-<tr>
-<td><code>&quot;0</code></td>
-<td>The yank register</td>
-</tr>
-<tr>
-<td><code>&quot;_</code></td>
-<td>The black hole register (nothing returns from it)</td>
-</tr>
-<tr>
-<td><code>&quot;{a-z}</code></td>
-<td>Named registers (replace with {a-z}, append with {A-Z})</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>&quot;+</code></td>
-<td>The system clipboard</td>
-</tr>
-<tr>
-<td><code>&quot;%</code></td>
-<td>Name of current file (e.g. <code>&quot;%p</code>)</td>
-</tr>
-<tr>
-<td><code>&quot;#</code></td>
-<td>Name of alternate file</td>
-</tr>
-<tr>
-<td><code>&quot;.</code></td>
-<td>Last inserted text</td>
-</tr>
-<tr>
-<td><code>&quot;:</code></td>
-<td>Last Ex command</td>
-</tr>
-<tr>
-<td><code>&quot;/</code></td>
-<td>Last search pattern</td>
-</tr>
-<tr>
-<td><code>:reg[ister] [reg]</code></td>
-<td>List content of registers <em>reg</em>, all by default</td>
-</tr>
-<tr>
-<td><code>&lt;C-r&gt;{reg}</code></td>
-<td>Paste content of {reg} in insert mode</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&quot;{reg}{cmd}</code></td>
+          <td>Make {cmd} interact with register {reg}</td>
+      </tr>
+      <tr>
+          <td><code>&quot;&quot;</code></td>
+          <td>The unnamed register (redundant, as it&rsquo;s the default)</td>
+      </tr>
+      <tr>
+          <td><code>&quot;0</code></td>
+          <td>The yank register</td>
+      </tr>
+      <tr>
+          <td><code>&quot;_</code></td>
+          <td>The black hole register (nothing returns from it)</td>
+      </tr>
+      <tr>
+          <td><code>&quot;{a-z}</code></td>
+          <td>Named registers (replace with {a-z}, append with {A-Z})</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>&quot;+</code></td>
+          <td>The system clipboard</td>
+      </tr>
+      <tr>
+          <td><code>&quot;%</code></td>
+          <td>Name of current file (e.g. <code>&quot;%p</code>)</td>
+      </tr>
+      <tr>
+          <td><code>&quot;#</code></td>
+          <td>Name of alternate file</td>
+      </tr>
+      <tr>
+          <td><code>&quot;.</code></td>
+          <td>Last inserted text</td>
+      </tr>
+      <tr>
+          <td><code>&quot;:</code></td>
+          <td>Last Ex command</td>
+      </tr>
+      <tr>
+          <td><code>&quot;/</code></td>
+          <td>Last search pattern</td>
+      </tr>
+      <tr>
+          <td><code>:reg[ister] [reg]</code></td>
+          <td>List content of registers <em>reg</em>, all by default</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-r&gt;{reg}</code></td>
+          <td>Paste content of {reg} in insert mode</td>
+      </tr>
+  </tbody>
 </table>
 <p>Useful patterns:</p>
 <ul>
@@ -1819,34 +1823,34 @@ none are left). But if it&rsquo;s not, then the latter approach is more useful
 lines).</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>q{a-z}</code></td>
-<td>Start recording macro to register</td>
-</tr>
-<tr>
-<td><code>q</code></td>
-<td>End recording</td>
-</tr>
-<tr>
-<td><code>[count]@{a-z}</code></td>
-<td>Invoke macro in register [count] times</td>
-</tr>
-<tr>
-<td><code>@@</code></td>
-<td>Replay last invoked macro</td>
-</tr>
-<tr>
-<td><code>q{A-Z}</code></td>
-<td>Append to macro (e.g. if I forgot something)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>q{a-z}</code></td>
+          <td>Start recording macro to register</td>
+      </tr>
+      <tr>
+          <td><code>q</code></td>
+          <td>End recording</td>
+      </tr>
+      <tr>
+          <td><code>[count]@{a-z}</code></td>
+          <td>Invoke macro in register [count] times</td>
+      </tr>
+      <tr>
+          <td><code>@@</code></td>
+          <td>Replay last invoked macro</td>
+      </tr>
+      <tr>
+          <td><code>q{A-Z}</code></td>
+          <td>Append to macro (e.g. if I forgot something)</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -2012,46 +2016,46 @@ in my pattern.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\c</code></td>
-<td>Force case insensitive search</td>
-</tr>
-<tr>
-<td><code>\C</code></td>
-<td>Force case sensitive search</td>
-</tr>
-<tr>
-<td><code>\v</code> (very magic)</td>
-<td>All characters assume special meaning (regex-like search)</td>
-</tr>
-<tr>
-<td><code>\V</code> (very nomagic)</td>
-<td>No character but &ldquo;&quot; has special meaning (verbatim search)</td>
-</tr>
-<tr>
-<td><code>()</code></td>
-<td>Capture matched pattern inside and store in numbered silo</td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>When before <code>()</code>, don&rsquo;t capture submatch</td>
-</tr>
-<tr>
-<td><code>&lt;</code>/<code>&gt;</code></td>
-<td>Word boundaries when used with <code>\v</code> switch</td>
-</tr>
-<tr>
-<td><code>\zs</code>/<code>\ze</code></td>
-<td>Start and end of match</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\c</code></td>
+          <td>Force case insensitive search</td>
+      </tr>
+      <tr>
+          <td><code>\C</code></td>
+          <td>Force case sensitive search</td>
+      </tr>
+      <tr>
+          <td><code>\v</code> (very magic)</td>
+          <td>All characters assume special meaning (regex-like search)</td>
+      </tr>
+      <tr>
+          <td><code>\V</code> (very nomagic)</td>
+          <td>No character but &ldquo;&quot; has special meaning (verbatim search)</td>
+      </tr>
+      <tr>
+          <td><code>()</code></td>
+          <td>Capture matched pattern inside and store in numbered silo</td>
+      </tr>
+      <tr>
+          <td><code>%</code></td>
+          <td>When before <code>()</code>, don&rsquo;t capture submatch</td>
+      </tr>
+      <tr>
+          <td><code>&lt;</code>/<code>&gt;</code></td>
+          <td>Word boundaries when used with <code>\v</code> switch</td>
+      </tr>
+      <tr>
+          <td><code>\zs</code>/<code>\ze</code></td>
+          <td>Start and end of match</td>
+      </tr>
+  </tbody>
 </table>
 <p>Useful patterns:</p>
 <ul>
@@ -2116,42 +2120,42 @@ atom is what restricts the substitution to the last selected area.</li>
 <h3 id="search">Search</h3>
 <h4 id="within-a-file">Within a file</h4>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/&lt;CR&gt;</code></td>
-<td>Search previous pattern forward</td>
-</tr>
-<tr>
-<td><code>?&lt;CR&gt;</code></td>
-<td>Search previous pattern backwards</td>
-</tr>
-<tr>
-<td><code>/&lt;UP&gt;</code></td>
-<td>Access search history (similar for backward search)</td>
-</tr>
-<tr>
-<td><code>&lt;C-r&gt;&lt;C-w&gt;</code></td>
-<td>Autocomplete search field based on preview match</td>
-</tr>
-<tr>
-<td><code>/{pattern}/e&lt;CR&gt;</code></td>
-<td>Use search offset to jump to end of match (`h:</td>
-</tr>
-<tr>
-<td>search-offset` for more offset options)</td>
-<td></td>
-</tr>
-<tr>
-<td><code>gn</code></td>
-<td>Operate on a complete search match</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/&lt;CR&gt;</code></td>
+          <td>Search previous pattern forward</td>
+      </tr>
+      <tr>
+          <td><code>?&lt;CR&gt;</code></td>
+          <td>Search previous pattern backwards</td>
+      </tr>
+      <tr>
+          <td><code>/&lt;UP&gt;</code></td>
+          <td>Access search history (similar for backward search)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-r&gt;&lt;C-w&gt;</code></td>
+          <td>Autocomplete search field based on preview match</td>
+      </tr>
+      <tr>
+          <td><code>/{pattern}/e&lt;CR&gt;</code></td>
+          <td>Use search offset to jump to end of match (`h:</td>
+      </tr>
+      <tr>
+          <td>search-offset` for more offset options)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>gn</code></td>
+          <td>Operate on a complete search match</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -2245,80 +2249,80 @@ there in all files.</p>
 </ul>
 <p>Flags:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>g</code></td>
-<td>Substitute all matches on line (global)</td>
-</tr>
-<tr>
-<td><code>c</code></td>
-<td>Confirm substitution</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td>Count number of matches instead of substitution</td>
-</tr>
-<tr>
-<td><code>&amp;</code></td>
-<td>Reuse flags from previous substitution</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>g</code></td>
+          <td>Substitute all matches on line (global)</td>
+      </tr>
+      <tr>
+          <td><code>c</code></td>
+          <td>Confirm substitution</td>
+      </tr>
+      <tr>
+          <td><code>n</code></td>
+          <td>Count number of matches instead of substitution</td>
+      </tr>
+      <tr>
+          <td><code>&amp;</code></td>
+          <td>Reuse flags from previous substitution</td>
+      </tr>
+  </tbody>
 </table>
 <p>Replacement strings:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\1</code></td>
-<td>Insert first submatch (similar for {1-9})</td>
-</tr>
-<tr>
-<td><code>\0</code>/<code>&amp;</code></td>
-<td>Insert entire matched pattern</td>
-</tr>
-<tr>
-<td><code>~</code></td>
-<td>Use string from previous substitution</td>
-</tr>
-<tr>
-<td><code>\={vim scrip}</code></td>
-<td>Evaluate vim-script expression</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\1</code></td>
+          <td>Insert first submatch (similar for {1-9})</td>
+      </tr>
+      <tr>
+          <td><code>\0</code>/<code>&amp;</code></td>
+          <td>Insert entire matched pattern</td>
+      </tr>
+      <tr>
+          <td><code>~</code></td>
+          <td>Use string from previous substitution</td>
+      </tr>
+      <tr>
+          <td><code>\={vim scrip}</code></td>
+          <td>Evaluate vim-script expression</td>
+      </tr>
+  </tbody>
 </table>
 <p>Useful commands</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:&amp;</code></td>
-<td>Rerun last substitution (flags aren&rsquo;t remembered)</td>
-</tr>
-<tr>
-<td><code>:&amp;&amp;</code></td>
-<td>Rerun last substitution and reuse flags</td>
-</tr>
-<tr>
-<td><code>:g&amp;</code></td>
-<td>Rerun last search globally</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:&amp;</code></td>
+          <td>Rerun last substitution (flags aren&rsquo;t remembered)</td>
+      </tr>
+      <tr>
+          <td><code>:&amp;&amp;</code></td>
+          <td>Rerun last substitution and reuse flags</td>
+      </tr>
+      <tr>
+          <td><code>:g&amp;</code></td>
+          <td>Rerun last search globally</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercise:</p>
 <ol>
@@ -2393,26 +2397,26 @@ sorting example below.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>g[lobal]</code></td>
-<td>Global command</td>
-</tr>
-<tr>
-<td><code>v[global]</code></td>
-<td>Invert global</td>
-</tr>
-<tr>
-<td><code>g[lobal]!</code></td>
-<td>Invert global</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>g[lobal]</code></td>
+          <td>Global command</td>
+      </tr>
+      <tr>
+          <td><code>v[global]</code></td>
+          <td>Invert global</td>
+      </tr>
+      <tr>
+          <td><code>g[lobal]!</code></td>
+          <td>Invert global</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -2478,26 +2482,26 @@ for each line in turn that matches the <code>/{/</code> pattern.</p>
 </ol>
 <h2 id="folds">Folds</h2>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>zR</code></td>
-<td>Open all folds</td>
-</tr>
-<tr>
-<td><code>zM</code></td>
-<td>Close all folds</td>
-</tr>
-<tr>
-<td><code>&lt;leader&gt;&lt;space&gt;</code></td>
-<td>Toggle fold under cursor (mapping of <code>za</code>)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>zR</code></td>
+          <td>Open all folds</td>
+      </tr>
+      <tr>
+          <td><code>zM</code></td>
+          <td>Close all folds</td>
+      </tr>
+      <tr>
+          <td><code>&lt;leader&gt;&lt;space&gt;</code></td>
+          <td>Toggle fold under cursor (mapping of <code>za</code>)</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="mappings">Mappings</h2>
 <ul>
@@ -2517,58 +2521,58 @@ option.  To define non-recursive mappings, we can use the <code>noremap</code> m
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:nmap {char}</code></td>
-<td>List all normal mode mappings starting with {char}</td>
-</tr>
-<tr>
-<td><code>:verbose nmap {char}</code></td>
-<td>As above, but shows location where maps are defined</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>:nmap {char}</code></td>
+          <td>List all normal mode mappings starting with {char}</td>
+      </tr>
+      <tr>
+          <td><code>:verbose nmap {char}</code></td>
+          <td>As above, but shows location where maps are defined</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="editing">Editing</h2>
 <h3 id="autocompletion">Autocompletion</h3>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-n&gt;</code>/<code>&lt;C-p&gt;</code></td>
-<td>Trigger autocompletion and navigate</td>
-</tr>
-<tr>
-<td><code>&lt;C-e&gt;</code></td>
-<td>Dismiss autocomplete window</td>
-</tr>
-<tr>
-<td><code>&lt;C-n&gt;&lt;C-p&gt;</code></td>
-<td>Filter suggestions as we type</td>
-</tr>
-<tr>
-<td><code>&lt;C-x&gt;&lt;C-k&gt;</code></td>
-<td>Dictionary lookup (requires spellchecker on - <code>yos</code>)</td>
-</tr>
-<tr>
-<td><code>&lt;C-x&gt;&lt;C-l&gt;</code></td>
-<td>Autocomplete entire line</td>
-</tr>
-<tr>
-<td><code>&lt;C-x&gt;&lt;C-f&gt;</code></td>
-<td>Autocomplete filename (relative to pwd)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-n&gt;</code>/<code>&lt;C-p&gt;</code></td>
+          <td>Trigger autocompletion and navigate</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-e&gt;</code></td>
+          <td>Dismiss autocomplete window</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-n&gt;&lt;C-p&gt;</code></td>
+          <td>Filter suggestions as we type</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-x&gt;&lt;C-k&gt;</code></td>
+          <td>Dictionary lookup (requires spellchecker on - <code>yos</code>)</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-x&gt;&lt;C-l&gt;</code></td>
+          <td>Autocomplete entire line</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-x&gt;&lt;C-f&gt;</code></td>
+          <td>Autocomplete filename (relative to pwd)</td>
+      </tr>
+  </tbody>
 </table>
 <p>I&rsquo;ve experimented with <code>youcompleteme</code>, which I deleted again because its too
 clunky for my taste. In case I want to install again in the future, this might
@@ -2582,107 +2586,107 @@ Followed the suggestion in the link. I first tried compiling with
 which seems to have worked.</p>
 <p>### Spell checking</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>yos</code></td>
-<td>Toggle spell checker (uses <code>vim-unimpaired</code>)</td>
-</tr>
-<tr>
-<td><code>]s</code>/<code>[s</code></td>
-<td>Jump to next/previous misspelled word</td>
-</tr>
-<tr>
-<td><code>z=</code></td>
-<td>Suggest corrections</td>
-</tr>
-<tr>
-<td><code>[n]z=</code></td>
-<td>Correct word with nth suggestion</td>
-</tr>
-<tr>
-<td><code>zg</code></td>
-<td>Add current word to spell file (mnem: &ldquo;good&rdquo;)</td>
-</tr>
-<tr>
-<td><code>zw</code></td>
-<td>Remove current word from spell file (mnem: &ldquo;wrong&rdquo;)</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>zug</code></td>
-<td>Revert <code>zg</code> or <code>zw</code> command for current word</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>yos</code></td>
+          <td>Toggle spell checker (uses <code>vim-unimpaired</code>)</td>
+      </tr>
+      <tr>
+          <td><code>]s</code>/<code>[s</code></td>
+          <td>Jump to next/previous misspelled word</td>
+      </tr>
+      <tr>
+          <td><code>z=</code></td>
+          <td>Suggest corrections</td>
+      </tr>
+      <tr>
+          <td><code>[n]z=</code></td>
+          <td>Correct word with nth suggestion</td>
+      </tr>
+      <tr>
+          <td><code>zg</code></td>
+          <td>Add current word to spell file (mnem: &ldquo;good&rdquo;)</td>
+      </tr>
+      <tr>
+          <td><code>zw</code></td>
+          <td>Remove current word from spell file (mnem: &ldquo;wrong&rdquo;)</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>zug</code></td>
+          <td>Revert <code>zg</code> or <code>zw</code> command for current word</td>
+      </tr>
+  </tbody>
 </table>
 <p>### Formatting</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>gq{motion}</code></td>
-<td>Formats text, defaults to wrapping long lines.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>gq{motion}</code></td>
+          <td>Formats text, defaults to wrapping long lines.</td>
+      </tr>
+  </tbody>
 </table>
 <p>### Case coercion</p>
 <p>Uses <a href="https://github.com/tpope/vim-abolish" target="_blank" rel="noopener noreffer ">vim-abolish</a>, which deals with word
 variants and provides powerful searching, grepping, substitution and case
 coercion.</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>crs</code></td>
-<td>Coerce to <code>snake_case</code></td>
-</tr>
-<tr>
-<td><code>crc</code></td>
-<td>Coerce to <code>camelCase</code></td>
-</tr>
-<tr>
-<td><code>crm</code></td>
-<td>Coerce to <code>MixedCase</code></td>
-</tr>
-<tr>
-<td><code>cru</code></td>
-<td>Coerce to <code>UPPER_CASE</code></td>
-</tr>
-<tr>
-<td><code>cr-</code></td>
-<td>Coerce to <code>dash-case</code></td>
-</tr>
-<tr>
-<td><code>cr.</code></td>
-<td>Coerce to <code>dot.case</code></td>
-</tr>
-<tr>
-<td><code>cr&lt;space&gt;</code></td>
-<td>Coerce to <code>space case</code></td>
-</tr>
-<tr>
-<td><code>crt</code></td>
-<td>Coerce to <code>Title Case</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>crs</code></td>
+          <td>Coerce to <code>snake_case</code></td>
+      </tr>
+      <tr>
+          <td><code>crc</code></td>
+          <td>Coerce to <code>camelCase</code></td>
+      </tr>
+      <tr>
+          <td><code>crm</code></td>
+          <td>Coerce to <code>MixedCase</code></td>
+      </tr>
+      <tr>
+          <td><code>cru</code></td>
+          <td>Coerce to <code>UPPER_CASE</code></td>
+      </tr>
+      <tr>
+          <td><code>cr-</code></td>
+          <td>Coerce to <code>dash-case</code></td>
+      </tr>
+      <tr>
+          <td><code>cr.</code></td>
+          <td>Coerce to <code>dot.case</code></td>
+      </tr>
+      <tr>
+          <td><code>cr&lt;space&gt;</code></td>
+          <td>Coerce to <code>space case</code></td>
+      </tr>
+      <tr>
+          <td><code>crt</code></td>
+          <td>Coerce to <code>Title Case</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -2735,30 +2739,30 @@ local <code>.git/hooks</code>, and then <code>git ctags</code> to index the code
 </ul>
 <p>Ctag commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;C-]&gt;</code></td>
-<td>Jump to definition of keyword under cursor</td>
-</tr>
-<tr>
-<td><code>g&lt;C-]&gt;</code></td>
-<td>As above, but select definition if there are multiple</td>
-</tr>
-<tr>
-<td><code>:tag {keyword}</code></td>
-<td>Jump to definition of keyword</td>
-</tr>
-<tr>
-<td><code>:tjump {keyword}</code></td>
-<td>As above, but select definition if there are multiple</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&lt;C-]&gt;</code></td>
+          <td>Jump to definition of keyword under cursor</td>
+      </tr>
+      <tr>
+          <td><code>g&lt;C-]&gt;</code></td>
+          <td>As above, but select definition if there are multiple</td>
+      </tr>
+      <tr>
+          <td><code>:tag {keyword}</code></td>
+          <td>Jump to definition of keyword</td>
+      </tr>
+      <tr>
+          <td><code>:tjump {keyword}</code></td>
+          <td>As above, but select definition if there are multiple</td>
+      </tr>
+  </tbody>
 </table>
 <ul>
 <li>Look into using <code>matchit</code> or something similar for faster code navigation.</li>
@@ -2778,105 +2782,105 @@ vimtex, most shortcuts use <code>localleader</code>, which, by default, is set t
 </ul>
 <p>Vimtex commands:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\ll</code></td>
-<td>Toggle continuous compilation using <code>latexmk</code></td>
-</tr>
-<tr>
-<td><code>\lk</code></td>
-<td>Kill compilation process</td>
-</tr>
-<tr>
-<td><code>\lc</code></td>
-<td>Clear auxiliary files</td>
-</tr>
-<tr>
-<td><code>\lt</code></td>
-<td>Show table of contents</td>
-</tr>
-<tr>
-<td><code>\ds{c/e/$/d}</code></td>
-<td>Delete surrounding command/environment/math env/delimiter</td>
-</tr>
-<tr>
-<td><code>\cs{c/e/$/d}</code></td>
-<td>Change surrounding command/environment/math env/delimiter</td>
-</tr>
-<tr>
-<td><code>:VimtexDocPackage</code></td>
-<td>Show docs for argument under cursor or supplied package</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>:VimtexCountWords</code></td>
-<td>Count words in document</td>
-</tr>
-<tr>
-<td><code>&lt;C-x&gt;&lt;C-o&gt;/</code></td>
-<td>Citation completion (inside <code>\cite{</code>)</td>
-</tr>
-<tr>
-<td><code>]]</code></td>
-<td>To next section</td>
-</tr>
-<tr>
-<td><code>]m</code></td>
-<td>To next environment</td>
-</tr>
-<tr>
-<td><code>]n</code></td>
-<td>To next math zone</td>
-</tr>
-<tr>
-<td><code>]r</code></td>
-<td>To next frame</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\ll</code></td>
+          <td>Toggle continuous compilation using <code>latexmk</code></td>
+      </tr>
+      <tr>
+          <td><code>\lk</code></td>
+          <td>Kill compilation process</td>
+      </tr>
+      <tr>
+          <td><code>\lc</code></td>
+          <td>Clear auxiliary files</td>
+      </tr>
+      <tr>
+          <td><code>\lt</code></td>
+          <td>Show table of contents</td>
+      </tr>
+      <tr>
+          <td><code>\ds{c/e/$/d}</code></td>
+          <td>Delete surrounding command/environment/math env/delimiter</td>
+      </tr>
+      <tr>
+          <td><code>\cs{c/e/$/d}</code></td>
+          <td>Change surrounding command/environment/math env/delimiter</td>
+      </tr>
+      <tr>
+          <td><code>:VimtexDocPackage</code></td>
+          <td>Show docs for argument under cursor or supplied package</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>:VimtexCountWords</code></td>
+          <td>Count words in document</td>
+      </tr>
+      <tr>
+          <td><code>&lt;C-x&gt;&lt;C-o&gt;/</code></td>
+          <td>Citation completion (inside <code>\cite{</code>)</td>
+      </tr>
+      <tr>
+          <td><code>]]</code></td>
+          <td>To next section</td>
+      </tr>
+      <tr>
+          <td><code>]m</code></td>
+          <td>To next environment</td>
+      </tr>
+      <tr>
+          <td><code>]n</code></td>
+          <td>To next math zone</td>
+      </tr>
+      <tr>
+          <td><code>]r</code></td>
+          <td>To next frame</td>
+      </tr>
+  </tbody>
 </table>
 <p>Vimtex text objects:</p>
 <table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>c</code></td>
-<td>Command</td>
-</tr>
-<tr>
-<td><code>d</code></td>
-<td>Delimiters (e.g. <code>[</code>, <code>{</code>)</td>
-</tr>
-<tr>
-<td><code>e</code></td>
-<td>Environment</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>Inline math environment</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>Sections</td>
-</tr>
-<tr>
-<td><code>m</code></td>
-<td>Items</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Effect</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>c</code></td>
+          <td>Command</td>
+      </tr>
+      <tr>
+          <td><code>d</code></td>
+          <td>Delimiters (e.g. <code>[</code>, <code>{</code>)</td>
+      </tr>
+      <tr>
+          <td><code>e</code></td>
+          <td>Environment</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td>Inline math environment</td>
+      </tr>
+      <tr>
+          <td><code>P</code></td>
+          <td>Sections</td>
+      </tr>
+      <tr>
+          <td><code>m</code></td>
+          <td>Items</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="obscurities">Obscurities</h2>
 <ul>
@@ -2951,19 +2955,18 @@ tutorial</a></li>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/cheatsheet/">cheatsheet</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a>,&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/makefiles/" class="prev" rel="prev" title="Makefiles"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Makefiles</a>
-            <a href="/python-string-formatting/" class="next" rel="next" title="Python string formatting">Python string formatting<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -2972,5 +2975,5 @@ tutorial</a></li>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

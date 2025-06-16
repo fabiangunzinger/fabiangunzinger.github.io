@@ -1,6 +1,7 @@
 # Tree-based methods
 
 
+
 -   Trees
     -   Are an easy and intuitive way to split data within a sample. 
     -   Problem, they are not good at predicting out-of-sample (with different datasets)  

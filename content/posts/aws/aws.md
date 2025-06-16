@@ -1,9 +1,10 @@
 ---
-title: "AWS"
-date: "2020-03-14"
+title: AWS
+date: '2020-03-14'
 tags:
-    - tools
+  - tools
 ---
+
 
 Frequently used interaction patterns with AWS.
 

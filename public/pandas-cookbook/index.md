@@ -1,8 +1,9 @@
 # Pandas cookbook
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -52,15 +53,15 @@ df
 
 |     | case | data      |
 |-----|------|-----------|
-| 0   | A    | -0.900566 |
-| 1   | A    | -1.127128 |
-| 2   | A    | 0.342823  |
-| 3   | B    | -0.854102 |
-| 4   | A    | 1.058840  |
-| 5   | A    | -0.307737 |
-| 6   | B    | 0.013741  |
-| 7   | A    | -1.768852 |
-| 8   | A    | 0.550569  |
+| 0   | A    | 0.064975  |
+| 1   | A    | -0.486814 |
+| 2   | A    | 0.411896  |
+| 3   | B    | -1.397003 |
+| 4   | A    | 1.148971  |
+| 5   | A    | 0.817843  |
+| 6   | B    | -0.993385 |
+| 7   | A    | 1.143321  |
+| 8   | A    | -0.134907 |
 
 </div>
 
@@ -203,7 +204,7 @@ print(*groups2)
 zip(*groups2)
 ```
 
-    <zip at 0x164d84200>
+    <zip at 0x16b1d3c80>
 
 ``` python
 list(zip(*groups2))
@@ -294,36 +295,36 @@ df
 
 |     | case | data      |
 |-----|------|-----------|
-| 0   | A    | -0.900566 |
-| 1   | A    | -1.127128 |
-| 2   | A    | 0.342823  |
-| 3   | B    | -0.854102 |
-| 4   | A    | 1.058840  |
-| 5   | A    | -0.307737 |
-| 6   | B    | 0.013741  |
-| 7   | A    | -1.768852 |
-| 8   | A    | 0.550569  |
+| 0   | A    | 0.064975  |
+| 1   | A    | -0.486814 |
+| 2   | A    | 0.411896  |
+| 3   | B    | -1.397003 |
+| 4   | A    | 1.148971  |
+| 5   | A    | 0.817843  |
+| 6   | B    | -0.993385 |
+| 7   | A    | 1.143321  |
+| 8   | A    | -0.134907 |
 
 </div>
 
 ``` python
-grouper = df.case.eq("B").cumsum().shift().fillna(0)
-dfs = [df for (g, df) in df.groupby(grouper)]
-dfs
+grouper = df.case.eq('B').cumsum().shift(fill_value=0)
+frames = [df for g, df, in df.groupby(grouper)]
+frames
 ```
 
     [  case      data
-     0    A -0.900566
-     1    A -1.127128
-     2    A  0.342823
-     3    B -0.854102,
+     0    A  0.064975
+     1    A -0.486814
+     2    A  0.411896
+     3    B -1.397003,
        case      data
-     4    A  1.058840
-     5    A -0.307737
-     6    B  0.013741,
+     4    A  1.148971
+     5    A  0.817843
+     6    B -0.993385,
        case      data
-     7    A -1.768852
-     8    A  0.550569]
+     7    A  1.143321
+     8    A -0.134907]
 
 Where the grouper works like so:
 
@@ -331,9 +332,8 @@ Where the grouper works like so:
 dd = df.set_index("case", drop=False)  # Use case as index for clarity
 a = dd.case.eq("B")  # Boolean logic
 b = a.cumsum()  # Create groups
-c = b.shift()  # Shift so B included in previous group
-d = c.fillna(0)  # Replace 0th element emptied by shift
-a, b, c, d
+c = b.shift(fill_value=0)  # Shift so B included in previous group and fills missings with 0
+a, b, c
 ```
 
     (case
@@ -359,27 +359,16 @@ a, b, c, d
      A    2
      Name: case, dtype: int64,
      case
-     A    NaN
-     A    0.0
-     A    0.0
-     B    0.0
-     A    1.0
-     A    1.0
-     B    1.0
-     A    2.0
-     A    2.0
-     Name: case, dtype: float64,
-     case
-     A    0.0
-     A    0.0
-     A    0.0
-     B    0.0
-     A    1.0
-     A    1.0
-     B    1.0
-     A    2.0
-     A    2.0
-     Name: case, dtype: float64)
+     A    0
+     A    0
+     A    0
+     B    0
+     A    1
+     A    1
+     B    1
+     A    2
+     A    2
+     Name: case, dtype: int64)
 
 ## Creating new columns based on existing ones using mappings
 
@@ -453,8 +442,36 @@ One limitation of the cookbook solution above is that is doesn't seem to allow f
 One way around this is the following:
 
 ``` python
-df[new_cols] = df[source_cols].applymap(lambda x: cats.get(x, "Hello"))
 df
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | AAA | BBB | CCC |
+|-----|-----|-----|-----|
+| 0   | 1   | 1   | 2   |
+| 1   | 2   | 1   | 1   |
+| 2   | 1   | 4   | 3   |
+| 3   | 3   | 2   | 1   |
+
+</div>
+
+``` python
+dd[new_cols] = dd[source_cols].applymap(lambda x: cats.get(x, "Hello"))
+dd
 ```
 
 <div>
@@ -716,13 +733,12 @@ df.head(3)
 Create a table that shows the number of planets discovered by each method in each decade
 
 ``` python
-# method 1: groupby
+# Using groupby
 
-decade = df.year // 10 * 10
-decade = decade.astype("str") + "s"
-decade.name = "decade"
+decade = (df.year.astype(str).str[:3] + '0s')
+decade.name = 'decade'
 
-df.groupby(["method", decade]).number.sum().unstack().fillna(0).astype("int")
+df.groupby(['method', decade]).number.sum().unstack().fillna(0).astype(int)
 ```
 
 <div>
@@ -757,11 +773,9 @@ df.groupby(["method", decade]).number.sum().unstack().fillna(0).astype("int")
 </div>
 
 ``` python
-# method 2: pivot table
+# Using pivot_table
 
-df.pivot_table(
-    values="number", index="method", columns=decade, aggfunc="sum", fill_value=0
-)
+df.pivot_table(index='method', columns=decade, values='number', aggfunc='sum', fill_value=0)
 ```
 
 <div>
@@ -794,84 +808,6 @@ df.pivot_table(
 | Transit Timing Variations     | 0     | 0     | 0     | 9     |
 
 </div>
-
-### Another example
-
-From [here](https://pandas.pydata.org/pandas-docs/stable/user_guide/cookbook.html#pivot)
-
-``` python
-df = pd.DataFrame(
-    data={
-        "province": ["ON", "QC", "BC", "AL", "AL", "MN", "ON"],
-        "city": [
-            "Toronto",
-            "Montreal",
-            "Vancouver",
-            "Calgary",
-            "Edmonton",
-            "Winnipeg",
-            "Windsor",
-        ],
-        "sales": [13, 6, 16, 8, 4, 3, 1],
-    }
-)
-df
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | province | city      | sales |
-|-----|----------|-----------|-------|
-| 0   | ON       | Toronto   | 13    |
-| 1   | QC       | Montreal  | 6     |
-| 2   | BC       | Vancouver | 16    |
-| 3   | AL       | Calgary   | 8     |
-| 4   | AL       | Edmonton  | 4     |
-| 5   | MN       | Winnipeg  | 3     |
-| 6   | ON       | Windsor   | 1     |
-
-</div>
-
-You want to group sales by province and get subtotal for total state.
-
-``` python
-table = (
-    df.pivot_table(
-        values="sales", index="province", columns="city", aggfunc="sum", margins=True
-    )
-    .stack()
-    .drop("All")
-)
-table
-```
-
-    province  city     
-    AL        Calgary       8.0
-              Edmonton      4.0
-              All          12.0
-    BC        Vancouver    16.0
-              All          16.0
-    MN        Winnipeg      3.0
-              All           3.0
-    ON        Toronto      13.0
-              Windsor       1.0
-              All          14.0
-    QC        Montreal      6.0
-              All           6.0
-    dtype: float64
 
 ## Counting number of equal adjacent values
 
@@ -1048,10 +984,10 @@ df
 
 </div>
 
-``` python
-# Return size of heaviest animal
+For each type of animal, return the size of the heaviest one
 
-df.groupby("animal").apply(lambda g: g.loc[g.weight.idxmax(), "size"])
+``` python
+df.groupby('animal').apply(lambda g: g.loc[g.weight.idxmax(), 'size'])
 ```
 
     animal
@@ -1225,8 +1161,7 @@ df.loc[sort_order]
 ### Get observation with largest data entry for each group
 
 ``` python
-g = df.groupby("code")
-g.apply(lambda g: g.loc[g.data.idxmax()])
+df.iloc[df.groupby('code').data.idxmax().values]
 ```
 
 <div>
@@ -1244,12 +1179,11 @@ g.apply(lambda g: g.loc[g.data.idxmax()])
     }
 </style>
 
-|      | code | data  | flag |
-|------|------|-------|------|
-| code |      |       |      |
-| bar  | bar  | -0.21 | True |
-| baz  | baz  | 0.62  | True |
-| foo  | foo  | 0.45  | True |
+|     | code | data  | flag |
+|-----|------|-------|------|
+| 1   | bar  | -0.21 | True |
+| 5   | baz  | 0.62  | True |
+| 3   | foo  | 0.45  | True |
 
 </div>
 
@@ -1302,7 +1236,6 @@ df
 
 ``` python
 g = df.groupby("code")
-
 
 def helper(g):
     s = g.data.expanding()
@@ -1551,8 +1484,8 @@ df
 </div>
 
 ``` python
-numyes = lambda x: sum(x == "yes")
-df.groupby("examyear").agg({"participated": numyes, "passed": numyes})
+numyes = lambda x: sum(x == 'yes')
+df.groupby('examyear').agg({'participated': numyes, 'passed': numyes})
 ```
 
 <div>
@@ -1584,14 +1517,14 @@ df.groupby("examyear").agg({"participated": numyes, "passed": numyes})
 We want a count of the number of days passed since the last event happened.
 
 ``` python
-dfr = pd.DataFrame(
+df = pd.DataFrame(
     {
         "date": pd.date_range(start="1 Jan 2022", periods=8, freq="d"),
         "event": [np.nan, np.nan, 1, np.nan, np.nan, np.nan, 4, np.nan],
         "result": [np.nan, np.nan, 0, 1, 2, 3, 0, 1],
     }
 )
-dfr
+df
 ```
 
 <div>
@@ -1619,39 +1552,6 @@ dfr
 | 5   | 2022-01-06 | NaN   | 3.0    |
 | 6   | 2022-01-07 | 4.0   | 0.0    |
 | 7   | 2022-01-08 | NaN   | 1.0    |
-
-</div>
-
-``` python
-df = dfr.iloc[:, :-1]
-df
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | date       | event |
-|-----|------------|-------|
-| 0   | 2022-01-01 | NaN   |
-| 1   | 2022-01-02 | NaN   |
-| 2   | 2022-01-03 | 1.0   |
-| 3   | 2022-01-04 | NaN   |
-| 4   | 2022-01-05 | NaN   |
-| 5   | 2022-01-06 | NaN   |
-| 6   | 2022-01-07 | 4.0   |
-| 7   | 2022-01-08 | NaN   |
 
 </div>
 

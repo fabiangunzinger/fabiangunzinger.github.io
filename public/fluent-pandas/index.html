@@ -4,27 +4,31 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Fluent Pandas - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Fluent Pandas" />
-<meta property="og:description" content="This post is part of my series of posts on pandas.
+        <title>Fluent Pandas - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/fluent-pandas/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Fluent Pandas">
+  <meta property="og:description" content="This post is part of my series of posts on pandas.
 Fluent Pandas contains notes on how to effectively use pandas core features.
 Fast pandas contains notes on how to effectively work with large datasets.
 Pandas cookbook is a list of recipes for effectively solving common and not so common problems.
-1 2 3 import numpy as np import pandas as pd import seaborn as sns Sort and filter 1 2 3 df = sns." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/fluent-pandas/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Fluent Pandas"/>
-<meta name="twitter:description" content="This post is part of my series of posts on pandas.
+1 2 3 import numpy as np import pandas as pd import seaborn as sns Filter 1 2 3 df = sns.load_dataset(&#34;diamonds&#34;, cache=False) print(df.shape) df.head(2) (53940, 10)">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-03-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fluent Pandas">
+  <meta name="twitter:description" content="This post is part of my series of posts on pandas.
 Fluent Pandas contains notes on how to effectively use pandas core features.
 Fast pandas contains notes on how to effectively work with large datasets.
 Pandas cookbook is a list of recipes for effectively solving common and not so common problems.
-1 2 3 import numpy as np import pandas as pd import seaborn as sns Sort and filter 1 2 3 df = sns."/>
+1 2 3 import numpy as np import pandas as pd import seaborn as sns Filter 1 2 3 df = sns.load_dataset(&#34;diamonds&#34;, cache=False) print(df.shape) df.head(2) (53940, 10)">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/fluent-pandas/" /><link rel="prev" href="http://example.org/python-dates-and-times/" /><link rel="next" href="http://example.org/python-regex/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/fluent-pandas/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,7 +39,7 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/fluent-pandas\/"
-        },"genre": "posts","keywords": "python, datascience","wordcount":  732 ,
+        },"genre": "posts","keywords": "python, datascience","wordcount":  1327 ,
         "url": "http:\/\/example.org\/fluent-pandas\/","datePublished": "2021-03-12T00:00:00+00:00","dateModified": "2023-10-02T08:42:30+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,9 +112,9 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Fluent Pandas</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-12">2021-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;732 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-03-12">2021-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1327 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -118,30 +122,28 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#sort-and-filter">Sort and filter</a>
+    <li><a href="#filter">Filter</a>
       <ul>
-        <li><a href="#filter-data">Filter data</a></li>
+        <li><a href="#filter-rows">Filter rows</a></li>
         <li><a href="#filter-columns">Filter columns</a></li>
       </ul>
     </li>
-    <li><a href="#groupb-vs-resample"><code>groupb()</code> vs <code>resample()</code></a></li>
-    <li><a href="#aggregate">Aggregate</a>
-      <ul>
-        <li><a href="#count-vs-size"><code>count()</code> vs <code>size()</code></a></li>
-        <li><a href="#naming-columns">Naming columns</a></li>
-      </ul>
-    </li>
+    <li><a href="#expanding-dataset">Expanding dataset</a></li>
+    <li><a href="#grouping-and-resampling">Grouping and resampling</a></li>
+    <li><a href="#grouping--count-vs-size">Grouping &ndash; count vs size</a></li>
+    <li><a href="#aggregating--different-methods">Aggregating &ndash; different methods</a></li>
     <li><a href="#multiindex">MultiIndex</a></li>
     <li><a href="#mappings">Mappings</a>
       <ul>
         <li><a href="#apply-vs-map-vs-applymap"><code>apply</code> vs <code>map</code> vs <code>applymap</code></a></li>
       </ul>
     </li>
+    <li><a href="#create-meta-type-retention-curves">Create Meta type retention curves</a></li>
     <li><a href="#sources">Sources</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <p>This post is part of my series of posts on <a href="https://pandas.pydata.org" target="_blank" rel="noopener noreffer "><code>pandas</code></a>.</p>
 <p><a href="http://localhost:8888/lab/tree/_notebooks/2021-03-12-fluent-pandas.ipynb" target="_blank" rel="noopener noreffer ">Fluent Pandas</a> contains notes on how to effectively use pandas core features.</p>
@@ -159,7 +161,7 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="sort-and-filter">Sort and filter</h2>
+</div><h2 id="filter">Filter</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -167,7 +169,7 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;diamonds&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;diamonds&#34;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
@@ -189,52 +191,469 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>carat</th>
-<th>cut</th>
-<th>color</th>
-<th>clarity</th>
-<th>depth</th>
-<th>table</th>
-<th>price</th>
-<th>x</th>
-<th>y</th>
-<th>z</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0.23</td>
-<td>Ideal</td>
-<td>E</td>
-<td>SI2</td>
-<td>61.5</td>
-<td>55.0</td>
-<td>326</td>
-<td>3.95</td>
-<td>3.98</td>
-<td>2.43</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.21</td>
-<td>Premium</td>
-<td>E</td>
-<td>SI1</td>
-<td>59.8</td>
-<td>61.0</td>
-<td>326</td>
-<td>3.89</td>
-<td>3.84</td>
-<td>2.31</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>carat</th>
+          <th>cut</th>
+          <th>color</th>
+          <th>clarity</th>
+          <th>depth</th>
+          <th>table</th>
+          <th>price</th>
+          <th>x</th>
+          <th>y</th>
+          <th>z</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0.23</td>
+          <td>Ideal</td>
+          <td>E</td>
+          <td>SI2</td>
+          <td>61.5</td>
+          <td>55.0</td>
+          <td>326</td>
+          <td>3.95</td>
+          <td>3.98</td>
+          <td>2.43</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0.21</td>
+          <td>Premium</td>
+          <td>E</td>
+          <td>SI1</td>
+          <td>59.8</td>
+          <td>61.0</td>
+          <td>326</td>
+          <td>3.89</td>
+          <td>3.84</td>
+          <td>2.31</td>
+      </tr>
+  </tbody>
 </table>
 </div>
-<h3 id="filter-data">Filter data</h3>
+<h3 id="filter-rows">Filter rows</h3>
+<p>Filter based on column value</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">5_000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="n">cutoff</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&#34;price &gt; @cutoff&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="n">cutoff</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">all</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>True
+</code></pre>
+<p>Filter based on index</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+          <th>species</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>5</td>
+          <td>5.4</td>
+          <td>3.9</td>
+          <td>1.7</td>
+          <td>0.4</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>4.6</td>
+          <td>3.4</td>
+          <td>1.4</td>
+          <td>0.3</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>5.0</td>
+          <td>3.4</td>
+          <td>1.5</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>4.4</td>
+          <td>2.9</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>4.9</td>
+          <td>3.1</td>
+          <td>1.5</td>
+          <td>0.1</td>
+          <td>setosa</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p>More complex index filtering</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s1">&#39;^\d0$&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+          <th>species</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>10</td>
+          <td>5.4</td>
+          <td>3.7</td>
+          <td>1.5</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>20</td>
+          <td>5.4</td>
+          <td>3.4</td>
+          <td>1.7</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>30</td>
+          <td>4.8</td>
+          <td>3.1</td>
+          <td>1.6</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>40</td>
+          <td>5.0</td>
+          <td>3.5</td>
+          <td>1.3</td>
+          <td>0.3</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>50</td>
+          <td>7.0</td>
+          <td>3.2</td>
+          <td>4.7</td>
+          <td>1.4</td>
+          <td>versicolor</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<h3 id="filter-columns">Filter columns</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+          <th>species</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4.7</td>
+          <td>3.2</td>
+          <td>1.3</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;sepal&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>5.1</td>
+          <td>3.5</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4.9</td>
+          <td>3.0</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4.7</td>
+          <td>3.2</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&#34;_length&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>petal_length</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>5.1</td>
+          <td>1.4</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4.9</td>
+          <td>1.4</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="expanding-dataset">Expanding dataset</h2>
+<p>Sometimes I want to duplicate each row in a dataset a certain number of times.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+          <th>species</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>4.7</td>
+          <td>3.2</td>
+          <td>1.3</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="grouping-and-resampling">Grouping and resampling</h2>
+<p><code>groupby()</code> implements the splict-apply-combine paradigm, while <code>resample()</code> is a convenience method for frequency conversion and resampling of time series. When both are used on time series, the main difference is that <code>resample()</code> fills in missing dates while <code>groupby()</code> doesn&rsquo;t.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -244,22 +663,11 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">30_000</span>
-</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="n">cutoff</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&#34;amount &gt; @cutoff&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="n">cutoff</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nb">all</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="nb">all</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><pre><code>True
-</code></pre>
-<h3 id="filter-columns">Filter columns</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">&#34;sepal&#34;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2024&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;2d&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;col&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">))}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div>
@@ -277,25 +685,38 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>sepal_length</th>
-<th>sepal_width</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>5.1</td>
-<td>3.5</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4.9</td>
-<td>3.0</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>col</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2024-01-01</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2024-01-01</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2024-01-03</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2024-01-03</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2024-01-05</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>2024-01-05</td>
+          <td>2</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -303,109 +724,14 @@ Pandas cookbook is a list of recipes for effectively solving common and not so c
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&#34;.+_length&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-<p></style></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>sepal_length</th>
-<th>petal_length</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>5.1</td>
-<td>1.4</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4.9</td>
-<td>1.4</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="groupb-vs-resample"><code>groupb()</code> vs <code>resample()</code></h2>
-<p><code>groupby()</code> implements the splict-apply-combine paradigm, while <code>resample()</code> is a convenience method for frequency conversion and resampling of time series. When both are used on time series, the main difference is that <code>resample()</code> fills in missing dates while <code>groupby()</code> doesn&rsquo;t.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&#34;2020&#34;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&#34;2d&#34;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&#34;col&#34;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">))},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">data</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-<p></style></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>col</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2020-01-01</td>
-<td>0</td>
-</tr>
-<tr>
-<td>2020-01-03</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2020-01-05</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><pre><code>2020-01-01    0
-2020-01-02    0
-2020-01-03    1
-2020-01-04    0
-2020-01-05    2
+</div><pre><code>2024-01-01    0
+2024-01-02    0
+2024-01-03    2
+2024-01-04    0
+2024-01-05    4
 Freq: D, Name: col, dtype: int64
 </code></pre>
 <div class="highlight"><div class="chroma">
@@ -413,16 +739,15 @@ Freq: D, Name: col, dtype: int64
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>2020-01-01    0
-2020-01-03    1
-2020-01-05    2
-Freq: 2D, Name: col, dtype: int64
+</div><pre><code>2024-01-01    0
+2024-01-03    2
+2024-01-05    4
+Name: col, dtype: int64
 </code></pre>
-<h2 id="aggregate">Aggregate</h2>
-<h3 id="count-vs-size"><code>count()</code> vs <code>size()</code></h3>
+<h2 id="grouping--count-vs-size">Grouping &ndash; count vs size</h2>
 <ul>
 <li><code>count()</code> is a DataFrame, Series, and Grouper method that return the count of non-missing rows.</li>
 <li><code>size()</code> is a Grouper method that returns the count of rows per group (including rows with missing elements)</li>
@@ -435,7 +760,7 @@ Freq: 2D, Name: col, dtype: int64
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&#34;titanic&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;sex&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div>
@@ -453,78 +778,179 @@ Freq: 2D, Name: col, dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>survived</th>
-<th>pclass</th>
-<th>age</th>
-<th>sibsp</th>
-<th>parch</th>
-<th>fare</th>
-<th>embarked</th>
-<th>class</th>
-<th>who</th>
-<th>adult_male</th>
-<th>deck</th>
-<th>embark_town</th>
-<th>alive</th>
-<th>alone</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sex</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>female</td>
-<td>314</td>
-<td>314</td>
-<td>261</td>
-<td>314</td>
-<td>314</td>
-<td>314</td>
-<td>312</td>
-<td>314</td>
-<td>314</td>
-<td>314</td>
-<td>97</td>
-<td>312</td>
-<td>314</td>
-<td>314</td>
-</tr>
-<tr>
-<td>male</td>
-<td>577</td>
-<td>577</td>
-<td>453</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-<td>106</td>
-<td>577</td>
-<td>577</td>
-<td>577</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>survived</th>
+          <th>pclass</th>
+          <th>sex</th>
+          <th>age</th>
+          <th>sibsp</th>
+          <th>parch</th>
+          <th>fare</th>
+          <th>embarked</th>
+          <th>class</th>
+          <th>who</th>
+          <th>adult_male</th>
+          <th>deck</th>
+          <th>embark_town</th>
+          <th>alive</th>
+          <th>alone</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>male</td>
+          <td>22.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>7.2500</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>man</td>
+          <td>True</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>no</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>female</td>
+          <td>38.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>71.2833</td>
+          <td>C</td>
+          <td>First</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>C</td>
+          <td>Cherbourg</td>
+          <td>yes</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>female</td>
+          <td>26.0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>7.9250</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>yes</td>
+          <td>True</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;sex&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>survived</th>
+          <th>pclass</th>
+          <th>age</th>
+          <th>sibsp</th>
+          <th>parch</th>
+          <th>fare</th>
+          <th>embarked</th>
+          <th>class</th>
+          <th>who</th>
+          <th>adult_male</th>
+          <th>deck</th>
+          <th>embark_town</th>
+          <th>alive</th>
+          <th>alone</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>sex</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>female</td>
+          <td>314</td>
+          <td>314</td>
+          <td>261</td>
+          <td>314</td>
+          <td>314</td>
+          <td>314</td>
+          <td>312</td>
+          <td>314</td>
+          <td>314</td>
+          <td>314</td>
+          <td>97</td>
+          <td>312</td>
+          <td>314</td>
+          <td>314</td>
+      </tr>
+      <tr>
+          <td>male</td>
+          <td>577</td>
+          <td>577</td>
+          <td>453</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+          <td>106</td>
+          <td>577</td>
+          <td>577</td>
+          <td>577</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <div class="highlight"><div class="chroma">
@@ -540,7 +966,154 @@ female    314
 male      577
 dtype: int64
 </code></pre>
-<h3 id="naming-columns">Naming columns</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">sex</span><span class="o">.</span><span class="n">size</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>(13365, 891)
+</code></pre>
+<h2 id="aggregating--different-methods">Aggregating &ndash; different methods</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>survived</th>
+          <th>pclass</th>
+          <th>sex</th>
+          <th>age</th>
+          <th>sibsp</th>
+          <th>parch</th>
+          <th>fare</th>
+          <th>embarked</th>
+          <th>class</th>
+          <th>who</th>
+          <th>adult_male</th>
+          <th>deck</th>
+          <th>embark_town</th>
+          <th>alive</th>
+          <th>alone</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>male</td>
+          <td>22.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>7.2500</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>man</td>
+          <td>True</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>no</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>female</td>
+          <td>38.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>71.2833</td>
+          <td>C</td>
+          <td>First</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>C</td>
+          <td>Cherbourg</td>
+          <td>yes</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>female</td>
+          <td>26.0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>7.9250</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>yes</td>
+          <td>True</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>female</td>
+          <td>35.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>53.1000</td>
+          <td>S</td>
+          <td>First</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>C</td>
+          <td>Southampton</td>
+          <td>yes</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>0</td>
+          <td>3</td>
+          <td>male</td>
+          <td>35.0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>8.0500</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>man</td>
+          <td>True</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>no</td>
+          <td>True</td>
+      </tr>
+  </tbody>
+</table>
+</div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -551,17 +1124,15 @@ dtype: int64
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">spread</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">s</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&#34;species&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mean_sepal_length</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;sepal_length&#34;</span><span class="p">,</span> <span class="s2">&#34;mean&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">max_petal_width</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;petal_width&#34;</span><span class="p">,</span> <span class="s2">&#34;max&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">spread_petal_width</span><span class="o">=</span><span class="p">(</span><span class="s2">&#34;petal_width&#34;</span><span class="p">,</span> <span class="n">spread</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">age_mean</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fare_range</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;fare&#39;</span><span class="p">,</span><span class="nb">range</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">survived_mean</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -580,40 +1151,66 @@ dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>mean_sepal_length</th>
-<th>max_petal_width</th>
-<th>spread_petal_width</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>species</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>setosa</td>
-<td>5.006</td>
-<td>0.6</td>
-<td>0.5</td>
-</tr>
-<tr>
-<td>versicolor</td>
-<td>5.936</td>
-<td>1.8</td>
-<td>0.8</td>
-</tr>
-<tr>
-<td>virginica</td>
-<td>6.588</td>
-<td>2.5</td>
-<td>1.1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th>age_mean</th>
+          <th>fare_range</th>
+          <th>survived_mean</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>class</td>
+          <td>sex</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>First</td>
+          <td>female</td>
+          <td>34.611765</td>
+          <td>(25, 512)</td>
+          <td>0.968085</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>male</td>
+          <td>41.281386</td>
+          <td>(0, 512)</td>
+          <td>0.368852</td>
+      </tr>
+      <tr>
+          <td>Second</td>
+          <td>female</td>
+          <td>28.722973</td>
+          <td>(10, 65)</td>
+          <td>0.921053</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>male</td>
+          <td>30.740707</td>
+          <td>(0, 73)</td>
+          <td>0.157407</td>
+      </tr>
+      <tr>
+          <td>Third</td>
+          <td>female</td>
+          <td>21.750000</td>
+          <td>(6, 69)</td>
+          <td>0.500000</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>male</td>
+          <td>26.507589</td>
+          <td>(0, 69)</td>
+          <td>0.135447</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <h2 id="multiindex">MultiIndex</h2>
@@ -643,34 +1240,34 @@ dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>sepal_length</th>
-<th>sepal_width</th>
-<th>petal_length</th>
-<th>petal_width</th>
-<th>species</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>5.1</td>
-<td>3.5</td>
-<td>1.4</td>
-<td>0.2</td>
-<td>setosa</td>
-</tr>
-<tr>
-<td>1</td>
-<td>4.9</td>
-<td>3.0</td>
-<td>1.4</td>
-<td>0.2</td>
-<td>setosa</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+          <th>species</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+          <td>setosa</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>Create hierarchical column names</p>
@@ -707,45 +1304,45 @@ dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>sepal</th>
-<th></th>
-<th>petal</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>length</td>
-<td>width</td>
-<td>length</td>
-<td>width</td>
-</tr>
-<tr>
-<td>species</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>setosa</td>
-<td>5.1</td>
-<td>3.5</td>
-<td>1.4</td>
-<td>0.2</td>
-</tr>
-<tr>
-<td>setosa</td>
-<td>4.9</td>
-<td>3.0</td>
-<td>1.4</td>
-<td>0.2</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>sepal</th>
+          <th></th>
+          <th>petal</th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td>length</td>
+          <td>width</td>
+          <td>length</td>
+          <td>width</td>
+      </tr>
+      <tr>
+          <td>species</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>setosa</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+      </tr>
+      <tr>
+          <td>setosa</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>Flatten column names</p>
@@ -778,34 +1375,34 @@ dtype: int64
 </code></pre>
 <p></style></p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>species</th>
-<th>sepal_length</th>
-<th>sepal_width</th>
-<th>petal_length</th>
-<th>petal_width</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>setosa</td>
-<td>5.1</td>
-<td>3.5</td>
-<td>1.4</td>
-<td>0.2</td>
-</tr>
-<tr>
-<td>1</td>
-<td>setosa</td>
-<td>4.9</td>
-<td>3.0</td>
-<td>1.4</td>
-<td>0.2</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>species</th>
+          <th>sepal_length</th>
+          <th>sepal_width</th>
+          <th>petal_length</th>
+          <th>petal_width</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>setosa</td>
+          <td>5.1</td>
+          <td>3.5</td>
+          <td>1.4</td>
+          <td>0.2</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>setosa</td>
+          <td>4.9</td>
+          <td>3.0</td>
+          <td>1.4</td>
+          <td>0.2</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>Flattening using method (from <a href="https://stackoverflow.com/a/49483208/13666841" target="_blank" rel="noopener noreffer ">here</a>)</p>
@@ -836,168 +1433,422 @@ dtype: int64
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>survived</th>
+          <th>pclass</th>
+          <th>sex</th>
+          <th>age</th>
+          <th>sibsp</th>
+          <th>parch</th>
+          <th>fare</th>
+          <th>embarked</th>
+          <th>class</th>
+          <th>who</th>
+          <th>adult_male</th>
+          <th>deck</th>
+          <th>embark_town</th>
+          <th>alive</th>
+          <th>alone</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>male</td>
+          <td>22.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>7.2500</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>man</td>
+          <td>True</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>no</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>female</td>
+          <td>38.0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>71.2833</td>
+          <td>C</td>
+          <td>First</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>C</td>
+          <td>Cherbourg</td>
+          <td>yes</td>
+          <td>False</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+          <td>female</td>
+          <td>26.0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>7.9250</td>
+          <td>S</td>
+          <td>Third</td>
+          <td>woman</td>
+          <td>False</td>
+          <td>NaN</td>
+          <td>Southampton</td>
+          <td>yes</td>
+          <td>True</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sex</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>0    4
+1    6
+2    6
+Name: sex, dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sex</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>0    4
+1    6
+2    6
+Name: sex, dtype: int64
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>survived</th>
+          <th>pclass</th>
+          <th>sex</th>
+          <th>age</th>
+          <th>sibsp</th>
+          <th>parch</th>
+          <th>fare</th>
+          <th>embarked</th>
+          <th>class</th>
+          <th>who</th>
+          <th>adult_male</th>
+          <th>deck</th>
+          <th>embark_town</th>
+          <th>alive</th>
+          <th>alone</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>4</td>
+          <td>4</td>
+          <td>1</td>
+          <td>1</td>
+          <td>4</td>
+          <td>1</td>
+          <td>5</td>
+          <td>3</td>
+          <td>4</td>
+          <td>3</td>
+          <td>11</td>
+          <td>2</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>6</td>
+          <td>4</td>
+          <td>1</td>
+          <td>1</td>
+          <td>7</td>
+          <td>1</td>
+          <td>5</td>
+          <td>5</td>
+          <td>5</td>
+          <td>1</td>
+          <td>9</td>
+          <td>3</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>6</td>
+          <td>4</td>
+          <td>1</td>
+          <td>1</td>
+          <td>5</td>
+          <td>1</td>
+          <td>5</td>
+          <td>5</td>
+          <td>5</td>
+          <td>3</td>
+          <td>11</td>
+          <td>3</td>
+          <td>4</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&#34;gender&#34;</span><span class="p">,</span> <span class="s2">&#34;merchant&#34;</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="n">gender</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;m&#34;</span><span class="p">:</span> <span class="s2">&#34;male&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">:</span> <span class="s2">&#34;female&#34;</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="n">data</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">new_labs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;male&#34;</span><span class="p">:</span> <span class="s2">&#34;m&#34;</span><span class="p">,</span> <span class="s2">&#34;female&#34;</span><span class="p">:</span> <span class="s2">&#34;f&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">sex</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">new_labs</span><span class="o">.</span><span class="n">get</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
+</div><pre><code>0    m
+1    f
+2    f
+Name: sex, dtype: object
 </code></pre>
-<p></style></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>gender</th>
-<th>merchant</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>m</td>
-<td>aviva</td>
-</tr>
-<tr>
-<td>1</td>
-<td>m</td>
-<td>tesco</td>
-</tr>
-<tr>
-<td>2</td>
-<td>m</td>
-<td>mcdonalds</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">gender</span><span class="p">))</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-<p></style></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>gender</th>
-<th>merchant</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>male</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>1</td>
-<td>male</td>
-<td>NaN</td>
-</tr>
-<tr>
-<td>2</td>
-<td>male</td>
-<td>NaN</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">gender</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><pre><code>0    male
-1    male
-2    male
-Name: gender, dtype: object
-</code></pre>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">gender</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<pre><code>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</code></pre>
-<p></style></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>gender</th>
-<th>merchant</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>male</td>
-<td>None</td>
-</tr>
-<tr>
-<td>1</td>
-<td>male</td>
-<td>None</td>
-</tr>
-<tr>
-<td>2</td>
-<td>male</td>
-<td>None</td>
-</tr>
-</tbody>
-</table>
-</div>
 <p><code>get</code> turns a dictionary into a function that takes a key and returns its corresponding value if the key is in the dictionary and a default value otherwise.</p>
+<h2 id="create-meta-type-retention-curves">Create Meta type retention curves</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>1
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">n_users</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">n_periods</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&#34;Jan 2023&#34;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&#34;D&#34;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="o">*</span> <span class="n">n_users</span>
+</span></span><span class="line"><span class="cl"><span class="n">uid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_users</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">active</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">n_users</span> <span class="o">*</span> <span class="n">n_periods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;uid&#34;</span><span class="p">:</span> <span class="n">uid</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;date&#34;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;active&#34;</span><span class="p">:</span> <span class="n">active</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>uid</th>
+          <th>date</th>
+          <th>active</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>2023-01-01</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>2023-01-02</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>2023-01-01</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>1</td>
+          <td>2023-01-02</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>2</td>
+          <td>2023-01-01</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>2</td>
+          <td>2023-01-02</td>
+          <td>1</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p></style></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th>active</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>uid</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>1.0</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>1</td>
+          <td>0.5</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>1.0</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>3</td>
+          <td>1.0</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>4</td>
+          <td>1.0</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>5</td>
+          <td>1.0</td>
+      </tr>
+  </tbody>
+</table>
+</div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://www.oreilly.com/library/view/python-for-data/9781491957653/" target="_blank" rel="noopener noreffer ">Python for Data Analysis</a></li>
@@ -1026,19 +1877,18 @@ Name: gender, dtype: object
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python-datascience/">python, datascience</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/python-dates-and-times/" class="prev" rel="prev" title="Dates and times in Python"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Dates and times in Python</a>
-            <a href="/python-regex/" class="next" rel="next" title="Regex in Python">Regex in Python<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -1047,5 +1897,5 @@ Name: gender, dtype: object
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

@@ -4,19 +4,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Regex - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:title" content="Regex" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/regex/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-11-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-10-02T08:42:30+01:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Regex"/>
-<meta name="twitter:description" content=""/>
+        <title>Regex - Fabian Gunzinger</title><meta name="Description" content=""><meta property="og:url" content="http://example.org/regex/">
+  <meta property="og:site_name" content="Fabian Gunzinger">
+  <meta property="og:title" content="Regex">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-11-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-02T08:42:30+01:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Regex">
 <meta name="application-name" content="Fabian Gunzinger">
 <meta name="apple-mobile-web-app-title" content="Fabian Gunzinger"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/regex/" /><link rel="prev" href="http://example.org/advanced-data-structures/" /><link rel="next" href="http://example.org/algorithm-complexity-analysis/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/regex/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -100,7 +102,7 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Regex</h1><h2 class="single-subtitle">Cheatsheet</h2><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span></div>
+            <div class="post-meta-line"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-11-13">2021-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7132 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;34 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
@@ -193,77 +195,77 @@ processors how text needs to look and do not appear in printed text.</p>
 </ul>
 <p>Non-printable characters</p>
 <table>
-<thead>
-<tr>
-<th>Character</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\r</code></td>
-<td>Carriage return</td>
-</tr>
-<tr>
-<td><code>\n</code></td>
-<td>Newline</td>
-</tr>
-<tr>
-<td><code>\r\n</code></td>
-<td>Line-break on Windows</td>
-</tr>
-<tr>
-<td><code>\t</code></td>
-<td>Tab</td>
-</tr>
-<tr>
-<td><code>\f</code></td>
-<td>Form-feed</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Character</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\r</code></td>
+          <td>Carriage return</td>
+      </tr>
+      <tr>
+          <td><code>\n</code></td>
+          <td>Newline</td>
+      </tr>
+      <tr>
+          <td><code>\r\n</code></td>
+          <td>Line-break on Windows</td>
+      </tr>
+      <tr>
+          <td><code>\t</code></td>
+          <td>Tab</td>
+      </tr>
+      <tr>
+          <td><code>\f</code></td>
+          <td>Form-feed</td>
+      </tr>
+  </tbody>
 </table>
 <p>Shorthand character classes</p>
 <table>
-<thead>
-<tr>
-<th>Character</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\d</code></td>
-<td>Single digit, short for <code>[0-9]</code></td>
-</tr>
-<tr>
-<td><code>\D</code></td>
-<td>Complement of <code>\d</code>, short for <code>[^\d]</code></td>
-</tr>
-<tr>
-<td><code>\w</code></td>
-<td>Word character, short for <code>[a-zA-Z\_]</code></td>
-</tr>
-<tr>
-<td><code>\W</code></td>
-<td>Complement of <code>\w</code>, short for <code>[^\w]</code></td>
-</tr>
-<tr>
-<td><code>\s</code></td>
-<td>Whitespace character, short for <code>[\r\n\t\f\v ]</code></td>
-</tr>
-<tr>
-<td><code>\S</code></td>
-<td>Complement of <code>\s</code>, short for <code>[^\s]</code></td>
-</tr>
-<tr>
-<td><code>\v</code></td>
-<td>Vertical whitespace, short for <code>[\n\f\r]</code></td>
-</tr>
-<tr>
-<td><code>\V</code></td>
-<td>Complement of <code>\v</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Character</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\d</code></td>
+          <td>Single digit, short for <code>[0-9]</code></td>
+      </tr>
+      <tr>
+          <td><code>\D</code></td>
+          <td>Complement of <code>\d</code>, short for <code>[^\d]</code></td>
+      </tr>
+      <tr>
+          <td><code>\w</code></td>
+          <td>Word character, short for <code>[a-zA-Z\_]</code></td>
+      </tr>
+      <tr>
+          <td><code>\W</code></td>
+          <td>Complement of <code>\w</code>, short for <code>[^\w]</code></td>
+      </tr>
+      <tr>
+          <td><code>\s</code></td>
+          <td>Whitespace character, short for <code>[\r\n\t\f\v ]</code></td>
+      </tr>
+      <tr>
+          <td><code>\S</code></td>
+          <td>Complement of <code>\s</code>, short for <code>[^\s]</code></td>
+      </tr>
+      <tr>
+          <td><code>\v</code></td>
+          <td>Vertical whitespace, short for <code>[\n\f\r]</code></td>
+      </tr>
+      <tr>
+          <td><code>\V</code></td>
+          <td>Complement of <code>\v</code></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="character-classes">Character classes</h2>
 <ul>
@@ -290,38 +292,38 @@ escaping them, see relevant section here
 </ul>
 <p>Character classes examples</p>
 <table>
-<thead>
-<tr>
-<th>Regex</th>
-<th>Match</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[ab]</code></td>
-<td>One of <em>a</em> or <em>b</em></td>
-</tr>
-<tr>
-<td><code>[^ab]</code></td>
-<td>Any character that isn&rsquo;t <em>a</em> or <em>b</em> (incl. newline)</td>
-</tr>
-<tr>
-<td><code>[\w\s]</code></td>
-<td>One word or whitespace character</td>
-</tr>
-<tr>
-<td><code>[A-By-z1-2]</code></td>
-<td>One of <em>A</em>, <em>B</em>, <em>y</em>, <em>z</em>, <em>1</em>, <em>2</em></td>
-</tr>
-<tr>
-<td><code>[ -~]</code></td>
-<td>Any character in the printable section of the ASCII</td>
-</tr>
-<tr>
-<td><a href="https://www.asciitable.com" target="_blank" rel="noopener noreffer ">table</a></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Regex</th>
+          <th>Match</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>[ab]</code></td>
+          <td>One of <em>a</em> or <em>b</em></td>
+      </tr>
+      <tr>
+          <td><code>[^ab]</code></td>
+          <td>Any character that isn&rsquo;t <em>a</em> or <em>b</em> (incl. newline)</td>
+      </tr>
+      <tr>
+          <td><code>[\w\s]</code></td>
+          <td>One word or whitespace character</td>
+      </tr>
+      <tr>
+          <td><code>[A-By-z1-2]</code></td>
+          <td>One of <em>A</em>, <em>B</em>, <em>y</em>, <em>z</em>, <em>1</em>, <em>2</em></td>
+      </tr>
+      <tr>
+          <td><code>[ -~]</code></td>
+          <td>Any character in the printable section of the ASCII</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.asciitable.com" target="_blank" rel="noopener noreffer ">table</a></td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -443,101 +445,101 @@ many <em>a</em>s as it can and never gives any of them back.</p>
 </ul>
 <p>Quantifiers and modifiers:</p>
 <table>
-<thead>
-<tr>
-<th>Token</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>?</code></td>
-<td>Match zero or once</td>
-</tr>
-<tr>
-<td><code>\*</code></td>
-<td>Match zero or more</td>
-</tr>
-<tr>
-<td><code>+</code></td>
-<td>Match once or more</td>
-</tr>
-<tr>
-<td><code>{n}</code></td>
-<td>Match n times</td>
-</tr>
-<tr>
-<td><code>{n,m}</code></td>
-<td>Match between n and m times, n defaults to 0, m to infinity</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>?</code></td>
-<td>Make quantifier lazy</td>
-</tr>
-<tr>
-<td><code>{quantifier}+</code></td>
-<td>Make quantifier possessive</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Token</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>?</code></td>
+          <td>Match zero or once</td>
+      </tr>
+      <tr>
+          <td><code>\*</code></td>
+          <td>Match zero or more</td>
+      </tr>
+      <tr>
+          <td><code>+</code></td>
+          <td>Match once or more</td>
+      </tr>
+      <tr>
+          <td><code>{n}</code></td>
+          <td>Match n times</td>
+      </tr>
+      <tr>
+          <td><code>{n,m}</code></td>
+          <td>Match between n and m times, n defaults to 0, m to infinity</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>?</code></td>
+          <td>Make quantifier lazy</td>
+      </tr>
+      <tr>
+          <td><code>{quantifier}+</code></td>
+          <td>Make quantifier possessive</td>
+      </tr>
+  </tbody>
 </table>
 <p>Matches in string <em>a5aa5</em>:</p>
 <table>
-<thead>
-<tr>
-<th>Pattern</th>
-<th>Matches in GLOBAL mode (total: list)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>a</code></td>
-<td>3: a, a, a</td>
-</tr>
-<tr>
-<td><code>a+</code></td>
-<td>2: a, aa</td>
-</tr>
-<tr>
-<td><code>a+?</code></td>
-<td>3: a, a, a</td>
-</tr>
-<tr>
-<td><code>a*</code></td>
-<td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a*?</code></td>
-<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a?</code></td>
-<td>6: a, &lsquo;&rsquo;, a, a, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a??</code></td>
-<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a{2}</code></td>
-<td>1: aa</td>
-</tr>
-<tr>
-<td><code>a{,2}</code></td>
-<td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a{,2}?</code></td>
-<td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
-</tr>
-<tr>
-<td><code>a{1,}</code></td>
-<td>2: a, aa</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Pattern</th>
+          <th>Matches in GLOBAL mode (total: list)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>a</code></td>
+          <td>3: a, a, a</td>
+      </tr>
+      <tr>
+          <td><code>a+</code></td>
+          <td>2: a, aa</td>
+      </tr>
+      <tr>
+          <td><code>a+?</code></td>
+          <td>3: a, a, a</td>
+      </tr>
+      <tr>
+          <td><code>a*</code></td>
+          <td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a*?</code></td>
+          <td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a?</code></td>
+          <td>6: a, &lsquo;&rsquo;, a, a, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a??</code></td>
+          <td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a{2}</code></td>
+          <td>1: aa</td>
+      </tr>
+      <tr>
+          <td><code>a{,2}</code></td>
+          <td>5: a, &lsquo;&rsquo;, aa, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a{,2}?</code></td>
+          <td>6: &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, &lsquo;&rsquo;, '&rsquo;</td>
+      </tr>
+      <tr>
+          <td><code>a{1,}</code></td>
+          <td>2: a, aa</td>
+      </tr>
+  </tbody>
 </table>
 <p>The <a href="https://www.rexegg.com/regex-quantifiers.html#greedytrap" target="_blank" rel="noopener noreffer ">greedy trap</a></p>
 <p>In the string <em>{start} Mary {end} had a {start} little lamb {end}</em>, match all
@@ -712,55 +714,55 @@ to show the match of different repetitions of the <code>a+</code> component:</p>
 </li>
 </ol>
 <table>
-<thead>
-<tr>
-<th><code>a+</code></th>
-<th><code>a+</code></th>
-<th><code>a+</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>aaa</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>aa</td>
-<td>a</td>
-<td>-</td>
-</tr>
-<tr>
-<td>aa</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>a</td>
-<td>aa</td>
-<td>-</td>
-</tr>
-<tr>
-<td>a</td>
-<td>a</td>
-<td>a</td>
-</tr>
-<tr>
-<td>a</td>
-<td>a</td>
-<td>-</td>
-</tr>
-<tr>
-<td>a</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th><code>a+</code></th>
+          <th><code>a+</code></th>
+          <th><code>a+</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>aaa</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>aa</td>
+          <td>a</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>aa</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>a</td>
+          <td>aa</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>a</td>
+          <td>a</td>
+          <td>a</td>
+      </tr>
+      <tr>
+          <td>a</td>
+          <td>a</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>a</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+      </tr>
+  </tbody>
 </table>
 <ol start="11">
 <li><code>{start}(?:(?!{mid})(?!{restart}).)*?{end}</code>.</li>
@@ -800,38 +802,38 @@ doesn&rsquo;t exist.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Character</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>^</code></td>
-<td>Matches beginning of string or line (in multiline mode)</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>Matches end of string or line (in multiline mode)</td>
-</tr>
-<tr>
-<td><code>\A</code></td>
-<td>Matches only beginning of string</td>
-</tr>
-<tr>
-<td><code>\Z</code></td>
-<td>Matches only very end of string (same as <code>\z</code> in most other engines)</td>
-</tr>
-<tr>
-<td><code>\b</code></td>
-<td>Matches if one side is a word character and the other isn&rsquo;t</td>
-</tr>
-<tr>
-<td><code>\B</code></td>
-<td>Matches wherever <code>\b</code> doesn&rsquo;t</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Character</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>^</code></td>
+          <td>Matches beginning of string or line (in multiline mode)</td>
+      </tr>
+      <tr>
+          <td><code>$</code></td>
+          <td>Matches end of string or line (in multiline mode)</td>
+      </tr>
+      <tr>
+          <td><code>\A</code></td>
+          <td>Matches only beginning of string</td>
+      </tr>
+      <tr>
+          <td><code>\Z</code></td>
+          <td>Matches only very end of string (same as <code>\z</code> in most other engines)</td>
+      </tr>
+      <tr>
+          <td><code>\b</code></td>
+          <td>Matches if one side is a word character and the other isn&rsquo;t</td>
+      </tr>
+      <tr>
+          <td><code>\B</code></td>
+          <td>Matches wherever <code>\b</code> doesn&rsquo;t</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -972,46 +974,46 @@ case, we could also use possessive quantifiers.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Character</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>(regex)</code></td>
-<td>Capturing group</td>
-</tr>
-<tr>
-<td><code>\1, ..., \99</code></td>
-<td>Backreferences to capturing groups</td>
-</tr>
-<tr>
-<td><code>(?:regex)</code></td>
-<td>Non-capturing group</td>
-</tr>
-<tr>
-<td><code>(?P&lt;name&gt;regex)</code></td>
-<td>Named capturing group in <code>re</code> module</td>
-</tr>
-<tr>
-<td><code>(?P=name)</code></td>
-<td>Backreference to named capturing group in <code>re</code></td>
-</tr>
-<tr>
-<td><code>(?&lt;name&gt;regex)</code></td>
-<td>Named capturing group in <code>regex</code> module</td>
-</tr>
-<tr>
-<td><code>\g&lt;name&gt;</code></td>
-<td>Backreference to named capturing group in <code>regex</code></td>
-</tr>
-<tr>
-<td><code>(?&gt;regex)</code></td>
-<td>Atomic group</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Character</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>(regex)</code></td>
+          <td>Capturing group</td>
+      </tr>
+      <tr>
+          <td><code>\1, ..., \99</code></td>
+          <td>Backreferences to capturing groups</td>
+      </tr>
+      <tr>
+          <td><code>(?:regex)</code></td>
+          <td>Non-capturing group</td>
+      </tr>
+      <tr>
+          <td><code>(?P&lt;name&gt;regex)</code></td>
+          <td>Named capturing group in <code>re</code> module</td>
+      </tr>
+      <tr>
+          <td><code>(?P=name)</code></td>
+          <td>Backreference to named capturing group in <code>re</code></td>
+      </tr>
+      <tr>
+          <td><code>(?&lt;name&gt;regex)</code></td>
+          <td>Named capturing group in <code>regex</code> module</td>
+      </tr>
+      <tr>
+          <td><code>\g&lt;name&gt;</code></td>
+          <td>Backreference to named capturing group in <code>regex</code></td>
+      </tr>
+      <tr>
+          <td><code>(?&gt;regex)</code></td>
+          <td>Atomic group</td>
+      </tr>
+  </tbody>
 </table>
 <p>Exercises:</p>
 <ol>
@@ -1160,35 +1162,35 @@ such as <code>.*</code> or, if possible, more specific tokens.</p>
 </li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Lookaround</th>
-<th>Name</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>(?=foo)</code></td>
-<td>Lookahead</td>
-<td>Asserts that what immediately follows the current position in foo</td>
-</tr>
-<tr>
-<td><code>(?&lt;=foo)</code></td>
-<td>Lookbehind</td>
-<td>Asserts that what immediately precedes the current position is foo</td>
-</tr>
-<tr>
-<td><code>(?!foo)</code></td>
-<td>Negative\nLookahead</td>
-<td>Asserts that what immediately follows the current position is not foo</td>
-</tr>
-<tr>
-<td><code>(?&lt;!foo)</code></td>
-<td>Negative\nLookbehind</td>
-<td>Asserts that what immediately precedes the current position is not foo</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Lookaround</th>
+          <th>Name</th>
+          <th>What it does</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>(?=foo)</code></td>
+          <td>Lookahead</td>
+          <td>Asserts that what immediately follows the current position in foo</td>
+      </tr>
+      <tr>
+          <td><code>(?&lt;=foo)</code></td>
+          <td>Lookbehind</td>
+          <td>Asserts that what immediately precedes the current position is foo</td>
+      </tr>
+      <tr>
+          <td><code>(?!foo)</code></td>
+          <td>Negative\nLookahead</td>
+          <td>Asserts that what immediately follows the current position is not foo</td>
+      </tr>
+      <tr>
+          <td><code>(?&lt;!foo)</code></td>
+          <td>Negative\nLookbehind</td>
+          <td>Asserts that what immediately precedes the current position is not foo</td>
+      </tr>
+  </tbody>
 </table>
 <p>Practice:</p>
 <ul>
@@ -1315,7 +1317,7 @@ not followed by another underscore.</li>
 </ol>
 </li>
 <li>
-<p>In the string <code>_rabbit _dog _mouse DIC🐱dog:mouse</code>, where the DIC list
+<p>In the string <code>_rabbit _dog _mouse DIC:cat:dog:mouse</code>, where the DIC list
 at the end contains the list of allowed animals, match each <em>_token</em>
 named after animals in the allowed list. Solution: <code>_(\w+)\b(?=.*:\1\b)</code>.
 Discussion: don&rsquo;t forget the second word boundary, as without it, we&rsquo;d also
@@ -1340,38 +1342,38 @@ backtrack further. Hence, lookarounds are
 the method (e.g. <code>re.findall(pattern, string, flags=re.MULTILINE)</code>).</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Flag (inline modifier)</th>
-<th>Legend</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[A]SCII (?a)</td>
-<td>Make tokens match ASCII rather than Unicode</td>
-</tr>
-<tr>
-<td>GLOBAL</td>
-<td>Don&rsquo;t return after first match (use <code>re.findall()</code>)</td>
-</tr>
-<tr>
-<td>[I]GNORECASE (?i)</td>
-<td>Case insensitive matching</td>
-</tr>
-<tr>
-<td>[M]ULTILINE (?m)</td>
-<td>Make ^ and $ match end of line (not end of string)</td>
-</tr>
-<tr>
-<td>S, DOTALL (?s)</td>
-<td>Make . match newline (also called single-line)</td>
-</tr>
-<tr>
-<td>X, VERBOSE (?x)</td>
-<td>Allow linebreaks for easier-to-read regexes</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Flag (inline modifier)</th>
+          <th>Legend</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>[A]SCII (?a)</td>
+          <td>Make tokens match ASCII rather than Unicode</td>
+      </tr>
+      <tr>
+          <td>GLOBAL</td>
+          <td>Don&rsquo;t return after first match (use <code>re.findall()</code>)</td>
+      </tr>
+      <tr>
+          <td>[I]GNORECASE (?i)</td>
+          <td>Case insensitive matching</td>
+      </tr>
+      <tr>
+          <td>[M]ULTILINE (?m)</td>
+          <td>Make ^ and $ match end of line (not end of string)</td>
+      </tr>
+      <tr>
+          <td>S, DOTALL (?s)</td>
+          <td>Make . match newline (also called single-line)</td>
+      </tr>
+      <tr>
+          <td>X, VERBOSE (?x)</td>
+          <td>Allow linebreaks for easier-to-read regexes</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="subroutines-and-recursive-expressions">Subroutines and recursive expressions</h2>
 <ul>
@@ -1454,34 +1456,34 @@ subtraction on character classes. (Inner brackets are optional but can help
 with readability.)</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Pattern</th>
-<th>String</th>
-<th>Matches</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Intersection</td>
-<td><code>r'[\W]&amp;&amp;[\S]]'</code></td>
-<td><em>a.k$_8</em></td>
-<td><em>[&rsquo;.&rsquo;, &lsquo;$&rsquo;]</em></td>
-</tr>
-<tr>
-<td>Union</td>
-<td><code>r'[ab||\d]'</code></td>
-<td><em>a.k$_8</em></td>
-<td><em>[&lsquo;a&rsquo;, 8]</em></td>
-</tr>
-<tr>
-<td>Subtraction</td>
-<td><code>r'[\w--k]'</code></td>
-<td><em>a.k$_8</em></td>
-<td><em>[&lsquo;a&rsquo;, &lsquo;_&rsquo;, 8]</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Pattern</th>
+          <th>String</th>
+          <th>Matches</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Intersection</td>
+          <td><code>r'[\W]&amp;&amp;[\S]]'</code></td>
+          <td><em>a.k$_8</em></td>
+          <td><em>[&rsquo;.&rsquo;, &lsquo;$&rsquo;]</em></td>
+      </tr>
+      <tr>
+          <td>Union</td>
+          <td><code>r'[ab||\d]'</code></td>
+          <td><em>a.k$_8</em></td>
+          <td><em>[&lsquo;a&rsquo;, 8]</em></td>
+      </tr>
+      <tr>
+          <td>Subtraction</td>
+          <td><code>r'[\w--k]'</code></td>
+          <td><em>a.k$_8</em></td>
+          <td><em>[&lsquo;a&rsquo;, &lsquo;_&rsquo;, 8]</em></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="gotchas">Gotchas</h2>
 <ul>
@@ -1552,11 +1554,9 @@ giving us <em>yay</em>.</p>
 <a href="https://www.rexegg.com/regex-style.html#contrast" target="_blank" rel="noopener noreffer ">this</a> fantastic section from
 the RexEgg page.</p>
 <blockquote>
-<p>To write good regex, say shat you mean. Say it clearly.</p>
-</blockquote>
+<p>To write good regex, say shat you mean. Say it clearly.</p></blockquote>
 <blockquote>
-<p>A string goes from \A to \Z (in <code>re</code>; to \z, in <code>regex</code>).</p>
-</blockquote>
+<p>A string goes from \A to \Z (in <code>re</code>; to \z, in <code>regex</code>).</p></blockquote>
 <ul>
 <li>
 <p>Summary mnemonic: <strong>Greedy atoms anchor again.</strong>: greedy vs lazy, the cost of
@@ -1693,19 +1693,18 @@ resource</a></p>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tools/">tools</a>,&nbsp;<a href="/tags/cheatsheet/">cheatsheet</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href=""></a>,&nbsp;<a href=""></a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/advanced-data-structures/" class="prev" rel="prev" title="Advanced data structures"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Advanced data structures</a>
-            <a href="/algorithm-complexity-analysis/" class="next" rel="next" title="Algorithm complexity analysis">Algorithm complexity analysis<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.8">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
@@ -1714,5 +1713,5 @@ resource</a></p>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

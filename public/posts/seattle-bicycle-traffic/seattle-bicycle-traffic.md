@@ -1,14 +1,15 @@
 ---
-title: "Seattle bicycle traffic"
-date: "2020-02-07"
+title: Seattle bicycle traffic
+date: '2020-02-07'
 tags:
-    - datascience
+  - datascience
 execute:
-    enabled: false
+  enabled: false
 ---
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -153,9 +154,7 @@ data.head(3)
 data.resample("w").sum().plot()
 ```
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a23e32850>
-
-![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-2.png)
+![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-5-output-1.png)
 
 Same graph as above using Altair
 
@@ -274,14 +273,14 @@ pivoted.head()
     }
 </style>
 
-|            | east |     |     |     |     |     |     |     |     |     | \... | west |     |     |     |     |     |     |     |     |     |
-|------------|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|------|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| Date       | 0    | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | \... | 14   | 15  | 16  | 17  | 18  | 19  | 20  | 21  | 22  | 23  |
-| 2012-10-03 | 9    | 6   | 1   | 3   | 1   | 10  | 50  | 95  | 146 | 104 | \... | 77   | 72  | 133 | 192 | 122 | 59  | 29  | 25  | 24  | 5   |
-| 2012-10-04 | 11   | 0   | 6   | 3   | 1   | 11  | 51  | 89  | 134 | 94  | \... | 63   | 73  | 114 | 154 | 137 | 57  | 27  | 31  | 25  | 11  |
-| 2012-10-05 | 7    | 4   | 3   | 2   | 2   | 7   | 37  | 101 | 119 | 81  | \... | 63   | 80  | 120 | 144 | 107 | 42  | 27  | 11  | 10  | 16  |
-| 2012-10-06 | 7    | 5   | 2   | 2   | 1   | 2   | 15  | 16  | 47  | 55  | \... | 89   | 115 | 107 | 107 | 41  | 40  | 25  | 18  | 14  | 15  |
-| 2012-10-07 | 5    | 5   | 1   | 2   | 2   | 3   | 8   | 12  | 26  | 36  | \... | 126  | 122 | 132 | 118 | 68  | 26  | 19  | 12  | 9   | 5   |
+|  | east |  |  |  |  |  |  |  |  |  | \... | west |  |  |  |  |  |  |  |  |  |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| Date | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | \... | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |
+| 2012-10-03 | 9 | 6 | 1 | 3 | 1 | 10 | 50 | 95 | 146 | 104 | \... | 77 | 72 | 133 | 192 | 122 | 59 | 29 | 25 | 24 | 5 |
+| 2012-10-04 | 11 | 0 | 6 | 3 | 1 | 11 | 51 | 89 | 134 | 94 | \... | 63 | 73 | 114 | 154 | 137 | 57 | 27 | 31 | 25 | 11 |
+| 2012-10-05 | 7 | 4 | 3 | 2 | 2 | 7 | 37 | 101 | 119 | 81 | \... | 63 | 80 | 120 | 144 | 107 | 42 | 27 | 11 | 10 | 16 |
+| 2012-10-06 | 7 | 5 | 2 | 2 | 1 | 2 | 15 | 16 | 47 | 55 | \... | 89 | 115 | 107 | 107 | 41 | 40 | 25 | 18 | 14 | 15 |
+| 2012-10-07 | 5 | 5 | 1 | 2 | 2 | 3 | 8 | 12 | 26 | 36 | \... | 126 | 122 | 132 | 118 | 68 | 26 | 19 | 12 | 9 | 5 |
 
 <p>5 rows × 72 columns</p>
 </div>
@@ -310,9 +309,7 @@ plt.scatter(Xpca[:, 0], Xpca[:, 1], c=total_trips, cmap="Paired")
 plt.colorbar(label="Total trips")
 ```
 
-    <matplotlib.colorbar.Colorbar at 0x1a26ec9dd0>
-
-![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-2.png)
+![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-11-output-1.png)
 
 What can we learn from this graph? We can see that the days fall into two quite distinct cluster, one with a higher number of trips and one with a lower number of trips, that the number of trips increases along the length of each projected cluster (i.e. as we move away from the origin), and that close to the origin, the groups are less distinguishable. Overall, we can see that there are, in effect, two types of days for Seattle cyclists. This is indeed pretty cool.
 
@@ -327,9 +324,7 @@ cluster_label = gmm.predict(Xpca)
 plt.scatter(Xpca[:, 0], Xpca[:, 1], c=cluster_label, cmap="Paired")
 ```
 
-    <matplotlib.collections.PathCollection at 0x1a249be050>
-
-![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-2.png)
+![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-12-output-1.png)
 
 ``` python
 # Add cluster labels to original data
@@ -531,9 +526,7 @@ plt.scatter(Xpca[:, 0], Xpca[:, 1], c="gray", alpha=0.2)
 plt.scatter(Xpca[fridays, 0], Xpca[fridays, 1], c="green")
 ```
 
-    <matplotlib.collections.PathCollection at 0x1a26303c10>
-
-![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-2.png)
+![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-23-output-1.png)
 
 What's going on with the three strange outliers in the right bottom corner?
 
@@ -555,9 +548,7 @@ all_days.loc[:, weird_fridays].plot()
 all_days.mean(1).plot(color="grey", lw=4, alpha=0.5, xticks=hourly_ticks)
 ```
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a2631b750>
-
-![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-2.png)
+![](seattle-bicycle-traffic_files/figure-markdown_strict/cell-25-output-1.png)
 
 We've found Seattle's [bike to work day](https://www.cascade.org/bikeeverywhereday).
 

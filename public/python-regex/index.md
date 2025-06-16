@@ -1,8 +1,9 @@
 # Regex in Python
 
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -27,12 +28,16 @@ Without escaping a single quotation mark, it takes on its special meaning as a d
 'It's raining'
 ```
 
-    SyntaxError: invalid syntax (3769801028.py, line 1)
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"/var/folders/xg/n9p73cf50s52twlnz7z778vr0000gn/T/ipykernel_1847/3769801028.py"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    'It's raining'</span>
+        ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
 
 To give it its literal meaning as an apostrophe, we need to escape it.
 
 ``` python
-"It's raining"
+'It's raining"
 ```
 
     "It's raining"
@@ -794,10 +799,10 @@ movies.head(2)
     }
 </style>
 
-|     | title                  | us gross | worldwide gross | us dvd sales | production budget | release date | mpaa rating | running time min | distributor | source | major genre | creative type | director | rotten tomatoes rating | imdb rating | imdb votes |
-|-----|------------------------|----------|-----------------|--------------|-------------------|--------------|-------------|------------------|-------------|--------|-------------|---------------|----------|------------------------|-------------|------------|
-| 0   | the land girls         | 146083.0 | 146083.0        | NaN          | 8000000.0         | jun 12 1998  | r           | NaN              | gramercy    | None   | None        | None          | None     | NaN                    | 6.1         | 1071.0     |
-| 1   | first love, last rites | 10876.0  | 10876.0         | NaN          | 300000.0          | aug 07 1998  | r           | NaN              | strand      | None   | drama       | None          | None     | NaN                    | 6.9         | 207.0      |
+|  | title | us gross | worldwide gross | us dvd sales | production budget | release date | mpaa rating | running time min | distributor | source | major genre | creative type | director | rotten tomatoes rating | imdb rating | imdb votes |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | the land girls | 146083.0 | 146083.0 | NaN | 8000000.0 | jun 12 1998 | r | NaN | gramercy | None | None | None | None | NaN | 6.1 | 1071.0 |
+| 1 | first love, last rites | 10876.0 | 10876.0 | NaN | 300000.0 | aug 07 1998 | r | NaN | strand | None | drama | None | None | NaN | 6.9 | 207.0 |
 
 </div>
 
@@ -904,10 +909,10 @@ result.head(2)
     }
 </style>
 
-|     | title                  | us_gross | worldwide_gross | us_dvd_sales | production_budget | release_date | mpaa_rating | running_time_min | distributor | source | major_genre | creative_type | director | rotten_tomatoes_rating | imdb_rating | imdb_votes |
-|-----|------------------------|----------|-----------------|--------------|-------------------|--------------|-------------|------------------|-------------|--------|-------------|---------------|----------|------------------------|-------------|------------|
-| 0   | The Land Girls         | 146083.0 | 146083.0        | NaN          | 8000000.0         | Jun 12 1998  | R           | NaN              | Gramercy    | None   | None        | None          | None     | NaN                    | 6.1         | 1071.0     |
-| 1   | First Love, Last Rites | 10876.0  | 10876.0         | NaN          | 300000.0          | Aug 07 1998  | R           | NaN              | Strand      | None   | Drama       | None          | None     | NaN                    | 6.9         | 207.0      |
+|  | title | us_gross | worldwide_gross | us_dvd_sales | production_budget | release_date | mpaa_rating | running_time_min | distributor | source | major_genre | creative_type | director | rotten_tomatoes_rating | imdb_rating | imdb_votes |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
+| 0 | The Land Girls | 146083.0 | 146083.0 | NaN | 8000000.0 | Jun 12 1998 | R | NaN | Gramercy | None | None | None | None | NaN | 6.1 | 1071.0 |
+| 1 | First Love, Last Rites | 10876.0 | 10876.0 | NaN | 300000.0 | Aug 07 1998 | R | NaN | Strand | None | Drama | None | None | NaN | 6.9 | 207.0 |
 
 </div>
 
